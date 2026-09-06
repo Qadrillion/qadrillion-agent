@@ -5,3 +5,4 @@ ticket file; the frontmatter is the source.
 
 | ID | Title | Scope | Status | Verdict | Updated | Next action |
 |---|---|---|---|---|---|---|
+| [PROJ-101](PROJ-101.md) | Invoice PDF export — amounts in the wrong currency after a customer changes their locale | multi-surface | done | partial | 2026-09-05 | Re-run scenario 4 (locale change mid-session) on the build that contains the api fix for the cached locale; expected: PDF totals in the customer's current currency |
