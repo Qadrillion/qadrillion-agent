@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "workspace": {
+    "id": "qa-workspace",
+    "description": "QA command centre: state, tools, tickets, agent layer"
+  },
+  "repositories": [
+    {
+      "id": "workspace",
+      "path": ".",
+      "role": "This repository: state, tickets, tools, agent configuration",
+      "expected_remote": "git@github.com:your-org/qa-workspace.git",
+      "ownership": "owned",
+      "canonical_branch": "main",
+      "allowed_mutability": ["status", "fetch", "fast-forward", "content-edit"],
+      "scopes": ["workspace"]
+    },
+    {
+      "id": "automation",
+      "path": "automation",
+      "role": "Owned test automation repository (nested, own git history)",
+      "expected_remote": "git@github.com:your-org/qa-automation.git",
+      "ownership": "owned",
+      "canonical_branch": "main",
+      "allowed_mutability": ["status", "fetch", "fast-forward", "content-edit"],
+      "scopes": ["automation", "api", "ui-web", "mobile"]
+    },
+    {
+      "id": "product-web",
+      "path": "source/web",
+      "role": "Product source dependency, read-mostly; ticket-scoped edits only",
+      "expected_remote": "git@github.com:your-org/product-web.git",
+      "ownership": "dependency",
+      "canonical_branch": "main",
+      "allowed_mutability": ["status", "fetch", "fast-forward", "ticket-scoped-content-edit"],
+      "scopes": ["ui-web", "backend"]
+    }
+  ]
+}

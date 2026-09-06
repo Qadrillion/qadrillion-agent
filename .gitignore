@@ -1,0 +1,48 @@
+# Nested working checkouts declared in workspace-manifest.json — each has its own git history.
+/automation/
+/source/
+
+# Credentials — never committed. Templates end in .example and are allowed by the read hook.
+.env
+.env.*
+!.env.example
+.cursor/mcp.json
+.claude/settings.local.json
+*.pem
+*.key
+*.p12
+*.keystore
+*.jks
+*credentials*
+!*credentials*.example*
+
+# Cursor / Claude local state
+.cursor-temp/
+.cursor-cache/
+.cursor/plans/
+.cursor/settings.json
+tools/claude/.sessions/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Test output
+reports/
+allure-results/
+allure-report/
+newman-results/
+test-results/
+playwright-report/
+
+# Node
+node_modules/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

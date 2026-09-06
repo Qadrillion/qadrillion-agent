@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      { "command": ".cursor/hooks/guard-shell.sh", "failClosed": true, "timeout": 10 }
+    ],
+    "beforeMCPExecution": [
+      { "command": ".cursor/hooks/guard-mcp.sh", "failClosed": true, "timeout": 10 }
+    ],
+    "beforeReadFile": [
+      { "command": ".cursor/hooks/guard-read.sh", "failClosed": true, "timeout": 10 }
+    ],
+    "sessionStart": [
+      { "command": ".cursor/hooks/checkpoint-state.sh start", "failClosed": false, "timeout": 10 }
+    ],
+    "stop": [
+      { "command": ".cursor/hooks/checkpoint-state.sh stop", "failClosed": false, "timeout": 10, "loop_limit": 1 }
+    ],
+    "sessionEnd": [
+      { "command": ".cursor/hooks/checkpoint-state.sh end", "failClosed": false, "timeout": 10 }
+    ]
+  }
+}

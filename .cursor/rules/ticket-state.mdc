@@ -1,0 +1,58 @@
+---
+description: "Ticket state contract: frontmatter schema and status state machine for tickets/{ID}.md. Apply when creating, reading, resuming or updating a ticket file."
+globs:
+  - "tickets/**/*.md"
+alwaysApply: false
+---
+
+# Ticket state contract
+
+One file per tested ticket: `tickets/{ID}.md`. The YAML frontmatter is
+machine-readable state; the body is evidence. An agent returning after a week
+reads the frontmatter and knows exactly where to continue.
+
+## Frontmatter (all keys required; `tools/tickets/validate.py` enforces it)
+
+```yaml
+---
+id: PROJ-123
+title: Short human title
+scope: api            # api|ui-web|mobile|backend|multi-surface|tooling
+status: analyzed      # see state machine
+verdict: null         # null until done, then pass|partial|fail
+build: null           # version/branch/commit tested, or null
+environment: staging  # dev|staging|prod|null — prod is read-only for agents
+tracker: https://tracker.example/browse/PROJ-123
+design: null          # design link or null
+source_refs: []       # files reviewed (path[:line]); pins the implementation
+started: 2026-01-01
+updated: 2026-01-01   # bump on EVERY write
+next_action: "One concrete step a fresh agent can execute immediately"
+blockers: []          # strings; [] when none
+---
+```
+
+`next_action` and `blockers` are the resume payload. Specific, never vague:
+"run the negative matrix on device once a non-DE account exists", not
+"continue testing".
+
+## State machine
+
+```
+analyzing → analyzed → planned → in_test → reporting → done
+                 ↔ blocked (from any active state; reason in blockers)
+```
+
+- Create the file at the end of analysis (`analyzed`), not at the end of the run.
+- Update `status`, `updated`, `next_action`, `blockers` at every phase boundary.
+- Blocked: set `status: blocked`, record why, set `next_action` to the unblock step.
+- `verdict: pass` requires execution evidence in the body. No green without a run.
+- Never delete a ticket file. Supersede by updating it.
+
+## Body sections, in order
+
+Analysis (requirements, source review with `[SEVERITY]` risks, locator or
+endpoint table) → Test plan (per scenario: automated | manual | blocked) →
+Execution & results (real output, xfail/skip with reasons) → Handoff (mirrors
+`next_action`) → Tracker comment (format from `tracker-reporting.mdc`) → Notes.
+Start from `tickets/_TEMPLATE.md`.

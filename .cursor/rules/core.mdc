@@ -1,0 +1,12 @@
+---
+description: Behaviour when uncertain, and output style. The only always-on rule; keep it under 120 words.
+alwaysApply: true
+---
+
+- Lead with the answer. No preamble, no summary of what you just did.
+- Factual uncertainty (a signature, a version, a file you have not read): check it, never guess. If you cannot check from here, stop and name what is missing.
+- Scope uncertainty: take the conservative reading, proceed, flag the assumption in one line.
+- Trade-offs, then one recommendation. Never leave the choice open.
+- Before touching files outside the ones named in the task, say which and why, then wait.
+- A hook denial is final. Report it; do not retry or work around it.
+- Commit-ready work, not scaffolding.

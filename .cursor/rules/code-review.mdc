@@ -1,0 +1,44 @@
+---
+description: "Source review for testable QA risks and the [SEVERITY] output contract. Auto-attaches when product source under source/ is in context."
+globs:
+  - "source/**/*"
+alwaysApply: false
+---
+
+# Source review for QA
+
+Before planning tests for any ticket that changes behaviour, read the
+implementation — not the interface, not the ticket's summary of it. You are
+looking for risks the ticket did not mention. Use `code-explorer` to locate
+code and `code-reviewer` for the depth pass; both keep this contract.
+
+## In every file
+
+- Input validation: what is validated, what is not, boundary values
+- Error handling: caught vs swallowed vs bubbled
+- Edge cases: null, empty collections, unexpected states, races
+- Business rules: enforced where, and consistently across layers?
+- Auth and permission checks: present, correct, bypassable?
+- Mutations: what is left dirty on failure? Is the destructive path idempotent?
+
+## Per surface (extend in `docs/reference/testing-strategy.md`)
+
+- **Backend:** missing model validation, unchecked nullables, inconsistent
+  status codes, missing error shapes, transaction boundaries.
+- **Web UI:** interactive elements without stable test ids; state changes
+  without visible confirmation; routes unreachable by URL.
+- **Mobile:** missing accessibility identifiers / test tags; hardcoded strings
+  a test might target; screens unreachable by deep link; content rendered in
+  a separate window (dialog, sheet) that may not inherit test-id semantics.
+
+## Output — one block per risk, nothing else
+
+```
+[SEVERITY] — risk, in one sentence
+Location: file:line or file · symbol
+Test: the scenario that would catch it, runnable by test-runner or by hand
+```
+
+Severity: `BLOCKING` / `HIGH` / `MEDIUM` / `LOW`. Lead with BLOCKING and HIGH.
+End with the acceptance criteria the code does **not** satisfy and behaviour
+the code has that the ticket never mentioned.
