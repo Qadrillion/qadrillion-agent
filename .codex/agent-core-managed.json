@@ -1,0 +1,16 @@
+{
+  ".agents/skills/golden-tasks": "68c46549cdea0832407efcd21b86be2a93a99195f0c4f770608cc89688da50c2",
+  ".agents/skills/qa": "77a6d2c77b0b6dc7b4846d17d9d7dab6950e2fd7fa8274bcfdd0438a8d5aa413",
+  ".agents/skills/qa-workflow": "9acbc0c7435da94d261f1d6dd03d3958b53a1d86e0d8870842bd5e3cfc76c34d",
+  ".codex/.gitignore": "dfc0d03441acf702d418a7548a069141dc3de969cbb4c724bf9d2e6f2968d74a",
+  ".codex/agents/code-explorer.toml": "26492bf66bdf72607725a5ded8c8d878e59301c2733af5e1fa25d9a92ae848e8",
+  ".codex/agents/code-reviewer.toml": "d11e1c81837fed50b898bf1b09f777d5e744afd827c6cc42e329e44696c15141",
+  ".codex/agents/test-runner.toml": "2f36ac5c8825ad8a019e1a7274f28a171b488a6b784686dcb9f1b20cc6a58e62",
+  ".codex/agents/ticket-writer.toml": "8aea8bc735a778497e8a193d17973aa3d72422098864f9306b4b6fc6bbdcafa9",
+  ".codex/agents/tracker-reporter.toml": "1c015071349f49e835923dcc8f0581a35a6afcb779bd4536d7a35c0a58f94933",
+  ".codex/config.toml": "f09cf720674b42368a2c724a513672668011d14e395692038c6f084fd145b65f",
+  ".codex/hooks.json": "28b54eff4207f789f721fd124b5b33f84a2e52f9e3189847c35547fa2fbd8b22",
+  ".codex/hooks/adapter.py": "17f7b492e903f3926cc8500ba3ca9a2d1b159b7ed1514b277b3cd69ae36d7204",
+  "AGENTS.md": "0d563a980d85bc5fb0db91665e339541cce0cc2a44c460124bdf97eaf2decb01",
+  "CLAUDE.md": "bd3789ebd69e6e8babd493148b28eda3e5dad2658e265a6f627a8b9325d29682"
+}
