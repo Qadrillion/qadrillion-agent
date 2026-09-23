@@ -1,0 +1,32 @@
+name: Bug in the agent layer
+description: A hook, rule, skill, or subagent did the wrong thing.
+title: "bug: "
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: The command or ticket, and the hook message if one was printed.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: input
+    id: harness
+    attributes:
+      label: Harness
+      placeholder: Cursor, Claude Code, or both
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: Paste the command output. "It failed locally" is not enough.
+      render: text
+    validations:
+      required: true

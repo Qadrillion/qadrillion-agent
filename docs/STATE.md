@@ -1,8 +1,11 @@
 # State — <workspace name>
 
-Updated: YYYY-MM-DD
+Updated: 2026-09-23
 Overwrite this file every session. Never append. Handover note, not a diary.
 Full chronology lives in `docs/sessions/` and is never read at startup.
+
+This file is the template a team overwrites after cloning. Keep the headings.
+Skeleton note, 2026-09-23: the public GitHub page is in `docs/sessions/2026-09-23-public-repo.md`. Next work on the skeleton is a review of the skills and subagents, then a release tag.
 
 ## Goal
 

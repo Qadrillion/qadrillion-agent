@@ -1,24 +1,32 @@
+<p align="center">
+  <img src="docs/brand/header.png" alt="Qadrillion mark and wordmark. qadrillion-agent is the open-source QA agent for Cursor and Claude Code." width="1280">
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-B8602E?style=flat-square"></a>
+  <a href="https://github.com/Qadrillion/qadrillion-agent/actions/workflows/governance.yml"><img alt="governance workflow status" src="https://img.shields.io/github/actions/workflow/status/Qadrillion/qadrillion-agent/governance.yml?branch=main&style=flat-square&label=governance"></a>
+</p>
+
 # qadrillion-agent
 
-A QA agent layer for Cursor and Claude Code. Clone it, open it, type a ticket ID. The agent reads the
-ticket, reviews the product source for testable risk, writes tests against identifiers that exist in
-the build, runs them, and prepares the tracker comment — and stops, deterministically, at the things a
-QA engineer must decide: anything aimed at production, any write to an external system, any locator
-the app does not ship.
+An open-source QA agent for agentic software testing in Cursor and Claude Code. Clone it, open it, type a ticket ID. The agent reads the ticket, reviews the product source for testable risk, writes tests against identifiers that exist in the build, runs them, and prepares the tracker comment — and stops, deterministically, at the things a QA engineer must decide: anything aimed at production, any write to an external system, any locator the app does not ship.
 
 Built for testers, not against them. Every output is an artifact a QA lead reads and signs.
+
+[Qadrillion](https://qadrillion.com/repo) publishes this agent and tests with it. Free, MIT, no account, no telemetry.
 
 ## Five minutes
 
 ```bash
-git clone <this repo> qa-workspace && cd qa-workspace
+git clone https://github.com/Qadrillion/qadrillion-agent.git qa-workspace
+cd qa-workspace
 chmod +x .cursor/hooks/*.sh .cursor/hooks/tests/run-tests.sh .claude/hooks/*.sh tools/workspace/*.sh
 ./.cursor/hooks/tests/run-tests.sh          # expect: passed: 71  failed: 0
 ```
 
-Open the folder in Cursor, start an Agent chat, type `PROJ-123` (or `/qa PROJ-123`). That is the
-interface. Claude Code users: `claude` in the same folder reads `CLAUDE.md` → `AGENTS.md` and runs the
-same fences.
+Open the folder in Cursor, start an Agent chat, type `PROJ-123` (or `/qa PROJ-123`). That is the interface. Claude Code users: `claude` in the same folder reads `CLAUDE.md` → `AGENTS.md` and runs the same fences.
+
+Or choose **Use this template** on GitHub and start from your own copy.
 
 Then make it yours (ten minutes, all in three files):
 
@@ -26,7 +34,7 @@ Then make it yours (ten minutes, all in three files):
 |---|---|
 | `workspace-manifest.json` | your automation repo and product checkouts, with what the agent may mutate in each |
 | `.cursor/hooks/guard.conf` | your production hosts, your protected paths, the MCP servers you deny |
-| `.cursor/mcp.json` (gitignored) | your tracker / wiki / design servers, copied from the `mcp.*.example.json` templates |
+| `.cursor/mcp.json` (gitignored) | your tracker, wiki, and design servers. Create this file locally. Never commit it. |
 
 ## What is in the box
 
@@ -44,32 +52,24 @@ Then make it yours (ten minutes, all in three files):
 
 ## The five things this gets right that most setups do not
 
-1. **Boundaries are hooks, not sentences.** "Never run against prod" is a regex in `guard.conf`, evaluated
-   outside the model on every command. Cloud agents see the same file.
+1. **Boundaries are hooks, not sentences.** "Never run against prod" is a regex in `guard.conf`, evaluated outside the model on every command. Cloud agents see the same file.
 2. **No Pass without execution evidence.** From code inspection you get a risk list, not a verdict.
-3. **Locators are source-grounded, with two proofs.** In source (offline audit) and in the installed build
-   (live smoke). A miss is quarantined, never guessed — the fix is a product PR.
+3. **Locators are source-grounded, with two proofs.** In source (offline audit) and in the installed build (live smoke). A miss is quarantined, never guessed — the fix is a product PR.
 4. **A failure is a finding.** Re-run once, then report both outputs. No auto-rerun plugin, ever.
-5. **State is overwritten; history is appended.** `docs/STATE.md` is ≤60 lines and read once at cold start,
-   not injected into every turn.
+5. **State is overwritten; history is appended.** `docs/STATE.md` is ≤60 lines and read once at cold start, not injected into every turn.
 
 ## Acceptance test, once per machine
 
-Ask the agent to run a hard `git reset` in a scratch repo. A live fence returns the hook's own message in
-the Hooks output channel. Do not test with force-push — the model refuses that on its own and the refusal
-masquerades as a working fence. A hook you have not seen execute is not a hook.
+Ask the agent to run a hard `git reset` in a scratch repo. A live fence returns the hook's own message in the Hooks output channel. Do not test with force-push — the model refuses that on its own and the refusal masquerades as a working fence. A hook you have not seen execute is not a hook.
 
 ## Adapting to your stack
 
-`docs/adopting.md` is the checklist: what to fill in, what to measure before and after (Cursor's Context
-Usage panel), and the patterns a real team workspace built on this skeleton should end up with.
-`tickets/PROJ-101.md` is a worked example ticket against a fictional product.
+[`docs/adopting.md`](docs/adopting.md) is the checklist: what to fill in, what to measure before and after (Cursor's Context Usage panel), and the patterns a real team workspace built on this skeleton should end up with. [`tickets/PROJ-101.md`](tickets/PROJ-101.md) is a worked example ticket against a fictional product. The reasons for the fences are in [`docs/decisions/INDEX.md`](docs/decisions/INDEX.md).
 
 ## What this is not
 
-Not a test runner, not a test platform, not a tracker. Tests live and run where yours already do. It never
-edits product code on its own; a product change is a ticket-scoped PR a human reviews.
+Not a test runner, not a test platform, not a tracker. Tests live and run where yours already do. It never edits product code on its own; a product change is a ticket-scoped PR a human reviews. The engineer signs the artifact.
 
 ## License
 
-MIT — see `LICENSE`. No telemetry, no account, no network calls of its own.
+MIT — see [`LICENSE`](LICENSE). No telemetry, no account, no network calls of its own.
