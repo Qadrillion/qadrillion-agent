@@ -15,3 +15,15 @@ Light path. The page is the product's front door. The agent layer itself is out 
 ## Assumptions
 
 Admins are not exempt from the ruleset. A pull request needs zero approving reviews, so the maintainer merges after CI. Discussions stay off. No release tag in this change.
+
+## Implementation record — 2026-09-23
+
+Branch: `feat/public-repo` · Reviewed commit: `1506984`. This record is the commit after it.
+Review-base: `origin/main`
+Review-fingerprint: `e6c80da86b8ea55e1f0bfaf21b47dbca3a4bb12ff794a06c19b56c3643c94206`
+Verified: `./.cursor/hooks/tests/run-tests.sh` → `passed: 71  failed: 0`. Ruleset, About panel, topics, template flag, and secret scanning checked with `gh api` before the review.
+Review: round 1 PASS
+Deferred: 0
+Not verified:
+- Community profile on the default branch still returns `code_of_conduct`, `contributing`, and `issue_template` as null. Those files are in this commit, and this commit is not on `main`. `SECURITY.md` is not a field in that response.
+- Whether `require_extra_approval_for_unattributed_changes: true` can still demand an approving review while the required count is 0. The rule documentation was not available here. `require_last_push_approval` is false.
