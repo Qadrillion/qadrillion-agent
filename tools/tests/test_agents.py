@@ -30,6 +30,15 @@ adapter = module("adapter")
 sync = module("sync")
 
 
+def ascii_locale():
+    environment = dict(os.environ, LC_ALL="C", PYTHONUTF8="0", PYTHONCOERCECLOCALE="0")
+    result = subprocess.run([sys.executable, "-c", "import locale; print(locale.getpreferredencoding(False))"],
+                            env=environment, capture_output=True, text=True, encoding="utf-8", check=True)
+    if result.stdout.strip().lower() not in {"ascii", "us-ascii", "ansi_x3.4-1968"}:
+        raise AssertionError(f"Expected an ASCII locale, got {result.stdout!r}")
+    return environment
+
+
 class AdapterTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="qa runtime space ")
@@ -115,6 +124,26 @@ class AdapterTests(unittest.TestCase):
         manifest.unlink()
         self.assertEqual(self.permission(self.call()), "deny")
 
+    def test_utf8_event_manifest_and_guard_output_under_ascii_locale(self):
+        script = self.root / "tools/agents/adapter.py"
+        script.parent.mkdir(parents=True)
+        shutil.copyfile(ROOT / "tools/agents/adapter.py", script)
+        manifest = self.root / ".cursor/hooks.json"
+        value = json.loads(manifest.read_text(encoding="utf-8"))
+        value["description"] = "Café policy"
+        manifest.write_text(json.dumps(value, ensure_ascii=False), encoding="utf-8")
+        guard = self.hooks / "guard with spaces.sh"
+        guard.write_text("printf '%s\\n' '{\"permission\":\"ask\",\"user_message\":\"Café review\"}'\n", encoding="utf-8")
+        event = {"hook_event_name": "PreToolUse", "tool_name": "Bash",
+                 "tool_input": {"command": "printf café"}, "cwd": str(self.root)}
+        result = subprocess.run([sys.executable, "-B", str(script), "--runtime", "claude"],
+                                input=json.dumps(event, ensure_ascii=False), env=ascii_locale(),
+                                capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        output = json.loads(result.stdout)["hookSpecificOutput"]
+        self.assertEqual(output["permissionDecision"], "ask")
+        self.assertEqual(output["permissionDecisionReason"], "Café review")
+
     def test_file_tools_require_paths_including_notebooks(self):
         for tool in adapter.FILE_TOOLS:
             with self.subTest(tool=tool):
@@ -170,6 +199,27 @@ class SyncTests(unittest.TestCase):
         return subprocess.run([sys.executable, str(self.root / "tools/agents/sync.py"), *args],
                               cwd=self.root.parent, capture_output=True, text=True)
 
+    def hook_command(self):
+        config = json.loads((self.root / ".codex/hooks.json").read_text(encoding="utf-8"))
+        return config["hooks"]["PreToolUse"][0]["hooks"][0]["command"]
+
+    def invoke_hook(self, directory):
+        event = {"hook_event_name": "PreToolUse", "tool_name": "Bash",
+                 "tool_input": {"command": "printf harmless-fixture"}, "cwd": str(directory)}
+        result = subprocess.run(["bash", "-c", self.hook_command()], cwd=directory,
+                                input=json.dumps(event), capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        output = json.loads(result.stdout)["hookSpecificOutput"]
+        self.assertEqual(output["permissionDecision"], "deny")
+        return output["permissionDecisionReason"]
+
+    def root_guard(self):
+        guard = self.root / ".cursor/hooks/launcher fixture.sh"
+        guard.write_text("printf '%s\\n' '{\"permission\":\"deny\",\"user_message\":\"QA workspace policy reached\"}'\n",
+                         encoding="utf-8")
+        manifest = {"hooks": {"beforeShellExecution": [{"command": "'.cursor/hooks/launcher fixture.sh'"}]}}
+        (self.root / ".cursor/hooks.json").write_text(json.dumps(manifest), encoding="utf-8")
+
     def test_clean_export_runs_without_private_installer_or_git(self):
         result = self.cli()
         self.assertEqual(result.returncode, 0, result.stderr)
@@ -177,6 +227,61 @@ class SyncTests(unittest.TestCase):
         self.assertFalse((self.root / ".git").exists())
         self.assertTrue((self.root / ".claude/agents/test-runner.md").is_file())
         self.assertTrue((self.root / ".agents/skills/qa/SKILL.md").is_file())
+
+    def test_generated_hook_uses_workspace_policy_from_nested_git_checkout(self):
+        sync.sync(self.root)
+        self.root_guard()
+        nested = self.root / "source/product with spaces"
+        nested.mkdir(parents=True)
+        for directory in (self.root, nested):
+            subprocess.run(["git", "init", "--quiet", str(directory)], check=True, capture_output=True)
+        shadow = nested / ".codex/hooks/adapter.py"
+        shadow.parent.mkdir(parents=True)
+        shadow.write_text("raise RuntimeError('Wrong nested product adapter ran')\n", encoding="utf-8")
+        self.assertEqual(self.invoke_hook(nested), "QA workspace policy reached")
+
+    def test_generated_hook_runs_in_git_free_archive(self):
+        sync.sync(self.root)
+        self.root_guard()
+        nested = self.root / "source/product with spaces"
+        nested.mkdir(parents=True)
+        self.assertFalse((self.root / ".git").exists())
+        self.assertEqual(self.invoke_hook(nested), "QA workspace policy reached")
+
+    def test_generated_hook_denies_missing_or_ambiguous_workspace(self):
+        sync.sync(self.root)
+        self.root_guard()
+        with tempfile.TemporaryDirectory(prefix="unrelated cwd ") as directory:
+            self.assertIn("exactly one ancestor QA workspace", self.invoke_hook(Path(directory)))
+        nested = self.root / "source/product with spaces"
+        marker = nested / sync.LEDGER
+        marker.parent.mkdir(parents=True)
+        marker.write_bytes((self.root / sync.LEDGER).read_bytes())
+        self.assertIn("ambiguous policy root", self.invoke_hook(nested))
+
+    def test_generated_hook_rejects_unrecognized_or_symlinked_workspace_marker(self):
+        sync.sync(self.root)
+        marker = self.root / sync.LEDGER
+        original = marker.read_bytes()
+        marker.write_text('{"generator":"another-framework"}', encoding="utf-8")
+        self.assertIn("Unrecognized QA workspace marker", self.invoke_hook(self.root))
+        real = self.root / "actual-marker.json"
+        real.write_bytes(original)
+        marker.unlink()
+        marker.symlink_to(real)
+        self.assertIn("marker must not be a symlink", self.invoke_hook(self.root))
+
+    def test_generation_and_check_under_ascii_locale(self):
+        environment = ascii_locale()
+        source = self.root / ".cursor/agents/test-runner.md"
+        source.write_text(source.read_text(encoding="utf-8") + "\nUnicode QA: café.\n", encoding="utf-8")
+        for arguments in ([], ["--check"]):
+            result = subprocess.run([sys.executable, "-B", str(self.root / "tools/agents/sync.py"), *arguments],
+                                    cwd=self.root.parent, env=environment,
+                                    capture_output=True, text=True, encoding="utf-8")
+            self.assertEqual(result.returncode, 0, result.stderr)
+        generated = tomllib.loads((self.root / ".codex/agents/test-runner.toml").read_text(encoding="utf-8"))
+        self.assertIn("Unicode QA: café.", generated["developer_instructions"])
 
     def test_idempotence_and_canonical_changes(self):
         sync.sync(self.root)

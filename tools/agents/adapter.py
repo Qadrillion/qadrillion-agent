@@ -120,7 +120,7 @@ def run_policy(root, entry, payload, deadline, boundary):
         if timeout <= 0:
             raise PolicyError("policy deadline exceeded")
         result = subprocess.run(["bash", str(script), *argv[1:]], input=json.dumps(payload),
-                                capture_output=True, text=True, timeout=timeout, cwd=root)
+                                capture_output=True, text=True, encoding="utf-8", timeout=timeout, cwd=root)
         if result.returncode:
             raise PolicyError("policy process failed: " + script.name)
         verdict = json.loads(result.stdout)
@@ -142,7 +142,7 @@ def project(data, root, runtime):
     event = data.get("hook_event_name", "PreToolUse")
     if event not in {"PreToolUse", *LIFECYCLE}:
         raise PolicyError("unsupported hook event")
-    hooks = json.loads((root / ".cursor/hooks.json").read_text())["hooks"]
+    hooks = json.loads((root / ".cursor/hooks.json").read_text(encoding="utf-8"))["hooks"]
     if not isinstance(hooks, dict):
         raise PolicyError("invalid project hook manifest")
     cwd = Path(require_string(data.get("cwd", str(root)), "working directory"))
@@ -191,7 +191,7 @@ def main(runtime=None, root=None):
     root = root or Path(__file__).resolve().parents[2]
     data = None
     try:
-        data = json.load(sys.stdin)
+        data = json.loads(getattr(sys.stdin, "buffer", sys.stdin).read())
         output = project(data, root, runtime)
     except Exception as exc:
         # Native runtimes often ignore hook crashes; emit a valid denial instead.

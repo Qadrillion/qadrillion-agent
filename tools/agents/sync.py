@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shlex
 import sys
 import tempfile
 import tomllib
@@ -16,6 +17,32 @@ LEDGER = "tools/agents/generated.json"
 OLD_LEDGER = ".codex/agent-core-managed.json"
 CONFIGS = {"codex": ".codex/hooks.json", "claude": ".claude/settings.json"}
 MATCHER = "^(Bash|exec_command|Read|Edit|Write|MultiEdit|NotebookEdit|apply_patch|mcp__.*)$"
+GENERATOR_ID = "qadrillion-agent-runtime"
+CODEX_LAUNCHER = '''import json
+from pathlib import Path
+import runpy
+
+try:
+    cwd = Path.cwd().resolve()
+    roots = [path for path in (cwd, *cwd.parents)
+             if (path / "tools/agents/generated.json").exists()]
+    if len(roots) != 1:
+        raise RuntimeError("Expected exactly one ancestor QA workspace; refusing missing or ambiguous policy root")
+    root = roots[0]
+    marker = root / "tools/agents/generated.json"
+    if marker.resolve() != marker:
+        raise RuntimeError("QA workspace marker must not be a symlink")
+    state = json.loads(marker.read_text(encoding="utf-8"))
+    if not isinstance(state, dict) or state.get("generator") != "qadrillion-agent-runtime":
+        raise RuntimeError("Unrecognized QA workspace marker")
+    script = root / ".codex/hooks/adapter.py"
+    if script.resolve() != script:
+        raise RuntimeError("QA workspace adapter must not be a symlink")
+    runpy.run_path(str(script), run_name="__main__")
+except Exception as exc:
+    print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse",
+          "permissionDecision": "deny", "permissionDecisionReason": "Workspace policy launcher failed closed: " + str(exc)}}))
+'''
 
 
 class SyncError(Exception):
@@ -27,18 +54,18 @@ def digest(data):
 
 
 def encoded(value):
-    return (json.dumps(value, indent=2, ensure_ascii=False) + "\n").encode()
+    return (json.dumps(value, indent=2, ensure_ascii=False) + "\n").encode("utf-8")
 
 
 def read_json(path):
-    value = json.loads(path.read_text())
+    value = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(value, dict):
         raise SyncError(f"Expected JSON object: {path}")
     return value
 
 
 def metadata(path):
-    text = path.read_text()
+    text = path.read_text(encoding="utf-8")
     parts = text.split("---", 2)
     if len(parts) != 3 or parts[0].strip():
         raise SyncError(f"Missing frontmatter: {path}")
@@ -67,7 +94,9 @@ def metadata(path):
 
 def hook_groups(runtime):
     if runtime == "codex":
-        command = 'python3 "$(git rev-parse --show-toplevel)/.codex/hooks/adapter.py"'
+        # Hooks use session cwd, which may be a nested Git checkout. Git root
+        # discovery could select that checkout's policy instead of ours.
+        command = "python3 -c " + shlex.quote(CODEX_LAUNCHER)
     else:
         command = 'bash "$CLAUDE_PROJECT_DIR/.claude/hooks/pretooluse.sh"'
     groups = {}
@@ -101,7 +130,7 @@ def desired_files(root):
         if readonly == "true":
             codex += 'sandbox_mode = "read-only"\n'
         tomllib.loads(codex)
-        files[f".codex/agents/{name}.toml"] = codex.encode()
+        files[f".codex/agents/{name}.toml"] = codex.encode("utf-8")
         claude = "---\n" + "\n".join(f"{key}: {json.dumps(fields[key], ensure_ascii=False)}"
                                     for key in ("name", "description"))
         claude += "\nmodel: inherit\n"
@@ -110,7 +139,7 @@ def desired_files(root):
             # paths able to mutate; these roles need only local source reads.
             claude += "tools: Read, Grep, Glob\n"
         claude += "---\n\n" + body
-        files[f".claude/agents/{name}.md"] = claude.encode()
+        files[f".claude/agents/{name}.md"] = claude.encode("utf-8")
     skill_root = root / ".cursor/skills"
     for skill in sorted(skill_root.iterdir()):
         if not skill.is_dir() or skill.is_symlink():
@@ -196,7 +225,7 @@ def plan(root):
                     raise SyncError(f"Unexpected skill symlink: {relative}")
                 replacements.append(relative)
             elif path.is_file():
-                if path.read_text().strip() != expected:
+                if path.read_text(encoding="utf-8").strip() != expected:
                     raise SyncError(f"Unexpected skill file: {relative}")
                 replacements.append(relative)
     updates = {}
@@ -255,7 +284,8 @@ def plan(root):
         if digest(path.read_bytes()) != state["old_ledger_hash"]:
             raise SyncError("Legacy generated-file ledger changed locally; cannot safely migrate")
         deletions.append(OLD_LEDGER)
-    ledger = encoded({"version": 1, "files": {key: digest(value) for key, value in sorted(files.items())},
+    ledger = encoded({"version": 1, "generator": GENERATOR_ID,
+                      "files": {key: digest(value) for key, value in sorted(files.items())},
                       "modes": dict(sorted(modes.items())),
                       "hooks": groups})
     if not (root / LEDGER).exists() or (root / LEDGER).read_bytes() != ledger:
