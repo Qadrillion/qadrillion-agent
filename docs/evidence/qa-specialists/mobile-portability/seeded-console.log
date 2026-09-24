@@ -1,0 +1,53 @@
+test_activity_recreation (__main__.ParcelContract.test_activity_recreation)
+C5: clear-top recreates this standard-launch root activity in-process. ... FAIL
+test_process_termination_relaunch (__main__.ParcelContract.test_process_termination_relaunch)
+C5: verify real PID death, then launch without clearing data. ... FAIL
+
+======================================================================
+FAIL: test_activity_recreation (__main__.ParcelContract.test_activity_recreation)
+C5: clear-top recreates this standard-launch root activity in-process.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/reference/mobile/tests/test_parcel.py", line 260, in test_activity_recreation
+    self.device.expect("after-recreation", parcel_count="Parcels: 2", unit_count="Units: 5")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/reference/mobile/tests/test_parcel.py", line 130, in expect
+    raise AssertionError(f"{label}: expected {expected}; actual {actual}")
+AssertionError: after-recreation: expected {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 5'}; actual {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 0'}
+
+======================================================================
+FAIL: test_process_termination_relaunch (__main__.ParcelContract.test_process_termination_relaunch)
+C5: verify real PID death, then launch without clearing data.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/reference/mobile/tests/test_parcel.py", line 273, in test_process_termination_relaunch
+    self.device.expect("after-process-relaunch", parcel_count="Parcels: 2", unit_count="Units: 5")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/reference/mobile/tests/test_parcel.py", line 130, in expect
+    raise AssertionError(f"{label}: expected {expected}; actual {actual}")
+AssertionError: after-process-relaunch: expected {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 5'}; actual {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 0'}
+
+----------------------------------------------------------------------
+Ran 2 tests in 68.933s
+
+FAILED (failures=2)
+
+{
+  "run": 2,
+  "passed": 0,
+  "failed": 2,
+  "errored": 0,
+  "skipped": 0,
+  "failures": [
+    [
+      "test_activity_recreation (__main__.ParcelContract.test_activity_recreation)",
+      "Traceback (most recent call last):\n  File \"<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/reference/mobile/tests/test_parcel.py\", line 260, in test_activity_recreation\n    self.device.expect(\"after-recreation\", parcel_count=\"Parcels: 2\", unit_count=\"Units: 5\")\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/reference/mobile/tests/test_parcel.py\", line 130, in expect\n    raise AssertionError(f\"{label}: expected {expected}; actual {actual}\")\nAssertionError: after-recreation: expected {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 5'}; actual {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 0'}\n"
+    ],
+    [
+      "test_process_termination_relaunch (__main__.ParcelContract.test_process_termination_relaunch)",
+      "Traceback (most recent call last):\n  File \"<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/reference/mobile/tests/test_parcel.py\", line 273, in test_process_termination_relaunch\n    self.device.expect(\"after-process-relaunch\", parcel_count=\"Parcels: 2\", unit_count=\"Units: 5\")\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/reference/mobile/tests/test_parcel.py\", line 130, in expect\n    raise AssertionError(f\"{label}: expected {expected}; actual {actual}\")\nAssertionError: after-process-relaunch: expected {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 5'}; actual {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 0'}\n"
+    ]
+  ],
+  "errors": [],
+  "skips": []
+}

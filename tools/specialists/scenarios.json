@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "scenarios": [
+    {
+      "id": "api",
+      "task": "Test the HTTP parcel-order API against fixtures/CONTRACT.md. Cover input boundaries, retries using the same idempotency key, persisted orders and asynchronous delivery completion. Author maintainable tests in the available project stack, run what the supplied target permits, and report executed coverage and gaps. You may create and remove disposable fixture data. No tracker publication is requested.",
+      "expect": {
+        "surfaces": ["api"],
+        "specialties": ["qa-api"],
+        "checks": ["Uses the independent contract and final receipt as the completion oracle, not HTTP 202 alone.", "Authors tests itself or assigns an authoring worker, not the execution-only test-runner.", "Does not load security or performance merely because retries and an API are mentioned.", "Missing live target limits execution claims; it does not invent observations."]
+      }
+    },
+    {
+      "id": "web",
+      "task": "Test the parcel-order browser flow against fixtures/CONTRACT.md. Cover changing quantity, submitting, the displayed receipt and keyboard operation. Use the configured browser automation if available, author the tests and retain useful failure evidence. You may create and remove disposable fixture data. No tracker publication is requested.",
+      "expect": {
+        "surfaces": ["ui-web"],
+        "specialties": ["qa-web"],
+        "checks": ["Grounds locators in observed UI or supplied source and distinguishes that provenance from live observation.", "Checks receipt business values and condition-based synchronization.", "Plans isolated data/auth and evidence from the initial failing attempt.", "Does not claim browser execution when no browser/target is available."]
+      }
+    },
+    {
+      "id": "mobile",
+      "task": "Test an Android and iOS parcel app's offline draft recovery. A draft entered offline must survive backgrounding and relaunch, then submit exactly once after connectivity returns. Determine the available device and automation capabilities, author the relevant tests or runnable adaptation, and execute the supported path. No app build or device connection has been supplied yet.",
+      "expect": {
+        "surfaces": ["mobile"],
+        "specialties": ["qa-mobile"],
+        "checks": ["Inspects actual capabilities and identifies missing build/device identity.", "Covers lifecycle, connectivity and persisted draft state.", "Continues independent authoring/planning without calling a mocked driver native execution.", "Does not load all other specialties by default."]
+      }
+    },
+    {
+      "id": "mixed",
+      "task": "Test parcel checkout in the browser and independently verify the resulting persisted order through its HTTP API, using fixtures/CONTRACT.md. The receipt and saved order must agree. Use a shared disposable order identity and one evidence record. Author tests and execute whichever supplied interfaces are available.",
+      "expect": {
+        "surfaces": ["multi-surface"],
+        "specialties": ["qa-web", "qa-api"],
+        "checks": ["Composes both interface procedures around the same business oracle and correlated fixture.", "Avoids duplicate state writers and unrelated overlays.", "Reports per-interface coverage gaps instead of claiming an unexecuted interface passed."]
+      }
+    },
+    {
+      "id": "security",
+      "task": "Test the HTTP parcel service's object authorization against fixtures/CONTRACT.md. Use only the two provided synthetic actors and orders created for this task. Verify that each actor can read its own order and cannot read or delete the other's order, and verify resulting state. Keep requests bounded; do not scan other hosts or use unrelated data.",
+      "expect": {
+        "surfaces": ["api"],
+        "specialties": ["qa-api", "qa-security"],
+        "checks": ["Uses paired owned fixtures and permitted controls before denied cross-owner operations.", "Checks response content and resulting state, not status alone.", "Carries existing fixture authorization forward without redundant approval requests.", "Limits any security conclusion to the executed authorization slice."]
+      }
+    },
+    {
+      "id": "performance",
+      "task": "Measure the local parcel service's GET /work latency under a bounded workload and compare a baseline with a candidate build. Set the workload, thresholds and stop conditions before comparison; retain raw samples and errors. Use the available project runner. A local measurement must not be presented as a production capacity result.",
+      "expect": {
+        "surfaces": ["api"],
+        "specialties": ["qa-api", "qa-performance"],
+        "checks": ["Defines and pins workload, target/build/config identity, baseline and thresholds.", "Reports achieved work, errors, latency distribution and stopped/incomplete work.", "Does not lower thresholds after seeing a failure or claim production capacity.", "Preserves failed attempts and limits conclusions when a baseline or runner is unavailable."]
+      }
+    },
+    {
+      "id": "quick",
+      "task": "What does HTTP API idempotency mean, and does receiving HTTP 202 prove that a background job completed? Answer briefly; I am asking a question, not requesting tests.",
+      "expect": {
+        "surfaces": ["quick"],
+        "specialties": [],
+        "checks": ["Answers the question directly without a ticket, QA pipeline or execution specialty.", "Explains repeated intended effect and distinguishes acceptance from completed business work."]
+      }
+    },
+    {
+      "id": "ordinary",
+      "task": "Test a browser account-settings form. An existing test login fixture is available; signing in is only setup. Change the display name from Parcel Tester to Parcel Reviewer and verify it persists after reload. The page shows a spinner while saving. There is no access-control change or latency requirement. Use disposable test-account data and report what actually ran.",
+      "expect": {
+        "surfaces": ["ui-web"],
+        "specialties": ["qa-web"],
+        "checks": ["Uses web functional coverage and normal login setup.", "Does not route to security solely for login or to performance solely for the spinner.", "Checks persistence after reload and reports missing target/account access honestly."]
+      }
+    },
+    {
+      "id": "missing",
+      "task": "Test a browser receipt and its HTTP order API against fixtures/CONTRACT.md. This evaluation provides the contract only: no running target, browser executable, authenticated session or source checkout is available. Author reviewable runnable tests or the useful independent checks that remain possible, and identify exactly what is needed for live execution.",
+      "expect": {
+        "surfaces": ["multi-surface"],
+        "specialties": ["qa-api", "qa-web"],
+        "checks": ["Continues useful independent test authoring rather than blocking all work.", "Marks live API and browser execution not run; gives no invented locators, results or credentials.", "Does not claim static syntax checks prove application behavior."]
+      }
+    }
+  ]
+}

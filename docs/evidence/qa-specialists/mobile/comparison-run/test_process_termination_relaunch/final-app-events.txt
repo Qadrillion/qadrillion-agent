@@ -1,0 +1,5 @@
+--------- beginning of events
+09-24 11:15:03.452 14417 14417 I wm_on_create_called: [55370587,com.qadrillion.parcel.MainActivity,performCreate,18]
+09-24 11:15:03.452 14417 14417 I wm_on_start_called: [55370587,com.qadrillion.parcel.MainActivity,handleStartActivity,0]
+09-24 11:15:03.452 14417 14417 I wm_on_resume_called: [55370587,com.qadrillion.parcel.MainActivity,RESUME_ACTIVITY,0]
+09-24 11:15:03.456 14417 14417 I wm_on_top_resumed_gained_called: [55370587,com.qadrillion.parcel.MainActivity,topStateChangedWhenResumed]

@@ -1,0 +1,28 @@
+{
+  "run": 12,
+  "passed": 8,
+  "failed": 2,
+  "errored": 0,
+  "skipped": 2,
+  "failures": [
+    [
+      "test_activity_recreation (__main__.ParcelContract.test_activity_recreation)",
+      "Traceback (most recent call last):\n  File \"/private/tmp/qadrillion-mobile-author/automation/mobile/test_parcel.py\", line 195, in test_activity_recreation\n    self.assertIn(\"wm_on_destroy_called\", events, \"Activity destruction not observed\")\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'wm_on_destroy_called' not found in '--------- beginning of events\\n09-24 10:57:01.940  5965  5965 I wm_on_create_called: [181839235,com.qadrillion.parcel.MainActivity,performCreate,32]\\n09-24 10:57:01.940  5965  5965 I wm_on_start_called: [181839235,com.qadrillion.parcel.MainActivity,handleStartActivity,0]\\n09-24 10:57:01.940  5965  5965 I wm_on_resume_called: [181839235,com.qadrillion.parcel.MainActivity,RESUME_ACTIVITY,0]\\n09-24 10:57:01.952  5965  5965 I wm_on_top_resumed_gained_called: [181839235,com.qadrillion.parcel.MainActivity,topStateChangedWhenResumed]\\n09-24 10:57:06.401  5965  6130 I jank_cuj_events_begin_request: [69,1790240226401645000,412810526028,412810526195,0@0@com.qadrillion.parcel]\\n09-24 10:57:06.611  5965  6130 I jank_cuj_events_end_request: [69,1790240226611396000,413020277237,413020277278]\\n09-24 10:57:08.303  5965  6130 I jank_cuj_events_begin_request: [69,1790240228303495000,414712375613,414712375696,1@0@com.qadrillion.parcel]\\n09-24 10:57:08.509  5965  6130 I jank_cuj_events_end_request: [69,1790240228509573000,414918453446,414918453488]\\n09-24 10:57:14.556  5965  6130 I jank_cuj_events_begin_request: [69,1790240234555989000,420964869615,420964869740,0@0@com.qadrillion.parcel]\\n09-24 10:57:14.764  5965  6130 I jank_cuj_events_end_request: [69,1790240234764526000,421173408491,421173408616]\\n09-24 10:57:16.738  5965  6130 I jank_cuj_events_begin_request: [69,1790240236738301000,423147182075,423147182158,1@0@com.qadrillion.parcel]\\n09-24 10:57:16.943  5965  6130 I jank_cuj_events_end_request: [69,1790240236943182000,423352063325,423352063367]\\n09-24 10:57:20.861  5965  5965 I wm_on_top_resumed_lost_called: [181839235,com.qadrillion.parcel.MainActivity,topStateChangedWhenResumed]\\n09-24 10:57:20.865  5965  5965 I wm_on_paused_called: [181839235,com.qadrillion.parcel.MainActivity,performPause,0]\\n09-24 10:57:20.871  5965  5965 I wm_on_create_called: [84936606,com.qadrillion.parcel.MainActivity,performCreate,3]\\n09-24 10:57:20.871  5965  5965 I wm_on_start_called: [84936606,com.qadrillion.parcel.MainActivity,handleStartActivity,0]\\n09-24 10:57:20.871  5965  5965 I wm_on_resume_called: [84936606,com.qadrillion.parcel.MainActivity,RESUME_ACTIVITY,0]\\n09-24 10:57:20.872  5965  5965 I wm_on_top_resumed_gained_called: [84936606,com.qadrillion.parcel.MainActivity,topStateChangedWhenResumed]' : Activity destruction not observed\n"
+    ],
+    [
+      "test_process_termination_relaunch (__main__.ParcelContract.test_process_termination_relaunch)",
+      "Traceback (most recent call last):\n  File \"/private/tmp/qadrillion-mobile-author/automation/mobile/test_parcel.py\", line 210, in test_process_termination_relaunch\n    self.device.expect(\"after-process-relaunch\", parcel_count=\"Parcels: 2\", unit_count=\"Units: 5\")\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/qadrillion-mobile-author/automation/mobile/test_parcel.py\", line 75, in expect\n    raise AssertionError(f\"{label}: expected {expected}; actual {actual}\")\nAssertionError: after-process-relaunch: expected {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 5'}; actual {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 0'}\n"
+    ]
+  ],
+  "errors": [],
+  "skips": [
+    [
+      "test_reject_decimal (__main__.ParcelContract.test_reject_decimal)",
+      "Native field/ADB input could not enter literal '2.5'; observed '25'"
+    ],
+    [
+      "test_reject_text (__main__.ParcelContract.test_reject_text)",
+      "Native field/ADB input could not enter literal 'abc'; observed ''"
+    ]
+  ]
+}

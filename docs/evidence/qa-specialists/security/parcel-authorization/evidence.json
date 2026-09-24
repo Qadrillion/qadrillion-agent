@@ -1,0 +1,1846 @@
+{
+  "identity": {
+    "fixture": "qadrillion-specialist-lab",
+    "role": "test",
+    "run_id": "2cc4d8d1-9171-4128-82b3-b7155e353f10",
+    "build": "a036766d21e2e67fec0b69432b01472b177cdc3b8131cc30e155a34c7f07f28a",
+    "mode": "security-defect",
+    "url": "http://127.0.0.1:61319"
+  },
+  "identity_verified": true,
+  "requests": 69,
+  "ceiling": 100,
+  "trace": [
+    {
+      "number": 1,
+      "method": "GET",
+      "path": "/__identity",
+      "actor": null,
+      "body": null,
+      "status": 200,
+      "response": {
+        "fixture": "qadrillion-specialist-lab",
+        "role": "test",
+        "run_id": "2cc4d8d1-9171-4128-82b3-b7155e353f10",
+        "build": "a036766d21e2e67fec0b69432b01472b177cdc3b8131cc30e155a34c7f07f28a",
+        "mode": "security-defect",
+        "url": "http://127.0.0.1:61319"
+      }
+    },
+    {
+      "number": 2,
+      "method": "GET",
+      "path": "/orders",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": []
+    },
+    {
+      "number": 3,
+      "method": "POST",
+      "path": "/orders",
+      "actor": "alice",
+      "body": {
+        "quantity": 3
+      },
+      "status": 201,
+      "response": {
+        "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "owner": "alice",
+        "quantity": 3,
+        "total_cents": 1500
+      }
+    },
+    {
+      "number": 4,
+      "method": "GET",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "owner": "alice",
+        "quantity": 3,
+        "total_cents": 1500
+      }
+    },
+    {
+      "number": 5,
+      "method": "POST",
+      "path": "/jobs",
+      "actor": "alice",
+      "body": {
+        "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0"
+      },
+      "status": 202,
+      "response": {
+        "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+        "state": "pending"
+      }
+    },
+    {
+      "number": 6,
+      "method": "GET",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+        "state": "pending"
+      }
+    },
+    {
+      "number": 7,
+      "method": "GET",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+        "state": "complete"
+      }
+    },
+    {
+      "number": 8,
+      "method": "GET",
+      "path": "/receipts/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "job_id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+        "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "delivered": true
+      }
+    },
+    {
+      "number": 9,
+      "method": "GET",
+      "path": "/orders",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": []
+    },
+    {
+      "number": 10,
+      "method": "POST",
+      "path": "/orders",
+      "actor": "bob",
+      "body": {
+        "quantity": 7
+      },
+      "status": 201,
+      "response": {
+        "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "owner": "bob",
+        "quantity": 7,
+        "total_cents": 3500
+      }
+    },
+    {
+      "number": 11,
+      "method": "GET",
+      "path": "/orders/cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "owner": "bob",
+        "quantity": 7,
+        "total_cents": 3500
+      }
+    },
+    {
+      "number": 12,
+      "method": "POST",
+      "path": "/jobs",
+      "actor": "bob",
+      "body": {
+        "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8"
+      },
+      "status": 202,
+      "response": {
+        "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+        "state": "pending"
+      }
+    },
+    {
+      "number": 13,
+      "method": "GET",
+      "path": "/jobs/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+        "state": "pending"
+      }
+    },
+    {
+      "number": 14,
+      "method": "GET",
+      "path": "/jobs/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+        "state": "complete"
+      }
+    },
+    {
+      "number": 15,
+      "method": "GET",
+      "path": "/receipts/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "job_id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+        "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "delivered": true
+      }
+    },
+    {
+      "number": 16,
+      "method": "GET",
+      "path": "/orders",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": [
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "method": "GET",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "owner": "alice",
+        "quantity": 3,
+        "total_cents": 1500
+      }
+    },
+    {
+      "number": 18,
+      "method": "GET",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "owner": "alice",
+        "quantity": 3,
+        "total_cents": 1500
+      }
+    },
+    {
+      "number": 19,
+      "method": "DELETE",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "bob",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "order not found"
+      }
+    },
+    {
+      "number": 20,
+      "method": "GET",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "owner": "alice",
+        "quantity": 3,
+        "total_cents": 1500
+      }
+    },
+    {
+      "number": 21,
+      "method": "GET",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "bob",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "job not found"
+      }
+    },
+    {
+      "number": 22,
+      "method": "GET",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+        "state": "complete"
+      }
+    },
+    {
+      "number": 23,
+      "method": "DELETE",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "bob",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "job not found"
+      }
+    },
+    {
+      "number": 24,
+      "method": "GET",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+        "state": "complete"
+      }
+    },
+    {
+      "number": 25,
+      "method": "GET",
+      "path": "/receipts/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "bob",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "job not found"
+      }
+    },
+    {
+      "number": 26,
+      "method": "GET",
+      "path": "/receipts/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "job_id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+        "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "delivered": true
+      }
+    },
+    {
+      "number": 27,
+      "method": "POST",
+      "path": "/jobs",
+      "actor": "bob",
+      "body": {
+        "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0"
+      },
+      "status": 404,
+      "response": {
+        "error": "order not found"
+      }
+    },
+    {
+      "number": 28,
+      "method": "GET",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "owner": "alice",
+        "quantity": 3,
+        "total_cents": 1500
+      }
+    },
+    {
+      "number": 29,
+      "method": "GET",
+      "path": "/orders",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": [
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "method": "GET",
+      "path": "/orders/cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "owner": "bob",
+        "quantity": 7,
+        "total_cents": 3500
+      }
+    },
+    {
+      "number": 31,
+      "method": "GET",
+      "path": "/orders/cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "owner": "bob",
+        "quantity": 7,
+        "total_cents": 3500
+      }
+    },
+    {
+      "number": 32,
+      "method": "DELETE",
+      "path": "/orders/cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+      "actor": "alice",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "order not found"
+      }
+    },
+    {
+      "number": 33,
+      "method": "GET",
+      "path": "/orders/cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "owner": "bob",
+        "quantity": 7,
+        "total_cents": 3500
+      }
+    },
+    {
+      "number": 34,
+      "method": "GET",
+      "path": "/jobs/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "alice",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "job not found"
+      }
+    },
+    {
+      "number": 35,
+      "method": "GET",
+      "path": "/jobs/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+        "state": "complete"
+      }
+    },
+    {
+      "number": 36,
+      "method": "DELETE",
+      "path": "/jobs/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "alice",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "job not found"
+      }
+    },
+    {
+      "number": 37,
+      "method": "GET",
+      "path": "/jobs/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+        "state": "complete"
+      }
+    },
+    {
+      "number": 38,
+      "method": "GET",
+      "path": "/receipts/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "alice",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "job not found"
+      }
+    },
+    {
+      "number": 39,
+      "method": "GET",
+      "path": "/receipts/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "job_id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+        "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "delivered": true
+      }
+    },
+    {
+      "number": 40,
+      "method": "POST",
+      "path": "/jobs",
+      "actor": "alice",
+      "body": {
+        "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8"
+      },
+      "status": 404,
+      "response": {
+        "error": "order not found"
+      }
+    },
+    {
+      "number": 41,
+      "method": "GET",
+      "path": "/orders/cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "owner": "bob",
+        "quantity": 7,
+        "total_cents": 3500
+      }
+    },
+    {
+      "number": 42,
+      "method": "GET",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": null,
+      "body": null,
+      "status": 401,
+      "response": {
+        "error": "actor required"
+      }
+    },
+    {
+      "number": 43,
+      "method": "DELETE",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": null,
+      "body": null,
+      "status": 401,
+      "response": {
+        "error": "actor required"
+      }
+    },
+    {
+      "number": 44,
+      "method": "GET",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": null,
+      "body": null,
+      "status": 401,
+      "response": {
+        "error": "actor required"
+      }
+    },
+    {
+      "number": 45,
+      "method": "DELETE",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": null,
+      "body": null,
+      "status": 401,
+      "response": {
+        "error": "actor required"
+      }
+    },
+    {
+      "number": 46,
+      "method": "GET",
+      "path": "/receipts/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": null,
+      "body": null,
+      "status": 401,
+      "response": {
+        "error": "actor required"
+      }
+    },
+    {
+      "number": 47,
+      "method": "GET",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "unknown-synthetic-actor",
+      "body": null,
+      "status": 401,
+      "response": {
+        "error": "actor required"
+      }
+    },
+    {
+      "number": 48,
+      "method": "DELETE",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "unknown-synthetic-actor",
+      "body": null,
+      "status": 401,
+      "response": {
+        "error": "actor required"
+      }
+    },
+    {
+      "number": 49,
+      "method": "GET",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "unknown-synthetic-actor",
+      "body": null,
+      "status": 401,
+      "response": {
+        "error": "actor required"
+      }
+    },
+    {
+      "number": 50,
+      "method": "DELETE",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "unknown-synthetic-actor",
+      "body": null,
+      "status": 401,
+      "response": {
+        "error": "actor required"
+      }
+    },
+    {
+      "number": 51,
+      "method": "GET",
+      "path": "/receipts/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "unknown-synthetic-actor",
+      "body": null,
+      "status": 401,
+      "response": {
+        "error": "actor required"
+      }
+    },
+    {
+      "number": 52,
+      "method": "GET",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "owner": "alice",
+        "quantity": 3,
+        "total_cents": 1500
+      }
+    },
+    {
+      "number": 53,
+      "method": "GET",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+        "state": "complete"
+      }
+    },
+    {
+      "number": 54,
+      "method": "GET",
+      "path": "/receipts/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "job_id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+        "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "delivered": true
+      }
+    },
+    {
+      "number": 55,
+      "method": "GET",
+      "path": "/orders/cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "owner": "bob",
+        "quantity": 7,
+        "total_cents": 3500
+      }
+    },
+    {
+      "number": 56,
+      "method": "GET",
+      "path": "/jobs/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+        "state": "complete"
+      }
+    },
+    {
+      "number": 57,
+      "method": "GET",
+      "path": "/receipts/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "job_id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+        "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "delivered": true
+      }
+    },
+    {
+      "number": 58,
+      "method": "DELETE",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "deleted": "dc0777d6-ef85-4b9f-8a48-bc00171676a8"
+      }
+    },
+    {
+      "number": 59,
+      "method": "GET",
+      "path": "/jobs/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "job not found"
+      }
+    },
+    {
+      "number": 60,
+      "method": "GET",
+      "path": "/receipts/dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "actor": "alice",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "job not found"
+      }
+    },
+    {
+      "number": 61,
+      "method": "DELETE",
+      "path": "/jobs/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "deleted": "ae5c9d92-ed82-4f17-960f-a89893eed0a0"
+      }
+    },
+    {
+      "number": 62,
+      "method": "GET",
+      "path": "/jobs/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "job not found"
+      }
+    },
+    {
+      "number": 63,
+      "method": "GET",
+      "path": "/receipts/ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "actor": "bob",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "job not found"
+      }
+    },
+    {
+      "number": 64,
+      "method": "DELETE",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": {
+        "deleted": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0"
+      }
+    },
+    {
+      "number": 65,
+      "method": "GET",
+      "path": "/orders/ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "actor": "alice",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "order not found"
+      }
+    },
+    {
+      "number": 66,
+      "method": "DELETE",
+      "path": "/orders/cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": {
+        "deleted": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8"
+      }
+    },
+    {
+      "number": 67,
+      "method": "GET",
+      "path": "/orders/cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+      "actor": "bob",
+      "body": null,
+      "status": 404,
+      "response": {
+        "error": "order not found"
+      }
+    },
+    {
+      "number": 68,
+      "method": "GET",
+      "path": "/orders",
+      "actor": "alice",
+      "body": null,
+      "status": 200,
+      "response": []
+    },
+    {
+      "number": 69,
+      "method": "GET",
+      "path": "/orders",
+      "actor": "bob",
+      "body": null,
+      "status": 200,
+      "response": []
+    }
+  ],
+  "checks": [
+    {
+      "name": "alice create order content",
+      "passed": true,
+      "actual": {
+        "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "owner": "alice",
+        "quantity": 3,
+        "total_cents": 1500
+      },
+      "expected": {
+        "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+        "owner": "alice",
+        "quantity": 3,
+        "total_cents": 1500
+      }
+    },
+    {
+      "name": "alice own order read",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ]
+    },
+    {
+      "name": "alice job initially pending",
+      "passed": true,
+      "actual": "pending",
+      "expected": "pending"
+    },
+    {
+      "name": "alice job completes",
+      "passed": true,
+      "actual": "complete",
+      "expected": "complete"
+    },
+    {
+      "name": "alice completion deadline",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "alice own receipt",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "job_id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "delivered": true
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "job_id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "delivered": true
+        }
+      ]
+    },
+    {
+      "name": "bob create order content",
+      "passed": true,
+      "actual": {
+        "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "owner": "bob",
+        "quantity": 7,
+        "total_cents": 3500
+      },
+      "expected": {
+        "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+        "owner": "bob",
+        "quantity": 7,
+        "total_cents": 3500
+      }
+    },
+    {
+      "name": "bob own order read",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ]
+    },
+    {
+      "name": "bob job initially pending",
+      "passed": true,
+      "actual": "pending",
+      "expected": "pending"
+    },
+    {
+      "name": "bob job completes",
+      "passed": true,
+      "actual": "complete",
+      "expected": "complete"
+    },
+    {
+      "name": "bob completion deadline",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "bob own receipt",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "job_id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "delivered": true
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "job_id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "delivered": true
+        }
+      ]
+    },
+    {
+      "name": "alice list isolation",
+      "passed": true,
+      "actual": [
+        200,
+        [
+          {
+            "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+            "owner": "alice",
+            "quantity": 3,
+            "total_cents": 1500
+          }
+        ]
+      ],
+      "expected": [
+        200,
+        [
+          {
+            "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+            "owner": "alice",
+            "quantity": 3,
+            "total_cents": 1500
+          }
+        ]
+      ]
+    },
+    {
+      "name": "bob GET alice orders denial",
+      "passed": false,
+      "actual": 200,
+      "expected": 404
+    },
+    {
+      "name": "bob GET alice orders no protected content",
+      "passed": false,
+      "actual": false,
+      "expected": true
+    },
+    {
+      "name": "alice orders unchanged after bob GET",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ]
+    },
+    {
+      "name": "bob DELETE alice orders denial",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "bob DELETE alice orders no protected content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "alice orders unchanged after bob DELETE",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ]
+    },
+    {
+      "name": "bob GET alice jobs denial",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "bob GET alice jobs no protected content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "alice jobs unchanged after bob GET",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "state": "complete"
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "state": "complete"
+        }
+      ]
+    },
+    {
+      "name": "bob DELETE alice jobs denial",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "bob DELETE alice jobs no protected content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "alice jobs unchanged after bob DELETE",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "state": "complete"
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "state": "complete"
+        }
+      ]
+    },
+    {
+      "name": "bob GET alice receipts denial",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "bob GET alice receipts no protected content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "alice receipts unchanged after bob GET",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "job_id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "delivered": true
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "job_id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "delivered": true
+        }
+      ]
+    },
+    {
+      "name": "bob cannot create job for foreign order",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "alice order unchanged after foreign job attempt",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ]
+    },
+    {
+      "name": "bob list isolation",
+      "passed": true,
+      "actual": [
+        200,
+        [
+          {
+            "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+            "owner": "bob",
+            "quantity": 7,
+            "total_cents": 3500
+          }
+        ]
+      ],
+      "expected": [
+        200,
+        [
+          {
+            "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+            "owner": "bob",
+            "quantity": 7,
+            "total_cents": 3500
+          }
+        ]
+      ]
+    },
+    {
+      "name": "alice GET bob orders denial",
+      "passed": false,
+      "actual": 200,
+      "expected": 404
+    },
+    {
+      "name": "alice GET bob orders no protected content",
+      "passed": false,
+      "actual": false,
+      "expected": true
+    },
+    {
+      "name": "bob orders unchanged after alice GET",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ]
+    },
+    {
+      "name": "alice DELETE bob orders denial",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "alice DELETE bob orders no protected content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "bob orders unchanged after alice DELETE",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ]
+    },
+    {
+      "name": "alice GET bob jobs denial",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "alice GET bob jobs no protected content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "bob jobs unchanged after alice GET",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "state": "complete"
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "state": "complete"
+        }
+      ]
+    },
+    {
+      "name": "alice DELETE bob jobs denial",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "alice DELETE bob jobs no protected content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "bob jobs unchanged after alice DELETE",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "state": "complete"
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "state": "complete"
+        }
+      ]
+    },
+    {
+      "name": "alice GET bob receipts denial",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "alice GET bob receipts no protected content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "bob receipts unchanged after alice GET",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "job_id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "delivered": true
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "job_id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "delivered": true
+        }
+      ]
+    },
+    {
+      "name": "alice cannot create job for foreign order",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "bob order unchanged after foreign job attempt",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ]
+    },
+    {
+      "name": "None GET orders unauthorized",
+      "passed": true,
+      "actual": 401,
+      "expected": 401
+    },
+    {
+      "name": "None GET orders no object content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "None DELETE orders unauthorized",
+      "passed": true,
+      "actual": 401,
+      "expected": 401
+    },
+    {
+      "name": "None DELETE orders no object content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "None GET jobs unauthorized",
+      "passed": true,
+      "actual": 401,
+      "expected": 401
+    },
+    {
+      "name": "None GET jobs no object content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "None DELETE jobs unauthorized",
+      "passed": true,
+      "actual": 401,
+      "expected": 401
+    },
+    {
+      "name": "None DELETE jobs no object content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "None GET receipts unauthorized",
+      "passed": true,
+      "actual": 401,
+      "expected": 401
+    },
+    {
+      "name": "None GET receipts no object content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "unknown-synthetic-actor GET orders unauthorized",
+      "passed": true,
+      "actual": 401,
+      "expected": 401
+    },
+    {
+      "name": "unknown-synthetic-actor GET orders no object content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "unknown-synthetic-actor DELETE orders unauthorized",
+      "passed": true,
+      "actual": 401,
+      "expected": 401
+    },
+    {
+      "name": "unknown-synthetic-actor DELETE orders no object content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "unknown-synthetic-actor GET jobs unauthorized",
+      "passed": true,
+      "actual": 401,
+      "expected": 401
+    },
+    {
+      "name": "unknown-synthetic-actor GET jobs no object content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "unknown-synthetic-actor DELETE jobs unauthorized",
+      "passed": true,
+      "actual": 401,
+      "expected": 401
+    },
+    {
+      "name": "unknown-synthetic-actor DELETE jobs no object content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "unknown-synthetic-actor GET receipts unauthorized",
+      "passed": true,
+      "actual": 401,
+      "expected": 401
+    },
+    {
+      "name": "unknown-synthetic-actor GET receipts no object content",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "alice final protected orders",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "owner": "alice",
+          "quantity": 3,
+          "total_cents": 1500
+        }
+      ]
+    },
+    {
+      "name": "alice final protected jobs",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "state": "complete"
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "state": "complete"
+        }
+      ]
+    },
+    {
+      "name": "alice final protected receipts",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "job_id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "delivered": true
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "job_id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+          "order_id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+          "delivered": true
+        }
+      ]
+    },
+    {
+      "name": "bob final protected orders",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "owner": "bob",
+          "quantity": 7,
+          "total_cents": 3500
+        }
+      ]
+    },
+    {
+      "name": "bob final protected jobs",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "state": "complete"
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "state": "complete"
+        }
+      ]
+    },
+    {
+      "name": "bob final protected receipts",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "job_id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "delivered": true
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "job_id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+          "order_id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+          "delivered": true
+        }
+      ]
+    },
+    {
+      "name": "alice own DELETE jobs",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "deleted": "dc0777d6-ef85-4b9f-8a48-bc00171676a8"
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "deleted": "dc0777d6-ef85-4b9f-8a48-bc00171676a8"
+        }
+      ]
+    },
+    {
+      "name": "alice deleted jobs absent",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "alice derived receipt removed",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "bob own DELETE jobs",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "deleted": "ae5c9d92-ed82-4f17-960f-a89893eed0a0"
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "deleted": "ae5c9d92-ed82-4f17-960f-a89893eed0a0"
+        }
+      ]
+    },
+    {
+      "name": "bob deleted jobs absent",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "bob derived receipt removed",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "alice own DELETE orders",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "deleted": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0"
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "deleted": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0"
+        }
+      ]
+    },
+    {
+      "name": "alice deleted orders absent",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "bob own DELETE orders",
+      "passed": true,
+      "actual": [
+        200,
+        {
+          "deleted": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8"
+        }
+      ],
+      "expected": [
+        200,
+        {
+          "deleted": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8"
+        }
+      ]
+    },
+    {
+      "name": "bob deleted orders absent",
+      "passed": true,
+      "actual": 404,
+      "expected": 404
+    },
+    {
+      "name": "alice original list restored",
+      "passed": true,
+      "actual": [
+        200,
+        []
+      ],
+      "expected": [
+        200,
+        []
+      ]
+    },
+    {
+      "name": "bob original list restored",
+      "passed": true,
+      "actual": [
+        200,
+        []
+      ],
+      "expected": [
+        200,
+        []
+      ]
+    }
+  ],
+  "cleanup": [
+    {
+      "actor": "alice",
+      "kind": "jobs",
+      "id": "dc0777d6-ef85-4b9f-8a48-bc00171676a8",
+      "status": 200,
+      "response": {
+        "deleted": "dc0777d6-ef85-4b9f-8a48-bc00171676a8"
+      }
+    },
+    {
+      "actor": "bob",
+      "kind": "jobs",
+      "id": "ae5c9d92-ed82-4f17-960f-a89893eed0a0",
+      "status": 200,
+      "response": {
+        "deleted": "ae5c9d92-ed82-4f17-960f-a89893eed0a0"
+      }
+    },
+    {
+      "actor": "alice",
+      "kind": "orders",
+      "id": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0",
+      "status": 200,
+      "response": {
+        "deleted": "ddfd4fc1-cc57-4a35-bee1-148cf8d323f0"
+      }
+    },
+    {
+      "actor": "bob",
+      "kind": "orders",
+      "id": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8",
+      "status": 200,
+      "response": {
+        "deleted": "cccc5ebd-6db8-491f-b511-0c1cde64c2b8"
+      }
+    }
+  ],
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "test_sha256": "311abf0c53e6e9e45b9cba8734d318ad050b73ff5a8148ad69ffbf21222dc6a6"
+}

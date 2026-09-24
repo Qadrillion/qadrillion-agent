@@ -1,0 +1,86 @@
+
+Running 2 tests using 1 worker
+
+(node:14283) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/parcel.spec.js:91:1 › keyboard reaches controls, rejects invalid quantities and recovers at upper boundary (5.5s)
+(node:15607) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/parcel.spec.js:119:1 › minimum quantity renders the correct receipt (5.3s)
+
+
+  1) [chromium] › tests/parcel.spec.js:91:1 › keyboard reaches controls, rejects invalid quantities and recovers at upper boundary 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('region', { name: 'Receipt', exact: true })
+    Expected substring: "100 parcels — $500.00"
+    Received string:    "Receipt100 parcels — $400.00"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "soft toContainText" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms
+      - waiting for getByRole('region', { name: 'Receipt', exact: true })
+        14 × locator resolved to <section aria-label="Receipt">…</section>
+           - unexpected value "Receipt100 parcels — $400.00"
+
+
+      72 |   journey.diagnostics.receipt = await receipt.innerText();
+      73 |   journey.diagnostics.persisted = order;
+    > 74 |   await expect.soft(receipt).toContainText(receiptText);
+         |                              ^
+      75 |   await page.reload();
+      76 |   const reloaded = await request.get(`${journey.identity.url}/orders/${id}`, { headers: { 'X-Lab-Actor': actor } });
+      77 |   expect(await reloaded.json()).toEqual(order);
+        at assertOrder (/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:74:30)
+        at /private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:116:3
+
+    Error Context: artifacts/parcel/chromium-rest/parcel-keyboard-reaches-co-e399c--recovers-at-upper-boundary-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts/parcel/chromium-rest/parcel-keyboard-reaches-co-e399c--recovers-at-upper-boundary-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts/parcel/chromium-rest/parcel-keyboard-reaches-co-e399c--recovers-at-upper-boundary-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/parcel.spec.js:119:1 › minimum quantity renders the correct receipt ────────
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('region', { name: 'Receipt', exact: true })
+    Expected substring: "1 parcels — $5.00"
+    Received string:    "Receipt1 parcels — $4.00"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "soft toContainText" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms
+      - waiting for getByRole('region', { name: 'Receipt', exact: true })
+        14 × locator resolved to <section aria-label="Receipt">…</section>
+           - unexpected value "Receipt1 parcels — $4.00"
+
+
+      72 |   journey.diagnostics.receipt = await receipt.innerText();
+      73 |   journey.diagnostics.persisted = order;
+    > 74 |   await expect.soft(receipt).toContainText(receiptText);
+         |                              ^
+      75 |   await page.reload();
+      76 |   const reloaded = await request.get(`${journey.identity.url}/orders/${id}`, { headers: { 'X-Lab-Actor': actor } });
+      77 |   expect(await reloaded.json()).toEqual(order);
+        at assertOrder (/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:74:30)
+        at /private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:123:3
+
+    Error Context: artifacts/parcel/chromium-rest/parcel-minimum-quantity-renders-the-correct-receipt-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts/parcel/chromium-rest/parcel-minimum-quantity-renders-the-correct-receipt-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts/parcel/chromium-rest/parcel-minimum-quantity-renders-the-correct-receipt-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/parcel.spec.js:91:1 › keyboard reaches controls, rejects invalid quantities and recovers at upper boundary 
+    [chromium] › tests/parcel.spec.js:119:1 › minimum quantity renders the correct receipt ─────────

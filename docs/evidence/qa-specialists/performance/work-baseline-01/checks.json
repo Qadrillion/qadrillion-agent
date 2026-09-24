@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "identity": true,
+    "fixed_limits": true,
+    "fixed_thresholds": true,
+    "warmups": true,
+    "complete": true,
+    "business_and_transport": true,
+    "p95": true,
+    "no_stop": true,
+    "summary_consistent": true,
+    "helper_pass": true
+  },
+  "scheduled": 50,
+  "attempted": 50,
+  "completed_attempts": 50,
+  "successful": 50,
+  "errors": 0,
+  "not_run": 0,
+  "in_flight_at_return": 0,
+  "above_40_ms": 0,
+  "min_ms": 7.2464169934391975,
+  "max_ms": 11.611708992859349,
+  "verdict": "Pass"
+}

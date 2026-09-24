@@ -63,6 +63,19 @@ one writer per checkout; each engineer uses separate credentials and worktrees.
 
 ## The first Cursor pilot
 
+The five on-demand specialists are API, web, mobile, security and performance.
+Start with the [measured support matrix](reference/specialist-support.md), then
+configure the team's actual runner. `/qa` loads only relevant procedures and
+tool recipes; an ordinary functional ticket does not require security/load
+assessments. The optional `tools/specialists` fixtures let you inspect reference
+execution without company accounts. They are examples, not mandatory runners.
+
+Before using a specialty on company data, verify the same narrow path on your
+owned non-production fixture: live target/build identity, observed locators or
+contract, authored test, a meaningful failure, corrected behavior with the same
+assertions, and cleanup. Preserve existing team auth/runner conventions. Record
+unsupported paths rather than replacing the team's tools just to match a recipe.
+
 Use one representative ticket on a known non-production build. Verify requirement
 retrieval (or supplied text), source review where available, risk-based checks,
 test execution, failure evidence, and an accurate report. Ask explicitly for

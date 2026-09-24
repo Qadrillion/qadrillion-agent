@@ -1,0 +1,9 @@
+test_activity_recreation (__main__.ParcelContract.test_activity_recreation)
+C5: clear-top recreates this standard-launch root activity in-process. ... ok
+test_process_termination_relaunch (__main__.ParcelContract.test_process_termination_relaunch)
+C5: verify real PID death, then launch without clearing data. ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 52.226s
+
+OK

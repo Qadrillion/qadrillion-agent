@@ -1,0 +1,61 @@
+{
+  "started_utc": "2026-09-24T08:58:42.648202+00:00",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "/private/tmp/qadrillion-execution-evals/performance/tools/specialists/measure.py",
+    "--identity",
+    "/private/tmp/qadrillion-execution-evals/performance/target.json",
+    "--out",
+    "/private/tmp/qadrillion-execution-evals/performance/artifacts/work-candidate-01/measurement.json",
+    "--requests",
+    "50",
+    "--concurrency",
+    "1",
+    "--warmup",
+    "3",
+    "--timeout",
+    "1",
+    "--duration",
+    "10",
+    "--max-errors",
+    "3",
+    "--p95-ms",
+    "40",
+    "--error-rate",
+    "0"
+  ],
+  "wrapper_command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "tests/check_work.py",
+    "--identity",
+    "target.json",
+    "--out-dir",
+    "artifacts/work-candidate-01"
+  ],
+  "cwd": "/private/tmp/qadrillion-execution-evals/performance",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "identity": {
+    "fixture": "qadrillion-specialist-lab",
+    "role": "test",
+    "run_id": "f0e77488-08af-4ec9-85b6-849e6d900a02",
+    "build": "a036766d21e2e67fec0b69432b01472b177cdc3b8131cc30e155a34c7f07f28a",
+    "mode": "perf-defect",
+    "url": "http://127.0.0.1:61349"
+  },
+  "sha256": {
+    "tests/check_work.py": "4f155fed51c333291cbadd1a8acde279dc7206498e21adb1ccf4c10bd046f9e9",
+    "tools/specialists/measure.py": "13a4df1a758da385b3bc4e05e7b0cb773315066314e7af566ed588626c261940",
+    "tools/specialists/CONTRACT.md": "15e07577e0ca10e69b4d0b53e20d2ff4d0094550f87a61e8fb6e57888bbb8448",
+    "qa-config.json": "319416146c49670872f12fed41c91773c434ffd02e1e09df59e05d708949b7e4",
+    "workspace-manifest.json": "cce55d5feee97419e04d68cbbf4393bd9db9e86b286ef7040fca963a85e52dd1"
+  },
+  "baseline": null,
+  "outer_timeout_s": 20,
+  "cleanup": "No fixtures/data/processes created; supplied service remains owned by supplier.",
+  "helper_exit": 1,
+  "finished_utc": "2026-09-24T08:58:44.080225+00:00",
+  "wrapper_exit": 1
+}

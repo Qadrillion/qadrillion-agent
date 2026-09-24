@@ -1,0 +1,16 @@
+{
+  "agent_exit": 0,
+  "elapsed_s": 306.6082491874695,
+  "identity": {
+    "fixture": "qadrillion-specialist-lab",
+    "role": "test",
+    "run_id": "4ecbc3c1-9475-4f18-810e-5f43cd23624d",
+    "build": "a036766d21e2e67fec0b69432b01472b177cdc3b8131cc30e155a34c7f07f28a",
+    "mode": "web-defect",
+    "url": "http://127.0.0.1:60882"
+  },
+  "cleanup": {
+    "server_thread_stopped": true,
+    "port_closed": true
+  }
+}

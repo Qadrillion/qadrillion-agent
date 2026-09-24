@@ -1,0 +1,1 @@
+Test a browser account-settings form. An existing test login fixture is available; signing in is only setup. Change the display name from Parcel Tester to Parcel Reviewer and verify it persists after reload. The page shows a spinner while saving. There is no access-control change or latency requirement. Use disposable test-account data and report what actually ran.

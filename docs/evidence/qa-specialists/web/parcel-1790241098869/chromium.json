@@ -1,0 +1,223 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/24.4.1/bin/node",
+      "/private/tmp/qadrillion-browser-deps/node_modules/@playwright/test/cli.js",
+      "test",
+      "-c",
+      "tests",
+      "--browser=chromium",
+      "--workers=1",
+      "--retries=0",
+      "--trace=on",
+      "--output=/private/tmp/qadrillion-execution-evals/web/artifacts/parcel-1790241098869/chromium",
+      "--reporter=list,json"
+    ],
+    "rootDir": "/private/tmp/qadrillion-execution-evals/web/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel-1790241098869/chromium",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/qadrillion-execution-evals/web/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "parcel.spec.js",
+      "file": "parcel.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "nontrivial order receipt agrees with the 500-cent contract and persisted state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 436,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T09:11:39.430Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "diagnostics",
+                      "contentType": "application/json",
+                      "body": "ewogICJpZGVudGl0eSI6IHsKICAgICJmaXh0dXJlIjogInFhZHJpbGxpb24tc3BlY2lhbGlzdC1sYWIiLAogICAgInJvbGUiOiAidGVzdCIsCiAgICAicnVuX2lkIjogIjI4YmQ0ZjBlLTQ5MmQtNDFiYS05Y2JkLTlkNmVmMzBlNTQ5NyIsCiAgICAiYnVpbGQiOiAiY2E1NGJiYmJhOTIxMDNhNTc1YzgwMTU0MzcyNjEzNGY4MDgwYjFlMTgwZGZjNzBkNDEwYThhMGM0YjVjNjMwYyIsCiAgICAibW9kZSI6ICJnb29kIiwKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0OTY4NSIKICB9LAogICJicm93c2VyIjogIjE1My4wLjgwMTAuMTIiLAogICJ2aWV3cG9ydCI6IHsKICAgICJ3aWR0aCI6IDEyODAsCiAgICAiaGVpZ2h0IjogNzIwCiAgfSwKICAibG9jYWxlIjogImVuLVVTIiwKICAidGltZXpvbmUiOiAiVVRDIiwKICAiY29uc29sZSI6IFtdLAogICJlcnJvcnMiOiBbXSwKICAibmV0d29yayI6IFsKICAgIHsKICAgICAgIm1ldGhvZCI6ICJHRVQiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDk2ODUvIiwKICAgICAgInN0YXR1cyI6IDIwMAogICAgfSwKICAgIHsKICAgICAgIm1ldGhvZCI6ICJQT1NUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQ5Njg1L29yZGVycyIsCiAgICAgICJzdGF0dXMiOiAyMDEKICAgIH0sCiAgICB7CiAgICAgICJtZXRob2QiOiAiR0VUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQ5Njg1LyIsCiAgICAgICJzdGF0dXMiOiAyMDAKICAgIH0KICBdLAogICJjbGVhbnVwIjogWwogICAgewogICAgICAiaWQiOiAiNGQ4MDI5N2YtOTFlOC00ZjYzLTkyNTItZDgzYzQ2YjExYTE2IiwKICAgICAgImFjdG9yIjogImFsaWNlIiwKICAgICAgInN0YXR1cyI6IDIwMAogICAgfQogIF0sCiAgInJlY2VpcHQiOiAiUmVjZWlwdFxuXG4zIHBhcmNlbHMg4oCUICQxNS4wMCIsCiAgInBlcnNpc3RlZCI6IHsKICAgICJpZCI6ICI0ZDgwMjk3Zi05MWU4LTRmNjMtOTI1Mi1kODNjNDZiMTFhMTYiLAogICAgIm93bmVyIjogImFsaWNlIiwKICAgICJxdWFudGl0eSI6IDMsCiAgICAidG90YWxfY2VudHMiOiAxNTAwCiAgfSwKICAic25hcHNob3QiOiAiLSBtYWluOlxuICAtIGhlYWRpbmcgXCJQYXJjZWwgb3JkZXJzXCIgW2xldmVsPTFdXG4gIC0gdGV4dDogUXVhbnRpdHlcbiAgLSBzcGluYnV0dG9uIFwiUXVhbnRpdHlcIjogXCIxXCJcbiAgLSBidXR0b24gXCJQbGFjZSBvcmRlclwiXG4gIC0gc3RhdHVzOiBSZWFkeSIsCiAgImJhc2VsaW5lUmVzdG9yZWQiOiB0cnVlCn0="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel-1790241098869/chromium/parcel-nontrivial-order-re-0701e-ontract-and-persisted-state-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a8dd9317bb91fb3a7e63-7ec269a9a3950702e54f",
+          "file": "parcel.spec.js",
+          "line": 83,
+          "column": 1
+        },
+        {
+          "title": "keyboard reaches controls, rejects invalid quantities and recovers at upper boundary",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 274,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T09:11:40.113Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "diagnostics",
+                      "contentType": "application/json",
+                      "body": "ewogICJpZGVudGl0eSI6IHsKICAgICJmaXh0dXJlIjogInFhZHJpbGxpb24tc3BlY2lhbGlzdC1sYWIiLAogICAgInJvbGUiOiAidGVzdCIsCiAgICAicnVuX2lkIjogIjI4YmQ0ZjBlLTQ5MmQtNDFiYS05Y2JkLTlkNmVmMzBlNTQ5NyIsCiAgICAiYnVpbGQiOiAiY2E1NGJiYmJhOTIxMDNhNTc1YzgwMTU0MzcyNjEzNGY4MDgwYjFlMTgwZGZjNzBkNDEwYThhMGM0YjVjNjMwYyIsCiAgICAibW9kZSI6ICJnb29kIiwKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0OTY4NSIKICB9LAogICJicm93c2VyIjogIjE1My4wLjgwMTAuMTIiLAogICJ2aWV3cG9ydCI6IHsKICAgICJ3aWR0aCI6IDEyODAsCiAgICAiaGVpZ2h0IjogNzIwCiAgfSwKICAibG9jYWxlIjogImVuLVVTIiwKICAidGltZXpvbmUiOiAiVVRDIiwKICAiY29uc29sZSI6IFtdLAogICJlcnJvcnMiOiBbXSwKICAibmV0d29yayI6IFsKICAgIHsKICAgICAgIm1ldGhvZCI6ICJHRVQiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDk2ODUvIiwKICAgICAgInN0YXR1cyI6IDIwMAogICAgfSwKICAgIHsKICAgICAgIm1ldGhvZCI6ICJQT1NUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQ5Njg1L29yZGVycyIsCiAgICAgICJzdGF0dXMiOiAyMDEKICAgIH0sCiAgICB7CiAgICAgICJtZXRob2QiOiAiR0VUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQ5Njg1LyIsCiAgICAgICJzdGF0dXMiOiAyMDAKICAgIH0KICBdLAogICJjbGVhbnVwIjogWwogICAgewogICAgICAiaWQiOiAiODEyOWRmNWYtNjUyNy00MmZhLTk3ZGUtMDlkMzIwYzA3ODFmIiwKICAgICAgImFjdG9yIjogImFsaWNlIiwKICAgICAgInN0YXR1cyI6IDIwMAogICAgfQogIF0sCiAgImZvY3VzIjogewogICAgInZpc2libGUiOiB0cnVlLAogICAgIm91dGxpbmUiOiAicmdiKDAsIDk1LCAyMDQpIGF1dG8gMXB4IgogIH0sCiAgInJlY2VpcHQiOiAiUmVjZWlwdFxuXG4xMDAgcGFyY2VscyDigJQgJDUwMC4wMCIsCiAgInBlcnNpc3RlZCI6IHsKICAgICJpZCI6ICI4MTI5ZGY1Zi02NTI3LTQyZmEtOTdkZS0wOWQzMjBjMDc4MWYiLAogICAgIm93bmVyIjogImFsaWNlIiwKICAgICJxdWFudGl0eSI6IDEwMCwKICAgICJ0b3RhbF9jZW50cyI6IDUwMDAwCiAgfSwKICAic25hcHNob3QiOiAiLSBtYWluOlxuICAtIGhlYWRpbmcgXCJQYXJjZWwgb3JkZXJzXCIgW2xldmVsPTFdXG4gIC0gdGV4dDogUXVhbnRpdHlcbiAgLSBzcGluYnV0dG9uIFwiUXVhbnRpdHlcIjogXCIxXCJcbiAgLSBidXR0b24gXCJQbGFjZSBvcmRlclwiXG4gIC0gc3RhdHVzOiBSZWFkeSIsCiAgImJhc2VsaW5lUmVzdG9yZWQiOiB0cnVlCn0="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel-1790241098869/chromium/parcel-keyboard-reaches-co-e399c--recovers-at-upper-boundary-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a8dd9317bb91fb3a7e63-ef16027e7c61cedeeea1",
+          "file": "parcel.spec.js",
+          "line": 91,
+          "column": 1
+        },
+        {
+          "title": "minimum quantity renders the correct receipt",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 217,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T09:11:40.401Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "diagnostics",
+                      "contentType": "application/json",
+                      "body": "ewogICJpZGVudGl0eSI6IHsKICAgICJmaXh0dXJlIjogInFhZHJpbGxpb24tc3BlY2lhbGlzdC1sYWIiLAogICAgInJvbGUiOiAidGVzdCIsCiAgICAicnVuX2lkIjogIjI4YmQ0ZjBlLTQ5MmQtNDFiYS05Y2JkLTlkNmVmMzBlNTQ5NyIsCiAgICAiYnVpbGQiOiAiY2E1NGJiYmJhOTIxMDNhNTc1YzgwMTU0MzcyNjEzNGY4MDgwYjFlMTgwZGZjNzBkNDEwYThhMGM0YjVjNjMwYyIsCiAgICAibW9kZSI6ICJnb29kIiwKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0OTY4NSIKICB9LAogICJicm93c2VyIjogIjE1My4wLjgwMTAuMTIiLAogICJ2aWV3cG9ydCI6IHsKICAgICJ3aWR0aCI6IDEyODAsCiAgICAiaGVpZ2h0IjogNzIwCiAgfSwKICAibG9jYWxlIjogImVuLVVTIiwKICAidGltZXpvbmUiOiAiVVRDIiwKICAiY29uc29sZSI6IFtdLAogICJlcnJvcnMiOiBbXSwKICAibmV0d29yayI6IFsKICAgIHsKICAgICAgIm1ldGhvZCI6ICJHRVQiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDk2ODUvIiwKICAgICAgInN0YXR1cyI6IDIwMAogICAgfSwKICAgIHsKICAgICAgIm1ldGhvZCI6ICJQT1NUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQ5Njg1L29yZGVycyIsCiAgICAgICJzdGF0dXMiOiAyMDEKICAgIH0sCiAgICB7CiAgICAgICJtZXRob2QiOiAiR0VUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQ5Njg1LyIsCiAgICAgICJzdGF0dXMiOiAyMDAKICAgIH0KICBdLAogICJjbGVhbnVwIjogWwogICAgewogICAgICAiaWQiOiAiOGExYzY3OGItNGFjMS00Yzg2LWE2ZWEtZDg1YzNjYjUxNTkxIiwKICAgICAgImFjdG9yIjogImFsaWNlIiwKICAgICAgInN0YXR1cyI6IDIwMAogICAgfQogIF0sCiAgInJlY2VpcHQiOiAiUmVjZWlwdFxuXG4xIHBhcmNlbHMg4oCUICQ1LjAwIiwKICAicGVyc2lzdGVkIjogewogICAgImlkIjogIjhhMWM2NzhiLTRhYzEtNGM4Ni1hNmVhLWQ4NWMzY2I1MTU5MSIsCiAgICAib3duZXIiOiAiYWxpY2UiLAogICAgInF1YW50aXR5IjogMSwKICAgICJ0b3RhbF9jZW50cyI6IDUwMAogIH0sCiAgInNuYXBzaG90IjogIi0gbWFpbjpcbiAgLSBoZWFkaW5nIFwiUGFyY2VsIG9yZGVyc1wiIFtsZXZlbD0xXVxuICAtIHRleHQ6IFF1YW50aXR5XG4gIC0gc3BpbmJ1dHRvbiBcIlF1YW50aXR5XCI6IFwiMVwiXG4gIC0gYnV0dG9uIFwiUGxhY2Ugb3JkZXJcIlxuICAtIHN0YXR1czogUmVhZHkiLAogICJiYXNlbGluZVJlc3RvcmVkIjogdHJ1ZQp9"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel-1790241098869/chromium/parcel-minimum-quantity-renders-the-correct-receipt-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a8dd9317bb91fb3a7e63-8324a74baa9fac3db56f",
+          "file": "parcel.spec.js",
+          "line": 119,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-24T09:11:39.169Z",
+    "duration": 1490.597,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

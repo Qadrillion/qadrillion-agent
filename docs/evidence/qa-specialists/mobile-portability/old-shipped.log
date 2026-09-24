@@ -1,0 +1,4 @@
+usage: test_parcel.py [-h] --serial SERIAL
+                      --expected-apk-sha256 EXPECTED_APK_SHA256 [--adb ADB]
+                      --evidence EVIDENCE [--test TEST]
+test_parcel.py: error: This task authorizes only emulator-5560

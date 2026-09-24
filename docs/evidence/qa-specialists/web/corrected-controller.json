@@ -1,0 +1,36 @@
+{
+  "scenario": "web",
+  "command": [
+    "node",
+    "tests/run-parcel.cjs",
+    "/tmp/qadrillion-execution-evals/web/corrected-target.json"
+  ],
+  "cwd": "/tmp/qadrillion-execution-evals/web",
+  "exit": 0,
+  "seconds": 5.125072240829468,
+  "identity": {
+    "fixture": "qadrillion-specialist-lab",
+    "role": "test",
+    "run_id": "28bd4f0e-492d-41ba-9cbd-9d6ef30e5497",
+    "build": "ca54bbbba92103a575c801543726134f8080b1e180dfc70d410a8a0c4b5c630c",
+    "mode": "good",
+    "url": "http://127.0.0.1:49685"
+  },
+  "tests_before": {
+    "tests/parcel.spec.js": "1bdecf4ca7373b2042c1f4c2f0c777d1903ef54e617b222b74afa4dc97c165d9",
+    "tests/observe.cjs": "5acfcceb5ec95a51a5e918b4dd11725f8015c9ddace70565e50bea6a8a0f00dd",
+    "tests/target.cjs": "9035cc8a1ccaf69071c085134a87eef93a8421b121f4098960159b259606dfb3",
+    "tests/run-parcel.cjs": "1cfbf07aa569eaf8f3b1c7702cf528ecd01b821032475ee8d192ac0d901377b5"
+  },
+  "tests_after": {
+    "tests/parcel.spec.js": "1bdecf4ca7373b2042c1f4c2f0c777d1903ef54e617b222b74afa4dc97c165d9",
+    "tests/observe.cjs": "5acfcceb5ec95a51a5e918b4dd11725f8015c9ddace70565e50bea6a8a0f00dd",
+    "tests/target.cjs": "9035cc8a1ccaf69071c085134a87eef93a8421b121f4098960159b259606dfb3",
+    "tests/run-parcel.cjs": "1cfbf07aa569eaf8f3b1c7702cf528ecd01b821032475ee8d192ac0d901377b5"
+  },
+  "unchanged": true,
+  "cleanup": {
+    "server_thread_stopped": true,
+    "port_closed": true
+  }
+}

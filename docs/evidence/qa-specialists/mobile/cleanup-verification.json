@@ -1,0 +1,54 @@
+[
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_activity_recreation",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_background_foreground",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_explicit_data_reset",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_process_termination_relaunch",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_reject_above_max",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_reject_decimal",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_reject_empty",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_reject_negative",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_reject_overflow",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_reject_text",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_reject_zero",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/first-run/test_valid_range_and_accumulation",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  },
+  {
+    "case": "artifacts/LOCAL-1/diagnostic-recreation/test_activity_recreation",
+    "cleanup": "Verified zero counters then successful app-only force-stop"
+  }
+]

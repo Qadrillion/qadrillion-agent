@@ -1,0 +1,7 @@
+{
+  "exit_code": 1,
+  "timed_out": false,
+  "duration_seconds": 1.165,
+  "stdout": "",
+  "stderr": "Error: Authentication required. Please run 'cursor agent login' first, or set CURSOR_API_KEY environment variable.\n"
+}

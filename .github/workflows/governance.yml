@@ -24,8 +24,35 @@ jobs:
       - name: Verify the public framework offline
         run: python3 tools/verify.py
 
+  reference-execution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/specialists/reference/web/package-lock.json
+      - name: Install the optional browser reference stack
+        working-directory: tools/specialists/reference/web
+        run: |
+          npm ci
+          npx --no-install playwright install --with-deps chromium firefox
+      - name: Detect defective fixtures and verify corrected fixtures unchanged
+        run: python3 tools/specialists/replay.py --web --out test-results/specialists
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: specialist-reference-evidence
+          path: test-results/specialists
+          retention-days: 14
+
   governance:
-    needs: offline
+    needs: [offline, reference-execution]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 2
@@ -33,4 +60,5 @@ jobs:
       - name: Require every platform check
         env:
           RESULT: ${{ needs.offline.result }}
-        run: test "$RESULT" = success
+          REFERENCE_RESULT: ${{ needs.reference-execution.result }}
+        run: test "$RESULT" = success && test "$REFERENCE_RESULT" = success

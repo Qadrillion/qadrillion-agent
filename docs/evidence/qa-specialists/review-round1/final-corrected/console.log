@@ -1,0 +1,51 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests/parcel.spec.js:137:1 › minimum quantity renders the correct receipt (213ms)
+
+
+  1) [chromium] › tests/parcel.spec.js:137:1 › minimum quantity renders the correct receipt ────────
+
+    AggregateError: Browser teardown failed; inspect diagnostics
+
+      68 |       }
+      69 |       await attempt('diagnostic attachment', () => info.attach('diagnostics', { body: JSON.stringify(diagnostics, null, 2), contentType: 'application/json' }));
+    > 70 |       if (teardownErrors.length) throw new AggregateError(teardownErrors, 'Browser teardown failed; inspect diagnostics');
+         |                                        ^
+      71 |     }
+      72 |   }
+      73 | });
+        at Object.journey (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:70:40)
+
+    Error: locator.ariaSnapshot: Target page, context or browser has been closed
+
+      45 |         if (result.status === 'rejected') recordError('order observation', result.reason);
+      46 |       }
+    > 47 |       await attempt('snapshot', async () => { diagnostics.snapshot = await page.locator('body').ariaSnapshot(); });
+         |                                                                                                 ^
+      48 |       await attempt('screenshot', () => page.screenshot({ path: info.outputPath('final.png'), fullPage: true }));
+      49 |       // Diagnostic failures must not strand owned data; failed identity still forbids mutations.
+      50 |       if (await attempt('cleanup identity', () => verify(request))) {
+        at action (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:47:97)
+        at attempt (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:41:21)
+        at Object.journey (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:47:13)
+
+    Error: page.screenshot: Target page, context or browser has been closed
+
+      46 |       }
+      47 |       await attempt('snapshot', async () => { diagnostics.snapshot = await page.locator('body').ariaSnapshot(); });
+    > 48 |       await attempt('screenshot', () => page.screenshot({ path: info.outputPath('final.png'), fullPage: true }));
+         |                                              ^
+      49 |       // Diagnostic failures must not strand owned data; failed identity still forbids mutations.
+      50 |       if (await attempt('cleanup identity', () => verify(request))) {
+      51 |         for (const order of owned) {
+        at action (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:48:46)
+        at attempt (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:41:21)
+        at Object.journey (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:48:13)
+
+    Error Context: ../../../tmp/qadrillion-web-cleanup-final/browser-output/parcel-minimum-quantity-renders-the-correct-receipt-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/parcel.spec.js:137:1 › minimum quantity renders the correct receipt ─────────
+(node:78877) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

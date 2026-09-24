@@ -1,0 +1,83 @@
+{
+  "clean_clone_commit": "d1d8d0a",
+  "later_changes": "677c95e documentation and native smoke evidence only",
+  "offline": {
+    "exit": 0,
+    "python_tests": 140,
+    "guard_payloads": 75
+  },
+  "reference_execution": {
+    "exit": 0,
+    "expected_outcomes": 8,
+    "browsers": [
+      "Chromium",
+      "Firefox"
+    ],
+    "tests_unchanged": true,
+    "all_services_stopped": true
+  },
+  "npm_ci": {
+    "exit": 0,
+    "version": "@playwright/test 1.63.0"
+  },
+  "review_round1": {
+    "base": "91e9bb0d4dcbfe812963fe6f04f4387c1b664497",
+    "head": "677c95e",
+    "code_fingerprint": "26a55cf5373a97612f459b4e15c56671f2e4a469971daed4a813f85d26b37779",
+    "full_binary_diff_sha256": "474b19d89a80cd64d6a5a3f92ed693cf61655a31023248d93944651f915c0e45"
+  },
+  "final_clean_clone": {
+    "commit": "4ef5b3e",
+    "offline_exit": 0,
+    "python_tests": 142,
+    "guard_payloads": 75,
+    "replay_exit": 0,
+    "expected_outcomes": 8,
+    "npm_ci_exit": 0,
+    "workdir": "/tmp/qadrillion-specialist-final-clone"
+  },
+  "mobile_final_clean_clone": {
+    "commit": "21b4e0b",
+    "offline_exit": 0,
+    "python_tests": 152,
+    "guard_payloads": 75,
+    "mobile_changes_only_since_reference_replay": "Preflight/ownership and docs; Device/ParcelContract/rejected_case AST unchanged"
+  },
+  "final_review": {
+    "verdict": "PASS",
+    "reviewed_implementation_commit": "b060801",
+    "code_fingerprint": "16afb15b4a39970dedeaea8dd0bd79431e0e026aec6a3fb402cb6dc18c7147f7",
+    "full_binary_diff_sha256": "fa8784e003d1401a5407e789a3248949b7307cc742dda3210f95cfea25013f4d",
+    "unresolved_findings": 0,
+    "in_scope_findings_fixed": 6
+  },
+  "release_clean_clone": {
+    "commit": "b060801",
+    "offline_exit": 0,
+    "python_tests": 152,
+    "guard_payloads": 75
+  },
+  "ci_repair": {
+    "reviewed_implementation_commit": "6f77b8cc90ba4f140c1d7ce561287a371a4e4645",
+    "code_fingerprint": "ea0f4280f74b052b82a1d32c0ff3fdbc7e0556ad7ef3bb972abb8d656c7d4250",
+    "full_binary_diff_sha256": "141a5c8c98c3b23cf59c67573c87d908869e248aee6fc5600fe495cf70aa72c5",
+    "review_verdict": "PASS",
+    "unresolved_findings": 0,
+    "python_tests": 153,
+    "guard_payloads": 75,
+    "initial_run": "https://github.com/Qadrillion/qadrillion-agent/actions/runs/35984192362",
+    "initial_result": "macOS offline failed fixture readiness; Linux and all eight reference outcomes passed",
+    "regression": "Real HTTP starts with socket.getfqdn unavailable; fails before and passes after repair",
+    "historical_cause_limit": "Reverse-DNS attribution is an inference; original timestamps measure the containing test, not resolver time",
+    "corrected_run": "https://github.com/Qadrillion/qadrillion-agent/actions/runs/35984699651",
+    "corrected_result": "success",
+    "successful_jobs": [
+      "offline (ubuntu-latest)",
+      "offline (macos-latest)",
+      "reference-execution",
+      "governance"
+    ],
+    "clean_checkout": "Hosted jobs check out 6f77b8c; reference job installs pinned dependencies and runs all eight defective/corrected outcomes",
+    "public_result_artifact": "verification/ci-repaired-result.json"
+  }
+}

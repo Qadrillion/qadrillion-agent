@@ -1,0 +1,218 @@
+[
+  {
+    "path": ".cursor/skills/golden-tasks/SKILL.md",
+    "sha256": "71d685669a34e1d6d2c78c1e02f2c09864add6d2352ef79f57374364c32a6cda"
+  },
+  {
+    "path": ".cursor/skills/qa/SKILL.md",
+    "sha256": "c25194b7a34e13522766aeae86d4b6a74fb30e97c98aff0308414e20087724bf"
+  },
+  {
+    "path": ".cursor/skills/qa/references/routing.md",
+    "sha256": "325825af0e937c1e2abab1123908b2be9f0289cd34cc7321228a0d59225dc4f4"
+  },
+  {
+    "path": ".cursor/skills/qa-api/SKILL.md",
+    "sha256": "fe014c155a9f303b9d0ecf28f46050d848d7e1ec004b770dedbbbe8c07ab3042"
+  },
+  {
+    "path": ".cursor/skills/qa-api/references/python-http.md",
+    "sha256": "d617a7277f515d6c03fcb701af823646bb1a0f4ea812ab52e72dfb51a3f6d2ca"
+  },
+  {
+    "path": ".cursor/skills/qa-mobile/SKILL.md",
+    "sha256": "3e3016dd84798c39f58953b9207f4a191e020dd380b4e4b287b87d0779da8464"
+  },
+  {
+    "path": ".cursor/skills/qa-mobile/references/appium.md",
+    "sha256": "15e99412ff0a4c5b78a5843ac3b139ffc952e89df8a3b798460c1500d8401f1c"
+  },
+  {
+    "path": ".cursor/skills/qa-mobile/references/maestro.md",
+    "sha256": "e7a38013008bad39fb32c9d6e2222bdf0516a1d2c5f29548397446db1932052f"
+  },
+  {
+    "path": ".cursor/skills/qa-mobile/references/native.md",
+    "sha256": "1127417c9e1e8d006baa161cd222a2087fc89e32ba29ddea1259d5f0e4ccf8be"
+  },
+  {
+    "path": ".cursor/skills/qa-performance/SKILL.md",
+    "sha256": "e351ebf18999e42bc2fbfdda1318df9a6be7fc2c6b270982edb0a97bdf2742bb"
+  },
+  {
+    "path": ".cursor/skills/qa-performance/references/k6.md",
+    "sha256": "6c0b07d48146210de94c6708904908dd1ad8f1a630ca13362fbbe0e4d422f251"
+  },
+  {
+    "path": ".cursor/skills/qa-performance/references/local-http.md",
+    "sha256": "bb393ca32e5e6c22ff4c2199c264392eeef717ab90e0a927dba2e4e466812555"
+  },
+  {
+    "path": ".cursor/skills/qa-security/SKILL.md",
+    "sha256": "b02093fda1c7740b7e3f1b4ec1c75a78aec94ea971334ae09ea5e3f226d64386"
+  },
+  {
+    "path": ".cursor/skills/qa-security/references/checks.md",
+    "sha256": "29fd59da4dc053d501a52e631cf11ccd2675906c8438eaf90260e7a1ea829814"
+  },
+  {
+    "path": ".cursor/skills/qa-web/SKILL.md",
+    "sha256": "a7be5f15bff20afbc8ac2bd1386dbd4b47a13723f1904811ce0e0233174ccffd"
+  },
+  {
+    "path": ".cursor/skills/qa-web/references/accessibility.md",
+    "sha256": "792d8710df5f0f7dcafbf197e16e14e3fe4c96806f39e0a96dae45319fac6b63"
+  },
+  {
+    "path": ".cursor/skills/qa-web/references/playwright.md",
+    "sha256": "b464c58722cfd208a86b06e39d0ccd33d9ec3aa7688191dbca7f2eb021df970b"
+  },
+  {
+    "path": ".cursor/skills/qa-workflow/SKILL.md",
+    "sha256": "731e6fa760ddc80bd4c22753b1710bb9ce28f029929bcf07e2d8b8b5e946fea3"
+  },
+  {
+    "path": ".agents/skills/golden-tasks/SKILL.md",
+    "sha256": "71d685669a34e1d6d2c78c1e02f2c09864add6d2352ef79f57374364c32a6cda"
+  },
+  {
+    "path": ".agents/skills/qa/SKILL.md",
+    "sha256": "c25194b7a34e13522766aeae86d4b6a74fb30e97c98aff0308414e20087724bf"
+  },
+  {
+    "path": ".agents/skills/qa/references/routing.md",
+    "sha256": "325825af0e937c1e2abab1123908b2be9f0289cd34cc7321228a0d59225dc4f4"
+  },
+  {
+    "path": ".agents/skills/qa-api/SKILL.md",
+    "sha256": "fe014c155a9f303b9d0ecf28f46050d848d7e1ec004b770dedbbbe8c07ab3042"
+  },
+  {
+    "path": ".agents/skills/qa-api/references/python-http.md",
+    "sha256": "d617a7277f515d6c03fcb701af823646bb1a0f4ea812ab52e72dfb51a3f6d2ca"
+  },
+  {
+    "path": ".agents/skills/qa-mobile/SKILL.md",
+    "sha256": "3e3016dd84798c39f58953b9207f4a191e020dd380b4e4b287b87d0779da8464"
+  },
+  {
+    "path": ".agents/skills/qa-mobile/references/appium.md",
+    "sha256": "15e99412ff0a4c5b78a5843ac3b139ffc952e89df8a3b798460c1500d8401f1c"
+  },
+  {
+    "path": ".agents/skills/qa-mobile/references/maestro.md",
+    "sha256": "e7a38013008bad39fb32c9d6e2222bdf0516a1d2c5f29548397446db1932052f"
+  },
+  {
+    "path": ".agents/skills/qa-mobile/references/native.md",
+    "sha256": "1127417c9e1e8d006baa161cd222a2087fc89e32ba29ddea1259d5f0e4ccf8be"
+  },
+  {
+    "path": ".agents/skills/qa-performance/SKILL.md",
+    "sha256": "e351ebf18999e42bc2fbfdda1318df9a6be7fc2c6b270982edb0a97bdf2742bb"
+  },
+  {
+    "path": ".agents/skills/qa-performance/references/k6.md",
+    "sha256": "6c0b07d48146210de94c6708904908dd1ad8f1a630ca13362fbbe0e4d422f251"
+  },
+  {
+    "path": ".agents/skills/qa-performance/references/local-http.md",
+    "sha256": "bb393ca32e5e6c22ff4c2199c264392eeef717ab90e0a927dba2e4e466812555"
+  },
+  {
+    "path": ".agents/skills/qa-security/SKILL.md",
+    "sha256": "b02093fda1c7740b7e3f1b4ec1c75a78aec94ea971334ae09ea5e3f226d64386"
+  },
+  {
+    "path": ".agents/skills/qa-security/references/checks.md",
+    "sha256": "29fd59da4dc053d501a52e631cf11ccd2675906c8438eaf90260e7a1ea829814"
+  },
+  {
+    "path": ".agents/skills/qa-web/SKILL.md",
+    "sha256": "a7be5f15bff20afbc8ac2bd1386dbd4b47a13723f1904811ce0e0233174ccffd"
+  },
+  {
+    "path": ".agents/skills/qa-web/references/accessibility.md",
+    "sha256": "792d8710df5f0f7dcafbf197e16e14e3fe4c96806f39e0a96dae45319fac6b63"
+  },
+  {
+    "path": ".agents/skills/qa-web/references/playwright.md",
+    "sha256": "b464c58722cfd208a86b06e39d0ccd33d9ec3aa7688191dbca7f2eb021df970b"
+  },
+  {
+    "path": ".agents/skills/qa-workflow/SKILL.md",
+    "sha256": "731e6fa760ddc80bd4c22753b1710bb9ce28f029929bcf07e2d8b8b5e946fea3"
+  },
+  {
+    "path": ".claude/skills/golden-tasks/SKILL.md",
+    "sha256": "71d685669a34e1d6d2c78c1e02f2c09864add6d2352ef79f57374364c32a6cda"
+  },
+  {
+    "path": ".claude/skills/qa/SKILL.md",
+    "sha256": "c25194b7a34e13522766aeae86d4b6a74fb30e97c98aff0308414e20087724bf"
+  },
+  {
+    "path": ".claude/skills/qa/references/routing.md",
+    "sha256": "325825af0e937c1e2abab1123908b2be9f0289cd34cc7321228a0d59225dc4f4"
+  },
+  {
+    "path": ".claude/skills/qa-api/SKILL.md",
+    "sha256": "fe014c155a9f303b9d0ecf28f46050d848d7e1ec004b770dedbbbe8c07ab3042"
+  },
+  {
+    "path": ".claude/skills/qa-api/references/python-http.md",
+    "sha256": "d617a7277f515d6c03fcb701af823646bb1a0f4ea812ab52e72dfb51a3f6d2ca"
+  },
+  {
+    "path": ".claude/skills/qa-mobile/SKILL.md",
+    "sha256": "3e3016dd84798c39f58953b9207f4a191e020dd380b4e4b287b87d0779da8464"
+  },
+  {
+    "path": ".claude/skills/qa-mobile/references/appium.md",
+    "sha256": "15e99412ff0a4c5b78a5843ac3b139ffc952e89df8a3b798460c1500d8401f1c"
+  },
+  {
+    "path": ".claude/skills/qa-mobile/references/maestro.md",
+    "sha256": "e7a38013008bad39fb32c9d6e2222bdf0516a1d2c5f29548397446db1932052f"
+  },
+  {
+    "path": ".claude/skills/qa-mobile/references/native.md",
+    "sha256": "1127417c9e1e8d006baa161cd222a2087fc89e32ba29ddea1259d5f0e4ccf8be"
+  },
+  {
+    "path": ".claude/skills/qa-performance/SKILL.md",
+    "sha256": "e351ebf18999e42bc2fbfdda1318df9a6be7fc2c6b270982edb0a97bdf2742bb"
+  },
+  {
+    "path": ".claude/skills/qa-performance/references/k6.md",
+    "sha256": "6c0b07d48146210de94c6708904908dd1ad8f1a630ca13362fbbe0e4d422f251"
+  },
+  {
+    "path": ".claude/skills/qa-performance/references/local-http.md",
+    "sha256": "bb393ca32e5e6c22ff4c2199c264392eeef717ab90e0a927dba2e4e466812555"
+  },
+  {
+    "path": ".claude/skills/qa-security/SKILL.md",
+    "sha256": "b02093fda1c7740b7e3f1b4ec1c75a78aec94ea971334ae09ea5e3f226d64386"
+  },
+  {
+    "path": ".claude/skills/qa-security/references/checks.md",
+    "sha256": "29fd59da4dc053d501a52e631cf11ccd2675906c8438eaf90260e7a1ea829814"
+  },
+  {
+    "path": ".claude/skills/qa-web/SKILL.md",
+    "sha256": "a7be5f15bff20afbc8ac2bd1386dbd4b47a13723f1904811ce0e0233174ccffd"
+  },
+  {
+    "path": ".claude/skills/qa-web/references/accessibility.md",
+    "sha256": "792d8710df5f0f7dcafbf197e16e14e3fe4c96806f39e0a96dae45319fac6b63"
+  },
+  {
+    "path": ".claude/skills/qa-web/references/playwright.md",
+    "sha256": "b464c58722cfd208a86b06e39d0ccd33d9ec3aa7688191dbca7f2eb021df970b"
+  },
+  {
+    "path": ".claude/skills/qa-workflow/SKILL.md",
+    "sha256": "731e6fa760ddc80bd4c22753b1710bb9ce28f029929bcf07e2d8b8b5e946fea3"
+  }
+]

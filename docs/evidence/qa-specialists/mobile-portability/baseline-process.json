@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/reference/mobile/tests/test_parcel.py",
+    "--run-dir",
+    "/tmp/qadrillion-mobile-portability-20260924",
+    "--adb",
+    "<user-home>/Library/Android/sdk/platform-tools/adb",
+    "--serial",
+    "emulator-5562",
+    "--expected-apk-sha256",
+    "82116c93c0af3c70881bcae0d49891ec5e235939944620b1299bc2141c9c97de",
+    "--evidence",
+    "/tmp/qadrillion-mobile-portability-20260924/baseline-execution",
+    "--test",
+    "test_activity_recreation",
+    "--test",
+    "test_process_termination_relaunch"
+  ],
+  "exit": 0,
+  "elapsed_s": 52.65687704086304,
+  "test_sha256": "c3b19bddc8b3232a00b76d81cdc6c9fba9a2c947f98a3a85c16c2061f5e2f206"
+}

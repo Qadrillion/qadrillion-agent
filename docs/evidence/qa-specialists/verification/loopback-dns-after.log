@@ -1,0 +1,11 @@
+test_body_key_and_actor_errors_do_not_create_data (tools.tests.test_specialists.LabContractTests.test_body_key_and_actor_errors_do_not_create_data) ... ok
+test_cli_shutdown_removes_only_its_ready_file_and_closes_port (tools.tests.test_specialists.LabContractTests.test_cli_shutdown_removes_only_its_ready_file_and_closes_port) ... ok
+test_literal_loopback_startup_does_not_depend_on_dns (tools.tests.test_specialists.LabContractTests.test_literal_loopback_startup_does_not_depend_on_dns) ... ok
+test_order_validation_and_idempotency_preserve_persisted_state (tools.tests.test_specialists.LabContractTests.test_order_validation_and_idempotency_preserve_persisted_state) ... ok
+test_paired_objects_detect_seeded_read_bypass_and_protect_deletion (tools.tests.test_specialists.LabContractTests.test_paired_objects_detect_seeded_read_bypass_and_protect_deletion) ... ok
+test_same_receipt_oracle_detects_seeded_completion_defect (tools.tests.test_specialists.LabContractTests.test_same_receipt_oracle_detects_seeded_completion_defect) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.636s
+
+OK

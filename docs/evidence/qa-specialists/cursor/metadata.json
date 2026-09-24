@@ -1,0 +1,13 @@
+{
+  "started_at": "2026-09-24T09:26:54.195615+00:00",
+  "source_commit": "06d1dac7e6c9035ed63ce661849952f0032032f1",
+  "os": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "workspace": "/tmp/qadrillion-cursor-smoke/workspace",
+  "copy_policy": "tracked files from working tree plus complete .cursor/skills, .agents/skills, .claude/skills framework roots; no .git history or unrelated untracked files",
+  "adapter_skills": {
+    ".cursor": 8,
+    ".agents": 8,
+    ".claude": 8,
+    ".codex": 0
+  }
+}

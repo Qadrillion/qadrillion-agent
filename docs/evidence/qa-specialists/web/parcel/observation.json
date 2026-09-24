@@ -1,0 +1,95 @@
+{
+  "identity": {
+    "fixture": "qadrillion-specialist-lab",
+    "role": "test",
+    "run_id": "4ecbc3c1-9475-4f18-810e-5f43cd23624d",
+    "build": "a036766d21e2e67fec0b69432b01472b177cdc3b8131cc30e155a34c7f07f28a",
+    "mode": "web-defect",
+    "url": "http://127.0.0.1:60882"
+  },
+  "playwright": "1.63.0",
+  "engines": {
+    "chromium": {
+      "version": "153.0.8010.12",
+      "snapshot": "- main:\n  - heading \"Parcel orders\" [level=1]\n  - text: Quantity\n  - spinbutton \"Quantity\": \"1\"\n  - button \"Place order\"\n  - status: Ready",
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "role": null,
+          "label": null,
+          "min": "1",
+          "max": "100",
+          "required": true,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "type": "submit",
+          "role": null,
+          "label": null,
+          "text": "Place order"
+        },
+        {
+          "tag": "P",
+          "role": "status",
+          "label": null,
+          "text": "Ready"
+        },
+        {
+          "tag": "SECTION",
+          "role": null,
+          "label": "Receipt",
+          "text": "Receipt"
+        }
+      ],
+      "counts": {
+        "quantity": 1,
+        "button": 1,
+        "status": 1,
+        "receipt": 0
+      }
+    },
+    "firefox": {
+      "version": "155.0",
+      "snapshot": "- main:\n  - heading \"Parcel orders\" [level=1]\n  - text: Quantity\n  - spinbutton \"Quantity\": \"1\"\n  - button \"Place order\"\n  - status: Ready",
+      "controls": [
+        {
+          "tag": "INPUT",
+          "type": "number",
+          "role": null,
+          "label": null,
+          "min": "1",
+          "max": "100",
+          "required": true,
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "type": "submit",
+          "role": null,
+          "label": null,
+          "text": "Place order"
+        },
+        {
+          "tag": "P",
+          "role": "status",
+          "label": null,
+          "text": "Ready"
+        },
+        {
+          "tag": "SECTION",
+          "role": null,
+          "label": "Receipt",
+          "text": "Receipt"
+        }
+      ],
+      "counts": {
+        "quantity": 1,
+        "button": 1,
+        "status": 1,
+        "receipt": 0
+      }
+    }
+  }
+}

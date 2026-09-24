@@ -1,0 +1,46 @@
+test_actor_object_matrix (__main__.ParcelAuthorization.test_actor_object_matrix) ... 
+  test_actor_object_matrix (__main__.ParcelAuthorization.test_actor_object_matrix) (check='bob GET alice orders denial') ... FAIL
+  test_actor_object_matrix (__main__.ParcelAuthorization.test_actor_object_matrix) (check='bob GET alice orders no protected content') ... FAIL
+  test_actor_object_matrix (__main__.ParcelAuthorization.test_actor_object_matrix) (check='alice GET bob orders denial') ... FAIL
+  test_actor_object_matrix (__main__.ParcelAuthorization.test_actor_object_matrix) (check='alice GET bob orders no protected content') ... FAIL
+
+======================================================================
+FAIL: test_actor_object_matrix (__main__.ParcelAuthorization.test_actor_object_matrix) (check='bob GET alice orders denial')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/qadrillion-execution-evals/security/tests/test_security_parcel.py", line 58, in check
+    self.assertEqual(actual, expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 200 != 404
+
+======================================================================
+FAIL: test_actor_object_matrix (__main__.ParcelAuthorization.test_actor_object_matrix) (check='bob GET alice orders no protected content')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/qadrillion-execution-evals/security/tests/test_security_parcel.py", line 58, in check
+    self.assertEqual(actual, expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+======================================================================
+FAIL: test_actor_object_matrix (__main__.ParcelAuthorization.test_actor_object_matrix) (check='alice GET bob orders denial')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/qadrillion-execution-evals/security/tests/test_security_parcel.py", line 58, in check
+    self.assertEqual(actual, expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 200 != 404
+
+======================================================================
+FAIL: test_actor_object_matrix (__main__.ParcelAuthorization.test_actor_object_matrix) (check='alice GET bob orders no protected content')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/qadrillion-execution-evals/security/tests/test_security_parcel.py", line 58, in check
+    self.assertEqual(actual, expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.858s
+
+FAILED (failures=4)

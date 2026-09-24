@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-09-24T08:59:59.986039+00:00",
+  "command": "python3 tests/test_security_parcel.py --identity target.json --out artifacts/parcel-authorization",
+  "cwd": "/private/tmp/qadrillion-execution-evals/security",
+  "exit_code": 1,
+  "test_methods": 1,
+  "assertion_subchecks": 86,
+  "passed_subchecks": 82,
+  "failed_subchecks": 4,
+  "errors": 0,
+  "skipped": 0,
+  "expected_failed": 0,
+  "unexpected_passed": 0,
+  "requests": 69,
+  "reruns": 0,
+  "git_commit": null,
+  "git_commit_note": "Repository has no HEAD commit",
+  "branch": "main",
+  "hashes": {
+    "target.json": "28152f3e48ffe415c155caa820e861724674084e92831738833682f29b9a4e03",
+    "qa-config.json": "f50b887fde6b92d3203a0191b99320dec128c1f94ab5b4832ab2ae2f84592bab",
+    "workspace-manifest.json": "cce55d5feee97419e04d68cbbf4393bd9db9e86b286ef7040fca963a85e52dd1",
+    "tools/specialists/CONTRACT.md": "15e07577e0ca10e69b4d0b53e20d2ff4d0094550f87a61e8fb6e57888bbb8448",
+    "tests/test_security_parcel.py": "311abf0c53e6e9e45b9cba8734d318ad050b73ff5a8148ad69ffbf21222dc6a6"
+  }
+}

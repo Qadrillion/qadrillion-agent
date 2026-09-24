@@ -1,0 +1,51 @@
+{
+  "owner": "qadrillion-mobile-demo-v1",
+  "root": "/private/tmp/qadrillion-mobile-portability-20260924",
+  "id": "91a2e521c48b",
+  "avd_name": "qa-mobile-91a2e521c48b",
+  "sdk": "<user-home>/Library/Android/sdk",
+  "java_home": "/Applications/Android Studio.app/Contents/jbr/Contents/Home",
+  "api": "34",
+  "build_tools": "34.0.0",
+  "image": "system-images;android-34;google_apis;arm64-v8a",
+  "builds": {
+    "baseline": {
+      "apk": "/private/tmp/qadrillion-mobile-portability-20260924/baseline/parcel.apk",
+      "sha256": "82116c93c0af3c70881bcae0d49891ec5e235939944620b1299bc2141c9c97de"
+    },
+    "seeded": {
+      "apk": "/private/tmp/qadrillion-mobile-portability-20260924/seeded/parcel.apk",
+      "sha256": "58354a319424da1ddf6951c6145fe3eac3e43a95a68d6fa2d657e1953188c179"
+    }
+  },
+  "source_sha256": {
+    "MainActivity.java": "35bcc2a81f5582a5a2cc2dc4d3a4f348d280ec5f455e3477db50adebac0f7917",
+    "AndroidManifest.xml": "16196aec29686cb4b7dd4ab4ffbc13c20a20978c58f9c64af6823ba40397c143",
+    "res/values/ids.xml": "bc9937fa42de00aa30461535e3d5f8e60903672c4ce23c93b3e9f265358f6e5e"
+  },
+  "serial": "emulator-5562",
+  "pid": 5367,
+  "emulator_command": [
+    "<user-home>/Library/Android/sdk/emulator/emulator",
+    "-avd",
+    "qa-mobile-91a2e521c48b",
+    "-port",
+    "5562",
+    "-no-window",
+    "-no-audio",
+    "-no-boot-anim",
+    "-no-snapshot",
+    "-gpu",
+    "swiftshader_indirect",
+    "-accel",
+    "on"
+  ],
+  "fingerprint": "google/sdk_gphone64_arm64/emu64a:14/UE1A.230829.036.A1/11228894:userdebug/dev-keys",
+  "booted": true,
+  "installed": {
+    "apk": "/private/tmp/qadrillion-mobile-portability-20260924/baseline/parcel.apk",
+    "sha256": "82116c93c0af3c70881bcae0d49891ec5e235939944620b1299bc2141c9c97de",
+    "variant": "baseline"
+  },
+  "cleaned": true
+}

@@ -1,0 +1,1 @@
+Test a browser receipt and its HTTP order API against fixtures/CONTRACT.md. This evaluation provides the contract only: no running target, browser executable, authenticated session or source checkout is available. Author reviewable runnable tests or the useful independent checks that remain possible, and identify exactly what is needed for live execution.

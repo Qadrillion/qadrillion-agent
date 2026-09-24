@@ -1,0 +1,46 @@
+
+Running 1 test using 1 worker
+
+(node:12059) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/parcel.spec.js:83:1 › nontrivial order receipt agrees with the 500-cent contract and persisted state (5.5s)
+
+
+  1) [chromium] › tests/parcel.spec.js:83:1 › nontrivial order receipt agrees with the 500-cent contract and persisted state 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('region', { name: 'Receipt', exact: true })
+    Expected substring: "3 parcels — $15.00"
+    Received string:    "Receipt3 parcels — $12.00"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "soft toContainText" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms
+      - waiting for getByRole('region', { name: 'Receipt', exact: true })
+        14 × locator resolved to <section aria-label="Receipt">…</section>
+           - unexpected value "Receipt3 parcels — $12.00"
+
+
+      72 |   journey.diagnostics.receipt = await receipt.innerText();
+      73 |   journey.diagnostics.persisted = order;
+    > 74 |   await expect.soft(receipt).toContainText(receiptText);
+         |                              ^
+      75 |   await page.reload();
+      76 |   const reloaded = await request.get(`${journey.identity.url}/orders/${id}`, { headers: { 'X-Lab-Actor': actor } });
+      77 |   expect(await reloaded.json()).toEqual(order);
+        at assertOrder (/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:74:30)
+        at /private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:88:3
+
+    Error Context: artifacts/parcel/first/parcel-nontrivial-order-re-0701e-ontract-and-persisted-state-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts/parcel/first/parcel-nontrivial-order-re-0701e-ontract-and-persisted-state-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts/parcel/first/parcel-nontrivial-order-re-0701e-ontract-and-persisted-state-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/parcel.spec.js:83:1 › nontrivial order receipt agrees with the 500-cent contract and persisted state 

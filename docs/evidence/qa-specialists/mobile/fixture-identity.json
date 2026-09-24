@@ -1,0 +1,33 @@
+{
+  "owner": "qadrillion-mobile-demo-v1",
+  "id": "0332febb7bd6",
+  "avd_name": "qa-mobile-0332febb7bd6",
+  "api": "34",
+  "build_tools": "34.0.0",
+  "image": "system-images;android-34;google_apis;arm64-v8a",
+  "builds": {
+    "baseline": {
+      "sha256": "070994dc902c44e5391ee19838364b65f88a403b9de0e10186f0a2e05956a517"
+    },
+    "seeded": {
+      "sha256": "1261bed953d12ad7db8cd5ae2c183d26af142dd43a60e5b9d24bc16a9bdf834a"
+    }
+  },
+  "source_sha256": {
+    "MainActivity.java": "35bcc2a81f5582a5a2cc2dc4d3a4f348d280ec5f455e3477db50adebac0f7917",
+    "AndroidManifest.xml": "16196aec29686cb4b7dd4ab4ffbc13c20a20978c58f9c64af6823ba40397c143",
+    "res/values/ids.xml": "bc9937fa42de00aa30461535e3d5f8e60903672c4ce23c93b3e9f265358f6e5e"
+  },
+  "serial": "emulator-5560",
+  "fingerprint": "google/sdk_gphone64_arm64/emu64a:14/UE1A.230829.036.A1/11228894:userdebug/dev-keys",
+  "booted": true,
+  "installed": {
+    "sha256": "070994dc902c44e5391ee19838364b65f88a403b9de0e10186f0a2e05956a517",
+    "variant": "baseline"
+  },
+  "cleaned": true,
+  "cleanup_observation": "Owned emulator stopped; task AVD/preferences removed; build/log/evidence files retained.",
+  "corrected_test_sha256": "1ea46a40a711178f331c65bf5eb509f75949ee2142b4afbddc587183fb6f114c",
+  "shipped_test_sha256": "1e0354fbc120b92303f85e76b5dec7f427873b53594f6b4bc045a16bf39c5bfa",
+  "shipped_adaptation": "Only argparse default ADB path changed to adb; detecting assertions unchanged."
+}

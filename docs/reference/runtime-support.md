@@ -3,13 +3,21 @@
 Portable instructions do not guarantee native discovery, subagents or hooks.
 This repository supplies content and adapters; validate them in the actual
 runtime/version used by the team. Cursor is the first planned work-laptop pilot.
-No Cursor, Claude or Codex native activation was certified by this change.
+The portability baseline did not certify native activation. The later
+[specialist evaluation](specialist-support.md) observes Codex 0.154.0 metadata
+discovery and explicit skill execution, and Claude 2.1.278 discovery/full-skill
+reads plus benign Read/Stop hooks. Cursor activation and native deny/trust coverage
+remain unverified; these limited observations do not establish runtime parity.
+Cursor editor 3.21.18/CLI 2026.09.23-86fc751 were probed: the explicit CLI
+attempt stopped at `Authentication required`, with no native events.
+[Retained evidence](../evidence/qa-specialists/cursor/REPORT.md) identifies the
+required authenticated session without connecting a company account.
 
 | Runtime | Maintained/generated entrypoints | What still needs live validation |
 |---|---|---|
 | Cursor | `AGENTS.md`; maintained `.cursor/rules`, skills, agents and hooks | Rule/skill discovery, hook registration and event coverage, local versus remote execution |
-| Claude Code | `CLAUDE.md` imports AGENTS; generated `.claude/skills`, agents and hook adapter | Import/skill discovery, native tool permissions, project-hook activation |
-| Codex | `AGENTS.md`; generated `.agents/skills`, `.codex/agents` and hooks | Skill/subagent discovery, trusted project layer and exact native hook definitions |
+| Claude Code | `CLAUDE.md` imports AGENTS; generated `.claude/skills`, agents and hook adapter | Implicit skill selection, import precedence, subagent activation, native tool permissions and deny/trust/event coverage beyond observed benign Read/Stop hooks |
+| Codex | `AGENTS.md`; generated `.agents/skills`, `.codex/agents` and hooks | Implicit skill selection, subagent activation, trusted project layer and exact native hook definitions beyond observed metadata discovery/explicit execution |
 | Other agent | Read AGENTS, then the named QA skill and applicable contracts manually | Its own discovery, tool access, permissions and execution support; perform roles sequentially without native subagents |
 
 Edit `.cursor` sources and run `python3 tools/agents/sync.py`. Use `--check` for

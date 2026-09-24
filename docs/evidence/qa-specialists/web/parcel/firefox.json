@@ -1,0 +1,310 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/24.4.1/bin/node",
+      "/private/tmp/qadrillion-execution-evals/web/node_modules/.bin/playwright",
+      "test",
+      "-c",
+      "tests",
+      "--browser=firefox",
+      "--workers=1",
+      "--retries=0",
+      "--trace=on",
+      "--output=artifacts/parcel/firefox",
+      "--reporter=list,json"
+    ],
+    "rootDir": "/private/tmp/qadrillion-execution-evals/web/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel/firefox",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/private/tmp/qadrillion-execution-evals/web/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "parcel.spec.js",
+      "file": "parcel.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "nontrivial order receipt agrees with the 500-cent contract and persisted state",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5916,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Receipt', exact: true })\nExpected substring: \u001b[32m\"3 parcels — $1\u001b[7m5\u001b[27m.00\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mReceipt\u001b[27m3 parcels — $1\u001b[7m2\u001b[27m.00\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"soft toContainText\" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Receipt', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <section aria-label=\"Receipt\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"Receipt3 parcels — $12.00\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Receipt', exact: true })\nExpected substring: \u001b[32m\"3 parcels — $1\u001b[7m5\u001b[27m.00\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mReceipt\u001b[27m3 parcels — $1\u001b[7m2\u001b[27m.00\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"soft toContainText\" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Receipt', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <section aria-label=\"Receipt\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"Receipt3 parcels — $12.00\"\u001b[22m\n\n    at assertOrder (/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:74:30)\n    at /private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:88:3",
+                    "location": {
+                      "file": "/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js",
+                      "column": 30,
+                      "line": 74
+                    },
+                    "snippet": "  72 |   journey.diagnostics.receipt = await receipt.innerText();\n  73 |   journey.diagnostics.persisted = order;\n> 74 |   await expect.soft(receipt).toContainText(receiptText);\n     |                              ^\n  75 |   await page.reload();\n  76 |   const reloaded = await request.get(`${journey.identity.url}/orders/${id}`, { headers: { 'X-Lab-Actor': actor } });\n  77 |   expect(await reloaded.json()).toEqual(order);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js",
+                        "column": 30,
+                        "line": 74
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Receipt', exact: true })\nExpected substring: \u001b[32m\"3 parcels — $1\u001b[7m5\u001b[27m.00\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mReceipt\u001b[27m3 parcels — $1\u001b[7m2\u001b[27m.00\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"soft toContainText\" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Receipt', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <section aria-label=\"Receipt\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"Receipt3 parcels — $12.00\"\u001b[22m\n\n\n  72 |   journey.diagnostics.receipt = await receipt.innerText();\n  73 |   journey.diagnostics.persisted = order;\n> 74 |   await expect.soft(receipt).toContainText(receiptText);\n     |                              ^\n  75 |   await page.reload();\n  76 |   const reloaded = await request.get(`${journey.identity.url}/orders/${id}`, { headers: { 'X-Lab-Actor': actor } });\n  77 |   expect(await reloaded.json()).toEqual(order);\n    at assertOrder (/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:74:30)\n    at /private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:88:3"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T08:58:11.670Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "diagnostics",
+                      "contentType": "application/json",
+                      "body": "ewogICJpZGVudGl0eSI6IHsKICAgICJmaXh0dXJlIjogInFhZHJpbGxpb24tc3BlY2lhbGlzdC1sYWIiLAogICAgInJvbGUiOiAidGVzdCIsCiAgICAicnVuX2lkIjogIjRlY2JjM2MxLTk0NzUtNGYxOC04MTBlLTVmNDNjZDIzNjI0ZCIsCiAgICAiYnVpbGQiOiAiYTAzNjc2NmQyMWUyZTY3ZmVjMGI2OTQzMmIwMTQ3MmIxNzdjZGMzYjgxMzFjYzMwZTE1NWEzNGM3ZjA3ZjI4YSIsCiAgICAibW9kZSI6ICJ3ZWItZGVmZWN0IiwKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo2MDg4MiIKICB9LAogICJicm93c2VyIjogIjE1NS4wIiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxMjgwLAogICAgImhlaWdodCI6IDcyMAogIH0sCiAgImxvY2FsZSI6ICJlbi1VUyIsCiAgInRpbWV6b25lIjogIlVUQyIsCiAgImNvbnNvbGUiOiBbXSwKICAiZXJyb3JzIjogW10sCiAgIm5ldHdvcmsiOiBbCiAgICB7CiAgICAgICJtZXRob2QiOiAiR0VUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjYwODgyLyIsCiAgICAgICJzdGF0dXMiOiAyMDAKICAgIH0sCiAgICB7CiAgICAgICJtZXRob2QiOiAiUE9TVCIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo2MDg4Mi9vcmRlcnMiLAogICAgICAic3RhdHVzIjogMjAxCiAgICB9LAogICAgewogICAgICAibWV0aG9kIjogIkdFVCIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo2MDg4Mi8iLAogICAgICAic3RhdHVzIjogMjAwCiAgICB9CiAgXSwKICAiY2xlYW51cCI6IFsKICAgIHsKICAgICAgImlkIjogImQxMGM1MmQyLWViYzctNGE3My04NTM5LTg4YTI5ZDM4MmZiOCIsCiAgICAgICJhY3RvciI6ICJhbGljZSIsCiAgICAgICJzdGF0dXMiOiAyMDAKICAgIH0KICBdLAogICJyZWNlaXB0IjogIlJlY2VpcHRcblxuMyBwYXJjZWxzIOKAlCAkMTIuMDAiLAogICJwZXJzaXN0ZWQiOiB7CiAgICAiaWQiOiAiZDEwYzUyZDItZWJjNy00YTczLTg1MzktODhhMjlkMzgyZmI4IiwKICAgICJvd25lciI6ICJhbGljZSIsCiAgICAicXVhbnRpdHkiOiAzLAogICAgInRvdGFsX2NlbnRzIjogMTUwMAogIH0sCiAgInNuYXBzaG90IjogIi0gbWFpbjpcbiAgLSBoZWFkaW5nIFwiUGFyY2VsIG9yZGVyc1wiIFtsZXZlbD0xXVxuICAtIHRleHQ6IFF1YW50aXR5XG4gIC0gc3BpbmJ1dHRvbiBcIlF1YW50aXR5XCI6IFwiMVwiXG4gIC0gYnV0dG9uIFwiUGxhY2Ugb3JkZXJcIlxuICAtIHN0YXR1czogUmVhZHkiLAogICJiYXNlbGluZVJlc3RvcmVkIjogdHJ1ZQp9"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel/firefox/parcel-nontrivial-order-re-0701e-ontract-and-persisted-state-firefox/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel/firefox/parcel-nontrivial-order-re-0701e-ontract-and-persisted-state-firefox/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js",
+                    "column": 30,
+                    "line": 74
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a8dd9317bb91fb3a7e63-e620842de53943348d66",
+          "file": "parcel.spec.js",
+          "line": 83,
+          "column": 1
+        },
+        {
+          "title": "keyboard reaches controls, rejects invalid quantities and recovers at upper boundary",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5968,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Receipt', exact: true })\nExpected substring: \u001b[32m\"100 parcels — $\u001b[7m5\u001b[27m00.00\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mReceipt\u001b[27m100 parcels — $\u001b[7m4\u001b[27m00.00\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"soft toContainText\" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Receipt', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <section aria-label=\"Receipt\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"Receipt100 parcels — $400.00\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Receipt', exact: true })\nExpected substring: \u001b[32m\"100 parcels — $\u001b[7m5\u001b[27m00.00\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mReceipt\u001b[27m100 parcels — $\u001b[7m4\u001b[27m00.00\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"soft toContainText\" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Receipt', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <section aria-label=\"Receipt\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"Receipt100 parcels — $400.00\"\u001b[22m\n\n    at assertOrder (/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:74:30)\n    at /private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:116:3",
+                    "location": {
+                      "file": "/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js",
+                      "column": 30,
+                      "line": 74
+                    },
+                    "snippet": "  72 |   journey.diagnostics.receipt = await receipt.innerText();\n  73 |   journey.diagnostics.persisted = order;\n> 74 |   await expect.soft(receipt).toContainText(receiptText);\n     |                              ^\n  75 |   await page.reload();\n  76 |   const reloaded = await request.get(`${journey.identity.url}/orders/${id}`, { headers: { 'X-Lab-Actor': actor } });\n  77 |   expect(await reloaded.json()).toEqual(order);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js",
+                        "column": 30,
+                        "line": 74
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Receipt', exact: true })\nExpected substring: \u001b[32m\"100 parcels — $\u001b[7m5\u001b[27m00.00\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mReceipt\u001b[27m100 parcels — $\u001b[7m4\u001b[27m00.00\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"soft toContainText\" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Receipt', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <section aria-label=\"Receipt\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"Receipt100 parcels — $400.00\"\u001b[22m\n\n\n  72 |   journey.diagnostics.receipt = await receipt.innerText();\n  73 |   journey.diagnostics.persisted = order;\n> 74 |   await expect.soft(receipt).toContainText(receiptText);\n     |                              ^\n  75 |   await page.reload();\n  76 |   const reloaded = await request.get(`${journey.identity.url}/orders/${id}`, { headers: { 'X-Lab-Actor': actor } });\n  77 |   expect(await reloaded.json()).toEqual(order);\n    at assertOrder (/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:74:30)\n    at /private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:116:3"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T08:58:18.622Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "diagnostics",
+                      "contentType": "application/json",
+                      "body": "ewogICJpZGVudGl0eSI6IHsKICAgICJmaXh0dXJlIjogInFhZHJpbGxpb24tc3BlY2lhbGlzdC1sYWIiLAogICAgInJvbGUiOiAidGVzdCIsCiAgICAicnVuX2lkIjogIjRlY2JjM2MxLTk0NzUtNGYxOC04MTBlLTVmNDNjZDIzNjI0ZCIsCiAgICAiYnVpbGQiOiAiYTAzNjc2NmQyMWUyZTY3ZmVjMGI2OTQzMmIwMTQ3MmIxNzdjZGMzYjgxMzFjYzMwZTE1NWEzNGM3ZjA3ZjI4YSIsCiAgICAibW9kZSI6ICJ3ZWItZGVmZWN0IiwKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo2MDg4MiIKICB9LAogICJicm93c2VyIjogIjE1NS4wIiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxMjgwLAogICAgImhlaWdodCI6IDcyMAogIH0sCiAgImxvY2FsZSI6ICJlbi1VUyIsCiAgInRpbWV6b25lIjogIlVUQyIsCiAgImNvbnNvbGUiOiBbXSwKICAiZXJyb3JzIjogW10sCiAgIm5ldHdvcmsiOiBbCiAgICB7CiAgICAgICJtZXRob2QiOiAiR0VUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjYwODgyLyIsCiAgICAgICJzdGF0dXMiOiAyMDAKICAgIH0sCiAgICB7CiAgICAgICJtZXRob2QiOiAiUE9TVCIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo2MDg4Mi9vcmRlcnMiLAogICAgICAic3RhdHVzIjogMjAxCiAgICB9LAogICAgewogICAgICAibWV0aG9kIjogIkdFVCIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo2MDg4Mi8iLAogICAgICAic3RhdHVzIjogMjAwCiAgICB9CiAgXSwKICAiY2xlYW51cCI6IFsKICAgIHsKICAgICAgImlkIjogIjQ0NTAzNmFjLWE5MjgtNGZiMy05NGQ1LWY5Mjg1MTE4OGE3MCIsCiAgICAgICJhY3RvciI6ICJhbGljZSIsCiAgICAgICJzdGF0dXMiOiAyMDAKICAgIH0KICBdLAogICJmb2N1cyI6IHsKICAgICJ2aXNpYmxlIjogdHJ1ZSwKICAgICJvdXRsaW5lIjogInJnYigwLCAwLCAwKSBhdXRvIDFweCIKICB9LAogICJyZWNlaXB0IjogIlJlY2VpcHRcblxuMTAwIHBhcmNlbHMg4oCUICQ0MDAuMDAiLAogICJwZXJzaXN0ZWQiOiB7CiAgICAiaWQiOiAiNDQ1MDM2YWMtYTkyOC00ZmIzLTk0ZDUtZjkyODUxMTg4YTcwIiwKICAgICJvd25lciI6ICJhbGljZSIsCiAgICAicXVhbnRpdHkiOiAxMDAsCiAgICAidG90YWxfY2VudHMiOiA1MDAwMAogIH0sCiAgInNuYXBzaG90IjogIi0gbWFpbjpcbiAgLSBoZWFkaW5nIFwiUGFyY2VsIG9yZGVyc1wiIFtsZXZlbD0xXVxuICAtIHRleHQ6IFF1YW50aXR5XG4gIC0gc3BpbmJ1dHRvbiBcIlF1YW50aXR5XCI6IFwiMVwiXG4gIC0gYnV0dG9uIFwiUGxhY2Ugb3JkZXJcIlxuICAtIHN0YXR1czogUmVhZHkiLAogICJiYXNlbGluZVJlc3RvcmVkIjogdHJ1ZQp9"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel/firefox/parcel-keyboard-reaches-co-e399c--recovers-at-upper-boundary-firefox/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel/firefox/parcel-keyboard-reaches-co-e399c--recovers-at-upper-boundary-firefox/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js",
+                    "column": 30,
+                    "line": 74
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a8dd9317bb91fb3a7e63-95935368df08834b2ed1",
+          "file": "parcel.spec.js",
+          "line": 91,
+          "column": 1
+        },
+        {
+          "title": "minimum quantity renders the correct receipt",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5857,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Receipt', exact: true })\nExpected substring: \u001b[32m\"1 parcels — $\u001b[7m5\u001b[27m.00\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mReceipt\u001b[27m1 parcels — $\u001b[7m4\u001b[27m.00\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"soft toContainText\" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Receipt', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <section aria-label=\"Receipt\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"Receipt1 parcels — $4.00\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Receipt', exact: true })\nExpected substring: \u001b[32m\"1 parcels — $\u001b[7m5\u001b[27m.00\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mReceipt\u001b[27m1 parcels — $\u001b[7m4\u001b[27m.00\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"soft toContainText\" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Receipt', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <section aria-label=\"Receipt\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"Receipt1 parcels — $4.00\"\u001b[22m\n\n    at assertOrder (/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:74:30)\n    at /private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:123:3",
+                    "location": {
+                      "file": "/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js",
+                      "column": 30,
+                      "line": 74
+                    },
+                    "snippet": "  72 |   journey.diagnostics.receipt = await receipt.innerText();\n  73 |   journey.diagnostics.persisted = order;\n> 74 |   await expect.soft(receipt).toContainText(receiptText);\n     |                              ^\n  75 |   await page.reload();\n  76 |   const reloaded = await request.get(`${journey.identity.url}/orders/${id}`, { headers: { 'X-Lab-Actor': actor } });\n  77 |   expect(await reloaded.json()).toEqual(order);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js",
+                        "column": 30,
+                        "line": 74
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Receipt', exact: true })\nExpected substring: \u001b[32m\"1 parcels — $\u001b[7m5\u001b[27m.00\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mReceipt\u001b[27m1 parcels — $\u001b[7m4\u001b[27m.00\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"soft toContainText\" getByRole('region', { name: 'Receipt', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Receipt', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <section aria-label=\"Receipt\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"Receipt1 parcels — $4.00\"\u001b[22m\n\n\n  72 |   journey.diagnostics.receipt = await receipt.innerText();\n  73 |   journey.diagnostics.persisted = order;\n> 74 |   await expect.soft(receipt).toContainText(receiptText);\n     |                              ^\n  75 |   await page.reload();\n  76 |   const reloaded = await request.get(`${journey.identity.url}/orders/${id}`, { headers: { 'X-Lab-Actor': actor } });\n  77 |   expect(await reloaded.json()).toEqual(order);\n    at assertOrder (/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:74:30)\n    at /private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js:123:3"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T08:58:25.438Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "diagnostics",
+                      "contentType": "application/json",
+                      "body": "ewogICJpZGVudGl0eSI6IHsKICAgICJmaXh0dXJlIjogInFhZHJpbGxpb24tc3BlY2lhbGlzdC1sYWIiLAogICAgInJvbGUiOiAidGVzdCIsCiAgICAicnVuX2lkIjogIjRlY2JjM2MxLTk0NzUtNGYxOC04MTBlLTVmNDNjZDIzNjI0ZCIsCiAgICAiYnVpbGQiOiAiYTAzNjc2NmQyMWUyZTY3ZmVjMGI2OTQzMmIwMTQ3MmIxNzdjZGMzYjgxMzFjYzMwZTE1NWEzNGM3ZjA3ZjI4YSIsCiAgICAibW9kZSI6ICJ3ZWItZGVmZWN0IiwKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo2MDg4MiIKICB9LAogICJicm93c2VyIjogIjE1NS4wIiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxMjgwLAogICAgImhlaWdodCI6IDcyMAogIH0sCiAgImxvY2FsZSI6ICJlbi1VUyIsCiAgInRpbWV6b25lIjogIlVUQyIsCiAgImNvbnNvbGUiOiBbXSwKICAiZXJyb3JzIjogW10sCiAgIm5ldHdvcmsiOiBbCiAgICB7CiAgICAgICJtZXRob2QiOiAiR0VUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjYwODgyLyIsCiAgICAgICJzdGF0dXMiOiAyMDAKICAgIH0sCiAgICB7CiAgICAgICJtZXRob2QiOiAiUE9TVCIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo2MDg4Mi9vcmRlcnMiLAogICAgICAic3RhdHVzIjogMjAxCiAgICB9LAogICAgewogICAgICAibWV0aG9kIjogIkdFVCIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo2MDg4Mi8iLAogICAgICAic3RhdHVzIjogMjAwCiAgICB9CiAgXSwKICAiY2xlYW51cCI6IFsKICAgIHsKICAgICAgImlkIjogImVhNmFkZDIwLWM0OGQtNDQ1NC05ZjI1LWRmYWVkZTRmMjU2OCIsCiAgICAgICJhY3RvciI6ICJhbGljZSIsCiAgICAgICJzdGF0dXMiOiAyMDAKICAgIH0KICBdLAogICJyZWNlaXB0IjogIlJlY2VpcHRcblxuMSBwYXJjZWxzIOKAlCAkNC4wMCIsCiAgInBlcnNpc3RlZCI6IHsKICAgICJpZCI6ICJlYTZhZGQyMC1jNDhkLTQ0NTQtOWYyNS1kZmFlZGU0ZjI1NjgiLAogICAgIm93bmVyIjogImFsaWNlIiwKICAgICJxdWFudGl0eSI6IDEsCiAgICAidG90YWxfY2VudHMiOiA1MDAKICB9LAogICJzbmFwc2hvdCI6ICItIG1haW46XG4gIC0gaGVhZGluZyBcIlBhcmNlbCBvcmRlcnNcIiBbbGV2ZWw9MV1cbiAgLSB0ZXh0OiBRdWFudGl0eVxuICAtIHNwaW5idXR0b24gXCJRdWFudGl0eVwiOiBcIjFcIlxuICAtIGJ1dHRvbiBcIlBsYWNlIG9yZGVyXCJcbiAgLSBzdGF0dXM6IFJlYWR5IiwKICAiYmFzZWxpbmVSZXN0b3JlZCI6IHRydWUKfQ=="
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel/firefox/parcel-minimum-quantity-renders-the-correct-receipt-firefox/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/qadrillion-execution-evals/web/artifacts/parcel/firefox/parcel-minimum-quantity-renders-the-correct-receipt-firefox/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/qadrillion-execution-evals/web/tests/parcel.spec.js",
+                    "column": 30,
+                    "line": 74
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a8dd9317bb91fb3a7e63-323d8d95ea335c9ebbf1",
+          "file": "parcel.spec.js",
+          "line": 119,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-24T08:58:11.449Z",
+    "duration": 20513.791999999998,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}
