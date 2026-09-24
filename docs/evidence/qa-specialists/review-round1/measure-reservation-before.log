@@ -1,0 +1,109 @@
+test_cli_reserves_output_before_any_target_http_requests (tools.tests.test_specialists.MeasureTests.test_cli_reserves_output_before_any_target_http_requests) ... 
+  test_cli_reserves_output_before_any_target_http_requests (tools.tests.test_specialists.MeasureTests.test_cli_reserves_output_before_any_target_http_requests) (output=PosixPath('/var/folders/kj/bdngkj9j3v97r843hhrkh8bw0000gn/T/tmp5ezjv6ji/existing.json')) ... FAIL
+  test_cli_reserves_output_before_any_target_http_requests (tools.tests.test_specialists.MeasureTests.test_cli_reserves_output_before_any_target_http_requests) (output=PosixPath('/var/folders/kj/bdngkj9j3v97r843hhrkh8bw0000gn/T/tmp5ezjv6ji/missing/result.json')) ... FAIL
+  test_cli_reserves_output_before_any_target_http_requests (tools.tests.test_specialists.MeasureTests.test_cli_reserves_output_before_any_target_http_requests) (output=PosixPath('/var/folders/kj/bdngkj9j3v97r843hhrkh8bw0000gn/T/tmp5ezjv6ji/existing.json/result.json')) ... FAIL
+test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) ... 
+  test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) (name='invalid-json') ... FAIL
+  test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) (name='identity-mismatch') ... ERROR
+
+======================================================================
+ERROR: test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) (name='identity-mismatch')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/qadrillion-measure-reservation/tools/tests/test_specialists.py", line 356, in test_cli_retains_setup_failure_in_reserved_output
+    result = json.loads(output.read_text())
+                        ~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 787, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/kj/bdngkj9j3v97r843hhrkh8bw0000gn/T/tmp40eynoa_/identity-mismatch.json'
+
+======================================================================
+FAIL: test_cli_reserves_output_before_any_target_http_requests (tools.tests.test_specialists.MeasureTests.test_cli_reserves_output_before_any_target_http_requests) (output=PosixPath('/var/folders/kj/bdngkj9j3v97r843hhrkh8bw0000gn/T/tmp5ezjv6ji/existing.json'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/qadrillion-measure-reservation/tools/tests/test_specialists.py", line 331, in test_cli_reserves_output_before_any_target_http_requests
+    self.assertEqual(received, [], "output reservation failure must not contact the target")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [('GET', '/__identity'), ('GET', '/work')] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+('GET', '/__identity')
+
+- [('GET', '/__identity'), ('GET', '/work')]
++ [] : output reservation failure must not contact the target
+
+======================================================================
+FAIL: test_cli_reserves_output_before_any_target_http_requests (tools.tests.test_specialists.MeasureTests.test_cli_reserves_output_before_any_target_http_requests) (output=PosixPath('/var/folders/kj/bdngkj9j3v97r843hhrkh8bw0000gn/T/tmp5ezjv6ji/missing/result.json'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/qadrillion-measure-reservation/tools/tests/test_specialists.py", line 331, in test_cli_reserves_output_before_any_target_http_requests
+    self.assertEqual(received, [], "output reservation failure must not contact the target")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [('GET', '/__identity'), ('GET', '/work'),[37 chars]rk')] != []
+
+First list contains 4 additional elements.
+First extra element 0:
+('GET', '/__identity')
+
++ []
+- [('GET', '/__identity'),
+-  ('GET', '/work'),
+-  ('GET', '/__identity'),
+-  ('GET', '/work')] : output reservation failure must not contact the target
+
+======================================================================
+FAIL: test_cli_reserves_output_before_any_target_http_requests (tools.tests.test_specialists.MeasureTests.test_cli_reserves_output_before_any_target_http_requests) (output=PosixPath('/var/folders/kj/bdngkj9j3v97r843hhrkh8bw0000gn/T/tmp5ezjv6ji/existing.json/result.json'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/qadrillion-measure-reservation/tools/tests/test_specialists.py", line 331, in test_cli_reserves_output_before_any_target_http_requests
+    self.assertEqual(received, [], "output reservation failure must not contact the target")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [('GET', '/__identity'), ('GET', '/work'),[79 chars]rk')] != []
+
+First list contains 6 additional elements.
+First extra element 0:
+('GET', '/__identity')
+
++ []
+- [('GET', '/__identity'),
+-  ('GET', '/work'),
+-  ('GET', '/__identity'),
+-  ('GET', '/work'),
+-  ('GET', '/__identity'),
+-  ('GET', '/work')] : output reservation failure must not contact the target
+
+======================================================================
+FAIL: test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) (name='invalid-json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/qadrillion-measure-reservation/tools/tests/test_specialists.py", line 353, in test_cli_retains_setup_failure_in_reserved_output
+    self.assertEqual(run.returncode, 2, run.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 2 : Traceback (most recent call last):
+  File "/private/tmp/qadrillion-measure-reservation/tools/specialists/measure.py", line 148, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/private/tmp/qadrillion-measure-reservation/tools/specialists/measure.py", line 136, in main
+    options["identity"] = json.loads(args.identity.read_text())
+                          ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.351s
+
+FAILED (failures=4, errors=1)

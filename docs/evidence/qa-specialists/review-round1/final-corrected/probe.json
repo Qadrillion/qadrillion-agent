@@ -1,0 +1,26 @@
+{
+  "kind": "real Chromium fault injection into disposable test copy; only added page.close after existing assertions",
+  "command": [
+    "node",
+    "/tmp/qadrillion-specialist-final-clone/tools/specialists/reference/web/node_modules/@playwright/test/cli.js",
+    "test",
+    "-c",
+    "tests",
+    "--browser=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep=minimum quantity",
+    "--reporter=list,json",
+    "--output=/tmp/qadrillion-web-cleanup-final/browser-output"
+  ],
+  "exit": 1,
+  "orders_after": {
+    "alice": [],
+    "bob": []
+  },
+  "assertions": {
+    "teardown_failure_retained": true,
+    "page_closed_diagnostic_retained": true,
+    "owned_orders_removed": true
+  }
+}

@@ -1,8 +1,8 @@
 {
   "README.md": {
     "source_sha256": "75c57b936802d8fb933ae57247556d2aa47ea5537286cc04ed481113a11d81e2",
-    "shared_sha256": "d1f70dcb6637a28254e25bf06373877b52e4c11e0f603110fba376ba35bcb3d0",
-    "shared_bytes": 6822
+    "shared_sha256": "b669efb48d4f666445b66650062ae37401df5d4d854d3661b481910d7911ac08",
+    "shared_bytes": 7485
   },
   "REPORT.md": {
     "source_sha256": "06a89d762ae714b1af2d2a1989b3da019ad0f516484317c2027f0d0c834ac17a",
@@ -1461,8 +1461,8 @@
     "shared_bytes": 10495
   },
   "verification/verification.json": {
-    "shared_sha256": "f4c758ab26ab3ce0445954c5a72649537faffa47f29ba49f744d634cb53c6381",
-    "shared_bytes": 764
+    "shared_sha256": "1035a4c288f388e88d57e42b6f8812e11ff32e4dc84831943d09e9cc9d8a09d9",
+    "shared_bytes": 1021
   },
   "review-round1/cleanup-probe.py": {
     "shared_sha256": "ed80e49527d63dc662177b24139e7dabe6c147cbb1a400a13f9367d438ff6e35",
@@ -1507,5 +1507,37 @@
   "review-round1/corrected/probe.json": {
     "shared_sha256": "6b9469d50e673c17fc4a4fcf24cea532daa12bf55ec35a5b8fa4bbb7af88fbfe",
     "shared_bytes": 702
+  },
+  "verification/final-clean-clone-verify.log": {
+    "shared_sha256": "c48c74de0cae1cf546a1b29fdc1a5ceb4fea7e376016f114d607c78e9904b402",
+    "shared_bytes": 29564
+  },
+  "verification/final-clean-clone-replay.json": {
+    "shared_sha256": "74724e8f390b2ab1ae038e1f9ac38ce9007eb1435c70d80896001e33081f06fc",
+    "shared_bytes": 10492
+  },
+  "verification/final-clean-clone-replay.log": {
+    "shared_sha256": "10578651da7147f0cc5ba26dce01794a82a20814eeb403105a662752560c3742",
+    "shared_bytes": 368
+  },
+  "review-round1/measure-reservation-after.log": {
+    "shared_sha256": "758c0629f33a846934890dc7e32faa0a25a5ca5d07b15e66bab77884744f4680",
+    "shared_bytes": 2045
+  },
+  "review-round1/measure-reservation-before.log": {
+    "shared_sha256": "6d2cf6a103bd193cdff5d6bac4b323579048db87314e369ba3376291c769f4ea",
+    "shared_bytes": 8172
+  },
+  "review-round1/final-corrected/result.json": {
+    "shared_sha256": "388308e1f28af88744723d831b58afd6b8689744f4c44989ee7df6fe884c3bb5",
+    "shared_bytes": 10922
+  },
+  "review-round1/final-corrected/console.log": {
+    "shared_sha256": "90334519e9c2255ddbccc38df1488fcb168c8ac41a4f761f0167801c9a080698",
+    "shared_bytes": 3257
+  },
+  "review-round1/final-corrected/probe.json": {
+    "shared_sha256": "5fd975051ff79da814f4be29901db9d7d7ef2c7969d774a4b653642fd5782f4b",
+    "shared_bytes": 698
   }
 }

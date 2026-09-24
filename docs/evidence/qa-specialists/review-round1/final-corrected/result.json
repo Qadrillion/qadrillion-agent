@@ -1,0 +1,173 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/24.4.1/bin/node",
+      "/tmp/qadrillion-specialist-final-clone/tools/specialists/reference/web/node_modules/@playwright/test/cli.js",
+      "test",
+      "-c",
+      "tests",
+      "--browser=chromium",
+      "--workers=1",
+      "--retries=0",
+      "--grep=minimum quantity",
+      "--reporter=list,json",
+      "--output=/tmp/qadrillion-web-cleanup-final/browser-output"
+    ],
+    "rootDir": "/private/tmp/qadrillion-web-cleanup-final/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/qadrillion-web-cleanup-final/browser-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/qadrillion-web-cleanup-final/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "parcel.spec.js",
+      "file": "parcel.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "minimum quantity renders the correct receipt",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 213,
+                  "error": {
+                    "message": "AggregateError: Browser teardown failed; inspect diagnostics",
+                    "stack": "AggregateError: Browser teardown failed; inspect diagnostics\n    at Object.journey (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:70:40)",
+                    "location": {
+                      "file": "/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js",
+                      "column": 40,
+                      "line": 70
+                    },
+                    "snippet": "  68 |       }\n  69 |       await attempt('diagnostic attachment', () => info.attach('diagnostics', { body: JSON.stringify(diagnostics, null, 2), contentType: 'application/json' }));\n> 70 |       if (teardownErrors.length) throw new AggregateError(teardownErrors, 'Browser teardown failed; inspect diagnostics');\n     |                                        ^\n  71 |     }\n  72 |   }\n  73 | });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js",
+                        "column": 40,
+                        "line": 70
+                      },
+                      "message": "AggregateError: Browser teardown failed; inspect diagnostics\n\n  68 |       }\n  69 |       await attempt('diagnostic attachment', () => info.attach('diagnostics', { body: JSON.stringify(diagnostics, null, 2), contentType: 'application/json' }));\n> 70 |       if (teardownErrors.length) throw new AggregateError(teardownErrors, 'Browser teardown failed; inspect diagnostics');\n     |                                        ^\n  71 |     }\n  72 |   }\n  73 | });\n    at Object.journey (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:70:40)"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js",
+                        "column": 97,
+                        "line": 47
+                      },
+                      "message": "Error: locator.ariaSnapshot: Target page, context or browser has been closed\n\n  45 |         if (result.status === 'rejected') recordError('order observation', result.reason);\n  46 |       }\n> 47 |       await attempt('snapshot', async () => { diagnostics.snapshot = await page.locator('body').ariaSnapshot(); });\n     |                                                                                                 ^\n  48 |       await attempt('screenshot', () => page.screenshot({ path: info.outputPath('final.png'), fullPage: true }));\n  49 |       // Diagnostic failures must not strand owned data; failed identity still forbids mutations.\n  50 |       if (await attempt('cleanup identity', () => verify(request))) {\n    at action (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:47:97)\n    at attempt (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:41:21)\n    at Object.journey (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:47:13)"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js",
+                        "column": 46,
+                        "line": 48
+                      },
+                      "message": "Error: page.screenshot: Target page, context or browser has been closed\n\n  46 |       }\n  47 |       await attempt('snapshot', async () => { diagnostics.snapshot = await page.locator('body').ariaSnapshot(); });\n> 48 |       await attempt('screenshot', () => page.screenshot({ path: info.outputPath('final.png'), fullPage: true }));\n     |                                              ^\n  49 |       // Diagnostic failures must not strand owned data; failed identity still forbids mutations.\n  50 |       if (await attempt('cleanup identity', () => verify(request))) {\n  51 |         for (const order of owned) {\n    at action (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:48:46)\n    at attempt (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:41:21)\n    at Object.journey (/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js:48:13)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T09:35:10.488Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "diagnostics",
+                      "contentType": "application/json",
+                      "body": "ewogICJpZGVudGl0eSI6IHsKICAgICJmaXh0dXJlIjogInFhZHJpbGxpb24tc3BlY2lhbGlzdC1sYWIiLAogICAgInJvbGUiOiAidGVzdCIsCiAgICAicnVuX2lkIjogIjZmNjhmZmU1LTIzNGQtNDc5ZC1hYjFjLTliODNhYTc4YjgyMiIsCiAgICAiYnVpbGQiOiAiY2E1NGJiYmJhOTIxMDNhNTc1YzgwMTU0MzcyNjEzNGY4MDgwYjFlMTgwZGZjNzBkNDEwYThhMGM0YjVjNjMwYyIsCiAgICAibW9kZSI6ICJnb29kIiwKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo1ODM2MCIKICB9LAogICJicm93c2VyIjogIjE1My4wLjgwMTAuMTIiLAogICJ2aWV3cG9ydCI6IHsKICAgICJ3aWR0aCI6IDEyODAsCiAgICAiaGVpZ2h0IjogNzIwCiAgfSwKICAibG9jYWxlIjogImVuLVVTIiwKICAidGltZXpvbmUiOiAiVVRDIiwKICAiY29uc29sZSI6IFtdLAogICJlcnJvcnMiOiBbXSwKICAibmV0d29yayI6IFsKICAgIHsKICAgICAgIm1ldGhvZCI6ICJHRVQiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NTgzNjAvIiwKICAgICAgInN0YXR1cyI6IDIwMAogICAgfSwKICAgIHsKICAgICAgIm1ldGhvZCI6ICJQT1NUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjU4MzYwL29yZGVycyIsCiAgICAgICJzdGF0dXMiOiAyMDEKICAgIH0sCiAgICB7CiAgICAgICJtZXRob2QiOiAiR0VUIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjU4MzYwLyIsCiAgICAgICJzdGF0dXMiOiAyMDAKICAgIH0KICBdLAogICJjbGVhbnVwIjogWwogICAgewogICAgICAiaWQiOiAiM2E5ZWViOWUtNzBmYS00YWI2LTlhMDYtNDY3ZWUwMDM3ZmFjIiwKICAgICAgImFjdG9yIjogImFsaWNlIiwKICAgICAgInN0YXR1cyI6IDIwMAogICAgfQogIF0sCiAgInJlY2VpcHQiOiAiUmVjZWlwdFxuXG4xIHBhcmNlbHMg4oCUICQ1LjAwIiwKICAicGVyc2lzdGVkIjogewogICAgImlkIjogIjNhOWVlYjllLTcwZmEtNGFiNi05YTA2LTQ2N2VlMDAzN2ZhYyIsCiAgICAib3duZXIiOiAiYWxpY2UiLAogICAgInF1YW50aXR5IjogMSwKICAgICJ0b3RhbF9jZW50cyI6IDUwMAogIH0sCiAgInRlYXJkb3duRXJyb3JzIjogWwogICAgewogICAgICAicGhhc2UiOiAic25hcHNob3QiLAogICAgICAiZXJyb3IiOiAiRXJyb3I6IGxvY2F0b3IuYXJpYVNuYXBzaG90OiBUYXJnZXQgcGFnZSwgY29udGV4dCBvciBicm93c2VyIGhhcyBiZWVuIGNsb3NlZCIsCiAgICAgICJzdGFjayI6ICJsb2NhdG9yLmFyaWFTbmFwc2hvdDogVGFyZ2V0IHBhZ2UsIGNvbnRleHQgb3IgYnJvd3NlciBoYXMgYmVlbiBjbG9zZWRcbiAgICBhdCBhY3Rpb24gKC9wcml2YXRlL3RtcC9xYWRyaWxsaW9uLXdlYi1jbGVhbnVwLWZpbmFsL3Rlc3RzL3BhcmNlbC5zcGVjLmpzOjQ3Ojk3KVxuICAgIGF0IGF0dGVtcHQgKC9wcml2YXRlL3RtcC9xYWRyaWxsaW9uLXdlYi1jbGVhbnVwLWZpbmFsL3Rlc3RzL3BhcmNlbC5zcGVjLmpzOjQxOjIxKVxuICAgIGF0IE9iamVjdC5qb3VybmV5ICgvcHJpdmF0ZS90bXAvcWFkcmlsbGlvbi13ZWItY2xlYW51cC1maW5hbC90ZXN0cy9wYXJjZWwuc3BlYy5qczo0NzoxMykiCiAgICB9LAogICAgewogICAgICAicGhhc2UiOiAic2NyZWVuc2hvdCIsCiAgICAgICJlcnJvciI6ICJFcnJvcjogcGFnZS5zY3JlZW5zaG90OiBUYXJnZXQgcGFnZSwgY29udGV4dCBvciBicm93c2VyIGhhcyBiZWVuIGNsb3NlZCIsCiAgICAgICJzdGFjayI6ICJwYWdlLnNjcmVlbnNob3Q6IFRhcmdldCBwYWdlLCBjb250ZXh0IG9yIGJyb3dzZXIgaGFzIGJlZW4gY2xvc2VkXG4gICAgYXQgYWN0aW9uICgvcHJpdmF0ZS90bXAvcWFkcmlsbGlvbi13ZWItY2xlYW51cC1maW5hbC90ZXN0cy9wYXJjZWwuc3BlYy5qczo0ODo0NilcbiAgICBhdCBhdHRlbXB0ICgvcHJpdmF0ZS90bXAvcWFkcmlsbGlvbi13ZWItY2xlYW51cC1maW5hbC90ZXN0cy9wYXJjZWwuc3BlYy5qczo0MToyMSlcbiAgICBhdCBPYmplY3Quam91cm5leSAoL3ByaXZhdGUvdG1wL3FhZHJpbGxpb24td2ViLWNsZWFudXAtZmluYWwvdGVzdHMvcGFyY2VsLnNwZWMuanM6NDg6MTMpIgogICAgfQogIF0sCiAgImJhc2VsaW5lUmVzdG9yZWQiOiB0cnVlCn0="
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/qadrillion-web-cleanup-final/browser-output/parcel-minimum-quantity-renders-the-correct-receipt-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/qadrillion-web-cleanup-final/tests/parcel.spec.js",
+                    "column": 40,
+                    "line": 70
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a8dd9317bb91fb3a7e63-8324a74baa9fac3db56f",
+          "file": "parcel.spec.js",
+          "line": 137,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-24T09:35:10.218Z",
+    "duration": 606.4,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

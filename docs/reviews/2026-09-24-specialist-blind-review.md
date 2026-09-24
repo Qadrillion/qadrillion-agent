@@ -14,7 +14,7 @@ Full binary diff SHA-256: `474b19d89a80cd64d6a5a3f92ed693cf61655a31023248d939446
 | Scope | Severity | Finding | Disposition |
 |---|---|---|---|
 | IN-SCOPE | BLOCKER | Browser teardown at `tools/specialists/reference/web/tests/parcel.spec.js:36` performs diagnostics before cleanup. Closing the page leaves the owned order behind. | Fixed: independently attempt diagnostics, retain their failures, verify identity before mutations, attempt all owned deletions and baseline checks. Real Chromium closed-page injection fails on the original cleanup and passes its cleanup invariant after repair; the teardown error remains a test failure. |
-| IN-SCOPE | SHOULD | `tools/specialists/measure.py:141` detects an existing output only after traffic, discarding samples. | Fix reserves output before traffic; zero-request regression and setup-failure artifact validation required before round 2. |
+| IN-SCOPE | SHOULD | `tools/specialists/measure.py:141` detects an existing output only after traffic, discarding samples. | Fixed: reserve output before identity parsing or HTTP. Real CLI regressions verify zero requests for existing/unusable paths, preserved original bytes, exit 2 and retained structured setup failures. |
 
 The reviewer independently ran all 75 guard cases, 136 tooling tests, four mobile
 ownership tests and six HTTP reference replays. All passed. The 261 then-shared

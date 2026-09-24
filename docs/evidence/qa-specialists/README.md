@@ -46,6 +46,17 @@ coverage is claimed.
   `routing-attempt2` completed mobile, missing and mixed cases. No failure was
   erased or counted as a completed behavioral Pass.
 
+## Review hardening
+
+[Blind review](../../reviews/2026-09-24-specialist-blind-review.md) reproduced two
+additional infrastructure defects: browser diagnostic failure could skip cleanup,
+and measurement output collisions were detected after traffic. Both are repaired.
+The [real Chromium closed-page probe](review-round1/corrected/probe.json) retains
+the diagnostic failure while confirming empty owned state; its
+[original result](review-round1/original/probe.json) shows the leak. CLI regressions
+require zero HTTP requests when output cannot be reserved. These are framework
+repairs after the original authoring evaluations; business assertions were retained.
+
 ## What the runtime measurements establish
 
 Nine completed fresh Codex CLI conversations exercised API, web, security,

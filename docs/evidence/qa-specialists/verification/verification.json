@@ -25,5 +25,15 @@
     "head": "677c95e",
     "code_fingerprint": "26a55cf5373a97612f459b4e15c56671f2e4a469971daed4a813f85d26b37779",
     "full_binary_diff_sha256": "474b19d89a80cd64d6a5a3f92ed693cf61655a31023248d93944651f915c0e45"
+  },
+  "final_clean_clone": {
+    "commit": "4ef5b3e",
+    "offline_exit": 0,
+    "python_tests": 142,
+    "guard_payloads": 75,
+    "replay_exit": 0,
+    "expected_outcomes": 8,
+    "npm_ci_exit": 0,
+    "workdir": "/tmp/qadrillion-specialist-final-clone"
   }
 }
