@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import tomllib
 import unittest
 from unittest.mock import patch
 
@@ -190,6 +191,28 @@ class SyncTests(unittest.TestCase):
         self.assertIn("A canonical change.", (self.root / ".codex/agents/test-runner.toml").read_text())
         self.assertIn("Updated canonical skill.", (self.root / ".claude/skills/qa/SKILL.md").read_text())
         self.assertEqual(sync.sync(self.root, check=True), [])
+
+    def test_readonly_roles_keep_native_restrictions(self):
+        sync.sync(self.root)
+        for name in ("code-explorer", "code-reviewer"):
+            with self.subTest(name=name):
+                codex = tomllib.loads((self.root / f".codex/agents/{name}.toml").read_text())
+                self.assertEqual(codex["sandbox_mode"], "read-only")
+                claude, _ = sync.metadata(self.root / f".claude/agents/{name}.md")
+                self.assertEqual(set(claude["tools"].split(", ")), {"Read", "Grep", "Glob"})
+        for name in ("test-runner", "ticket-writer", "tracker-reporter"):
+            with self.subTest(name=name):
+                codex = tomllib.loads((self.root / f".codex/agents/{name}.toml").read_text())
+                self.assertNotIn("sandbox_mode", codex)
+                claude, _ = sync.metadata(self.root / f".claude/agents/{name}.md")
+                self.assertNotIn("tools", claude)
+
+    def test_invalid_readonly_value_cannot_drop_restrictions(self):
+        source = self.root / ".cursor/agents/code-explorer.md"
+        source.write_text(source.read_text().replace("readonly: true", "readonly: yes"))
+        with self.assertRaisesRegex(sync.SyncError, "readonly must be true or false"):
+            sync.sync(self.root)
+        self.assertFalse((self.root / ".codex/agents/code-explorer.toml").exists())
 
     def test_local_generated_modifications_rejected_before_other_writes(self):
         sync.sync(self.root)
