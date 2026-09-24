@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "files": {
+    ".agents/skills/golden-tasks/SKILL.md": "3ee511e19679b61540f07e9dc817f289103cbf6bc28ca498a9bbc4c3b6f40ab8",
+    ".agents/skills/qa-workflow/SKILL.md": "4d5995539b98787cd91d6e48337a3c748090194483e01e9fea61758bf623007d",
+    ".agents/skills/qa/SKILL.md": "c83f68c956557c2d37f00a6b75a84f0e75bb2a6c4ec04660872410d348be841d",
+    ".claude/agents/code-explorer.md": "867ed588a447324b7f7ba34f18af8e39001af23c1a16cf59631bbcc48739ecd5",
+    ".claude/agents/code-reviewer.md": "810626675fd4afc1ddcd574c6adfe64623b16bc60c4ef406b87c9724ad6ba5de",
+    ".claude/agents/test-runner.md": "e098ec2178300cabfa42f0abfcb202e322e47410d9e56067c3498e015369cdb4",
+    ".claude/agents/ticket-writer.md": "35be7fd0a16d47066246daa6d52512add39eba3e8a40a67399e9a8ba17383343",
+    ".claude/agents/tracker-reporter.md": "cf2d33debe59b76b8d28490e85c4b6b0151a0604cfd4cbfc88f9ad10c321f4ef",
+    ".claude/hooks/pretooluse.sh": "292c7870129090a5043ea00d6cf1ebbe3f7702ab725adb500c8bcd6452009d9f",
+    ".claude/skills/golden-tasks/SKILL.md": "3ee511e19679b61540f07e9dc817f289103cbf6bc28ca498a9bbc4c3b6f40ab8",
+    ".claude/skills/qa-workflow/SKILL.md": "4d5995539b98787cd91d6e48337a3c748090194483e01e9fea61758bf623007d",
+    ".claude/skills/qa/SKILL.md": "c83f68c956557c2d37f00a6b75a84f0e75bb2a6c4ec04660872410d348be841d",
+    ".codex/agents/code-explorer.toml": "da26feb5116c11cd73597f93f7432a021814ceebf10119d1175d571ec03f720b",
+    ".codex/agents/code-reviewer.toml": "0fdebb9c1d489592f5c2456ebd0ea9f69f7818a63d0e80bf02c025d9c777f43b",
+    ".codex/agents/test-runner.toml": "cab3825032c8462b5517e31fded6a506bdbd3b7d3c09f8adb7bd3c759a9747f0",
+    ".codex/agents/ticket-writer.toml": "0eb58b77e292840ea15012804560f0aaf5ad318632404e50c2e41d0256233e9c",
+    ".codex/agents/tracker-reporter.toml": "8ad27e162c091df18abad0088d7700693db6e2983d0ea7973aeb3790e2de4844",
+    ".codex/hooks/adapter.py": "045bad6c9c6b7ec91082e1d8aa15f4db7cbd230ab29427d776b3b6a029d67fe7"
+  },
+  "modes": {
+    ".agents/skills/golden-tasks/SKILL.md": 420,
+    ".agents/skills/qa-workflow/SKILL.md": 420,
+    ".agents/skills/qa/SKILL.md": 420,
+    ".claude/agents/code-explorer.md": 420,
+    ".claude/agents/code-reviewer.md": 420,
+    ".claude/agents/test-runner.md": 420,
+    ".claude/agents/ticket-writer.md": 420,
+    ".claude/agents/tracker-reporter.md": 420,
+    ".claude/hooks/pretooluse.sh": 493,
+    ".claude/skills/golden-tasks/SKILL.md": 420,
+    ".claude/skills/qa-workflow/SKILL.md": 420,
+    ".claude/skills/qa/SKILL.md": 420,
+    ".codex/agents/code-explorer.toml": 420,
+    ".codex/agents/code-reviewer.toml": 420,
+    ".codex/agents/test-runner.toml": 420,
+    ".codex/agents/ticket-writer.toml": 420,
+    ".codex/agents/tracker-reporter.toml": 420,
+    ".codex/hooks/adapter.py": 420
+  },
+  "hooks": {
+    "codex": {
+      "PreToolUse": [
+        {
+          "matcher": "^(Bash|exec_command|Read|Edit|Write|MultiEdit|NotebookEdit|apply_patch|mcp__.*)$",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/adapter.py\"",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "SessionStart": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/adapter.py\"",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/adapter.py\"",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "SessionEnd": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/adapter.py\"",
+              "timeout": 3
+            }
+          ]
+        }
+      ]
+    },
+    "claude": {
+      "PreToolUse": [
+        {
+          "matcher": "^(Bash|exec_command|Read|Edit|Write|MultiEdit|NotebookEdit|apply_patch|mcp__.*)$",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pretooluse.sh\"",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "SessionStart": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pretooluse.sh\"",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pretooluse.sh\"",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "SessionEnd": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pretooluse.sh\"",
+              "timeout": 3
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
