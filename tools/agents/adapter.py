@@ -104,7 +104,8 @@ def tool_paths(tool, value, cwd):
         raise PolicyError("too many paths to check in one hook event")
     result = []
     for path in paths:
-        result.extend((path, str((cwd / Path(path).expanduser()).resolve())))
+        absolute = cwd / Path(path).expanduser()
+        result.extend((str(absolute), str(absolute.resolve())))
     return list(dict.fromkeys(result))
 
 

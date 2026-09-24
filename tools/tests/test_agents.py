@@ -166,11 +166,12 @@ class AdapterTests(unittest.TestCase):
         patch_text = "*** Begin Patch\n*** Add File: new.txt\n+new\n*** Update File: old.txt\n*** Move to: moved.txt\n@@\n-old\n+new\n*** Delete File: delete.txt\n*** End Patch"
         self.assertEqual(self.call("apply_patch", {"command": patch_text}), {})
         paths = {json.loads(line)["file_path"] for line in capture.read_text().splitlines()}
-        self.assertTrue({"new.txt", "old.txt", "moved.txt", "delete.txt"}.issubset(paths))
+        self.assertTrue({str(self.root / name) for name in
+                         ("new.txt", "old.txt", "moved.txt", "delete.txt")}.issubset(paths))
         self.assertEqual(self.call("MultiEdit", {"edits": [{"source": "one", "destination": "two"},
                                                          {"file_path": "three"}]}), {})
         paths = {json.loads(line)["file_path"] for line in capture.read_text().splitlines()}
-        self.assertTrue({"one", "two", "three"}.issubset(paths))
+        self.assertTrue({str(self.root / name) for name in ("one", "two", "three")}.issubset(paths))
 
     def test_symlink_resolved_target_is_checked(self):
         secret = self.root / ".env"

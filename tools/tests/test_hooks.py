@@ -174,6 +174,25 @@ class HookTests(unittest.TestCase):
                 self.assertEqual(adapter.project(event, self.root, runtime), {})
         self.assertFalse((self.root / "docs/guard-examples.md").exists())
 
+    def test_native_relative_paths_use_event_cwd_without_losing_lexical_checks(self):
+        child = self.root / "child"
+        child.mkdir()
+        (self.root / ".env").write_text("fixture only", encoding="utf-8")
+        (self.root / "safe.txt").symlink_to(self.root / ".env")
+        (child / "safe.txt").write_text("ordinary fixture", encoding="utf-8")
+        (child / ".env").symlink_to(child / "safe.txt")
+        for runtime in ("claude", "codex"):
+            for tool in ("Read", "Write"):
+                event = {"hook_event_name": "PreToolUse", "tool_name": tool,
+                         "cwd": str(child), "tool_input": {"file_path": "safe.txt"}}
+                with self.subTest(runtime=runtime, tool=tool):
+                    self.assertEqual(adapter.project(event, self.root, runtime), {})
+                    event["tool_input"]["file_path"] = str(child / "safe.txt")
+                    self.assertEqual(adapter.project(event, self.root, runtime), {})
+                    event["tool_input"]["file_path"] = ".env"
+                    decision = adapter.project(event, self.root, runtime)
+                    self.assertEqual(decision["hookSpecificOutput"]["permissionDecision"], "deny")
+
     def test_native_permissions_are_preserved_and_prefix_does_not_authorize(self):
         for runtime in ("claude", "codex"):
             event = {"hook_event_name": "PreToolUse", "tool_name": "mcp__fixture__update_page",
