@@ -1,5 +1,9 @@
 # State — <workspace name>
 
+Setup handover (2026-09-16): `fix/codex-cursor-parity` adds shared Codex
+adapters; existing product work below remains the baseline. Review the setup
+PR before integration; new hooks still require native trust and reload.
+
 Updated: YYYY-MM-DD
 Overwrite this file every session. Never append. Handover note, not a diary.
 Full chronology lives in `docs/sessions/` and is never read at startup.
