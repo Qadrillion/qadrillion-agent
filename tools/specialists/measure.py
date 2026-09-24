@@ -21,8 +21,12 @@ class NoRedirect(HTTPRedirectHandler):
 
 def get(url, timeout):
     opener = build_opener(ProxyHandler({}), NoRedirect())
-    with opener.open(Request(url), timeout=timeout) as response:
-        return response.status, json.loads(response.read(4097))
+    try:
+        with opener.open(Request(url), timeout=timeout) as response:
+            return response.status, json.loads(response.read(4097))
+    except HTTPError as error:
+        error.close()
+        raise
 
 
 def percentile(values, percent):
@@ -36,6 +40,8 @@ def measure(identity, *, requests=50, concurrency=1, timeout=1.0, duration=10.0,
     if (parsed.scheme != "http" or parsed.hostname != "127.0.0.1" or not parsed.port
             or parsed.username or parsed.password or parsed.path or parsed.query or parsed.fragment):
         raise ValueError("only a literal loopback lab origin is supported")
+    if any(type(v) is not int for v in (requests, concurrency, max_errors, warmup)):
+        raise ValueError("request, concurrency, error and warmup counts must be integers")
     limits = ((requests, 1, 1000), (concurrency, 1, 16), (timeout, 0.01, 5),
               (duration, 0.05, 30), (max_errors, 1, 100), (warmup, 0, 20))
     if any(not math.isfinite(v) or not low <= v <= high for v, low, high in limits):

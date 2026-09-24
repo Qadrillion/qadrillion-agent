@@ -9,6 +9,14 @@ disable-model-invocation: true
 Run `python3 tools/verify.py` first. A failing deterministic check is a finding;
 resolve it before claiming a framework pass. Then evaluate behavioral scenarios.
 
+For specialist routing and real authoring exercises, use
+`tools/specialists/EVALUATING.md`: materialize task-only workspaces with
+`tools/specialists/evaluate.py`, retain runtime action traces and independently
+review the artifacts. Its record command preserves judgments; it does not grade
+behavior. Keep fixtures/answer keys outside worker source access. Capture test
+hashes before checking a corrected target with the same assertions. The local
+HTTP and Android fixtures are optional reference stacks, not universal runners.
+
 For each `docs/golden-tasks/*.md`, give a fresh isolated agent only the Task and
 permitted fixture/context paths, plus the skill entry point. Do not provide Expect,
 the intended answer, prior failures or implementer reasoning. Use disposable

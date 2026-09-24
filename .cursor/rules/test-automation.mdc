@@ -44,3 +44,6 @@ alwaysApply: false
 10. **Keep evidence safe and useful.** Do not hide failed checks, weaken assertions,
     copy credentials/customer data into logs, or upload artifacts outside approved
     storage. Retain full redacted output outside the prompt; quote decisive lines.
+    Artifact creation or extraction is not inspection. Name which contents were
+    actually reviewed and the resulting observation; do not invent visual review
+    or reorder the action history in a report.

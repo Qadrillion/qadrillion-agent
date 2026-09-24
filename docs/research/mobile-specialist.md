@@ -23,8 +23,11 @@ machine capability does not change that inventory into a portable prerequisite.
 
 ## Choices and source mapping
 
-The reference selects a fresh task-owned AVD plus a native Java Activity and the
-installed local Maestro CLI. Appium provides richer WebView/context control but
+The reference uses a fresh task-owned AVD plus a native Java Activity. The
+capability probe proposed Maestro; the independent author selected stdlib tests
+driving serial-pinned ADB and observed UIAutomator XML, including actual process
+and activity lifecycle evidence. Maestro remained a CLI capability probe.
+Appium provides richer WebView/context control but
 adds a driver/client/server stack unnecessary for this native slice. Native
 Espresso/XCUITest remains preferable when a product already has those harnesses.
 None of these choices makes a runner mandatory for adopters.

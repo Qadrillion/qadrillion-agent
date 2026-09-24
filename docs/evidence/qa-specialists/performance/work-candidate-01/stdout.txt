@@ -1,0 +1,1 @@
+{"count": 50, "errors": 0, "error_rate": 0.0, "elapsed_s": 1.2923498339951038, "throughput_per_s": 38.6892145491539, "p50_ms": 9.277666016714647, "p95_ms": 94.99833299196325, "p99_ms": 98.38620899245143, "success_p95_ms": 94.99833299196325, "stop_reason": null, "verdict": "fail"}

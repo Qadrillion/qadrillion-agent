@@ -1,0 +1,45 @@
+{
+  "verdict": "Fail",
+  "tested_apk_sha256": "1261bed953d12ad7db8cd5ae2c183d26af142dd43a60e5b9d24bc16a9bdf834a",
+  "package": "com.qadrillion.parcel",
+  "serial": "emulator-5560",
+  "api": 34,
+  "test_path": "/private/tmp/qadrillion-mobile-author/automation/mobile/test_parcel.py",
+  "test_sha256": "1ea46a40a711178f331c65bf5eb509f75949ee2142b4afbddc587183fb6f114c",
+  "cwd": "/private/tmp/qadrillion-mobile-author",
+  "comparison_argv": [
+    "python3",
+    "automation/mobile/test_parcel.py",
+    "--serial",
+    "emulator-5560",
+    "--expected-apk-sha256",
+    "NEW_APK_SHA256",
+    "--evidence",
+    "artifacts/LOCAL-1/comparison-run"
+  ],
+  "first_run": {
+    "run": 12,
+    "passed": 8,
+    "failed": 2,
+    "errored": 0,
+    "skipped": 2,
+    "exit_code": 1
+  },
+  "diagnostic_run": {
+    "run": 1,
+    "passed": 0,
+    "failed": 1,
+    "errored": 0,
+    "skipped": 0,
+    "exit_code": 1
+  },
+  "confirmed_defect": "Unit total resets from5 to0 after both process relaunch and in-process activity recreation; parcel count2 survives.",
+  "source_review": "not performed; product source excluded by authorization",
+  "coverage_gaps": [
+    "literal decimal2.5 filtered to25",
+    "literal abc filtered to empty",
+    "no iOS, physical device, radio, upgrade, network, permission or performance coverage"
+  ],
+  "tracker": "local draft only; none posted",
+  "cleanup": "All13 app-only cleanups verified zero counters and force-stop; emulator left running."
+}

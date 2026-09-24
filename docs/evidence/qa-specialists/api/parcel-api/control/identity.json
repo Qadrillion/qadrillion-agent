@@ -1,0 +1,8 @@
+{
+  "fixture": "qadrillion-specialist-lab",
+  "role": "test",
+  "run_id": "a5483eb7-8dec-4240-a4cf-aad0e86fe13e",
+  "build": "a036766d21e2e67fec0b69432b01472b177cdc3b8131cc30e155a34c7f07f28a",
+  "mode": "api-defect",
+  "url": "http://127.0.0.1:60868"
+}

@@ -38,6 +38,8 @@ A useful handoff records:
 - Branch, commit and dirty files, including uncommitted work that must travel.
 - Source/deployed build, target identity and relevant configuration version.
 - Commands/checks performed, actual outcomes and artifact locations.
+- Selected surface skills and risk overlays, runner/device/browser versions,
+  fixture ownership and cleanup result; detecting test hashes across corrections.
 - Known defects, failed attempts, untested scope, blockers and exact next action.
 - Tracker draft/posted state and returned identifiers for completed writes.
 

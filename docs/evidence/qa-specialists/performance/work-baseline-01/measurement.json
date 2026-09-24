@@ -1,0 +1,402 @@
+{
+  "identity": {
+    "fixture": "qadrillion-specialist-lab",
+    "role": "test",
+    "run_id": "3d467123-9f7a-42d8-875b-f7c5c5f1824a",
+    "build": "ca54bbbba92103a575c801543726134f8080b1e180dfc70d410a8a0c4b5c630c",
+    "mode": "good",
+    "url": "http://127.0.0.1:49818"
+  },
+  "model": "closed: next request after previous completes; no think time",
+  "limits": {
+    "requests": 50,
+    "concurrency": 1,
+    "timeout_s": 1.0,
+    "duration_s": 10.0,
+    "max_errors": 3
+  },
+  "thresholds": {
+    "p95_ms": 40.0,
+    "error_rate": 0.0
+  },
+  "warmup": [
+    {
+      "ms": 7.545415981439874,
+      "status": 200
+    },
+    {
+      "ms": 7.723124988842756,
+      "status": 200
+    },
+    {
+      "ms": 7.1982910158112645,
+      "status": 200
+    }
+  ],
+  "samples": [
+    {
+      "sequence": 0,
+      "ms": 7.460334018105641,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 1,
+      "ms": 7.4653750052675605,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 2,
+      "ms": 7.663458003662527,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 3,
+      "ms": 7.4932499846909195,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 4,
+      "ms": 7.863334001740441,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 5,
+      "ms": 7.601874996908009,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 6,
+      "ms": 11.611708992859349,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 7,
+      "ms": 7.603042002301663,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 8,
+      "ms": 7.596957992063835,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 9,
+      "ms": 7.523166015744209,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 10,
+      "ms": 7.678084017243236,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 11,
+      "ms": 7.346375001361594,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 12,
+      "ms": 7.640499999979511,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 13,
+      "ms": 7.45250002364628,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 14,
+      "ms": 7.422583003062755,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 15,
+      "ms": 7.478249986888841,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 16,
+      "ms": 7.330791995627806,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 17,
+      "ms": 7.62541699805297,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 18,
+      "ms": 7.2464169934391975,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 19,
+      "ms": 8.63512500654906,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 20,
+      "ms": 7.337832998018712,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 21,
+      "ms": 7.838499994250014,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 22,
+      "ms": 7.465624978067353,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 23,
+      "ms": 7.365958008449525,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 24,
+      "ms": 7.450707984389737,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 25,
+      "ms": 7.391416991595179,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 26,
+      "ms": 7.611124980030581,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 27,
+      "ms": 7.96408299356699,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 28,
+      "ms": 7.84429200575687,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 29,
+      "ms": 7.452582998666912,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 30,
+      "ms": 7.584292005049065,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 31,
+      "ms": 7.94091701391153,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 32,
+      "ms": 8.414333016844466,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 33,
+      "ms": 8.751916990149766,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 34,
+      "ms": 8.426584012340754,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 35,
+      "ms": 7.9924169986043125,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 36,
+      "ms": 8.513540989952162,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 37,
+      "ms": 7.375790999503806,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 38,
+      "ms": 8.293666993267834,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 39,
+      "ms": 7.867542008170858,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 40,
+      "ms": 7.854583003791049,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 41,
+      "ms": 7.714167004451156,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 42,
+      "ms": 7.82745800097473,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 43,
+      "ms": 7.7509169932454824,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 44,
+      "ms": 7.730832992820069,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 45,
+      "ms": 7.8798340109642595,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 46,
+      "ms": 7.343416975345463,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 47,
+      "ms": 7.338208000874147,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 48,
+      "ms": 7.400166010484099,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    },
+    {
+      "sequence": 49,
+      "ms": 7.683500007260591,
+      "status": 200,
+      "ok": true,
+      "diagnostic": null
+    }
+  ],
+  "summary": {
+    "count": 50,
+    "errors": 0,
+    "error_rate": 0.0,
+    "elapsed_s": 0.38945979200070724,
+    "throughput_per_s": 128.3829576941519,
+    "p50_ms": 7.611124980030581,
+    "p95_ms": 8.63512500654906,
+    "p99_ms": 11.611708992859349,
+    "success_p95_ms": 8.63512500654906,
+    "stop_reason": null,
+    "verdict": "pass"
+  },
+  "limits_of_claim": "local closed-workload sample, no production capacity claim; resource telemetry not collected"
+}

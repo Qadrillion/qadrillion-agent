@@ -48,6 +48,7 @@ class Lab(ThreadingHTTPServer):
         super().__init__(("127.0.0.1", 0), Handler)
         self.mode = mode
         self.run_id = run_id or str(uuid.uuid4())
+        self.build = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
         self.orders = {}
         self.keys = {}
         self.jobs = {}
@@ -56,7 +57,7 @@ class Lab(ThreadingHTTPServer):
 
     def identity(self):
         return {"fixture": "qadrillion-specialist-lab", "role": "test", "run_id": self.run_id,
-                "build": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                "build": self.build,
                 "mode": self.mode, "url": f"http://127.0.0.1:{self.server_port}"}
 
 
@@ -105,15 +106,16 @@ class Handler(BaseHTTPRequestHandler):
             return self.reply(401, {"error": "actor required"})
         data = None
         if method == "POST":
+            invalid_status = 422 if path == "/orders" else 400
             try:
                 length = int(self.headers.get("Content-Length", "0"))
                 if not 0 < length <= 4096:
-                    return self.reply(400, {"error": "invalid body length"})
+                    return self.reply(invalid_status, {"error": "invalid body length"})
                 data = json.loads(self.rfile.read(length))
                 if not isinstance(data, dict):
                     raise ValueError("object required")
             except (ValueError, UnicodeError):
-                return self.reply(400, {"error": "JSON object required"})
+                return self.reply(invalid_status, {"error": "JSON object required"})
         with self.server.lock:
             if path == "/orders" and method == "GET":
                 return self.reply(200, [o for o in self.server.orders.values() if o["owner"] == actor])

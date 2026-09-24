@@ -1,0 +1,49 @@
+test_activity_recreation (__main__.ParcelContract.test_activity_recreation)
+C5: clear-top recreates this standard-launch root activity in-process. ... ok
+test_background_foreground (__main__.ParcelContract.test_background_foreground)
+C5: Home/resume preserves totals in the same activity and process. ... ok
+test_explicit_data_reset (__main__.ParcelContract.test_explicit_data_reset)
+C1,C6: reset after nonzero data must zero both counters. ... ok
+test_process_termination_relaunch (__main__.ParcelContract.test_process_termination_relaunch)
+C5: verify real PID death, then launch without clearing data. ... ok
+test_reject_above_max (__main__.ParcelContract.test_reject_above_max)
+C3: reject literal '6' and preserve nonzero totals. ... ok
+test_reject_decimal (__main__.ParcelContract.test_reject_decimal)
+C3: reject literal '2.5' and preserve nonzero totals. ... skipped "Native field/ADB input could not enter literal '2.5'; observed '25'"
+test_reject_empty (__main__.ParcelContract.test_reject_empty)
+C3: reject literal '' and preserve nonzero totals. ... ok
+test_reject_negative (__main__.ParcelContract.test_reject_negative)
+C3: reject literal '-1' and preserve nonzero totals. ... ok
+test_reject_overflow (__main__.ParcelContract.test_reject_overflow)
+C3: reject literal '2147483648' and preserve nonzero totals. ... ok
+test_reject_text (__main__.ParcelContract.test_reject_text)
+C3: reject literal 'abc' and preserve nonzero totals. ... skipped "Native field/ADB input could not enter literal 'abc'; observed ''"
+test_reject_zero (__main__.ParcelContract.test_reject_zero)
+C3: reject literal '0' and preserve nonzero totals. ... ok
+test_valid_range_and_accumulation (__main__.ParcelContract.test_valid_range_and_accumulation)
+C2,C4: every valid integer; cumulative nontrivial independent totals. ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 298.037s
+
+OK (skipped=2)
+
+{
+  "run": 12,
+  "passed": 10,
+  "failed": 0,
+  "errored": 0,
+  "skipped": 2,
+  "failures": [],
+  "errors": [],
+  "skips": [
+    [
+      "test_reject_decimal (__main__.ParcelContract.test_reject_decimal)",
+      "Native field/ADB input could not enter literal '2.5'; observed '25'"
+    ],
+    [
+      "test_reject_text (__main__.ParcelContract.test_reject_text)",
+      "Native field/ADB input could not enter literal 'abc'; observed ''"
+    ]
+  ]
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "test": "nontrivial order receipt agrees with the 500-cent contract and persisted state",
+    "status": "failed",
+    "diagnostics": {
+      "identity": {
+        "fixture": "qadrillion-specialist-lab",
+        "role": "test",
+        "run_id": "4ecbc3c1-9475-4f18-810e-5f43cd23624d",
+        "build": "a036766d21e2e67fec0b69432b01472b177cdc3b8131cc30e155a34c7f07f28a",
+        "mode": "web-defect",
+        "url": "http://127.0.0.1:60882"
+      },
+      "browser": "153.0.8010.12",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "locale": "en-US",
+      "timezone": "UTC",
+      "console": [],
+      "errors": [],
+      "network": [
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:60882/",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:60882/orders",
+          "status": 201
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:60882/",
+          "status": 200
+        }
+      ],
+      "cleanup": [
+        {
+          "id": "ca00e502-995b-4688-a59e-79d6caef16e0",
+          "actor": "alice",
+          "status": 200
+        }
+      ],
+      "receipt": "Receipt\n\n3 parcels \u2014 $12.00",
+      "persisted": {
+        "id": "ca00e502-995b-4688-a59e-79d6caef16e0",
+        "owner": "alice",
+        "quantity": 3,
+        "total_cents": 1500
+      },
+      "snapshot": "- main:\n  - heading \"Parcel orders\" [level=1]\n  - text: Quantity\n  - spinbutton \"Quantity\": \"1\"\n  - button \"Place order\"\n  - status: Ready",
+      "baselineRestored": true
+    }
+  }
+]

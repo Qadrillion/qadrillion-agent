@@ -1,0 +1,33 @@
+{
+  "scenario": "performance",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "tests/check_work.py",
+    "--identity",
+    "/tmp/qadrillion-execution-evals/performance/corrected-target.json",
+    "--out-dir",
+    "artifacts/work-baseline-01"
+  ],
+  "cwd": "/tmp/qadrillion-execution-evals/performance",
+  "exit": 0,
+  "seconds": 1.0668962001800537,
+  "identity": {
+    "fixture": "qadrillion-specialist-lab",
+    "role": "test",
+    "run_id": "3d467123-9f7a-42d8-875b-f7c5c5f1824a",
+    "build": "ca54bbbba92103a575c801543726134f8080b1e180dfc70d410a8a0c4b5c630c",
+    "mode": "good",
+    "url": "http://127.0.0.1:49818"
+  },
+  "tests_before": {
+    "tests/check_work.py": "4f155fed51c333291cbadd1a8acde279dc7206498e21adb1ccf4c10bd046f9e9"
+  },
+  "tests_after": {
+    "tests/check_work.py": "4f155fed51c333291cbadd1a8acde279dc7206498e21adb1ccf4c10bd046f9e9"
+  },
+  "unchanged": true,
+  "cleanup": {
+    "server_thread_stopped": true,
+    "port_closed": true
+  }
+}

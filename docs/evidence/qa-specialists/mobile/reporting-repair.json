@@ -1,0 +1,11 @@
+{
+  "diagnostic_test_sha256": "fb334cf835aea9d4d34eb57d1aef14623d68a7d400b72898eaaef92402322bc6",
+  "final_test_sha256": "1ea46a40a711178f331c65bf5eb509f75949ee2142b4afbddc587183fb6f114c",
+  "change": "Group unsuccessful outcomes by execution object identity; count assertion+cleanup once, duplicate named executions separately.",
+  "local_checks": [
+    "one failed execution plus cleanup error -> passed0",
+    "two distinct failed executions with same unittest name -> passed0"
+  ],
+  "business_assertions_changed": false,
+  "device_rerun": false
+}

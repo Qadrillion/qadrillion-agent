@@ -1,0 +1,49 @@
+{
+  "cwd": "/private/tmp/qadrillion-execution-evals/web",
+  "environment": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "test_sha256": "1bdecf4ca7373b2042c1f4c2f0c777d1903ef54e617b222b74afa4dc97c165d9",
+  "runs": [
+    {
+      "name": "first",
+      "exit": 1,
+      "stats": {
+        "startTime": "2026-09-24T08:57:14.519Z",
+        "duration": 6108.513,
+        "expected": 0,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "cleanupRestored": true,
+      "ordersDeleted": 1
+    },
+    {
+      "name": "chromium-rest",
+      "exit": 1,
+      "stats": {
+        "startTime": "2026-09-24T08:57:59.250Z",
+        "duration": 11642.978,
+        "expected": 0,
+        "skipped": 0,
+        "unexpected": 2,
+        "flaky": 0
+      },
+      "cleanupRestored": true,
+      "ordersDeleted": 2
+    },
+    {
+      "name": "firefox",
+      "exit": 1,
+      "stats": {
+        "startTime": "2026-09-24T08:58:11.449Z",
+        "duration": 20513.791999999998,
+        "expected": 0,
+        "skipped": 0,
+        "unexpected": 3,
+        "flaky": 0
+      },
+      "cleanupRestored": true,
+      "ordersDeleted": 3
+    }
+  ]
+}

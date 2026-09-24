@@ -1,0 +1,33 @@
+{
+  "scenario": "security",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "tests/test_security_parcel.py",
+    "--identity",
+    "/tmp/qadrillion-execution-evals/security/corrected-target.json",
+    "--out",
+    "artifacts/parcel-authorization-corrected"
+  ],
+  "cwd": "/tmp/qadrillion-execution-evals/security",
+  "exit": 0,
+  "seconds": 1.4055490493774414,
+  "identity": {
+    "fixture": "qadrillion-specialist-lab",
+    "role": "test",
+    "run_id": "d571176f-f21d-45b9-a359-a607f9292c3f",
+    "build": "ca54bbbba92103a575c801543726134f8080b1e180dfc70d410a8a0c4b5c630c",
+    "mode": "good",
+    "url": "http://127.0.0.1:49601"
+  },
+  "tests_before": {
+    "tests/test_security_parcel.py": "311abf0c53e6e9e45b9cba8734d318ad050b73ff5a8148ad69ffbf21222dc6a6"
+  },
+  "tests_after": {
+    "tests/test_security_parcel.py": "311abf0c53e6e9e45b9cba8734d318ad050b73ff5a8148ad69ffbf21222dc6a6"
+  },
+  "unchanged": true,
+  "cleanup": {
+    "server_thread_stopped": true,
+    "port_closed": true
+  }
+}

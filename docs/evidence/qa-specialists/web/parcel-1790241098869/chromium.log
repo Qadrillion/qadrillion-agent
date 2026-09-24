@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+  ✓  1 [chromium] › tests/parcel.spec.js:83:1 › nontrivial order receipt agrees with the 500-cent contract and persisted state (436ms)
+  ✓  2 [chromium] › tests/parcel.spec.js:91:1 › keyboard reaches controls, rejects invalid quantities and recovers at upper boundary (274ms)
+  ✓  3 [chromium] › tests/parcel.spec.js:119:1 › minimum quantity renders the correct receipt (217ms)
+
+  3 passed (1.5s)
+(node:30211) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

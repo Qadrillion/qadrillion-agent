@@ -1,0 +1,1 @@
+{"count": 50, "errors": 0, "error_rate": 0.0, "elapsed_s": 0.38945979200070724, "throughput_per_s": 128.3829576941519, "p50_ms": 7.611124980030581, "p95_ms": 8.63512500654906, "p99_ms": 11.611708992859349, "success_p95_ms": 8.63512500654906, "stop_reason": null, "verdict": "pass"}

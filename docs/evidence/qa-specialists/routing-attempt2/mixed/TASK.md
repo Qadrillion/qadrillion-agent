@@ -1,0 +1,1 @@
+Test parcel checkout in the browser and independently verify the resulting persisted order through its HTTP API, using fixtures/CONTRACT.md. The receipt and saved order must agree. Use a shared disposable order identity and one evidence record. Author tests and execute whichever supplied interfaces are available.

@@ -43,6 +43,21 @@ scoped logs under `evidence/` or another explicitly supplied artifact path. Devi
 execution remains not run until a real runner executes assertions. Use the
 installed Maestro version's options; see the mobile skill's conditional recipe.
 
+The completed reference evaluation used independently authored Python tests
+driving ADB/UIAutomator observations. Replay that suite with explicit device and
+APK identity; supply the hash from this run's `run.json`:
+
+```sh
+python3 tools/specialists/reference/mobile/tests/test_parcel.py --adb /path/to/sdk/platform-tools/adb --serial emulator-SERIAL --expected-apk-sha256 APK_HASH --evidence /tmp/qa-mobile-RUN/evidence/attempt-1
+```
+
+This suite clears only the selected fixture app between independent cases. Its
+in-test persistence transitions retain data. Literal decimal/text input cases
+remain skipped if the OS input path filters those characters; skips produce a
+nonzero exit and must not be called full coverage. The shipped copy replaces
+the author's machine-specific default ADB path with `adb`; detecting assertions
+are unchanged. Android is optional and is not executed by the standard CI job.
+
 When finished:
 
 ```sh

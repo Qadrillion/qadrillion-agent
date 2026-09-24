@@ -3,7 +3,11 @@
 Portable instructions do not guarantee native discovery, subagents or hooks.
 This repository supplies content and adapters; validate them in the actual
 runtime/version used by the team. Cursor is the first planned work-laptop pilot.
-No Cursor, Claude or Codex native activation was certified by this change.
+The portability baseline did not certify native activation. The later
+[specialist evaluation](specialist-support.md) observes Codex 0.154.0 metadata
+discovery and explicit skill execution, and Claude 2.1.278 discovery/full-skill
+reads plus benign Read/Stop hooks. Cursor activation and native deny/trust coverage
+remain unverified; these limited observations do not establish runtime parity.
 
 | Runtime | Maintained/generated entrypoints | What still needs live validation |
 |---|---|---|

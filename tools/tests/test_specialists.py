@@ -113,7 +113,7 @@ class LabContractTests(unittest.TestCase):
         with running_lab() as server:
             self.assertEqual(request(server, "POST", "/orders", actor=None, body={"quantity": 1}, key="key")[0], 401)
             for raw in (b"not-json", b"[]", b"x" * 4097):
-                self.assertEqual(request(server, "POST", "/orders", raw=raw, key="key")[0], 400)
+                self.assertEqual(request(server, "POST", "/orders", raw=raw, key="key")[0], 422)
             for key in (None, "", "k" * 129):
                 self.assertEqual(request(server, "POST", "/orders", body={"quantity": 1}, key=key)[0], 400)
             self.assertEqual(request(server, "POST", "/orders", body={"quantity": 1, "owner": "bob"}, key="key")[0], 422)

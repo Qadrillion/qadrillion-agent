@@ -1,0 +1,19 @@
+test_activity_recreation (__main__.ParcelContract.test_activity_recreation)
+C5: clear-top recreates this standard-launch root activity in-process. ... FAIL
+
+======================================================================
+FAIL: test_activity_recreation (__main__.ParcelContract.test_activity_recreation)
+C5: clear-top recreates this standard-launch root activity in-process.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/qadrillion-mobile-author/automation/mobile/test_parcel.py", line 205, in test_activity_recreation
+    self.device.expect("after-recreation", parcel_count="Parcels: 2", unit_count="Units: 5")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/qadrillion-mobile-author/automation/mobile/test_parcel.py", line 75, in expect
+    raise AssertionError(f"{label}: expected {expected}; actual {actual}")
+AssertionError: after-recreation: expected {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 5'}; actual {'parcel_count': 'Parcels: 2', 'unit_count': 'Units: 0'}
+
+----------------------------------------------------------------------
+Ran 1 test in 34.266s
+
+FAILED (failures=1)

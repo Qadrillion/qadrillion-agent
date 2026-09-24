@@ -1,0 +1,1 @@
+Test an Android and iOS parcel app's offline draft recovery. A draft entered offline must survive backgrounding and relaunch, then submit exactly once after connectivity returns. Determine the available device and automation capabilities, author the relevant tests or runnable adaptation, and execute the supported path. No app build or device connection has been supplied yet.

@@ -1,0 +1,24 @@
+{
+  "utc": "2026-09-24T08:57:01.444415+00:00",
+  "argv": [
+    "automation/mobile/test_parcel.py",
+    "--serial",
+    "emulator-5560",
+    "--expected-apk-sha256",
+    "1261bed953d12ad7db8cd5ae2c183d26af142dd43a60e5b9d24bc16a9bdf834a",
+    "--evidence",
+    "artifacts/LOCAL-1/first-run"
+  ],
+  "cwd": "/private/tmp/qadrillion-mobile-author",
+  "serial": "emulator-5560",
+  "package": "com.qadrillion.parcel",
+  "apk_sha256": "1261bed953d12ad7db8cd5ae2c183d26af142dd43a60e5b9d24bc16a9bdf834a",
+  "api": "34",
+  "fingerprint": "google/sdk_gphone64_arm64/emu64a:14/UE1A.230829.036.A1/11228894:userdebug/dev-keys",
+  "locale": "",
+  "abi": "arm64-v8a",
+  "app_metadata": "Activity Resolver Table:\n  Non-Data Actions:\n      android.intent.action.MAIN:\n        d4c7ace com.qadrillion.parcel/.MainActivity filter 4f3def\n          Action: \"android.intent.action.MAIN\"\n          Category: \"android.intent.category.LAUNCHER\"\n\nDomain verification status:\n\nKey Set Manager:\n  [com.qadrillion.parcel]\n      Signing KeySets: 55\n\nPackages:\n  Package [com.qadrillion.parcel] (2b51ce2):\n    appId=10190\n    pkg=Package{eb65873 com.qadrillion.parcel}\n    codePath=/data/app/~~DwBBTbG6xDhAkk1_iB7L8Q==/com.qadrillion.parcel-Ra_MeEYW4odARavZp_jIlg==\n    resourcePath=/data/app/~~DwBBTbG6xDhAkk1_iB7L8Q==/com.qadrillion.parcel-Ra_MeEYW4odARavZp_jIlg==\n    legacyNativeLibraryDir=/data/app/~~DwBBTbG6xDhAkk1_iB7L8Q==/com.qadrillion.parcel-Ra_MeEYW4odARavZp_jIlg==/lib\n    extractNativeLibs=true\n    primaryCpuAbi=null\n    secondaryCpuAbi=null\n    cpuAbiOverride=null\n    versionCode=1 minSdk=26 targetSdk=34\n    minExtensionVersions=[]\n    versionName=1.0\n    usesNonSdkApi=false\n    splits=[base]\n    apkSigningVersion=4\n    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]\n    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]\n    forceQueryable=false\n    dataDir=/data/user/0/com.qadrillion.parcel\n    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]\n    timeStamp=2026-09-24 10:52:46\n    lastUpdateTime=2026-09-24 10:52:46\n    installerPackageName=null\n    installerPackageUid=-1\n    initiatingPackageName=com.android.shell\n    originatingPackageName=null\n    packageSource=1\n    loadingProgress=100%\n    loadingCompletedTime=2026-09-24 10:52:46\n    appMetadataFilePath=null\n    signatures=PackageSignatures{e88e330 version:4, signatures:[17bf54e6], past signatures:[]}\n    installPermissionsFixed=true\n    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]\n    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]\n    apexModuleName=null\n    User 0: ceDataInode=344087 installed=true hidden=false suspended=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false\n      installReason=0\n      firstInstallTime=2026-09-24 10:52:46\n      uninstallReason=0\n      overlay paths:\n        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk\n        /data/resource-cache/com.android.systemui-neutral-Pe6l.frro\n        /data/resource-cache/com.android.systemui-accent-5V8q.frro\n        /data/resource-cache/com.android.systemui-dynamic-mt2y.frro\n      legacy overlay paths:\n        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk\n      runtime permissions:\n\nQueries:\n  system apps queryable: false\n  queries via forceQueryable:\n  queries via package name:\n  queries via component:\n    com.google.android.settings.intelligence:\n      com.qadrillion.parcel\n  queryable via interaction:\n    User 0:\n      [com.android.inputdevices,com.android.server.telecom,android,com.android.dynsystem,com.android.localtransport,com.android.emulator.multidisplay,com.android.providers.settings,com.android.location.fused,com.android.keychain,com.android.wallpaperbackup,com.android.settings]:\n        com.qadrillion.parcel\n      com.google.android.inputmethod.latin:\n        com.qadrillion.parcel\n  queryable via uses-library:\n\nDexopt state:\n  [com.qadrillion.parcel]\n    path: /data/app/~~DwBBTbG6xDhAkk1_iB7L8Q==/com.qadrillion.parcel-Ra_MeEYW4odARavZp_jIlg==/base.apk\n      arm64: [status=run-from-apk] [reason=unknown] [primary-abi]\n        [location is error]\n\nCompiler stats:\n  [com.qadrillion.parcel]\n    (No recorded stats)",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "test_sha256": "88b5955d2e002a254c21c6a310809aa6c5fef84d592e09d7a21998a0da6751c6",
+  "contract_sha256": "412410d0308c3a22ae08552117580087bc71dd474cd6d1e92ccc672174b995aa"
+}

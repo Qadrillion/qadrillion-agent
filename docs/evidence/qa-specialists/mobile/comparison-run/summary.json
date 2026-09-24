@@ -1,0 +1,19 @@
+{
+  "run": 12,
+  "passed": 10,
+  "failed": 0,
+  "errored": 0,
+  "skipped": 2,
+  "failures": [],
+  "errors": [],
+  "skips": [
+    [
+      "test_reject_decimal (__main__.ParcelContract.test_reject_decimal)",
+      "Native field/ADB input could not enter literal '2.5'; observed '25'"
+    ],
+    [
+      "test_reject_text (__main__.ParcelContract.test_reject_text)",
+      "Native field/ADB input could not enter literal 'abc'; observed ''"
+    ]
+  ]
+}

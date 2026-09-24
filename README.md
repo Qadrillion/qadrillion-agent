@@ -73,6 +73,13 @@ keep company setup separate from public framework changes.
 
 ## What is verified
 
+Five on-demand skills supply deeper execution procedures for **API, web, mobile,
+application security and performance**. `/qa` composes only the relevant ones;
+tool-specific recipes use your existing runner. Read the [support matrix](docs/reference/specialist-support.md)
+for measured reference stacks and explicit execution limits, and the
+[architecture rationale](docs/reviews/2026-09-24-specialist-architecture.md) for
+what belongs in skills, references, roles and executable helpers.
+
 `python3 tools/verify.py` runs policy payloads, tooling/adapter regressions, ticket
 validation, generated-config drift, setup checks and prompt-size budgets. CI runs
 the same command. Behavioral scenarios live in `docs/golden-tasks/`; they require

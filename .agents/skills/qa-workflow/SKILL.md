@@ -36,8 +36,10 @@ Select the cheapest layer that can detect the risk; document mocks and what they
 cannot prove. Reuse existing automation. Automate repeatable checks with a stable
 oracle; timebox exploration with a charter, observations, questions and debrief.
 Label each check `automated`, `manual`, or `blocked` with its reason.
-Read only applicable sections of `docs/reference/testing-strategy.md` and
-`docs/reference/surfaces.md`. Present the plan and continue under task approval.
+Use the specialist procedures selected by `/qa`; read only their applicable
+tool recipes. For exploration, accessibility, data or connected hardware, use the
+relevant section of `docs/reference/focused-checks.md`. Present the plan and
+continue under task approval.
 
 ## 3. Prepare and author
 

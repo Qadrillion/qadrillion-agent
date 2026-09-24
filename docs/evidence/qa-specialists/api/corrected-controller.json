@@ -1,0 +1,36 @@
+{
+  "scenario": "api",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_api_parcel.py",
+    "-v"
+  ],
+  "cwd": "/tmp/qadrillion-execution-evals/api",
+  "exit": 0,
+  "seconds": 0.7726130485534668,
+  "identity": {
+    "fixture": "qadrillion-specialist-lab",
+    "role": "test",
+    "run_id": "5919e0ca-82b0-4d40-a446-f9fc4efb9db5",
+    "build": "ca54bbbba92103a575c801543726134f8080b1e180dfc70d410a8a0c4b5c630c",
+    "mode": "good",
+    "url": "http://127.0.0.1:49312"
+  },
+  "tests_before": {
+    "tests/test_api_parcel.py": "34052b0b04005cc40ded9873916d7b0ee0fb4d2549c473851b81cb6c858d5cb8"
+  },
+  "tests_after": {
+    "tests/test_api_parcel.py": "34052b0b04005cc40ded9873916d7b0ee0fb4d2549c473851b81cb6c858d5cb8"
+  },
+  "unchanged": true,
+  "cleanup": {
+    "server_thread_stopped": true,
+    "port_closed": true
+  }
+}

@@ -1,0 +1,34 @@
+{"test": "test_api_parcel.ParcelContract.test_absent_resources", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_actor_key_namespaces", "orders": [["alice", "a90d5226-f836-4579-b672-1f90d16ecc7d"], ["bob", "8188e2e5-9fa9-424a-874d-da4c07194fea"]], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_delete_removes_key_and_preserves_other_order", "orders": [["alice", "5f441f1e-ef79-457d-b5ec-d874ba1ca0ea"], ["alice", "324e4425-8470-4d30-81d5-a978d0c2b47e"], ["alice", "6d05b9cd-7c1d-4f46-a04e-baec76eeac61"]], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_above_maximum", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_array_body", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_array_quantity", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_empty_body", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_false", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_float", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_integral_float", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_key_empty", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_key_long", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_key_missing", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_malformed", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_missing_quantity", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_negative", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_null_body", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_null_quantity", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_number_body", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_object_quantity", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_string", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_string_body", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_true", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_unknown_field", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_invalid_zero", "orders": [], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_job_completion_and_receipt", "orders": [["alice", "866df57f-c1b2-43b4-aea1-14df2ef0a317"]], "jobs": [["alice", "5e3ec69a-eaa9-4420-93ae-33e2dbf1908f"]], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_key_length_1", "orders": [["alice", "ef532581-1da5-4fda-b6a0-10e6607b6a8b"]], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_key_length_128", "orders": [["alice", "25cef2ce-309d-497a-86b1-ea5e03431952"]], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_positive_control", "orders": [["alice", "178e21a6-eb72-4c81-b73f-9bad9a5ad6d1"]], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_quantity_maximum", "orders": [["alice", "57bb09d2-39be-4d5b-9370-a2fb5edb0dbb"]], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_quantity_minimum", "orders": [["alice", "1b0ef1e3-bdd8-4738-940c-9783b3de779a"]], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_quantity_near_maximum", "orders": [["alice", "04f3ebcb-8524-4f4f-98fa-7b5bffc0f0db"]], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_quantity_near_minimum", "orders": [["alice", "dae98fdf-1a90-44f9-8f46-2d975eb0ef38"]], "jobs": [], "problems": []}
+{"test": "test_api_parcel.ParcelContract.test_retry_and_conflict", "orders": [["alice", "0b55c1c7-223a-442d-90b6-53089e290e00"], ["alice", "8febbb56-ae6c-49ba-926a-0eacb560c963"]], "jobs": [], "problems": []}

@@ -58,7 +58,8 @@ def instructions() -> bool:
 def document_links() -> bool:
     errors = []
     paths = [ROOT / "README.md", ROOT / "docs/adopting.md", ROOT / ".cursor/README.md",
-             *(ROOT / "docs/reference").glob("*.md")]
+             *(ROOT / "docs/reference").glob("*.md"),
+             *(ROOT / ".cursor/skills").rglob("*.md")]
     for path in paths:
         for raw in re.findall(r"\[[^\]]*\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
             target = raw.strip().split("#", 1)[0]
@@ -80,6 +81,7 @@ def main() -> int:
     commands = [
         ["bash", ".cursor/hooks/tests/run-tests.sh"],
         [sys.executable, "-B", "-m", "unittest", "discover", "-s", "tools/tests", "-p", "test_*.py", "-v"],
+        [sys.executable, "-B", "-m", "unittest", "discover", "-s", "tools/specialists/mobile", "-p", "test_*.py", "-v"],
         [sys.executable, "tools/tickets/validate.py"],
         [sys.executable, "tools/tickets/index.py", "--check"],
         [sys.executable, "tools/agents/sync.py", "--check"],

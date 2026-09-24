@@ -1,0 +1,48 @@
+{
+  "identityFile": "/tmp/qadrillion-execution-evals/web/corrected-target.json",
+  "node": "v24.4.1",
+  "platform": "darwin",
+  "release": "25.6.0",
+  "arch": "arm64",
+  "playwright": "1.63.0",
+  "cwd": "/private/tmp/qadrillion-execution-evals/web",
+  "testsHash": "1bdecf4ca7373b2042c1f4c2f0c777d1903ef54e617b222b74afa4dc97c165d9",
+  "commands": [
+    {
+      "executable": "/opt/homebrew/Cellar/node/24.4.1/bin/node",
+      "args": [
+        "/private/tmp/qadrillion-browser-deps/node_modules/@playwright/test/cli.js",
+        "test",
+        "-c",
+        "tests",
+        "--browser=chromium",
+        "--workers=1",
+        "--retries=0",
+        "--trace=on",
+        "--output=/private/tmp/qadrillion-execution-evals/web/artifacts/parcel-1790241098869/chromium",
+        "--reporter=list,json"
+      ],
+      "started": "2026-09-24T09:11:38.875Z",
+      "finished": "2026-09-24T09:11:40.667Z",
+      "exit": 0
+    },
+    {
+      "executable": "/opt/homebrew/Cellar/node/24.4.1/bin/node",
+      "args": [
+        "/private/tmp/qadrillion-browser-deps/node_modules/@playwright/test/cli.js",
+        "test",
+        "-c",
+        "tests",
+        "--browser=firefox",
+        "--workers=1",
+        "--retries=0",
+        "--trace=on",
+        "--output=/private/tmp/qadrillion-execution-evals/web/artifacts/parcel-1790241098869/firefox",
+        "--reporter=list,json"
+      ],
+      "started": "2026-09-24T09:11:40.668Z",
+      "finished": "2026-09-24T09:11:43.600Z",
+      "exit": 0
+    }
+  ]
+}

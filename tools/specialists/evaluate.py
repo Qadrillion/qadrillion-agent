@@ -16,7 +16,7 @@ SKILLS = ("qa", "qa-workflow", "qa-api", "qa-web", "qa-mobile", "qa-security", "
 FILES = ("AGENTS.md", "qa-config.json", "workspace-manifest.json", "docs/decisions/INDEX.md",
          "docs/reference/known-quirks.md", "docs/reference/integrations.md",
          "docs/reference/surfaces.md", "docs/reference/testing-strategy.md",
-         "docs/reference/focused-checks.md")
+         "docs/reference/focused-checks.md", "tickets/_TEMPLATE.md")
 TREES = (".cursor/rules", ".cursor/agents", "tools/workspace", "tools/tickets")
 VERDICTS = ("Pass", "Fail", "Blocked", "Not-run")
 
