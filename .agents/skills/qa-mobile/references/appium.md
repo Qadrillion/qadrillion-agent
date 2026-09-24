@@ -3,7 +3,8 @@
 Use the project's installed driver/client pair. Appium server version alone does
 not establish driver compatibility. The reference machine has Appium 2.5.4 and
 UiAutomator2 2.42.0; their installation was probed, but this task's reference
-execution selects Maestro. Do not describe this adaptation as an Appium pass.
+execution used ADB/UIAutomator with stdlib tests; Maestro was also only probed.
+Do not describe this adaptation as an Appium pass.
 
 Inspect `appium --version`, `appium driver list --installed`, the client lockfile,
 SDK/JDK and the selected driver's requirements. Bind a task-owned server to

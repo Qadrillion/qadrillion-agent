@@ -30,3 +30,24 @@ prevent the two reproduced findings.
 - The retained original browser claims “First-failure diagnostics were inspected before continuing the matrix” and “extracted first-attempt trace evidence, inspected directly” remain unsupported; the later reports appropriately retain and correct them.
 - The later statement “This evaluator independently viewed all three named images and corroborated their content” and handoff statements “Viewed with the image tool during this review” / “Viewed during this review” lack serialized reviewer action evidence. They cannot establish historical viewing from this diff.
 - Findings refer to the frozen round-one diff; the parent’s subsequent cleanup repair was not reviewed here.
+
+## Round 2 — PASS WITH SHOULDS
+
+Snapshot: `b5e19e2`.
+Code fingerprint: `2cacb0e980d76c40f33c1815fc9b3e3da46ae1c948cbfd43ac04507b55a58e7b`.
+Full binary diff SHA-256: `5816330dc5814f65cfd9da735e52cb1e9a864fb8f3dfc11265d0f6f813e3a7f1`.
+
+| Scope | Severity | Finding | Disposition |
+|---|---|---|---|
+| IN-SCOPE | SHOULD | `.cursor/skills/qa-mobile/references/appium.md:6` says execution selected Maestro, contradicting the retained ADB/UIAutomator execution. | Fixed the canonical reference to ADB/UIAutomator plus stdlib; Maestro is explicitly only probed. Regenerated both copies and the adapter manifest. |
+
+### Reviewer Not verified (verbatim)
+
+- Checklist reviewed: A1 ownership; A2 specialist procedures; A3 routing; A4 API/security; A5 browser isolation; A6 performance; A7 mobile; A8 evidence; A9 portability/runtime/CI; A10 adoption/handoff. This verdict concerns the frozen round-two diff; subsequent corrections are excluded.
+- Independently passed `tools/verify.py`: 75 hook cases, 138 tooling tests, four mobile tests and adapter checks.
+- All eight reference replays produced expected defective/corrected outcomes, including Chromium and Firefox. The closed-page fault injection retained diagnostic failures while removing owned orders. Evidence: `/tmp/qadrillion-review2-replay-20260924` and `/tmp/qadrillion-review2-cleanup-probe`.
+- All 284 shared artifact hashes matched. Nine recorded completed-turn usage events matched reported totals. Historical Android and native-runtime execution were not rerun; iOS/hybrid/hardware coverage and native deny enforcement remain unverified.
+- Final CI/PR status and independent clean-clone execution remain unverified. Retained clean-clone logs do not substitute for commands run during this review.
+- Historical research claims remain unverified: “Inspected APIs:”, “Sources inspected 2026-09-24:”, “Inspected 2026-09-24.” and “These are inspected sections/pages”. Reproduction requires the primary-source inspection records.
+- Unsupported historical browser claims remain: “First-failure diagnostics were inspected before continuing the matrix” and “extracted first-attempt trace evidence, inspected directly”. Later reports appropriately preserve and correct them.
+- “This evaluator independently viewed all three named images and corroborated their content”, “Viewed with the image tool during this review” and “Viewed during this review” lack serialized reviewer-action evidence; historical viewing cannot be established from the diff.
