@@ -13,9 +13,18 @@ ROOT = Path(__file__).resolve().parents[2]
 MUTABILITY = {"status", "fetch", "fast-forward", "content-edit", "ticket-scoped-content-edit"}
 
 
+def unique_object(pairs: list[tuple[str, object]]) -> dict:
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate manifest key {key!r}")
+        result[key] = value
+    return result
+
+
 def load_manifest(path: Path, root: Path) -> list[dict]:
     root = root.resolve()
-    manifest = json.loads(path.read_text(encoding="utf-8"))
+    manifest = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_object)
     if not isinstance(manifest, dict) or type(manifest.get("schema_version")) is not int or manifest["schema_version"] != 1:
         raise ValueError("manifest schema_version must be 1")
     repos = manifest.get("repositories")
@@ -28,6 +37,8 @@ def load_manifest(path: Path, root: Path) -> list[dict]:
         for key in ("id", "path", "canonical_branch", "expected_remote"):
             if not isinstance(repo.get(key), str) or not repo[key].strip() or any(c in repo[key] for c in "\n\r\0"):
                 raise ValueError(f"repository {key} must be a nonempty single-line string")
+        if "ownership" in repo and repo["ownership"] not in ("owned", "dependency"):
+            raise ValueError(f"{repo['id']}: ownership must be owned or dependency")
         relative = Path(repo["path"])
         destination = (root / relative).resolve()
         if relative.is_absolute() or not destination.is_relative_to(root):
@@ -87,13 +98,20 @@ def inspect(repo: dict, root: Path, update: bool) -> tuple[str, bool]:
             notes.append(f"update refused: requires clean {repo['canonical_branch']} branch")
             failed = True
         else:
-            fetched = git(directory, "fetch", "--quiet", "origin")
+            tracking_ref = f"refs/remotes/origin/{repo['canonical_branch']}"
+            if "fast-forward" in modes:
+                # A successful default fetch may exclude a deleted or unconfigured
+                # canonical branch, leaving an old tracking ref available to merge.
+                refspec = f"refs/heads/{repo['canonical_branch']}:{tracking_ref}"
+                fetched = git(directory, "fetch", "--quiet", "origin", refspec)
+            else:
+                fetched = git(directory, "fetch", "--quiet", "origin")
             if fetched.returncode:
                 # Never merge a stale tracking ref after the requested fetch fails.
                 notes.append("fetch failed; no merge attempted")
                 failed = True
             elif "fast-forward" in modes:
-                merged = git(directory, "merge", "--ff-only", "--quiet", f"refs/remotes/origin/{repo['canonical_branch']}")
+                merged = git(directory, "merge", "--ff-only", "--quiet", tracking_ref)
                 if merged.returncode:
                     notes.append("fast-forward failed")
                     failed = True

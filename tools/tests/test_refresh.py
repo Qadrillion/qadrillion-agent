@@ -131,6 +131,54 @@ class RefreshTests(unittest.TestCase):
         self.assertIn("fetch failed; no merge attempted", result.stdout)
         self.assertEqual(self.git(self.repo, "rev-parse", "HEAD"), original)
 
+    def test_missing_canonical_branch_never_merges_stale_ref_after_other_fetch_succeeds(self):
+        original = self.git(self.repo, "rev-parse", "HEAD")
+        stale = self.commit(self.origin, "second")
+        self.git(self.repo, "fetch", "--quiet", "origin")
+        self.git(self.origin, "branch", "-m", "main", "other")
+        other = self.commit(self.origin, "other branch advances")
+        self.git(self.repo, "config", "remote.origin.fetch", "+refs/heads/other:refs/remotes/origin/other")
+        self.git(self.repo, "fetch", "--quiet", "origin")
+        self.assertEqual(self.git(self.repo, "rev-parse", "origin/other"), other)
+        self.assertEqual(self.git(self.repo, "rev-parse", "origin/main"), stale)
+
+        result = self.run_refresh("--update")
+
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        self.assertIn("fetch failed; no merge attempted", result.stdout)
+        self.assertEqual(self.git(self.repo, "rev-parse", "HEAD"), original)
+        self.assertEqual(self.git(self.repo, "rev-parse", "origin/main"), stale)
+
+    def test_canonical_branch_is_fetched_even_when_configured_refspec_excludes_it(self):
+        original = self.git(self.repo, "rev-parse", "HEAD")
+        self.git(self.origin, "branch", "other")
+        expected = self.commit(self.origin, "canonical branch advances")
+        self.git(self.repo, "config", "remote.origin.fetch", "+refs/heads/other:refs/remotes/origin/other")
+        self.git(self.repo, "fetch", "--quiet", "origin")
+        self.assertEqual(self.git(self.repo, "rev-parse", "origin/main"), original)
+
+        result = self.run_refresh("--update")
+
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(self.git(self.repo, "rev-parse", "HEAD"), expected)
+        self.assertEqual(self.git(self.repo, "rev-parse", "origin/main"), expected)
+
+    def test_fetch_only_preserves_configured_refspec_and_local_branch(self):
+        original = self.git(self.repo, "rev-parse", "HEAD")
+        self.commit(self.origin, "canonical branch advances")
+        self.git(self.origin, "checkout", "--quiet", "-b", "other")
+        expected = self.commit(self.origin, "other branch advances")
+        self.git(self.repo, "config", "remote.origin.fetch", "+refs/heads/other:refs/remotes/origin/other")
+        self.entry["allowed_mutability"] = ["fetch"]
+        self.write_manifest()
+
+        result = self.run_refresh("--update")
+
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(self.git(self.repo, "rev-parse", "HEAD"), original)
+        self.assertEqual(self.git(self.repo, "rev-parse", "origin/main"), original)
+        self.assertEqual(self.git(self.repo, "rev-parse", "origin/other"), expected)
+
     def test_dirty_tree_is_preserved(self):
         self.commit(self.origin, "second")
         (self.repo / "fixture.txt").write_text("local edit", encoding="utf-8")
@@ -190,6 +238,36 @@ class RefreshTests(unittest.TestCase):
             with self.subTest(manifest=changed):
                 self.manifest.write_text(json.dumps(changed))
                 self.assertEqual(self.run_refresh("--update").returncode, 1)
+                self.assertFalse((self.repo / ".git/FETCH_HEAD").exists())
+
+    def test_duplicate_manifest_keys_are_rejected_at_every_level(self):
+        self.write_manifest()
+        text = self.manifest.read_text()
+        for duplicated in (
+            text.replace('"schema_version": 1', '"schema_version": 1, "schema_version": 1'),
+            text.replace('"id": "client"', '"id": "other", "id": "client"'),
+        ):
+            with self.subTest(manifest=duplicated):
+                self.manifest.write_text(duplicated)
+                result = self.run_refresh("--update")
+                self.assertEqual(result.returncode, 1)
+                self.assertIn("duplicate manifest key", result.stderr)
+                self.assertFalse((self.repo / ".git/FETCH_HEAD").exists())
+
+    def test_ownership_is_validated_without_restricting_descriptive_role(self):
+        self.entry["role"] = "Product dependency used for desktop compatibility investigations"
+        for ownership in ("owned", "dependency"):
+            with self.subTest(ownership=ownership):
+                self.entry["ownership"] = ownership
+                self.write_manifest()
+                self.assertEqual(self.run_refresh().returncode, 0)
+        for ownership in ("", "customer", None, False, [], {}):
+            with self.subTest(ownership=ownership):
+                self.entry["ownership"] = ownership
+                self.write_manifest()
+                result = self.run_refresh("--update")
+                self.assertEqual(result.returncode, 1)
+                self.assertIn("ownership must be owned or dependency", result.stderr)
                 self.assertFalse((self.repo / ".git/FETCH_HEAD").exists())
 
     def test_invalid_mutability_and_scope_types_are_diagnostic(self):
