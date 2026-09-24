@@ -51,3 +51,29 @@ Full binary diff SHA-256: `5816330dc5814f65cfd9da735e52cb1e9a864fb8f3dfc11265d0f
 - Historical research claims remain unverified: “Inspected APIs:”, “Sources inspected 2026-09-24:”, “Inspected 2026-09-24.” and “These are inspected sections/pages”. Reproduction requires the primary-source inspection records.
 - Unsupported historical browser claims remain: “First-failure diagnostics were inspected before continuing the matrix” and “extracted first-attempt trace evidence, inspected directly”. Later reports appropriately preserve and correct them.
 - “This evaluator independently viewed all three named images and corroborated their content”, “Viewed with the image tool during this review” and “Viewed during this review” lack serialized reviewer-action evidence; historical viewing cannot be established from the diff.
+
+## Round 3 — BLOCKED
+
+Snapshot: `5dc46cf`.
+Code fingerprint: `c26b735f4d74b728cbab05eca08a425c7a081db04c50be67d6b8ef48cc65d53a`.
+Full binary diff SHA-256: `12c216a38da8ce78956a8f33bf94690dadc36147cc301a4e678e436ce19f987d`.
+
+| Scope | Severity | Finding | Disposition |
+|---|---|---|---|
+| IN-SCOPE | BLOCKER | Shipped mobile replay resolves an absent author-only `CONTRACT.md` path before its tests. | Fixed: load/hash the shipped mobile contract before any ADB access. |
+| IN-SCOPE | BLOCKER | Shipped mobile replay accepts only the historical emulator-5560, rejecting a fresh owned serial. | Fixed: caller-pinned owned manifest, live AVD/serial/API and installed APK checks. Fresh emulator-5562 replay detects both lifecycle defects, then passes 2/2 unchanged tests on correction; all owned device state removed. |
+
+The build skill defaults to stopping after three review rounds. This task
+explicitly requires fixing in-scope findings and forbids deferring missing generic
+functionality to the work-laptop pilot. That task instruction takes precedence:
+continue only the bounded mobile replay repair and its independent recheck;
+retain the failed verdict and do not weaken the acceptance criteria.
+
+### Reviewer Not verified (verbatim)
+
+- Checklist: A1 ownership; A2 actionable recipes; A3 routing; A4 API/security; A5 browser; A6 performance; A7 mobile; A8 retained evidence; A9 portability/runtime/CI; A10 adoption and completed review. A2/A7/A9/A10 remain incomplete because of the findings.
+- Independently passed `verify.py` and all eight defective/corrected HTTP/browser replay checks. Evidence: `/tmp/reviewer-round3-verify.log`, `/tmp/reviewer-round3-replay-installed/replay.json`.
+- Nine routing conversations and recorded token totals were corroborated through delegated raw-evidence inspection.
+- Native mobile replay was not executed independently. Fix the shipped replay, then execute against a fresh owned emulator. CI on the final revision remains unverified.
+- Historical claims remain unreproduced: “Inspected APIs:”, “Sources inspected 2026-09-24:”, and “These are inspected sections/pages”. Reproduction requires the original inspection evidence.
+- Retained browser claims “First-failure diagnostics were inspected before continuing the matrix” and “extracted first-attempt trace evidence, inspected directly” remain unsupported; later reports preserve and correct them.

@@ -18,7 +18,10 @@ The mobile diagnostic→comparison change only repairs result accounting for
 duplicate test instances; [reporting-repair.json](mobile/reporting-repair.json)
 records hashes. No detecting assertion changed. The shipped reference replaces
 the author's local ADB default with `adb`; its [identity record](mobile/fixture-identity.json)
-distinguishes that portable copy from executed bytes. The actual device was a
+distinguishes that initial portable copy from executed bytes. After portability
+review, the shipped replay also validates the owned run manifest and resolves the
+shipped contract before device access. [Fresh native replay](mobile-portability/README.md)
+pins the repaired copy separately; original authored bytes/hashes stay unchanged. The actual device was a
 fresh Android14 API34 arm64 emulator. App-only cleanup and final owned-emulator
 shutdown completed; no real device, iOS, hybrid, permission, network or radio
 coverage is claimed.

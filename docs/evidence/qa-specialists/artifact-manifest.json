@@ -1,8 +1,8 @@
 {
   "README.md": {
     "source_sha256": "75c57b936802d8fb933ae57247556d2aa47ea5537286cc04ed481113a11d81e2",
-    "shared_sha256": "b669efb48d4f666445b66650062ae37401df5d4d854d3661b481910d7911ac08",
-    "shared_bytes": 7485
+    "shared_sha256": "bc2b3de112f7e8bbec3bf0c58f3a30c45409dac406e9bb8d6e0fc740fede7a84",
+    "shared_bytes": 7766
   },
   "REPORT.md": {
     "source_sha256": "06a89d762ae714b1af2d2a1989b3da019ad0f516484317c2027f0d0c834ac17a",
@@ -1461,8 +1461,8 @@
     "shared_bytes": 10495
   },
   "verification/verification.json": {
-    "shared_sha256": "1035a4c288f388e88d57e42b6f8812e11ff32e4dc84831943d09e9cc9d8a09d9",
-    "shared_bytes": 1021
+    "shared_sha256": "3298d82b8ff0ae035e572e648ea42e87a6d18b140ff2d25458012ad0407e4871",
+    "shared_bytes": 1289
   },
   "review-round1/cleanup-probe.py": {
     "shared_sha256": "ed80e49527d63dc662177b24139e7dabe6c147cbb1a400a13f9367d438ff6e35",
@@ -1539,5 +1539,361 @@
   "review-round1/final-corrected/probe.json": {
     "shared_sha256": "5fd975051ff79da814f4be29901db9d7d7ef2c7969d774a4b653642fd5782f4b",
     "shared_bytes": 698
+  },
+  "verification/mobile-final-clean-clone-verify.log": {
+    "shared_sha256": "00de317242ed16f007756bc89c8bce1777bbf2a493567af41acda9ef56748c04",
+    "shared_bytes": 31111
+  },
+  "mobile-portability/assertion-integrity.json": {
+    "shared_sha256": "10a03150ee24e3dd0395b48b8fcc1336fa3e8a2370d20b2e475d460164fabcc0",
+    "shared_bytes": 398
+  },
+  "mobile-portability/seeded-process.json": {
+    "shared_sha256": "c6d8136af93c6ea7e00d3cbbaa0b8e4d52f3a5ef158bd722d7671ec6d3ef5532",
+    "shared_bytes": 780
+  },
+  "mobile-portability/baseline-process.json": {
+    "shared_sha256": "1e49811a303f4c12e901357114a47d388bdc82d7eff0077db7d4cc090454e09d",
+    "shared_bytes": 782
+  },
+  "mobile-portability/old-shipped.log": {
+    "shared_sha256": "569a6277371f0a30effe6d59bee79cee85b50032d1c3d5ebac52bcaf445c646b",
+    "shared_bytes": 238
+  },
+  "mobile-portability/run-after-cleanup.json": {
+    "shared_sha256": "b1e72ea671add94537faa6f967e340c9615299e5611a50a2b5a7bd3f08224cc1",
+    "shared_bytes": 1802
+  },
+  "mobile-portability/README.md": {
+    "shared_sha256": "7eb53b8415e9d4d0c72760a2c5b2e8ee86df07544187f95bbc472ddc8623d050",
+    "shared_bytes": 2265
+  },
+  "mobile-portability/cleanup.log": {
+    "shared_sha256": "58d68ce24441aaa91858a7ed2be5265e2a5a520bbedf59b724b9b8b037231b8b",
+    "shared_bytes": 84
+  },
+  "mobile-portability/old-shipped-process.json": {
+    "shared_sha256": "6763c00b75701530e394fde55a29e33b307ed528fe21635e8a5dd2cad7cf030f",
+    "shared_bytes": 542
+  },
+  "mobile-portability/baseline-console.log": {
+    "shared_sha256": "2f5368189d5a9eb7417896c230da8e9bfb08af3073319feb9354f4d6efa04509",
+    "shared_bytes": 543
+  },
+  "mobile-portability/seeded-console.log": {
+    "shared_sha256": "11ed01314e576007f5ceb0a0ff95ae7255eda08860bf1a154407df34ea9814ab",
+    "shared_bytes": 4479
+  },
+  "mobile-portability/seeded-execution/summary.json": {
+    "shared_sha256": "2fb995d088fe6b38e1b5708e8006f92d6f0f109897aa3fc3585945a770786b76",
+    "shared_bytes": 1918
+  },
+  "mobile-portability/seeded-execution/unittest.txt": {
+    "shared_sha256": "3261e67272b89c541f77b486cabf7e576473c8495054e32cfed011c815395347",
+    "shared_bytes": 2559
+  },
+  "mobile-portability/seeded-execution/identity.json": {
+    "shared_sha256": "1919f9ecaa086d8684e5f727aee9b7c562a63b58b71939121e56f778a5016c21",
+    "shared_bytes": 5275
+  },
+  "mobile-portability/baseline-execution/summary.json": {
+    "shared_sha256": "f790291380ef8e5eca7d615e824b5c31f0066465edd38ffc2d292213431b2b70",
+    "shared_bytes": 125
+  },
+  "mobile-portability/baseline-execution/unittest.txt": {
+    "shared_sha256": "f2c472a112a433dc1d9c381767f0bced73f233886e2f434bd0d9196f5c1411e8",
+    "shared_bytes": 416
+  },
+  "mobile-portability/baseline-execution/identity.json": {
+    "shared_sha256": "d936181e1a7057ba0b46e3b36edcc0eaf0bfa9d6689adb9800605ff9d55b9359",
+    "shared_bytes": 5280
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/006-before-tap-quantity.xml": {
+    "shared_sha256": "e30e11b3e2a8ac18457cf54d2660d601a9c0a10651ea9e082653f9693626e43c",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/002-before-tap-quantity.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/008-before-tap-add_parcel.xml": {
+    "shared_sha256": "e91c5ed4ce3f83fb54841cbcddb0a8097097d2ee5c46056de1c3a46c27d866f4",
+    "shared_bytes": 4665
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/012-cleanup-zero.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/final-screen.png": {
+    "shared_sha256": "db9976fd19731a071225cdad732c1b82836a7b41c0e617e07830cfe0c44c6ff3",
+    "shared_bytes": 16507
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/commands.jsonl": {
+    "shared_sha256": "85896219e2ca121617ce475fe41e8a2a213d1af3f1eead55e7f13ba10606e567",
+    "shared_bytes": 311694
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/010-after-recreation.xml": {
+    "shared_sha256": "4430ec595e5de334d176a048d1c5ebb417ba71d45793cf16f8452805d377c249",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/recreation-events.txt": {
+    "shared_sha256": "f7ab62f93abc33cb60c10af2605c39102b02c5d47366f1de3babffabb07ab491",
+    "shared_bytes": 2541
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/009-accepted-3.xml": {
+    "shared_sha256": "9db9effeae0020209f1f2cfee19a9a53794ca02694799b8584c10649152594b0",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/007-entered-input.xml": {
+    "shared_sha256": "e91c5ed4ce3f83fb54841cbcddb0a8097097d2ee5c46056de1c3a46c27d866f4",
+    "shared_bytes": 4665
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/final-app-events.txt": {
+    "shared_sha256": "f7ab62f93abc33cb60c10af2605c39102b02c5d47366f1de3babffabb07ab491",
+    "shared_bytes": 2541
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/001-initial-zero.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/003-entered-input.xml": {
+    "shared_sha256": "148978d5a8dd9d7d815dddcd3e710134a542b20316750400ac1d0392cabb6588",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/011-final.xml": {
+    "shared_sha256": "4430ec595e5de334d176a048d1c5ebb417ba71d45793cf16f8452805d377c249",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/004-before-tap-add_parcel.xml": {
+    "shared_sha256": "148978d5a8dd9d7d815dddcd3e710134a542b20316750400ac1d0392cabb6588",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_activity_recreation/005-accepted-2.xml": {
+    "shared_sha256": "e30e11b3e2a8ac18457cf54d2660d601a9c0a10651ea9e082653f9693626e43c",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/006-before-tap-quantity.xml": {
+    "shared_sha256": "e30e11b3e2a8ac18457cf54d2660d601a9c0a10651ea9e082653f9693626e43c",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/002-before-tap-quantity.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/008-before-tap-add_parcel.xml": {
+    "shared_sha256": "e91c5ed4ce3f83fb54841cbcddb0a8097097d2ee5c46056de1c3a46c27d866f4",
+    "shared_bytes": 4665
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/010-after-process-relaunch.xml": {
+    "shared_sha256": "4430ec595e5de334d176a048d1c5ebb417ba71d45793cf16f8452805d377c249",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/012-cleanup-zero.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/final-screen.png": {
+    "shared_sha256": "f5fb14f39f7e929f0996bdf9874298c185ff724cb664cd416b23f1780dd555e9",
+    "shared_bytes": 16612
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/commands.jsonl": {
+    "shared_sha256": "d2b73abd0a7bcedde3670b3929c5ac58fd7225320a6f423e7dae31bfde09bdc0",
+    "shared_bytes": 291876
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/009-accepted-3.xml": {
+    "shared_sha256": "9db9effeae0020209f1f2cfee19a9a53794ca02694799b8584c10649152594b0",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/007-entered-input.xml": {
+    "shared_sha256": "e91c5ed4ce3f83fb54841cbcddb0a8097097d2ee5c46056de1c3a46c27d866f4",
+    "shared_bytes": 4665
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/final-app-events.txt": {
+    "shared_sha256": "7d8250c4df6f1facc97e42a50fa795bc10f5239aa223b9cbe82f0d7382b0bb9f",
+    "shared_bytes": 519
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/001-initial-zero.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/003-entered-input.xml": {
+    "shared_sha256": "148978d5a8dd9d7d815dddcd3e710134a542b20316750400ac1d0392cabb6588",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/011-final.xml": {
+    "shared_sha256": "4430ec595e5de334d176a048d1c5ebb417ba71d45793cf16f8452805d377c249",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/004-before-tap-add_parcel.xml": {
+    "shared_sha256": "148978d5a8dd9d7d815dddcd3e710134a542b20316750400ac1d0392cabb6588",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/baseline-execution/test_process_termination_relaunch/005-accepted-2.xml": {
+    "shared_sha256": "e30e11b3e2a8ac18457cf54d2660d601a9c0a10651ea9e082653f9693626e43c",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/baseline-execution/preflight/commands.jsonl": {
+    "shared_sha256": "0a5bcbb046117b5dfedae87c70c1cc3b85dfb93a23744eaec500e86e49db3d55",
+    "shared_bytes": 6257
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/006-before-tap-quantity.xml": {
+    "shared_sha256": "e30e11b3e2a8ac18457cf54d2660d601a9c0a10651ea9e082653f9693626e43c",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/015-final.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/002-before-tap-quantity.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/011-after-recreation.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/014-after-recreation.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/008-before-tap-add_parcel.xml": {
+    "shared_sha256": "e91c5ed4ce3f83fb54841cbcddb0a8097097d2ee5c46056de1c3a46c27d866f4",
+    "shared_bytes": 4665
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/final-screen.png": {
+    "shared_sha256": "f68eeb970b3b90bbc6a75ff4fb674b7dd6d575e4f4080ce1ab40776e5408a941",
+    "shared_bytes": 16535
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/commands.jsonl": {
+    "shared_sha256": "6598889b7ad74cf4eb217e176ad837f74c5e1063b5cd4d5156ef56b7b04b0da2",
+    "shared_bytes": 228641
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/010-after-recreation.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/016-cleanup-zero.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/recreation-events.txt": {
+    "shared_sha256": "0f9c115c1e9dc04d94755f9d6b8cc4395979093f357ef55ba6d9a732a4916490",
+    "shared_bytes": 2541
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/013-after-recreation.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/009-accepted-3.xml": {
+    "shared_sha256": "9db9effeae0020209f1f2cfee19a9a53794ca02694799b8584c10649152594b0",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/007-entered-input.xml": {
+    "shared_sha256": "e91c5ed4ce3f83fb54841cbcddb0a8097097d2ee5c46056de1c3a46c27d866f4",
+    "shared_bytes": 4665
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/final-app-events.txt": {
+    "shared_sha256": "0f9c115c1e9dc04d94755f9d6b8cc4395979093f357ef55ba6d9a732a4916490",
+    "shared_bytes": 2541
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/001-initial-zero.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/003-entered-input.xml": {
+    "shared_sha256": "148978d5a8dd9d7d815dddcd3e710134a542b20316750400ac1d0392cabb6588",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/004-before-tap-add_parcel.xml": {
+    "shared_sha256": "148978d5a8dd9d7d815dddcd3e710134a542b20316750400ac1d0392cabb6588",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/005-accepted-2.xml": {
+    "shared_sha256": "e30e11b3e2a8ac18457cf54d2660d601a9c0a10651ea9e082653f9693626e43c",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/seeded-execution/test_activity_recreation/012-after-recreation.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/006-before-tap-quantity.xml": {
+    "shared_sha256": "e30e11b3e2a8ac18457cf54d2660d601a9c0a10651ea9e082653f9693626e43c",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/015-final.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/002-before-tap-quantity.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/008-before-tap-add_parcel.xml": {
+    "shared_sha256": "e91c5ed4ce3f83fb54841cbcddb0a8097097d2ee5c46056de1c3a46c27d866f4",
+    "shared_bytes": 4665
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/010-after-process-relaunch.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/011-after-process-relaunch.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/final-screen.png": {
+    "shared_sha256": "f68eeb970b3b90bbc6a75ff4fb674b7dd6d575e4f4080ce1ab40776e5408a941",
+    "shared_bytes": 16535
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/commands.jsonl": {
+    "shared_sha256": "1acfac4c089bfb0c5724072c06cb8e329eee82fe8329557a01b0ea52a1083a53",
+    "shared_bytes": 205380
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/016-cleanup-zero.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/009-accepted-3.xml": {
+    "shared_sha256": "9db9effeae0020209f1f2cfee19a9a53794ca02694799b8584c10649152594b0",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/013-after-process-relaunch.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/007-entered-input.xml": {
+    "shared_sha256": "e91c5ed4ce3f83fb54841cbcddb0a8097097d2ee5c46056de1c3a46c27d866f4",
+    "shared_bytes": 4665
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/final-app-events.txt": {
+    "shared_sha256": "826790c22010564fd26ebface16afd8a396379ef65f4caa309cf332d58ec87e8",
+    "shared_bytes": 523
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/001-initial-zero.xml": {
+    "shared_sha256": "eec72fb91228fc257d933a3404dd5c17aebcd2f4b5aa6a536c4af48ebac4c770",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/014-after-process-relaunch.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/003-entered-input.xml": {
+    "shared_sha256": "148978d5a8dd9d7d815dddcd3e710134a542b20316750400ac1d0392cabb6588",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/004-before-tap-add_parcel.xml": {
+    "shared_sha256": "148978d5a8dd9d7d815dddcd3e710134a542b20316750400ac1d0392cabb6588",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/005-accepted-2.xml": {
+    "shared_sha256": "e30e11b3e2a8ac18457cf54d2660d601a9c0a10651ea9e082653f9693626e43c",
+    "shared_bytes": 4664
+  },
+  "mobile-portability/seeded-execution/test_process_termination_relaunch/012-after-process-relaunch.xml": {
+    "shared_sha256": "17727c7fbd45fdcebcb33b42bb6f805e2e165e8595a475f52c4b6ed32df53002",
+    "shared_bytes": 4653
+  },
+  "mobile-portability/seeded-execution/preflight/commands.jsonl": {
+    "shared_sha256": "83e965bdb720ff62683d8accb65c68d5fb27d2d0391a7ac4bceb8fb1263d8d47",
+    "shared_bytes": 6256
   }
 }

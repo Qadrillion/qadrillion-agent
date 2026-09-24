@@ -35,5 +35,12 @@
     "expected_outcomes": 8,
     "npm_ci_exit": 0,
     "workdir": "/tmp/qadrillion-specialist-final-clone"
+  },
+  "mobile_final_clean_clone": {
+    "commit": "21b4e0b",
+    "offline_exit": 0,
+    "python_tests": 152,
+    "guard_payloads": 75,
+    "mobile_changes_only_since_reference_replay": "Preflight/ownership and docs; Device/ParcelContract/rejected_case AST unchanged"
   }
 }

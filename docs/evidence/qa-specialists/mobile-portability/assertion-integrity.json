@@ -1,0 +1,14 @@
+{
+  "Device": {
+    "unchanged": true,
+    "ast_sha256": "3c87bead5e1eb1d1417027cb8b308f75da91276d317f93b7e22e3734bc4b1442"
+  },
+  "ParcelContract": {
+    "unchanged": true,
+    "ast_sha256": "6ae3c5b29445b785e79350eb2dc8989af32de96d1ae9cfcc50ca0d0649f61425"
+  },
+  "rejected_case": {
+    "unchanged": true,
+    "ast_sha256": "4f673f8cca184a739019733ef8ca5a7e70bb7963aec519a40723e95a42a85fee"
+  }
+}

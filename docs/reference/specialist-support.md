@@ -58,3 +58,9 @@ Cursor editor 3.21.18 and CLI 2026.09.23-86fc751 are installed. The CLI reports
 `Authentication required` before emitting any native events. Discovery,
 deduplication, body reads and hooks remain unverified. An authenticated Cursor
 CLI session is the exact dependency; see the [retained smoke](../evidence/qa-specialists/cursor/REPORT.md).
+
+A later portability review found and repaired the shipped mobile replay’s original
+serial and contract-path assumptions. The replay now pins an owned `demo.py` run,
+live AVD/serial, API and APK identity before clearing fixture data. Its business
+test methods and device actions are unchanged. Fresh native replay results are
+retained with the [mobile portability evidence](../evidence/qa-specialists/mobile-portability/README.md).

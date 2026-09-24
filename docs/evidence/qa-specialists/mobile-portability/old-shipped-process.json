@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "tools/specialists/reference/mobile/tests/test_parcel.py",
+    "--adb",
+    "<user-home>/Library/Android/sdk/platform-tools/adb",
+    "--serial",
+    "emulator-5562",
+    "--expected-apk-sha256",
+    "58354a319424da1ddf6951c6145fe3eac3e43a95a68d6fa2d657e1953188c179",
+    "--evidence",
+    "/tmp/qadrillion-mobile-portability-20260924/old-shipped-attempt"
+  ],
+  "exit": 2,
+  "observation": "Historical serial guard rejects freshly owned emulator before device calls"
+}
