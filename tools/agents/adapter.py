@@ -93,6 +93,8 @@ def patch_paths(value):
 
 
 def tool_paths(tool, value, cwd):
+    if tool not in FILE_TOOLS:
+        return []
     paths = paths_in(value)
     if tool == "apply_patch":
         paths.extend(patch_paths(value))

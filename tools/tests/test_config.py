@@ -67,16 +67,37 @@ class ConfigurationTests(unittest.TestCase):
         self.assertEqual(3, sum(row["status"] == "unverified" for row in rows))
 
     def test_doctor_does_not_execute_configured_commands(self):
-        self.data["integrations"] = [{"id": "issue", "provider": "example", "transport": "cli",
-                                      "executable": "not-installed-test-client", "enabled": True,
-                                      "scope": "test-project", "capabilities": ["tracker.read"]}]
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
-            (root / "qa-config.json").write_text(json.dumps(self.data))
-            with mock.patch.object(doctor.subprocess, "run") as run:
+            marker = root / "configured-command-executed"
+            command = root / "fixture-client"
+            command.write_text("#!/usr/bin/env python3\nfrom pathlib import Path\n"
+                               f"Path({str(marker)!r}).write_text('executed')\n", encoding="utf-8")
+            command.chmod(0o755)
+            self.data["integrations"] = [{"id": "issue", "provider": "example", "transport": "cli",
+                                          "executable": str(command), "enabled": True,
+                                          "scope": "test-project", "capabilities": ["tracker.read"]}]
+            self.data["runners"] = [{"id": "runner", "enabled": True, "scopes": ["other"],
+                                     "cwd": ".", "argv": [str(command)], "artifacts": "test-results"}]
+            self.assertEqual([], config.validate(self.data))
+            (root / "qa-config.json").write_text(json.dumps(self.data), encoding="utf-8")
+            rows = doctor.inspect(root)
+            self.assertFalse(marker.exists(), "Doctor executed a configured command")
+            self.assertEqual(["ok", "ok"], [row["status"] for row in rows
+                                            if row["check"] in {"issue", "runner"}])
+
+    def test_non_cli_metadata_is_not_interpreted_as_an_executable(self):
+        for transport in ("api", "mcp", "manual"):
+            with self.subTest(transport=transport), tempfile.TemporaryDirectory() as folder:
+                self.data["integrations"] = [{"id": "issue", "provider": "example",
+                                              "transport": transport, "enabled": True,
+                                              "scope": "test-project", "capabilities": ["tracker.read"],
+                                              "executable": {"command": "read"}}]
+                self.assertEqual([], config.validate(self.data))
+                root = Path(folder)
+                (root / "qa-config.json").write_text(json.dumps(self.data), encoding="utf-8")
                 rows = doctor.inspect(root)
-            run.assert_not_called()
-        self.assertTrue(any(row["check"] == "issue" and row["status"] == "error" for row in rows))
+                self.assertTrue(any(row["check"] == "qa-config" and row["status"] == "ok" for row in rows))
 
     def test_runner_path_resolves_in_its_cwd_and_requires_executable_mode(self):
         self.data["runners"] = [{"id": "local-runner", "enabled": True,

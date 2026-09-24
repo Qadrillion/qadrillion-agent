@@ -84,6 +84,16 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(json.loads(capture.read_text()), {
             "server_name": "postman", "tool_name": "get_collection", "tool_input": {"id": "42"}})
 
+    def test_mcp_metadata_is_not_interpreted_as_local_file_paths(self):
+        capture = self.root / "payload.json"
+        self.set_guard(f"cat > {shlex.quote(str(capture))}\nprintf '%s\\n' '{{\"permission\":\"allow\"}}'\n")
+        for runtime in ("codex", "claude"):
+            for metadata in ({"source": None}, {"paths": []}, {"path": {"node": "remote"}}):
+                value = {"metadata": metadata}
+                with self.subTest(runtime=runtime, metadata=metadata):
+                    self.assertEqual(self.call("mcp__fixture__read_record", value, runtime=runtime), {})
+                    self.assertEqual(json.loads(capture.read_text())["tool_input"], value)
+
     def test_shell_alias_and_command_are_data(self):
         capture = self.root / "payload.json"
         arg = self.root / "argument.txt"

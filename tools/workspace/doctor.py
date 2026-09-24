@@ -43,7 +43,12 @@ def inspect(root: Path) -> list[dict[str, str]]:
             for row in data[group]:
                 if not row["enabled"]:
                     continue
-                executable = row.get("executable") if group == "integrations" else row["argv"][0]
+                if group == "runners":
+                    executable = row["argv"][0]
+                elif row["transport"] == "cli":
+                    executable = row["executable"]
+                else:
+                    executable = None
                 if executable:
                     # Local runner paths are resolved against their declared working directory.
                     local = root / row.get("cwd", ".") / executable

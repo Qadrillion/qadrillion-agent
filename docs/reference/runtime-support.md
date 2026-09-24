@@ -51,6 +51,9 @@ firewall. In particular:
 
 - Name/command patterns cannot prove every operation's effects or authorization.
 - Recursive `Grep`/`Glob` searches are not intercepted as individual file reads.
+- MCP payload fields are provider data, not local paths. MCP guards inspect
+  server/tool names; provider-native permissions must constrain file access by
+  filesystem connectors. No MCP filesystem schema is mapped by this adapter.
 - Wrappers, unrecognized tools, hosted execution and later interactive-shell
   input can lie outside the intercepted paths.
 - Native trust, disabled hooks and runtime-specific cloud events affect whether
