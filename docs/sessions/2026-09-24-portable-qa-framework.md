@@ -230,3 +230,13 @@ concrete after review; they were not executed in a live runtime here.
 All five task-owned implementation worktrees were clean and removed. Their
 commits remain in Git. Main checkout contains only intended task changes;
 publication/CI results will be appended after the reviewed branch is pushed.
+
+## Publication
+
+Pushed `feat/portable-qa-framework` and created
+[PR #3](https://github.com/Qadrillion/qadrillion-agent/pull/3), targeting main.
+No merge, release or company-tool action was performed. The review record was
+committed as 7ada15a before publication; this final handoff is documentation only.
+CI runs for the final PR head are retained on its Checks tab; final observed CI
+status is reported in the user handoff. The laptop pilot should use this branch
+until the PR is merged, following the private-upgrade guide.

@@ -18,13 +18,14 @@ Blind review: PASS after all six findings were corrected; zero deferred findings
 
 Owner: framework maintainer session. Branch: feat/portable-qa-framework.
 Implementation checkpoint: fffd465; final documentation records follow it.
-Only review/session/state records are changing. One writer per checkout.
+Published [PR #3](https://github.com/Qadrillion/qadrillion-agent/pull/3).
+One writer per checkout; use the feature branch for the pilot before it is merged.
 Review base/fingerprint and limitations are in the portable-framework spec.
-Publication is the remaining step; native runtime activation has not been tested.
+CI results are attached to the PR; native runtime activation has not been tested.
 
 ## Next
 
-Publish the reviewed branch/PR, then follow docs/adopting.md in a private workspace.
+Follow docs/adopting.md in a private workspace using feat/portable-qa-framework.
 Pilot a non-production Cursor ticket and handoff; preserve existing company setup.
 
 ## Rejected
