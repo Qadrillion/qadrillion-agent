@@ -1,0 +1,29 @@
+{
+  "clean_clone_commit": "d1d8d0a",
+  "later_changes": "677c95e documentation and native smoke evidence only",
+  "offline": {
+    "exit": 0,
+    "python_tests": 140,
+    "guard_payloads": 75
+  },
+  "reference_execution": {
+    "exit": 0,
+    "expected_outcomes": 8,
+    "browsers": [
+      "Chromium",
+      "Firefox"
+    ],
+    "tests_unchanged": true,
+    "all_services_stopped": true
+  },
+  "npm_ci": {
+    "exit": 0,
+    "version": "@playwright/test 1.63.0"
+  },
+  "review_round1": {
+    "base": "91e9bb0d4dcbfe812963fe6f04f4387c1b664497",
+    "head": "677c95e",
+    "code_fingerprint": "26a55cf5373a97612f459b4e15c56671f2e4a469971daed4a813f85d26b37779",
+    "full_binary_diff_sha256": "474b19d89a80cd64d6a5a3f92ed693cf61655a31023248d93944651f915c0e45"
+  }
+}

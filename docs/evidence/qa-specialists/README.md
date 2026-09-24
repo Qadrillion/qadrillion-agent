@@ -29,7 +29,10 @@ coverage is claimed.
   chronology. Its original file remains above. The shared evidence contract now
   distinguishes creation/extraction from inspection; a fresh reviewer prepared
   the corrected handoff without rerunning tests. Original behavior remains a
-  reporting Fail; the corrected handoff passes content review.
+  reporting Fail; the corrected handoff passes content review. Image viewing in
+  that collaboration review is reviewer-reported provenance: its tool actions
+  were not serialized into this evidence bundle, so the bundle cannot independently
+  prove the historical viewing.
 - Mobile's parent handoff supplied a wrong package name. The author verified the
   installed APK hash and contract read-only, reconciled the identity and mutated
   only the intended app. First lifecycle-harness and reporting-accounting defects

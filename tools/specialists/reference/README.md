@@ -2,8 +2,11 @@
 
 These tests were authored/debugged by fresh agents using the specialist skills
 against real local targets. Original failures and corrected execution are in the
-specialist evaluation record. The files retain their final authored assertions;
-the replay controller provides fresh identities and fixture variants.
+specialist evaluation record. The files retain their final authored business assertions;
+the replay controller provides fresh identities and fixture variants. Blind review
+subsequently hardened browser teardown so failed diagnostics cannot skip owned-data
+cleanup. A closed-page regression retains its failure while proving cleanup;
+original agent-authored bytes/hashes remain in the evaluation evidence.
 
 Replay API, authorization and bounded performance checks without model access:
 

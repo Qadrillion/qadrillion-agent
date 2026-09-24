@@ -31,25 +31,43 @@ const test = base.extend({
       await page.goto(identity.url);
       await use({ identity, owned, pending, diagnostics });
     } finally {
-      try {
-        await Promise.all(pending);
-        diagnostics.snapshot = await page.locator('body').ariaSnapshot();
-        await page.screenshot({ path: info.outputPath('final.png'), fullPage: true });
-        await verify(request);
-        for (const order of owned) {
-          const r = await request.delete(`${identity.url}/orders/${order.id}`, { headers: { 'X-Lab-Actor': order.actor } });
-          diagnostics.cleanup.push({ ...order, status: r.status() });
-          expect(r.status()).toBe(200);
-        }
-        for (const actor of ['alice', 'bob']) {
-          const r = await request.get(`${identity.url}/orders`, { headers: { 'X-Lab-Actor': actor } });
-          expect(r.status()).toBe(200);
-          expect(await r.json()).toEqual(baselines[actor]);
-        }
-        diagnostics.baselineRestored = true;
-      } finally {
-        await info.attach('diagnostics', { body: JSON.stringify(diagnostics, null, 2), contentType: 'application/json' });
+      const teardownErrors = [];
+      diagnostics.teardownErrors = [];
+      const recordError = (phase, error) => {
+        teardownErrors.push(error);
+        diagnostics.teardownErrors.push({ phase, error: String(error), stack: error?.stack });
+      };
+      const attempt = async (phase, action) => {
+        try { await action(); return true; }
+        catch (error) { recordError(phase, error); return false; }
+      };
+      for (const result of await Promise.allSettled(pending)) {
+        if (result.status === 'rejected') recordError('order observation', result.reason);
       }
+      await attempt('snapshot', async () => { diagnostics.snapshot = await page.locator('body').ariaSnapshot(); });
+      await attempt('screenshot', () => page.screenshot({ path: info.outputPath('final.png'), fullPage: true }));
+      // Diagnostic failures must not strand owned data; failed identity still forbids mutations.
+      if (await attempt('cleanup identity', () => verify(request))) {
+        for (const order of owned) {
+          await attempt(`delete ${order.id}`, async () => {
+            const r = await request.delete(`${identity.url}/orders/${order.id}`, { headers: { 'X-Lab-Actor': order.actor } });
+            diagnostics.cleanup.push({ ...order, status: r.status() });
+            expect(r.status()).toBe(200);
+          });
+        }
+        let restored = true;
+        for (const actor of ['alice', 'bob']) {
+          const actorRestored = await attempt(`baseline ${actor}`, async () => {
+            const r = await request.get(`${identity.url}/orders`, { headers: { 'X-Lab-Actor': actor } });
+            expect(r.status()).toBe(200);
+            expect(await r.json()).toEqual(baselines[actor]);
+          });
+          restored = actorRestored && restored;
+        }
+        diagnostics.baselineRestored = restored;
+      }
+      await attempt('diagnostic attachment', () => info.attach('diagnostics', { body: JSON.stringify(diagnostics, null, 2), contentType: 'application/json' }));
+      if (teardownErrors.length) throw new AggregateError(teardownErrors, 'Browser teardown failed; inspect diagnostics');
     }
   }
 });
