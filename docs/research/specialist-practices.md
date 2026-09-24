@@ -20,6 +20,12 @@ The [mobile register](mobile-specialist.md) records that specialist's sources.
 | Android [BLE overview](https://developer.android.com/develop/connectivity/bluetooth/ble/ble-overview), central/peripheral roles, discovery/services and connection; Apple Core Bluetooth landing page retrieval returned only a JavaScript shell | Pin roles and observed service/characteristic identity; distinguish host submission from device effect. Android docs support the conditional path; Apple content was not substantively retrieved here. | Focused BLE reference; no physical radio or iOS Bluetooth execution claim. |
 | OpenAI [skill evals](https://developers.openai.com/blog/eval-skills), scenario definition, execution traces and deterministic graders; [skills](https://learn.chatgpt.com/docs/build-skills) and [developer commands](https://learn.chatgpt.com/docs/developer-commands) | Grade actions/artifacts, not plausible final prose. Separate native discovery from instruction copies. Use installed CLI help before relying on flags; blog examples can lag. Usage events are actual runtime measurements, word counts are proxies. | Isolated task materialization, retained events, explicit runtime support matrix. |
 
+Cursor’s [skill discovery documentation](https://cursor.com/docs/skills) was also
+inspected for project/compatibility roots and progressive body loading. Installed
+`cursor agent --help` establishes its actual CLI flags. Multiple supported roots
+make native duplicate handling a measured question, not a consequence of equal
+files. The native smoke was blocked by authentication, not a missing editor.
+
 The attempted k6 average-load-testing page failed twice and was excluded. No
 commercial book, inaccessible content or search snippet contributes substantive
 evidence. Local sample thresholds are evaluator choices fixed before comparing

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-24T09:28:06.957450+00:00",
+  "runtime": "Cursor Agent CLI",
+  "runtime_version": "2026.09.23-86fc751",
+  "editor_version": "3.21.18",
+  "editor_revision": "c4730f7d93d787d9ab120af715999f0345ee5bc0",
+  "source_commit": "06d1dac7e6c9035ed63ce661849952f0032032f1",
+  "workspace": "/tmp/qadrillion-cursor-smoke/workspace",
+  "status": "blocked",
+  "verdict": "Partial",
+  "blocker": "Cursor CLI is not authenticated. No login or API key was supplied.",
+  "authentication_status": {
+    "exit_code": 0,
+    "output": "Not logged in"
+  },
+  "execution": {
+    "attempts": 1,
+    "prompt_file": "request.json",
+    "command": [
+      "cursor",
+      "agent",
+      "--print",
+      "--output-format",
+      "stream-json",
+      "--mode",
+      "ask",
+      "--workspace",
+      "/tmp/qadrillion-cursor-smoke/workspace",
+      "<prompt recorded in request.json>"
+    ],
+    "exit_code": 1,
+    "duration_seconds": 1.165,
+    "stderr": "Error: Authentication required. Please run 'cursor agent login' first, or set CURSOR_API_KEY environment variable.\n",
+    "native_event_count": 0
+  },
+  "observations": {
+    "skill_files_present": {
+      "value": 24,
+      "provenance": "static-skill-inventory.json"
+    },
+    "distinct_skill_names_present": 8,
+    "identical_bodies_per_three_roots": true,
+    "native_metadata_discovery": "unverified; authentication failed before event stream",
+    "native_duplicate_resolution": "unverified",
+    "explicit_qa_invocation": "attempted; authentication blocked",
+    "full_skill_body_read": "unverified",
+    "web_specialty_selection": "unverified",
+    "implicit_skill_selection": "not attempted after auth blocker",
+    "native_read_tools": "unverified",
+    "benign_hook_activation": "unverified",
+    "native_hook_denial_enforcement": "not attempted",
+    "ui_editor_skill_list": "not inspected"
+  },
+  "usage": {
+    "reported": false,
+    "model": null,
+    "tokens": null,
+    "cost": null,
+    "note": "The CLI returned no usage or model information; zero cost is not inferred."
+  },
+  "scope_limits": [
+    "No login, supplied API key, personal/company integration or product execution",
+    "No changes to primary repository or personal configuration from this subtask",
+    "No runtime trust changes or permission bypass flags",
+    "Only an explicit read-only CLI prompt was attempted; an editor session was not exercised"
+  ],
+  "artifacts": [
+    "metadata.json",
+    "skill-manifest.json",
+    "static-skill-inventory.json",
+    "auth-status.json",
+    "request.json",
+    "explicit-qa-result.json",
+    "raw/editor-version.txt",
+    "raw/agent-version.txt",
+    "raw/agent-help.txt",
+    "raw/auth-status-redacted.txt",
+    "raw/explicit-qa.stdout.jsonl",
+    "raw/explicit-qa.stderr.txt"
+  ],
+  "sources": [
+    {
+      "url": "https://cursor.com/docs/skills",
+      "accessed": "2026-09-24",
+      "role": "Documentation of skill directories and progressive loading, not evidence of native activation"
+    },
+    {
+      "source": "cursor agent --help",
+      "role": "Installed CLI options and commands"
+    }
+  ]
+}

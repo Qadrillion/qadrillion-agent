@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "cursor",
+    "agent",
+    "--print",
+    "--output-format",
+    "stream-json",
+    "--mode",
+    "ask",
+    "--workspace",
+    "/tmp/qadrillion-cursor-smoke/workspace",
+    "/qa Native skill-loading smoke only. Do not test a product or edit any files. Inspect available skill metadata and report every qa, qa-workflow, and qa-web registration, with its path, including duplicates if shown. Read the full qa skill, its routing reference, qa-workflow and qa-web to determine the specialties for a hypothetical browser-only web QA task. Cite the file paths you actually read and explain the selected scope. Report unavailable tools honestly. Do not connect to integrations, use personal/company accounts, authenticate, install anything, or inspect files outside this disposable workspace."
+  ],
+  "prompt": "/qa Native skill-loading smoke only. Do not test a product or edit any files. Inspect available skill metadata and report every qa, qa-workflow, and qa-web registration, with its path, including duplicates if shown. Read the full qa skill, its routing reference, qa-workflow and qa-web to determine the specialties for a hypothetical browser-only web QA task. Cite the file paths you actually read and explain the selected scope. Report unavailable tools honestly. Do not connect to integrations, use personal/company accounts, authenticate, install anything, or inspect files outside this disposable workspace."
+}

@@ -1,0 +1,118 @@
+{
+  "source": "local filesystem inspection, not Cursor native discovery",
+  "skills": {
+    "golden-tasks": [
+      {
+        "path": ".cursor/skills/golden-tasks/SKILL.md",
+        "sha256": "71d685669a34e1d6d2c78c1e02f2c09864add6d2352ef79f57374364c32a6cda"
+      },
+      {
+        "path": ".agents/skills/golden-tasks/SKILL.md",
+        "sha256": "71d685669a34e1d6d2c78c1e02f2c09864add6d2352ef79f57374364c32a6cda"
+      },
+      {
+        "path": ".claude/skills/golden-tasks/SKILL.md",
+        "sha256": "71d685669a34e1d6d2c78c1e02f2c09864add6d2352ef79f57374364c32a6cda"
+      }
+    ],
+    "qa": [
+      {
+        "path": ".cursor/skills/qa/SKILL.md",
+        "sha256": "c25194b7a34e13522766aeae86d4b6a74fb30e97c98aff0308414e20087724bf"
+      },
+      {
+        "path": ".agents/skills/qa/SKILL.md",
+        "sha256": "c25194b7a34e13522766aeae86d4b6a74fb30e97c98aff0308414e20087724bf"
+      },
+      {
+        "path": ".claude/skills/qa/SKILL.md",
+        "sha256": "c25194b7a34e13522766aeae86d4b6a74fb30e97c98aff0308414e20087724bf"
+      }
+    ],
+    "qa-api": [
+      {
+        "path": ".cursor/skills/qa-api/SKILL.md",
+        "sha256": "fe014c155a9f303b9d0ecf28f46050d848d7e1ec004b770dedbbbe8c07ab3042"
+      },
+      {
+        "path": ".agents/skills/qa-api/SKILL.md",
+        "sha256": "fe014c155a9f303b9d0ecf28f46050d848d7e1ec004b770dedbbbe8c07ab3042"
+      },
+      {
+        "path": ".claude/skills/qa-api/SKILL.md",
+        "sha256": "fe014c155a9f303b9d0ecf28f46050d848d7e1ec004b770dedbbbe8c07ab3042"
+      }
+    ],
+    "qa-mobile": [
+      {
+        "path": ".cursor/skills/qa-mobile/SKILL.md",
+        "sha256": "3e3016dd84798c39f58953b9207f4a191e020dd380b4e4b287b87d0779da8464"
+      },
+      {
+        "path": ".agents/skills/qa-mobile/SKILL.md",
+        "sha256": "3e3016dd84798c39f58953b9207f4a191e020dd380b4e4b287b87d0779da8464"
+      },
+      {
+        "path": ".claude/skills/qa-mobile/SKILL.md",
+        "sha256": "3e3016dd84798c39f58953b9207f4a191e020dd380b4e4b287b87d0779da8464"
+      }
+    ],
+    "qa-performance": [
+      {
+        "path": ".cursor/skills/qa-performance/SKILL.md",
+        "sha256": "e351ebf18999e42bc2fbfdda1318df9a6be7fc2c6b270982edb0a97bdf2742bb"
+      },
+      {
+        "path": ".agents/skills/qa-performance/SKILL.md",
+        "sha256": "e351ebf18999e42bc2fbfdda1318df9a6be7fc2c6b270982edb0a97bdf2742bb"
+      },
+      {
+        "path": ".claude/skills/qa-performance/SKILL.md",
+        "sha256": "e351ebf18999e42bc2fbfdda1318df9a6be7fc2c6b270982edb0a97bdf2742bb"
+      }
+    ],
+    "qa-security": [
+      {
+        "path": ".cursor/skills/qa-security/SKILL.md",
+        "sha256": "b02093fda1c7740b7e3f1b4ec1c75a78aec94ea971334ae09ea5e3f226d64386"
+      },
+      {
+        "path": ".agents/skills/qa-security/SKILL.md",
+        "sha256": "b02093fda1c7740b7e3f1b4ec1c75a78aec94ea971334ae09ea5e3f226d64386"
+      },
+      {
+        "path": ".claude/skills/qa-security/SKILL.md",
+        "sha256": "b02093fda1c7740b7e3f1b4ec1c75a78aec94ea971334ae09ea5e3f226d64386"
+      }
+    ],
+    "qa-web": [
+      {
+        "path": ".cursor/skills/qa-web/SKILL.md",
+        "sha256": "a7be5f15bff20afbc8ac2bd1386dbd4b47a13723f1904811ce0e0233174ccffd"
+      },
+      {
+        "path": ".agents/skills/qa-web/SKILL.md",
+        "sha256": "a7be5f15bff20afbc8ac2bd1386dbd4b47a13723f1904811ce0e0233174ccffd"
+      },
+      {
+        "path": ".claude/skills/qa-web/SKILL.md",
+        "sha256": "a7be5f15bff20afbc8ac2bd1386dbd4b47a13723f1904811ce0e0233174ccffd"
+      }
+    ],
+    "qa-workflow": [
+      {
+        "path": ".cursor/skills/qa-workflow/SKILL.md",
+        "sha256": "731e6fa760ddc80bd4c22753b1710bb9ce28f029929bcf07e2d8b8b5e946fea3"
+      },
+      {
+        "path": ".agents/skills/qa-workflow/SKILL.md",
+        "sha256": "731e6fa760ddc80bd4c22753b1710bb9ce28f029929bcf07e2d8b8b5e946fea3"
+      },
+      {
+        "path": ".claude/skills/qa-workflow/SKILL.md",
+        "sha256": "731e6fa760ddc80bd4c22753b1710bb9ce28f029929bcf07e2d8b8b5e946fea3"
+      }
+    ]
+  },
+  "each_name_has_three_identical_bodies": true
+}

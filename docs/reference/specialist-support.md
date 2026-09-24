@@ -53,5 +53,8 @@ probed, not feature-tested. k6, Cypress and Selenium are adaptation recipes only
 Codex CLI 0.154.0 metadata discovery and explicit QA execution were observed.
 Claude Code 2.1.278 metadata/full-skill reads and benign Read/Stop hooks were
 observed. Neither proves implicit trigger parity or native deny enforcement.
-Cursor editor 3.21.18 is installed. Its `cursor agent` launcher installed the
-initially missing CLI; the native smoke result is recorded separately below.
+Cursor editor 3.21.18 and CLI 2026.09.23-86fc751 are installed. The CLI reports
+`Not logged in`; one explicit read-only `/qa` attempt fails with
+`Authentication required` before emitting any native events. Discovery,
+deduplication, body reads and hooks remain unverified. An authenticated Cursor
+CLI session is the exact dependency; see the [retained smoke](../evidence/qa-specialists/cursor/REPORT.md).

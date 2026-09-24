@@ -8,6 +8,10 @@ The portability baseline did not certify native activation. The later
 discovery and explicit skill execution, and Claude 2.1.278 discovery/full-skill
 reads plus benign Read/Stop hooks. Cursor activation and native deny/trust coverage
 remain unverified; these limited observations do not establish runtime parity.
+Cursor editor 3.21.18/CLI 2026.09.23-86fc751 were probed: the explicit CLI
+attempt stopped at `Authentication required`, with no native events.
+[Retained evidence](../evidence/qa-specialists/cursor/REPORT.md) identifies the
+required authenticated session without connecting a company account.
 
 | Runtime | Maintained/generated entrypoints | What still needs live validation |
 |---|---|---|

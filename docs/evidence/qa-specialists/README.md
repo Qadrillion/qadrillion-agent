@@ -64,7 +64,9 @@ reported; its list-price cost field is not a verified bill.
 [Native discovery](native-discovery.json) records Codex 0.154.0 metadata and Claude
 2.1.278 metadata/full-skill reads. Benign Claude hooks ran; the smoke prompt's
 instruction to avoid claiming a hook ran was itself incorrect. Native events
-take precedence. No Cursor activation, implicit-selection parity or deny/trust
+take precedence. [Cursor CLI smoke](cursor/REPORT.md) reached its exact
+`Authentication required` blocker; editor 3.21.18 and CLI 2026.09.23-86fc751 are
+installed. No Cursor activation, implicit-selection parity or deny/trust
 certification is claimed.
 
 ## Artifact navigation and replay

@@ -2,7 +2,7 @@
 
 Updated: 2026-09-24. Owner: framework maintainer session.
 Branch: `feat/qa-specialists`. Base: `91e9bb0` (merged PR #3).
-Implementation checkpoint: `06d1dac`; integration/evidence commit follows.
+Implementation checkpoint: `d1d8d0a`; final review/CI records follow.
 
 Task: implement and independently validate five QA specialties before the
 work-laptop pilot. Existing checkout was clean; prior feature branch preserved.
@@ -18,11 +18,11 @@ with two literal-input skips. Original failures and reporting repairs are retain
 
 Checks: offline verification, adapter generation, five skill validators and all
 eight local reference replays pass. Native Codex/Claude observations are limited
-to recorded discovery/reads/actions; Cursor smoke is in progress. Full Xcode/iOS
+to recorded discovery/reads/actions; Cursor smoke is blocked by missing CLI authentication. Full Xcode/iOS
 Simulator, physical/hybrid/BLE coverage and native deny parity are unverified.
 
-Dirty paths: task-owned integration, generated skills, reference suites and
-public synthetic evidence/docs awaiting commit. No unrelated changes found.
+Dirty paths: task-owned native-smoke evidence and completion docs awaiting commit.
+No unrelated changes found.
 Next: clean-clone verification, blind review, requested PR and CI. No material
 user decision blocks this work. Merge remains with the user; no company account,
 tracker publication or work-laptop connection is part of this task.
