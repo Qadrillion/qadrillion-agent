@@ -2,7 +2,8 @@
 
 Updated: 2026-09-24. Owner: framework maintainer session.
 Branch: `docs/repository-presentation`. Base: `d593f73` (merged PR #4).
-Implementation base/acceptance checkpoint: `34f817a`; presentation commit follows.
+Implementation: `7cfa20e`; review-record formatting correction follows.
+PR: https://github.com/Qadrillion/qadrillion-agent/pull/5 (open).
 
 Task: refresh GitHub presentation and supply a separate website implementation
 prompt before the private laptop pilot. Current main and existing work were
@@ -23,6 +24,9 @@ overflow. Generated adapters are current. See
 
 Review: PASS after two documentation findings were corrected; zero unresolved or
 deferred. The reviewer independently passed offline, replay and render checks.
+The current content fingerprint matches the reviewed value. The stop reminder's
+required plain-field/round syntax is corrected and recognition was verified.
+All four hosted checks pass at `7cfa20e`; latest documentation checks are on PR #5.
 Dirty paths: none after the presentation/completion commit; no unrelated work.
 Next: maintainer reviews and merges the presentation PR, then uses the website
 prompt in the website checkout and pilots the framework privately. The task's

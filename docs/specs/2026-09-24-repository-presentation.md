@@ -79,12 +79,12 @@ Mobile hardware/iOS/Appium and runtime activation limits stay as documented.
 
 ## Implementation record — 2026-09-24
 
-Branch: `docs/repository-presentation` · Acceptance checkpoint: `34f817a`; implementation/completion commit follows.
-Review-base: `d593f73a14606753ff5cbf937767d33f9a0b8a52`.
-Review-fingerprint: `b896e4ca0adce61ca7fe75967ad9a90712c939d57af80fae4da6a442b5db4724`.
-Full-diff-sha256: `345362be0fc5117a3a2820186c0bbbc5e26f607979967b9ef7ebc1c6bc651171`.
+Branch: docs/repository-presentation · Commits: 34f817a..7cfa20e; review-record formatting correction follows.
+Review-base: d593f73a14606753ff5cbf937767d33f9a0b8a52
+Review-fingerprint: b896e4ca0adce61ca7fe75967ad9a90712c939d57af80fae4da6a442b5db4724
+Full-diff-sha256: 345362be0fc5117a3a2820186c0bbbc5e26f607979967b9ef7ebc1c6bc651171
 Verified: `python3 tools/verify.py` → PASS (153 Python tests, 75 guard cases); doctor and adapter drift checks → PASS; documented HTTP/browser setup/replays → six/eight expected outcomes with unchanged tests and completed cleanup; 44 links/anchors and six responsive renders → PASS.
-Review: one independent review, PASS after two supplemental documentation corrections.
+Review: round 1 PASS after two supplemental documentation corrections.
 Deferred: 0 items. Two in-scope findings fixed, zero unresolved.
 Not verified: “Hosted GitHub layout, screen-reader behavior, fresh-machine setup and website implementation require separate execution. Local layout checks used the prepared GitHub-style HTML previews.” Full reviewer coverage and historical limits are retained verbatim in the [review record](../reviews/2026-09-24-repository-presentation.md).
 
@@ -95,6 +95,14 @@ records; no framework behavior changes. The owned preview server and all replay
 services were stopped. Website implementation is intentionally handed to another
 chat through the [copyable prompt](../prompts/update-repo-landing-page.md).
 
-Publication: open the branch's PR after this record is committed, confirm its
-hosted checks, and leave merge to the user. The final user handoff links the PR
-and its current checks; publication is not part of the blind review's execution.
+Publication: [PR #5](https://github.com/Qadrillion/qadrillion-agent/pull/5) is open.
+All four [hosted checks at 7cfa20e](https://github.com/Qadrillion/qadrillion-agent/actions/runs/35990168203)
+passed. The [PR checks](https://github.com/Qadrillion/qadrillion-agent/pull/5/checks)
+show subsequent documentation-only verification. Merge remains with the user;
+publication is not part of the blind review's execution.
+
+The stop reminder initially rejected this record's Markdown-wrapped fields and
+free-form verdict syntax. On 2026-09-24 the fields were normalized to the parser's
+plain `Branch`, `Review-base`, `Review-fingerprint` and `round 1 PASS` format.
+The recomputed fingerprint matched the reviewed content; the reminder returned
+an empty result after correction. No review was bypassed or fabricated.

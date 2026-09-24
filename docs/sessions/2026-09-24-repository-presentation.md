@@ -37,3 +37,10 @@ full binary-diff SHA-256: `345362be0fc5117a3a2820186c0bbbc5e26f607979967b9ef7ebc
 Completion records follow the reviewed snapshot. All owned services, including
 the README preview server, are stopped; temporary outputs remain inspectable.
 Publish the reviewed branch, verify hosted CI and leave merge to the user.
+
+Published PR #5 at `7cfa20e`; all four jobs in run 35990168203 passed. The stop
+reminder did not recognize Markdown-wrapped record fields or the free-form PASS
+sentence. Inspected its parser, confirmed the current fingerprint still matches
+the reviewed content, and normalized only the record format to plain fields and
+`Review: round 1 PASS`. The reminder then returned an empty result. No new product,
+README or website-prompt change was made after review. Merge remains with the user.
