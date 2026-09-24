@@ -57,7 +57,7 @@ coverage before efficiency. No live transport benchmark was run here.
 ## Prompt and behavior measurements
 
 Always-loaded project prose (AGENTS plus the core rule body) changed from 850
-words / 5,935 characters at baseline to 634 words / 4,712 characters. These are
+words / 5,935 characters at baseline to 660 words / 4,898 characters. These are
 word/character measurements, not actual model tokens or billing. Detailed research
 and surface guidance load on demand. Generated skill aliases may still be exposed
 more than once by particular runtime discovery versions; inspect the native list.
@@ -80,6 +80,17 @@ and limits. There is no claim of a broad success rate from this small sample.
    Code and Codex before claiming parity.
 5. Measure actual tokens, latency, costs, interventions, task outcomes and escaped
    defects on comparable tasks. Prompt word counts are not token measurements.
+
+## Autonomy adjustment requested by the user
+
+The final default is `GUARD_PROFILE='targeted'`: ordinary edits, dependency
+installation and authorized CLI/MCP work have no generic approval gate. Targeted
+destructive operations, production tests, credential access and configured fences
+remain checked. Organizations can opt into broader `strict` gates. This does not
+grant external publication authority: an explicit reporting task carries its
+authorization forward, with native permissions still active. Native file edits
+check paths rather than treating documentation command examples as executable.
+Global machine hooks are outside this repository and were not changed.
 
 Implementation results and review evidence are recorded in the linked
 [spec](../specs/2026-09-24-portable-qa-framework.md) and dated session records.

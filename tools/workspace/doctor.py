@@ -14,6 +14,7 @@ from config import load, validate
 
 
 def inspect(root: Path) -> list[dict[str, str]]:
+    root = root.resolve()
     results = []
 
     def report(status, check, detail):
