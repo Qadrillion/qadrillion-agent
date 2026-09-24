@@ -1,0 +1,77 @@
+test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) ... 
+  test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) (name='array') ... FAIL
+  test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) (name='null') ... FAIL
+  test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) (name='numeric-url') ... FAIL
+
+======================================================================
+FAIL: test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) (name='array')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/tests/test_specialists.py", line 357, in test_cli_retains_setup_failure_in_reserved_output
+    self.assertEqual(run.returncode, 2, run.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 2 : Traceback (most recent call last):
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/measure.py", line 162, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/measure.py", line 140, in main
+    result = measure(**options)
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/measure.py", line 38, in measure
+    url = identity["url"]
+          ~~~~~~~~^^^^^^^
+TypeError: list indices must be integers or slices, not str
+
+
+======================================================================
+FAIL: test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) (name='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/tests/test_specialists.py", line 357, in test_cli_retains_setup_failure_in_reserved_output
+    self.assertEqual(run.returncode, 2, run.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 2 : Traceback (most recent call last):
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/measure.py", line 162, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/measure.py", line 140, in main
+    result = measure(**options)
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/measure.py", line 38, in measure
+    url = identity["url"]
+          ~~~~~~~~^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+
+======================================================================
+FAIL: test_cli_retains_setup_failure_in_reserved_output (tools.tests.test_specialists.MeasureTests.test_cli_retains_setup_failure_in_reserved_output) (name='numeric-url')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/tests/test_specialists.py", line 357, in test_cli_retains_setup_failure_in_reserved_output
+    self.assertEqual(run.returncode, 2, run.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 2 : Traceback (most recent call last):
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/measure.py", line 162, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/measure.py", line 140, in main
+    result = measure(**options)
+  File "<user-home>/Documents/Projects/qadrillion-agent/tools/specialists/measure.py", line 39, in measure
+    parsed = urlsplit(url)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/parse.py", line 496, in urlsplit
+    url, scheme, _coerce_result = _coerce_args(url, scheme)
+                                  ~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/parse.py", line 133, in _coerce_args
+    return _decode_args(args) + (_encode_result,)
+           ~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/parse.py", line 117, in _decode_args
+    return tuple(x.decode(encoding, errors) if x else '' for x in args)
+           ^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/parse.py", line 117, in <genexpr>
+    return tuple(x.decode(encoding, errors) if x else '' for x in args)
+                 ^^^^^^^^
+AttributeError: 'int' object has no attribute 'decode'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.363s
+
+FAILED (failures=3)

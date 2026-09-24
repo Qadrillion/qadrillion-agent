@@ -34,3 +34,15 @@ collaboration and review usage is unavailable. No savings/autonomy percentage is
 claimed. Native discovery observations are narrower than hook/permission support.
 Tracker publication: no QA tracker posting. The requested public framework PR
 is the sole external deliverable; merge remains with the user.
+
+Final hardening: six in-scope blind-review findings were fixed. Browser diagnostics
+can no longer skip owned-data cleanup; performance output is reserved before
+traffic and malformed identity receives retained blocked evidence; the mobile
+stack claim is corrected; shipped native replay resolves its contract and validates
+a caller-pinned owned emulator rather than the author’s historical serial.
+
+A fresh emulator-5562 native replay detects two lifecycle failures and passes both
+on the corrected APK, with identical test bytes. App/device state was cleaned.
+Business-method ASTs are unchanged. Offline coverage is now 152 Python tests plus
+75 guard cases. Final blind review is PASS with zero deferred findings. See the
+spec implementation record for final publication and CI.

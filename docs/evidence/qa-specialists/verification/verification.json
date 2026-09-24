@@ -42,5 +42,19 @@
     "python_tests": 152,
     "guard_payloads": 75,
     "mobile_changes_only_since_reference_replay": "Preflight/ownership and docs; Device/ParcelContract/rejected_case AST unchanged"
+  },
+  "final_review": {
+    "verdict": "PASS",
+    "reviewed_implementation_commit": "b060801",
+    "code_fingerprint": "16afb15b4a39970dedeaea8dd0bd79431e0e026aec6a3fb402cb6dc18c7147f7",
+    "full_binary_diff_sha256": "fa8784e003d1401a5407e789a3248949b7307cc742dda3210f95cfea25013f4d",
+    "unresolved_findings": 0,
+    "in_scope_findings_fixed": 6
+  },
+  "release_clean_clone": {
+    "commit": "b060801",
+    "offline_exit": 0,
+    "python_tests": 152,
+    "guard_payloads": 75
   }
 }

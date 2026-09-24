@@ -77,3 +77,30 @@ retain the failed verdict and do not weaken the acceptance criteria.
 - Native mobile replay was not executed independently. Fix the shipped replay, then execute against a fresh owned emulator. CI on the final revision remains unverified.
 - Historical claims remain unreproduced: “Inspected APIs:”, “Sources inspected 2026-09-24:”, and “These are inspected sections/pages”. Reproduction requires the original inspection evidence.
 - Retained browser claims “First-failure diagnostics were inspected before continuing the matrix” and “extracted first-attempt trace evidence, inspected directly” remain unsupported; later reports preserve and correct them.
+
+## Final review — PASS
+
+Initial fourth-review snapshot: `c9bdc32`.
+Initial code fingerprint: `83ef0c7961555e84d0fcef13f46752d2ded0ca745bd9b4f75e7cc2a2aedb0681`.
+Initial full binary diff SHA-256: `8ed58b276a5951e655ebecbc4f24c8c6f755f7747eb98eba5277bffd98579bc8`.
+
+| Scope | Severity | Finding | Disposition |
+|---|---|---|---|
+| IN-SCOPE | SHOULD | Malformed measurement identity JSON (`[]`, `null`, numeric URL) escaped the setup-error handler, leaving reserved output empty. | Fixed: validate object/string shapes before access, including the live identity response. Actual CLI regression retains parseable blocked evidence with exit 2. Reviewer independently reproduced the correction. |
+
+The reviewer inspected the supplemental complete diff and reran 23 specialist
+tests before issuing PASS. Final reviewed code is committed as `b060801`.
+Final code fingerprint: `16afb15b4a39970dedeaea8dd0bd79431e0e026aec6a3fb402cb6dc18c7147f7`.
+Final full binary diff SHA-256: `fa8784e003d1401a5407e789a3248949b7307cc742dda3210f95cfea25013f4d`.
+The final fingerprint/diff were captured before explicitly dispatching the
+supplemental diff. No unresolved or deferred findings remain; six in-scope
+findings were fixed across the retained review sequence.
+
+### Reviewer Not verified (verbatim)
+
+- Checklist reviewed: A1 ownership; A2 procedures; A3 routing; A4 API/security; A5 browser; A6 performance; A7 mobile; A8 evidence integrity; A9 portability/runtime/CI; A10 adoption/handoff.
+- Independently passed offline verification, all eight defective/corrected HTTP/browser replay outcomes, and 23 specialist tests after the identity-schema repair. Malformed identities now retain blocked evidence and exit 2. Evidence: `/tmp/reviewer-round4-verify.log`, `/tmp/reviewer-round4-replay-installed/replay.json`, `/tmp/reviewer-round4-fixed-specialists.log`.
+- All 373 shared artifact hashes matched. Nine recorded usage events reproduced reported totals and routing selections. Mobile artifacts match the current test hash; business/device methods remain unchanged. Native mobile execution was not independently rerun.
+- Final CI, final clean-clone execution and PR completion remain unchecked. iOS, hybrid, physical hardware and native denial enforcement remain outside executed coverage.
+- Historical claims remain unreproduced: “Inspected APIs:”, “Sources inspected 2026-09-24:”, “Inspected 2026-09-24.”, “These are inspected sections/pages”, “their installation was probed”, and “This evaluator independently viewed all three named images and corroborated their content”. Verification requires the corresponding inspection/probe/view records.
+- Retained browser claims “First-failure diagnostics were inspected before continuing the matrix” and “extracted first-attempt trace evidence, inspected directly” remain unsupported. Later reports preserve and correct them.

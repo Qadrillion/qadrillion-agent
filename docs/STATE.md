@@ -2,27 +2,28 @@
 
 Updated: 2026-09-24. Owner: framework maintainer session.
 Branch: `feat/qa-specialists`. Base: `91e9bb0` (merged PR #3).
-Implementation checkpoint: `d1d8d0a`; final review/CI records follow.
+Reviewed implementation: `b060801`; completion documentation follows.
 
-Task: implement and independently validate five QA specialties before the
-work-laptop pilot. Existing checkout was clean; prior feature branch preserved.
-The [frozen spec](specs/2026-09-24-qa-specialists.md),
-[support matrix](reference/specialist-support.md) and
-[evidence](evidence/qa-specialists/README.md) define scope and measured limits.
+Task: five deep QA specialties, progressive routing and real isolated evaluation
+before the work-laptop pilot. Existing work/branches were preserved.
+[Completion/spec](specs/2026-09-24-qa-specialists.md),
+[support matrix](reference/specialist-support.md),
+[blind review](reviews/2026-09-24-specialist-blind-review.md) and
+[evidence](evidence/qa-specialists/README.md) contain scope and decisive records.
 
-Implemented progressive routing, five specialist procedures, optional executable
-fixtures and reference replay. Nine fresh Codex scenarios completed; independent
-API, browser, security, performance and Android authoring detected real defects.
-Corrected targets pass detecting assertions unchanged. Android remains Partial
-with two literal-input skips. Original failures and reporting repairs are retained.
+Checks: 152 Python tests and 75 guard payloads pass, including a release clone.
+Eight HTTP/browser bad/good replays produce expected outcomes. Nine fresh Codex
+scenarios completed. Real Android defect/correction execution and a second owned
+emulator portability replay retain unchanged detecting assertions. Owned services,
+app data and both emulators are cleaned. Final blind review: PASS; six findings
+fixed; zero deferred or unresolved findings.
 
-Checks: offline verification, adapter generation, five skill validators and all
-eight local reference replays pass. Native Codex/Claude observations are limited
-to recorded discovery/reads/actions; Cursor smoke is blocked by missing CLI authentication. Full Xcode/iOS
-Simulator, physical/hybrid/BLE coverage and native deny parity are unverified.
+Limits: original Android suite has two literal-input skips (Partial). Cursor
+editor/CLI is installed but native activation requires authentication. Full
+Xcode/iOS Simulator is absent. Hardware, hybrid/BLE and native deny parity are
+unverified; no company-stack certification or token/autonomy savings claim.
 
-Dirty paths: task-owned native-smoke evidence and completion docs awaiting commit.
-No unrelated changes found.
-Next: clean-clone verification, blind review, requested PR and CI. No material
-user decision blocks this work. Merge remains with the user; no company account,
-tracker publication or work-laptop connection is part of this task.
+Dirty paths: task completion records being committed; no unrelated work.
+Next: publish the requested PR and confirm hosted CI, then maintainer review/merge.
+No user decision blocks publication. No company accounts or work-laptop access
+were used; no tracker posting occurred. Merge remains with the user.

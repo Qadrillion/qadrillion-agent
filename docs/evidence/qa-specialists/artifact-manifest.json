@@ -1461,8 +1461,8 @@
     "shared_bytes": 10495
   },
   "verification/verification.json": {
-    "shared_sha256": "3298d82b8ff0ae035e572e648ea42e87a6d18b140ff2d25458012ad0407e4871",
-    "shared_bytes": 1289
+    "shared_sha256": "509b9f87c402a3626e0be169d1ad299c6904ba3f8a96ad8f71ca379080d8242b",
+    "shared_bytes": 1770
   },
   "review-round1/cleanup-probe.py": {
     "shared_sha256": "ed80e49527d63dc662177b24139e7dabe6c147cbb1a400a13f9367d438ff6e35",
@@ -1895,5 +1895,21 @@
   "mobile-portability/seeded-execution/preflight/commands.jsonl": {
     "shared_sha256": "83e965bdb720ff62683d8accb65c68d5fb27d2d0391a7ac4bceb8fb1263d8d47",
     "shared_bytes": 6256
+  },
+  "verification/final-identity-verify.log": {
+    "shared_sha256": "00729015087629b89274f4bb045db85b6b4f14583d28c638b66caecd1456dba9",
+    "shared_bytes": 31111
+  },
+  "verification/release-clone-verify.log": {
+    "shared_sha256": "90464ebcf542cc2f9a61db0f5b44850f7fd4d24f9e9e28226b52858e68d724f8",
+    "shared_bytes": 31111
+  },
+  "verification/identity-shape-before.log": {
+    "shared_sha256": "71d7fd36bcdd217621fee1f4894ea4bf25d45d2051e547b8e19b2f8e0463d198",
+    "shared_bytes": 5268
+  },
+  "verification/identity-shape-after.log": {
+    "shared_sha256": "d4d59ca36fa032b15c719b2966ff8cf299d8a6900e14014c16cb656aabd67844",
+    "shared_bytes": 2045
   }
 }

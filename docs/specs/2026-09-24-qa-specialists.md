@@ -54,5 +54,44 @@ Entries here define intended coverage, not completed validation.
 
 ## Review and implementation record
 
-To be appended after verification, with content fingerprint captured before blind
-review, commands/results, review disposition, CI URL and remaining exact limits.
+The implementation and independent review record follows. Acceptance criteria
+above were frozen before implementation; limits are not converted into passes.
+
+## Implementation record — 2026-09-24
+
+Branch: feat/qa-specialists · Commits: 7dcc98a..b060801 (reviewed implementation; completion records follow)
+Review-base: 91e9bb0d4dcbfe812963fe6f04f4387c1b664497
+Review-fingerprint: 16afb15b4a39970dedeaea8dd0bd79431e0e026aec6a3fb402cb6dc18c7147f7
+Full-diff-sha256: fa8784e003d1401a5407e789a3248949b7307cc742dda3210f95cfea25013f4d
+Verified: `python3 tools/verify.py` → PASS (138 tooling + 14 mobile tests; 75 guard payloads); `python3 tools/agents/sync.py --check` → current; five skill validators → PASS; clean-clone `npm ci` and `python3 tools/specialists/replay.py --web` → eight expected defective/corrected outcomes, unchanged test files and closed services.
+Review: round 1 BLOCKED; round 2 PASS WITH SHOULDS; round 3 BLOCKED; round 4 PASS after supplemental repair review.
+Deferred: 0 items. All six in-scope review findings were corrected.
+
+The fingerprint and full binary-diff hash were captured before dispatching each
+blind reviewer. The code fingerprint excludes documentation; the full-diff hash
+also pins the evidence and instructions in the reviewed snapshot. Review history,
+findings, disposition and verbatim reviewer limits are in the
+[blind-review record](../reviews/2026-09-24-specialist-blind-review.md).
+
+| Criterion | Completion evidence |
+|---|---|
+| A1 | [Ownership audit](../reviews/2026-09-24-specialist-architecture.md): shared rules, five skills, focused references, existing bounded roles and optional executable helpers. |
+| A2 | Five substantive author/run/debug/maintain procedures; [research decisions](../research/specialist-practices.md) and [measured support](../reference/specialist-support.md) separate recipes from executed stacks. |
+| A3 | Nine completed isolated routing/action cases. Quick/ordinary tasks avoid unrelated specialists; missing-capability tasks retain useful authoring without inventing execution. Three provider-interrupted attempts remain recorded. |
+| A4 | Real API suite: 34/34 corrected; authorization: 86/86 corrected. Original defect failures, unplanned contract mismatch, unchanged detecting assertions and cleanup remain inspectable. |
+| A5 | Real Chromium/Firefox: six price failures then six corrected passes. Blind-review closed-page regression confirms cleanup despite retained diagnostic failure. Original reporting overclaims remain failures. |
+| A6 | Fixed 40 ms p95 budget rejects 95.00 ms candidate and accepts 8.64 ms baseline, 50 samples each. Closed workload and environment limits are explicit; output reservation now precedes all HTTP. |
+| A7 | Real owned Android14/API34 emulator path detects persistence failure. Corrected result is 10 pass, 0 fail, 2 skip: product coverage remains Partial. Full Xcode/iOS Simulator and unexecuted hardware/hybrid/BLE paths are named limits. Fresh owned emulator-5562 replay also detects both lifecycle failures and passes 2/2 after correction with identical test bytes. Both owned emulators/data cleanups completed. |
+| A8 | Original action streams, outputs, hashes and independent observations are [committed](../evidence/qa-specialists/README.md). Nine completed Codex turns expose 2,569,296 input and 43,891 output tokens; other session usage is not inferred. |
+| A9 | Generated copies current; clean-clone offline and real reference execution pass. Codex/Claude discovery/read observations remain narrower than native trust. Cursor installed CLI returns Authentication required with no native events; an authenticated Cursor session is the exact remaining dependency. Hosted CI is recorded below. |
+| A10 | Adoption/customization/team handoff updated. Blind-review findings fixed; public PR and final check status recorded below. Merge remains with the user. |
+
+Clean-clone HTTP/browser replay exercised `4ef5b3e`. After the mobile preflight
+repair, a further clean clone at `21b4e0b` passed all 152 tests. Fresh emulator
+replay exercised that repaired script. The subsequent malformed-identity guard
+passed full offline and independent specialist checks; a release clone verifies
+the resulting implementation. Hosted CI checks the final branch. Clean-clone
+logs and original failures are under `docs/evidence/qa-specialists/verification`.
+Neither synthetic fixtures nor this review certify an arbitrary company setup.
+
+Reviewer limits at review time (verbatim): “Final CI, final clean-clone execution and PR completion remain unchecked. iOS, hybrid, physical hardware and native denial enforcement remain outside executed coverage.” Maintainer clean-clone/PR/CI completion is recorded afterward below. Full historical inspection limitations remain verbatim in the linked review record.
