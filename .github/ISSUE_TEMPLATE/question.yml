@@ -1,0 +1,17 @@
+name: Question about adopting it
+description: How to point the skeleton at your tracker, your hosts, or your test stack.
+title: "question: "
+body:
+  - type: textarea
+    id: trying
+    attributes:
+      label: What you are trying to do
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: What you already read or changed
+      description: workspace-manifest.json, guard.conf, docs/adopting.md, or something else.
+    validations:
+      required: false

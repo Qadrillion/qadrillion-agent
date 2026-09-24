@@ -1,12 +1,11 @@
 # State — <workspace name>
 
-Setup handover (2026-09-16): `fix/codex-cursor-parity` adds shared Codex
-adapters; existing product work below remains the baseline. Review the setup
-PR before integration; new hooks still require native trust and reload.
-
-Updated: YYYY-MM-DD
+Updated: 2026-09-24
 Overwrite this file every session. Never append. Handover note, not a diary.
 Full chronology lives in `docs/sessions/` and is never read at startup.
+
+This file is the template a team overwrites after cloning. Keep the headings.
+Skeleton note, 2026-09-24: Codex adapters are on main; new hooks still need native trust and a reload. The public GitHub page is in `docs/sessions/2026-09-23-public-repo.md`. Next work on the skeleton is a review of the skills and subagents, then a release tag.
 
 ## Goal
 
