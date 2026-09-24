@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "Mixed product example",
+    "scopes": [
+      "mobile",
+      "backend",
+      "device"
+    ]
+  },
+  "integrations": [
+    {
+      "id": "tracker",
+      "provider": "atlassian-twg",
+      "transport": "cli",
+      "executable": "twg",
+      "capabilities": [
+        "tracker.read",
+        "tracker.search"
+      ],
+      "enabled": false,
+      "scope": "Select actual tenant/project and verify live command catalog"
+    },
+    {
+      "id": "observability",
+      "provider": "team-selected",
+      "transport": "mcp",
+      "capabilities": [
+        "observability.read"
+      ],
+      "enabled": false,
+      "scope": "Non-production service and bounded time window"
+    }
+  ],
+  "environments": [
+    {
+      "id": "integration-lab",
+      "role": "test",
+      "identity_evidence": "Pin tenant, service deployment, app and firmware in the ticket"
+    }
+  ],
+  "runners": [
+    {
+      "id": "service",
+      "scopes": [
+        "backend"
+      ],
+      "cwd": "source/service",
+      "argv": [
+        "dotnet",
+        "test"
+      ],
+      "artifacts": "test-results/service",
+      "enabled": false
+    },
+    {
+      "id": "device",
+      "scopes": [
+        "mobile",
+        "device"
+      ],
+      "cwd": "automation/device",
+      "argv": [
+        "python3",
+        "-m",
+        "pytest"
+      ],
+      "artifacts": "test-results/device",
+      "enabled": false
+    }
+  ],
+  "context": {
+    "max_result_chars": 12000,
+    "max_search_results": 20
+  },
+  "policy": {
+    "production_execution": false,
+    "external_writes": "task-authorization"
+  }
+}

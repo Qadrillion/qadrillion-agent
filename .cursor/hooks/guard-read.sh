@@ -11,6 +11,7 @@ import fnmatch
 import json
 import os
 import re
+import subprocess
 import sys
 
 
@@ -54,11 +55,17 @@ for candidate in candidates:
     )
     if any(re.search(pattern, candidate) for pattern in hard):
         result("deny", path)
-    try:
-        if protected and re.search(protected, candidate):
-            result("deny", path)
-    except re.error:
-        result("deny", "invalid protected-path configuration")
+    if protected:
+        # Keep POSIX ERE semantics consistent between shell and file policies.
+        try:
+            match = subprocess.run(["grep", "-qE", "-e", protected], input=candidate,
+                                   text=True, capture_output=True, timeout=2)
+            if match.returncode == 0:
+                result("deny", path)
+            if match.returncode != 1:
+                result("deny", "invalid protected-path configuration")
+        except (OSError, subprocess.TimeoutExpired):
+            result("deny", "protected-path check unavailable")
     if any(fnmatch.fnmatchcase(candidate, pattern) for pattern in extra.split()):
         result("deny", path)
     if candidate.endswith((".example", ".template", ".sample")):

@@ -1,49 +1,54 @@
 ---
-id: PROJ-000
-title: Replace with the ticket title
-scope: api
+id: LOCAL-1
+title: Replace with the QA task title
+scope: other
 status: analyzing
 verdict: null
 build: null
-environment: staging
-tracker: https://tracker.example/browse/PROJ-000
+environment: null
+tracker: null
 design: null
 source_refs: []
-started: 2026-01-01
-updated: 2026-01-01
-next_action: "Finish source review and produce the risk list"
+started: 2026-09-24
+updated: 2026-09-24
+next_action: "Identify the agreed behavior, target build and available capabilities"
 blockers: []
+owner: null
+branch: null
+env_role: unknown
+evidence: []
 ---
 
-# PROJ-000 — Title
+# LOCAL-1 — QA task
 
 ## Analysis
 
-**Requirements / acceptance criteria** (from the tracker, verbatim where it matters)
-
-**Source review** (`[SEVERITY]` blocks per `code-review.mdc`)
-
-**Locator / endpoint table**
-
-| Element or endpoint | Identifier | In source? | In build? | Notes |
-|---|---|---|---|---|
+Criteria and independent oracle; affected users and top failure risks.
+Source revision/review, or unavailable-source boundary. Observed UI/API/interfaces.
 
 ## Test plan
 
-| # | Scenario | Type | Status | Notes |
-|---|---|---|---|---|
-| 1 | | automated / manual / blocked | | |
+| Criterion / risk | Scenario / technique | Expected result / oracle | Layer | Automated / manual / blocked | Evidence |
+|---|---|---|---|---|---|
+
+Exploratory charter and timebox where applicable. Required fixtures and target
+identity evidence. Mocked boundaries and deliberately excluded scope.
 
 ## Execution & results
 
-Real output. Command, then result. `xfail` / `skip` with the reason.
+Record each actual command/actions, cwd, timestamp, build, configuration revision,
+target identity, exit status and collected counts. Link redacted artifacts and
+quote decisive output. Preserve both attempts for a diagnostic rerun. No fabricated
+output. Explain skipped, expected-failed, errored and not-run checks.
 
 ## Handoff
 
-Mirrors `next_action`. What is done, what is open, the exact next step.
+Owner, branch/commit and dirty paths; completed checks and remaining risk; artifact
+access; exact next step and blockers. Revalidate changed builds before resuming.
 
 ## Tracker comment
 
-Prepared per `tracker-reporting.mdc`. Posted: no | yes (id).
+Draft per tracker-reporting.mdc. Destination and authorization; posted: no.
+Record returned ID/URL only after confirmed publication.
 
 ## Notes

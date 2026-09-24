@@ -1,35 +1,35 @@
-# State — <workspace name>
+# State — Qadrillion Agent
 
 Updated: 2026-09-24
-Overwrite this file every session. Never append. Handover note, not a diary.
-Full chronology lives in `docs/sessions/` and is never read at startup.
-
-This file is the template a team overwrites after cloning. Keep the headings.
-Skeleton note, 2026-09-24: Codex adapters are on main; new hooks still need native trust and a reload. The public GitHub page is in `docs/sessions/2026-09-23-public-repo.md`. Next work on the skeleton is a review of the skills and subagents, then a release tag.
 
 ## Goal
 
-One sentence: what this workspace is for and what "good" looks like this quarter.
+Complete the portable public QA framework upgrade. Cursor is the user's first
+work-laptop pilot. Latest user instruction authorizes the blocked documentation
+and fixture writes and requests minimal default approval gates.
 
-## Done
+## Current work
 
-Only what is committed and verified. Newest first. Keep to five lines; older
-items belong in `docs/sessions/`.
+Owner: framework maintainer session. Branch: feat/portable-qa-framework.
+Committed checkpoint: 78886db; working changes contain the implementation.
+Use git status for exact paths; preserve all task changes. One writer per checkout.
+Isolated workers own hook policy/tests and remaining research/reference guides.
 
-## In progress
+Research and audit are complete. Refresh, tickets and adapter bugs are fixed.
+Skills and agents use capability-based, research-grounded QA with honest evidence.
+Default hook policy is being narrowed; native permissions remain separate.
+The earlier example-write approval blocker is resolved by the user.
 
-Exact tickets, exact files, exact state. What is half-finished and where.
+## Verification
+
+Previous checkpoint: 97 Python tests passed; 71 guard payloads and 12 malformed
+probes passed after a quoting fix. Ten independent synthetic behavior cases passed.
+These results predate the latest policy changes. Full verification, clean export,
+new autonomy evaluation and blind review still need to run on the final content.
 
 ## Next
 
-The single immediate next action, then at most four after it, in order.
-
-## Rejected
-
-What was tried and why it failed, written to generalise. This is the part that
-cannot be reconstructed from the repository. Promote anything durable to
-`docs/decisions/`.
-
-## Open questions
-
-Decisions waiting on a human, with who and by when if known.
+Finish guides and targeted/strict hook fixtures; regenerate adapters; verify;
+record the reviewed fingerprint; commit and publish a reviewable branch/PR.
+Then pilot a non-production ticket, publication when requested, and team handoff
+on the work laptop. No native-runtime, live integration or token-saving claim yet.

@@ -4,12 +4,20 @@ Changes to `main` land through a pull request. The `governance` check has to pas
 
 ## Before you open the PR
 
-- [ ] `./.cursor/hooks/tests/run-tests.sh` passes if you touched a hook or `guard.conf`
-- [ ] `python3 tools/tickets/validate.py` and `python3 tools/tickets/index.py --check` pass if you touched a ticket
+- [ ] Edit maintained `.cursor` sources, then run `python3 tools/agents/sync.py`; do not hand-edit generated runtime copies
+- [ ] `python3 tools/verify.py` passes (the same offline checks as CI)
+- [ ] After behavioral instruction changes, run `/golden-tasks run` in fresh isolated agents and record actual outcomes; do not substitute keyword checks
 - [ ] No secrets: `.env`, `.cursor/mcp.json`, keys, tokens, pools
 - [ ] The pull request template is filled in, including real command output
 
-A written "never …" is not a fix. If a behaviour must always or never happen, it belongs in `.cursor/hooks/guard.conf` or a hook test.
+Add regression evidence for the actual failure. Hooks are defense in depth:
+document which events and payloads are covered, and do not present regex checks
+as a sandbox. Native runtime smoke and connected-product tests are separate from
+offline verification. Report unavailable checks explicitly.
+
+Public contributions must contain only generic code, instructions and sanitized
+fixtures. Company ticket state, target details and evidence stay in the team's
+private workspace. See [team upgrades](docs/reference/team-workflow.md).
 
 ## Reporting
 

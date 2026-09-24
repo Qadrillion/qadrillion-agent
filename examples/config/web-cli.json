@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "Web example",
+    "scopes": [
+      "ui-web",
+      "api"
+    ]
+  },
+  "integrations": [
+    {
+      "id": "tracker",
+      "provider": "github",
+      "transport": "cli",
+      "executable": "gh",
+      "capabilities": [
+        "tracker.read",
+        "tracker.search",
+        "tracker.comment"
+      ],
+      "enabled": false,
+      "scope": "Set private organization/repository before enabling"
+    }
+  ],
+  "environments": [
+    {
+      "id": "preview",
+      "role": "test",
+      "identity_evidence": "Record deployment ID and independently verified target role in the ticket"
+    }
+  ],
+  "runners": [
+    {
+      "id": "web",
+      "scopes": [
+        "ui-web"
+      ],
+      "cwd": "automation/web",
+      "argv": [
+        "npx",
+        "playwright",
+        "test"
+      ],
+      "artifacts": "test-results/web",
+      "enabled": false
+    }
+  ],
+  "context": {
+    "max_result_chars": 12000,
+    "max_search_results": 20
+  },
+  "policy": {
+    "production_execution": false,
+    "external_writes": "task-authorization"
+  }
+}

@@ -1,62 +1,47 @@
-# .cursor — how the agent layer fits together
+# The maintained agent configuration
 
-Open the workspace root in Cursor, start an Agent chat, type a ticket ID. That
-is the whole interface. What loads, and when:
+`.cursor/` owns shared skills, roles, rules and guard policy. Cursor uses these
+directly; `python3 tools/agents/sync.py` generates the Claude/Codex bridges from
+committed sources. Run `python3 tools/verify.py` after changing them. Never edit
+a generated copy to create a second contract.
 
-| Layer | Path | Loads | Owns |
-|---|---|---|---|
-| Boundaries | `hooks.json` + `hooks/*.sh` | outside the loop, every event | what may never happen, what needs approval |
-| Identity | `../AGENTS.md` | every chat | who the agent is, cold-start order, budgets, output |
-| Style | `rules/core.mdc` (always-on, <120 words) | every chat | behaviour when uncertain |
-| Conventions | `rules/*.mdc` (glob or description) | when matching files or tasks are in context | one contract each |
-| Procedures | `skills/*/SKILL.md` | on `/command` or description match | `/qa`, its loop, `/golden-tasks` |
-| Workers | `agents/*.md` | when dispatched | isolated-context executors |
-
-## Hooks (the only deterministic layer)
-
-| Event | Script | Verdicts |
+| Layer | Path | Load when |
 |---|---|---|
-| `beforeShellExecution` | `guard-shell.sh` | deny destructive git, home-path deletes, credential reads, prod-targeted test runs, protected paths; ask on dependencies, deploys, DB mutations, `guard.conf` extras |
-| `beforeMCPExecution` | `guard-mcp.sh` | deny listed servers and delete verbs; ask on write verbs (the confirm-gate) |
-| `beforeReadFile` | `guard-read.sh` | deny keys, env files, credential files, protected paths (deny before exempt) |
-| `sessionStart` / `stop` / `sessionEnd` | `checkpoint-state.sh` | one follow-up if files changed but `docs/STATE.md` did not; fail-open |
+| Identity and handoff | [AGENTS.md](../AGENTS.md) | Session startup |
+| Minimal always-on behavior | [core](rules/core.mdc) | Every task |
+| Ticket, source, test and reporting contracts | `rules/*.mdc` | Relevant work |
+| QA and evaluation procedures | `skills/*/SKILL.md` | Matching task or command |
+| Bounded specialist roles | `agents/*.md` | Independent work justifies delegation |
+| Targeted hook checks | `hooks.json`, `hooks/` | Supported native runtime events |
 
-Per-workspace fences go in `hooks/guard.conf` (protected paths, production
-hosts, extra deny/ask, MCP server deny list). Golden payloads:
-`hooks/tests/run-tests.sh` — run after every edit; CI runs it on every push.
+`/qa` handles a ticket or supplied task. The `qa-workflow` skill is its internal
+procedure. `/golden-tasks` evaluates behavior; policy payloads alone are not a
+model evaluation. Without subagents, one agent performs the roles sequentially.
 
-**Acceptance test, once per machine:** ask the agent to run `git reset --hard`
-in a scratch repo. A live fence returns the hook's own message in the Hooks
-output channel. Do not test with `git push --force` — the model refuses that on
-its own and the refusal masquerades as a working fence.
+## Hook policy
 
-Cloud agents see only committed project hooks; user-level hooks never load
-there. `beforeReadFile` is not in every cloud hook set — the shell fence
-covers `cat .env` independently.
+The default `GUARD_PROFILE='targeted'` in `hooks/guard.conf` protects recognizable
+destructive Git actions, production-targeted test runs, credentials and configured
+protected paths. High-impact operations can still require approval. Ordinary
+documentation edits, dependency installation and authorized CLI/MCP updates have
+no blanket confirmation gate. Native permissions and task authorization still
+apply. `GUARD_PROFILE='strict'` opts into broader mutation and unknown-tool gates.
 
-## Claude Code
+The shell guard matches command text; the read guard checks paths; native edit
+adapters check file destinations without executing documentation examples.
+A command pasted inside a shell heredoc can still trigger text heuristics: use
+native file editing for documentation. Project changes do not disable global
+hooks. A rejected action is reported, not retried through another transport.
 
-`.claude/settings.json` registers `.claude/hooks/pretooluse.sh`, an adapter
-that feeds the same three guard scripts. `CLAUDE.md` is one line:
-`@AGENTS.md`. Verify the deny once in Claude Code before delegating anything
-unattended.
+Lifecycle hooks provide a state-checkpoint reminder. They are advisory and do not
+make state a distributed lock. Hooks are not a sandbox, and event coverage varies
+by runtime. See [runtime support](../docs/reference/runtime-support.md) for trust,
+known gaps and disposable native smoke checks.
 
-## Rules own the contracts
+## Connections and customization
 
-| Contract | Rule |
-|---|---|
-| Ticket frontmatter schema and state machine | `ticket-state.mdc` |
-| Source-review checklist and `[SEVERITY]` output | `code-review.mdc` |
-| Test hard rules | `test-automation.mdc` |
-| Tracker comment and bug format | `tracker-reporting.mdc` |
-
-Skills and subagents reference a rule; they never copy it. Subagents run in
-isolated context, so they read the rule file explicitly.
-
-## MCP
-
-Credential-bearing servers go in the gitignored project `.cursor/mcp.json`,
-never in `~/.cursor/mcp.json` (global servers load in every workspace,
-including other clients'). Keep ≤3 servers; anything with a CLI gets a skill
-that shells out instead. Commit `mcp.<name>.example.json` templates with
-placeholders only.
+Use [adoption](../docs/adopting.md), [capability configuration](../docs/reference/qa-config.md)
+and [integrations](../docs/reference/integrations.md). Choose relevant connections
+for the task and authenticate through native mechanisms. Keep credentials out of
+the repository; example MCP files contain placeholders only. No fixed server count
+or vendor is required. Read detailed guidance on demand.

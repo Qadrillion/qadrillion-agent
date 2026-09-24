@@ -1,5 +1,5 @@
 ---
-description: "Ticket state contract: frontmatter schema and status state machine for tickets/{ID}.md. Apply when creating, reading, resuming or updating a ticket file."
+description: Ticket frontmatter schema, lifecycle, evidence and team handoff. Apply whenever creating, reading or updating tickets.
 globs:
   - "tickets/**/*.md"
 alwaysApply: false
@@ -7,52 +7,73 @@ alwaysApply: false
 
 # Ticket state contract
 
-One file per tested ticket: `tickets/{ID}.md`. The YAML frontmatter is
-machine-readable state; the body is evidence. An agent returning after a week
-reads the frontmatter and knows exactly where to continue.
+One file per ticket or local QA task: `tickets/{ID}.md`. Free text uses a
+collision-free `LOCAL-<number>` and `tracker: null`. Preserve prior evidence.
 
-## Frontmatter (all keys required; `tools/tickets/validate.py` enforces it)
+## Required frontmatter
 
 ```yaml
 ---
-id: PROJ-123
-title: Short human title
-scope: api            # api|ui-web|mobile|backend|multi-surface|tooling
-status: analyzed      # see state machine
-verdict: null         # null until done, then pass|partial|fail
-build: null           # version/branch/commit tested, or null
-environment: staging  # dev|staging|prod|null — prod is read-only for agents
-tracker: https://tracker.example/browse/PROJ-123
-design: null          # design link or null
-source_refs: []       # files reviewed (path[:line]); pins the implementation
-started: 2026-01-01
-updated: 2026-01-01   # bump on EVERY write
-next_action: "One concrete step a fresh agent can execute immediately"
-blockers: []          # strings; [] when none
+id: LOCAL-1
+title: Verify the agreed feature behavior
+scope: other
+status: analyzing
+verdict: null
+build: null
+environment: null
+tracker: null
+design: null
+source_refs: []
+started: 2026-09-24
+updated: 2026-09-24
+next_action: "Resolve the target build and independent expected result"
+blockers: []
 ---
 ```
 
-`next_action` and `blockers` are the resume payload. Specific, never vague:
-"run the negative matrix on device once a non-DE account exists", not
-"continue testing".
+Scopes: api, ui-web, mobile, backend, desktop, data, device, other,
+multi-surface, tooling. Environment is a nonempty team-specific name or null;
+its label is not evidence of safety. Build/design are strings or null; tracker
+is an HTTP(S) URL or null. Dates are ISO YYYY-MM-DD; updated cannot precede started.
+source_refs/blockers are lists of nonempty strings. Pin source commit in the body,
+not only paths/line numbers.
 
-## State machine
+Optional fields: `owner`, `branch` (string or null); `env_role` (dev, test, staging,
+production, unknown); `evidence` (list of local artifact paths relative to the ticket
+file). Team ownership is coordination, not a lock. Keep remote evidence links in
+the body with the result excerpt; CI cannot authenticate private artifact URLs.
 
-```
-analyzing → analyzed → planned → in_test → reporting → done
-                 ↔ blocked (from any active state; reason in blockers)
-```
+The stdlib validator supports a flat YAML mapping, plain/JSON-double-quoted or
+YAML-single-quoted scalar values, and inline or indented scalar lists. Comments
+and CRLF are supported. Quote values containing colon-space or special syntax.
+Nested mappings, block scalars, tags, anchors and duplicate keys are rejected.
 
-- Create the file at the end of analysis (`analyzed`), not at the end of the run.
-- Update `status`, `updated`, `next_action`, `blockers` at every phase boundary.
-- Blocked: set `status: blocked`, record why, set `next_action` to the unblock step.
-- `verdict: pass` requires execution evidence in the body. No green without a run.
-- Never delete a ticket file. Supersede by updating it.
+## Lifecycle and verdict
 
-## Body sections, in order
+`analyzing → analyzed → planned → in_test → reporting → done`; any active state
+may become blocked with a reason and an executable next_action. Record access
+blockers early, before tests exist. Resume at the earliest affected phase; changed
+build/config/requirements invalidate only relevant prior claims. Reopening done
+starts a dated run, sets verdict null, and keeps previous evidence.
 
-Analysis (requirements, source review with `[SEVERITY]` risks, locator or
-endpoint table) → Test plan (per scenario: automated | manual | blocked) →
-Execution & results (real output, xfail/skip with reasons) → Handoff (mirrors
-`next_action`) → Tracker comment (format from `tracker-reporting.mdc`) → Notes.
-Start from `tickets/_TEMPLATE.md`.
+Verdict is null while active; done requires pass, partial or fail. Confirmed
+in-scope defects mean fail. Missing required coverage without a confirmed defect
+means partial. Pass requires agreed checks executed successfully, no unresolved
+in-scope failures, and meaningful evidence. Status done means this run has a
+handoff, not that the product is defect-free. No fabricated source or run output.
+
+`tools/tickets/validate.py` checks schema and the *presence* of local evidence or
+an execution block for pass. It cannot establish artifact truth, assertion quality
+or sufficient coverage. A two-line block is not permission to invent a run.
+
+## Body and update procedure
+
+Analysis (criteria/oracle, source risks or gap, observed interfaces) → Test plan
+(risk/technique/layer/expected result and automated/manual/blocked status) →
+Execution & results (command/actions, time, target/build/config, results, artifacts,
+failed attempts, skips) → Handoff (owner/branch, dirty paths, remaining scope,
+next action) → Tracker comment (draft/posted destination and ID) → Notes.
+
+Update status, updated, next_action and blockers at every phase boundary.
+Serialize writers. Validate the ticket, then run `python3 tools/tickets/index.py`.
+The index is derived data; do not resolve conflicts by editing it manually.

@@ -10,52 +10,27 @@ permissions:
   contents: read
 
 jobs:
-  governance:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+  offline:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify the public framework offline
+        run: python3 tools/verify.py
 
-      - name: Hook scripts are executable
-        # A hook script without its executable bit locks the agent out under
-        # failClosed — correct behaviour, but it should fail here, not there.
-        run: |
-          set -e
-          for f in .cursor/hooks/*.sh .cursor/hooks/tests/run-tests.sh .claude/hooks/*.sh tools/workspace/*.sh; do
-            [ -x "$f" ] || { echo "not executable: $f"; exit 1; }
-          done
-
-      - name: Hook golden payloads
-        run: ./.cursor/hooks/tests/run-tests.sh
-
-      - name: Claude Code adapter maps verdicts
-        run: |
-          set -e
-          out="$(printf '{"tool_name":"Bash","tool_input":{"command":"git reset --hard"}}' | .claude/hooks/pretooluse.sh)"
-          echo "$out" | grep -q '"permissionDecision": "deny"'
-          out="$(printf '{"tool_name":"mcp__tracker__jira_add_comment","tool_input":{}}' | .claude/hooks/pretooluse.sh)"
-          echo "$out" | grep -q '"permissionDecision": "ask"'
-
-      - name: Ticket schema
-        run: python3 tools/tickets/validate.py
-
-      - name: Ticket index is current
-        run: python3 tools/tickets/index.py --check
-
-      - name: Always-on rule budget
-        # core.mdc is the only always-on rule and stays under 120 words.
-        run: |
-          set -e
-          for f in .cursor/rules/*.mdc; do
-            if grep -q '^alwaysApply: true' "$f"; then
-              [ "$f" = ".cursor/rules/core.mdc" ] || { echo "unexpected always-on rule: $f"; exit 1; }
-              # body = everything after the second '---' (frontmatter close)
-              words=$(awk '/^---$/{c++; next} c>=2' "$f" | wc -w | tr -d ' ')
-              [ "$words" -gt 0 ] || { echo "core.mdc body is empty — counter or file is wrong"; exit 1; }
-              [ "$words" -le 120 ] || { echo "core.mdc is $words words (limit 120)"; exit 1; }
-            fi
-          done
-
-      - name: STATE.md is not an @-import anywhere
-        run: |
-          ! grep -rn '@docs/STATE.md' .cursor/rules/ AGENTS.md || { echo "STATE.md must be read on cold start, not imported every turn (ADR-0005)"; exit 1; }
+  governance:
+    needs: offline
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Require every platform check
+        env:
+          RESULT: ${{ needs.offline.result }}
+        run: test "$RESULT" = success
