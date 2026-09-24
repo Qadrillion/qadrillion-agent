@@ -19,6 +19,10 @@ ask() {
   printf '{"permission":"ask","user_message":"Needs approval: %s","agent_message":"This action needs the user'"'"'s explicit approval: %s. Wait for the decision."}\n' "$1" "$1"
   exit 0
 }
+case "${GUARD_PROFILE:-targeted}" in
+  targeted|strict) ;;
+  *) deny "invalid guard profile" ;;
+esac
 input="$(cat)"
 if ! command="$(printf '%s' "$input" | "$PY" -c '
 import json, sys
@@ -33,8 +37,14 @@ except (ValueError, TypeError):
 ')"; then
   deny "invalid hook event; command must be a nonempty string"
 fi
-m() { printf '%s' "$command" | grep -qE -e "$1"; }
-mi() { printf '%s' "$command" | grep -qiE -e "$1"; }
+match_command() {
+  local status=0
+  printf '%s' "$command" | grep "$1" -e "$2" || status=$?
+  [ "$status" -le 1 ] || deny "invalid shell guard pattern"
+  return "$status"
+}
+m() { match_command -qE "$1"; }
+mi() { match_command -qiE "$1"; }
 
 # ---------------------------------------------------------------- destructive
 m 'rm\s+(-[a-zA-Z]*r[a-zA-Z]*f|-[a-zA-Z]*f[a-zA-Z]*r)[a-zA-Z]*\s+("?(/|~|\$HOME)"?(\s|$)|~/(Documents|Desktop|Library|Downloads|Pictures)/?(\s|$))' \
@@ -130,10 +140,15 @@ mi '(TEST_ENVIRONMENT|[A-Z_]*_ENV|ENVIRONMENT)=("?)(prod|production)\b' \
 if [ -n "${EXTRA_DENY:-}" ]; then m "$EXTRA_DENY" && deny "workspace-specific denied action"; fi
 if [ -n "${EXTRA_ASK:-}" ];  then m "$EXTRA_ASK"  && ask  "workspace-specific gated action";  fi
 
-m '((npm|pnpm|bun)\s+(i|install|add)|yarn\s+add|pip3?\s+install|uv\s+(add|pip\s+install)|brew\s+install|cargo\s+add|dotnet\s+add\s+package|gem\s+install|go\s+get)\s+[^-[:space:]]' \
-  && ask "adds a new dependency"
 m '(vercel\s+.*--prod|eas\s+(submit|build\s+.*--auto-submit)|npm\s+publish|supabase\s+db\s+push|gh\s+release\s+create|gh\s+pr\s+merge)' \
   && ask "deployment, release or merge action"
+mi '(drop\s+(table|database|schema)|truncate\s+table|delete\s+from\s+[a-z_]+\s*(;|$)|update\s+[a-z_]+\s+set\b[^;]*$)' \
+  && ask "destructive or unbounded database mutation"
+
+if [ "${GUARD_PROFILE:-targeted}" = strict ]; then
+m '((npm|pnpm|bun)\s+(i|install|add)|yarn\s+add|pip3?\s+install|uv\s+(add|pip\s+install)|brew\s+install|cargo\s+add|dotnet\s+add\s+package|gem\s+install|go\s+get)\s+[^-[:space:]]' \
+  && ask "adds a new dependency under the strict profile"
+m '--confirm-write|push-collection' && ask "strict profile gates workspace writes"
 # These common CLI spellings are gated even when no MCP connector is involved.
 # They intentionally do not claim to classify arbitrary programs or API effects.
 m '(acli|twg)\b[^|;&]*\b(create|update|edit|delete|remove|transition|assign|post|send|publish|write|upload|add|set|close|reopen)\b' \
@@ -148,7 +163,6 @@ m 'az\b[^|;&]*\b(create|update|delete|set|start|stop|restart|deallocate|redeploy
   && ask "cloud CLI mutation"
 mi '(curl\b[^|;&]*(-X[[:space:]]*|--request[=[:space:]]+)(POST|PUT|PATCH|DELETE)\b|curl\b[^|;&]*([[:space:]]-[dFT]([[:space:]]|[^-[:space:]])|--(data[^[:space:]]*|form|upload-file)([=[:space:]]))|wget\b[^|;&]*--(post-data|post-file|method[=[:space:]]+(POST|PUT|PATCH|DELETE)))' \
   && ask "HTTP request may mutate external state"
-mi '(drop\s+(table|database|schema)|truncate\s+table|delete\s+from\s+[a-z_]+\s*(;|$)|update\s+[a-z_]+\s+set\b[^;]*$)' \
-  && ask "destructive or unbounded database mutation"
+fi
 
 printf '{"permission":"allow"}\n'

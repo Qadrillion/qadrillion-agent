@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# beforeMCPExecution: unknown tool effects require a decision. Names alone do
-# not prove effects; maintain the read allowlist against the connected tools.
+# beforeMCPExecution: targeted high-impact names, or opt-in strict gates.
+# Names do not prove effects or consent; native permissions still apply.
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 [ -f "$HERE/guard.conf" ] && . "$HERE/guard.conf"
@@ -44,7 +44,9 @@ try:
 except (ValueError, TypeError):
     result("deny", "Invalid MCP event: server, tool name, and object tool_input are required.")
 
-deny_servers, deny_tools, ask_tools, read_tools = sys.argv[1:]
+profile, deny_servers, deny_tools, ask_tools, read_tools = sys.argv[1:]
+if profile not in ("targeted", "strict"):
+    result("deny", "Invalid guard profile.")
 subject = server + " " + tool
 # Normalize camelCase so getCollection and get_collection share token rules.
 normalized = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", tool).lower()
@@ -59,15 +61,24 @@ def verb(pattern):
 
 
 try:
+    # Validate the full policy before an early matching rule can hide an error.
+    for pattern in (deny_servers, deny_tools, ask_tools, read_tools):
+        re.compile(pattern)
     if matches(deny_servers, server):
         result("deny", "Server is not permitted: " + subject)
     if verb(deny_tools):
         result("deny", "Destructive tool: " + subject)
     if verb(ask_tools):
         result("ask", "Confirm tool effect: " + subject)
+    if profile == "targeted":
+        result("allow", "")
+    if verb("delete|remove|destroy|purge|drop"):
+        result("deny", "Destructive tool under strict profile: " + subject)
+    if verb("create|update|add_comment|comment|transition_issue|assign|post|send|publish|patch|put|schedule|trigger|deploy|merge|resolve|upload|write|edit|add_label|set_|exec|execute|evaluate|run|request|http|api|invoke|call|sql|graphql"):
+        result("ask", "Confirm tool effect under strict profile: " + subject)
     if matches(read_tools, normalized):
         result("allow", "")
 except re.error:
     result("deny", "Invalid MCP guard configuration.")
 result("ask", "Unknown tool effect: " + subject)
-' "${MCP_DENY_SERVERS:-}" "${MCP_DENY_TOOLS:-}" "${MCP_ASK_TOOLS:-}" "${MCP_READ_TOOLS:-}"
+' "${GUARD_PROFILE:-targeted}" "${MCP_DENY_SERVERS:-}" "${MCP_DENY_TOOLS:-}" "${MCP_ASK_TOOLS:-}" "${MCP_READ_TOOLS:-}"
