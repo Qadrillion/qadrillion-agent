@@ -342,6 +342,10 @@ class MeasureTests(unittest.TestCase):
             invalid["run_id"] = "different"
             for name, content, diagnostic in (
                     ("invalid-json", "{", "JSONDecodeError"),
+                    ("array", "[]", "ValueError"),
+                    ("null", "null", "ValueError"),
+                    ("numeric-url", '{"url":123}', "ValueError"),
+                    ("null-url", '{"url":null}', "ValueError"),
                     ("identity-mismatch", json.dumps(invalid), "ValueError")):
                 with self.subTest(name=name):
                     identity.write_text(content)

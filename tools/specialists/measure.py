@@ -35,6 +35,8 @@ def percentile(values, percent):
 
 def measure(identity, *, requests=50, concurrency=1, timeout=1.0, duration=10.0,
             max_errors=3, p95_ms=40.0, error_rate=0.0, warmup=3):
+    if not isinstance(identity, dict) or not isinstance(identity.get("url"), str):
+        raise ValueError("lab identity must be a JSON object with a string URL")
     url = identity["url"]
     parsed = urlsplit(url)
     if (parsed.scheme != "http" or parsed.hostname != "127.0.0.1" or not parsed.port
@@ -49,7 +51,8 @@ def measure(identity, *, requests=50, concurrency=1, timeout=1.0, duration=10.0,
     if not (math.isfinite(p95_ms) and p95_ms > 0 and math.isfinite(error_rate) and 0 <= error_rate <= 1):
         raise ValueError("invalid thresholds")
     _, actual = get(url + "/__identity", timeout)
-    if (actual.get("fixture") != "qadrillion-specialist-lab" or actual.get("role") != "test"
+    if (not isinstance(actual, dict)
+            or actual.get("fixture") != "qadrillion-specialist-lab" or actual.get("role") != "test"
             or any(actual.get(k) != identity.get(k) for k in ("run_id", "build", "mode", "url"))):
         raise ValueError("lab identity mismatch")
     warmup_samples = []
