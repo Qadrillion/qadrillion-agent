@@ -3,6 +3,7 @@
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import re
 import subprocess
@@ -18,6 +19,60 @@ PACKAGE = "com.qadrillion.parcel"
 ACTIVITY = f"{PACKAGE}/.MainActivity"
 VALIDATION = "Enter a whole number from 1 to 5"
 ARGS = None
+MOBILE = Path(__file__).resolve().parents[3] / "mobile"
+CONTRACT = MOBILE / "contract.md"
+DEMO_SPEC = importlib.util.spec_from_file_location("mobile_demo", MOBILE / "demo.py")
+demo = importlib.util.module_from_spec(DEMO_SPEC)
+DEMO_SPEC.loader.exec_module(demo)
+
+
+def replay_inputs(args):
+    contract_hash = hashlib.sha256(CONTRACT.read_bytes()).hexdigest()
+    root = Path(args.run_dir).expanduser().resolve(strict=True)
+    state = demo.load(root)
+    if state.get("cleaned") or not state.get("booted"):
+        raise RuntimeError("Replay requires a booted, uncleaned demo run")
+    if not re.fullmatch(r"emulator-[0-9]+", args.serial) or state.get("serial") != args.serial:
+        raise RuntimeError("Emulator serial does not match the owned demo run")
+    if not re.fullmatch(r"[0-9a-f]{64}", args.expected_apk_sha256):
+        raise RuntimeError("Expected APK SHA256 must be 64 lowercase hex digits")
+    if not re.fullmatch(r"[0-9]+", str(state.get("api", ""))):
+        raise RuntimeError("Demo run has no valid Android API identity")
+    installed = state.get("installed", {})
+    variant = installed.get("variant")
+    if variant not in ("baseline", "seeded"):
+        raise RuntimeError("Demo run has no installed fixture variant")
+    build = state.get("builds", {}).get(variant, {})
+    apk = root / variant / "parcel.apk"
+    if (installed.get("sha256") != args.expected_apk_sha256
+            or build.get("sha256") != args.expected_apk_sha256
+            or installed.get("apk") != str(apk) or build.get("apk") != str(apk)
+            or demo.digest(apk) != args.expected_apk_sha256):
+        raise RuntimeError("APK identity does not match this run's installed fixture build")
+    provenance = {
+        "run_manifest": str(root / "run.json"),
+        "run_manifest_sha256": demo.digest(root / "run.json"),
+        "contract": str(CONTRACT), "contract_sha256": contract_hash,
+        "variant": variant,
+    }
+    return state, provenance
+
+
+def verify_device(device, args, state):
+    serial = device.run("get-serialno")
+    avd = device.run("emu", "avd", "name").splitlines()[:1]
+    if serial != args.serial or avd != [state["avd_name"]]:
+        raise RuntimeError("Live emulator serial or AVD identity does not match the owned demo run")
+    paths = device.shell("pm", "path", PACKAGE).splitlines()
+    if len(paths) != 1 or not paths[0].startswith("package:"):
+        raise RuntimeError(f"Expected one installed fixture APK, found {paths}")
+    hashes = device.shell("sha256sum", paths[0].removeprefix("package:")).split()
+    if not hashes or hashes[0] != args.expected_apk_sha256:
+        raise RuntimeError(f"Installed APK identity mismatch: expected {args.expected_apk_sha256}, found {hashes[:1]}")
+    api = device.shell("getprop", "ro.build.version.sdk")
+    if api != str(state["api"]):
+        raise RuntimeError(f"Android API identity mismatch: expected {state['api']}, found {api}")
+    return {"serial": serial, "avd_name": avd[0], "apk_sha256": hashes[0], "api": api}
 
 
 class Device:
@@ -236,32 +291,22 @@ for name, value in [("empty", ""), ("zero", "0"), ("above_max", "6"), ("negative
 def main():
     global ARGS
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-dir", required=True, help="Owned demo.py run directory containing run.json")
     parser.add_argument("--serial", required=True, help="Task-owned Android emulator serial")
     parser.add_argument("--expected-apk-sha256", required=True)
     parser.add_argument("--adb", default="adb")
     parser.add_argument("--evidence", required=True, help="New directory; existing evidence cannot be overwritten")
     parser.add_argument("--test", action="append", help="Exact unittest method, only for a documented diagnostic run")
     ARGS = parser.parse_args()
-    if ARGS.serial != "emulator-5560":
-        parser.error("This task authorizes only emulator-5560")
-    if not re.fullmatch(r"[0-9a-f]{64}", ARGS.expected_apk_sha256):
-        parser.error("Expected APK SHA256 must be 64 lowercase hex digits")
+    state, provenance = replay_inputs(ARGS)
     evidence = Path(ARGS.evidence)
     evidence.mkdir(parents=True, exist_ok=False)
     preflight = Device(evidence / "preflight")
-    paths = preflight.shell("pm", "path", PACKAGE).splitlines()
-    if len(paths) != 1 or not paths[0].startswith("package:"):
-        raise RuntimeError(f"Expected one installed APK, found {paths}")
-    actual_hash = preflight.shell("sha256sum", paths[0].removeprefix("package:")).split()[0]
-    if actual_hash != ARGS.expected_apk_sha256:
-        raise RuntimeError(f"APK identity mismatch: expected {ARGS.expected_apk_sha256}, found {actual_hash}")
-    api = preflight.shell("getprop", "ro.build.version.sdk")
-    if api != "34":
-        raise RuntimeError(f"Authorized Android API34 required, found {api}")
+    device_identity = verify_device(preflight, ARGS, state)
     identity = {
         "utc": datetime.now(timezone.utc).isoformat(), "argv": sys.argv,
-        "cwd": str(Path.cwd()), "serial": ARGS.serial, "package": PACKAGE,
-        "apk_sha256": actual_hash, "api": api,
+        "cwd": str(Path.cwd()), "package": PACKAGE,
+        **provenance, **device_identity,
         "fingerprint": preflight.shell("getprop", "ro.build.fingerprint"),
         "locale": preflight.shell("getprop", "persist.sys.locale"),
         "configuration": preflight.shell("am", "get-config"),
@@ -269,7 +314,6 @@ def main():
         "app_metadata": preflight.shell("dumpsys", "package", PACKAGE),
         "python": sys.version,
         "test_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-        "contract_sha256": hashlib.sha256((Path(__file__).resolve().parents[2] / "CONTRACT.md").read_bytes()).hexdigest(),
     }
     (evidence / "identity.json").write_text(json.dumps(identity, indent=2))
     suite = (unittest.TestSuite(ParcelContract(name) for name in ARGS.test) if ARGS.test

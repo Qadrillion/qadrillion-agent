@@ -30,8 +30,8 @@ evidence. The generated key signs only these synthetic fixtures and expires in
 seven days. APK byte hashes differ between preparations because keys differ.
 Build inputs and retained commands make the steps reproducible.
 
-The supervisor supplies the author the contract, skill, selected APK hash and
-owned serial; keep the mutation's implementation out of the authoring context.
+The supervisor supplies the author the contract, skill, selected APK hash,
+owned serial and run directory; keep the mutation's implementation out of the authoring context.
 The author inspects runtime locators and writes the tests. Preserve the first
 failed result, then install `--variant baseline` and run the **unchanged** tests
 with their declared independent setup. `install -r` retains app data; tests must
@@ -45,11 +45,21 @@ installed Maestro version's options; see the mobile skill's conditional recipe.
 
 The completed reference evaluation used independently authored Python tests
 driving ADB/UIAutomator observations. Replay that suite with explicit device and
-APK identity; supply the hash from this run's `run.json`:
+APK identity; supply the serial and installed APK hash from this run's `run.json`:
 
 ```sh
-python3 tools/specialists/reference/mobile/tests/test_parcel.py --adb /path/to/sdk/platform-tools/adb --serial emulator-SERIAL --expected-apk-sha256 APK_HASH --evidence /tmp/qa-mobile-RUN/evidence/attempt-1
+python3 tools/specialists/reference/mobile/tests/test_parcel.py --run-dir /tmp/qa-mobile-RUN --adb /path/to/sdk/platform-tools/adb --serial emulator-SERIAL --expected-apk-sha256 APK_HASH --evidence /tmp/qa-mobile-RUN/evidence/attempt-1
 ```
+
+The run directory must be the original owned fixture directory created by
+`demo.py`, with its current `run.json` and built APKs retained. Before contacting
+ADB, replay reads and hashes the shipped `contract.md`, validates run ownership,
+and checks the requested serial and APK hash against the installed manifest
+variant and local build. Before any app reset, launch or input, it verifies the
+live emulator serial, AVD name, fixture package, installed APK hash and recorded
+Android API. Missing or mismatched identity stops the replay. The resulting
+`identity.json` records the manifest, contract and test hashes with the observed
+device identity. Physical devices are outside this fixture replay's scope.
 
 This suite clears only the selected fixture app between independent cases. Its
 in-test persistence transitions retain data. Literal decimal/text input cases
