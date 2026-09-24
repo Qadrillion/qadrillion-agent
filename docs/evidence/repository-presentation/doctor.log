@@ -1,0 +1,21 @@
+OK         python: Python 3.11+ required
+OK         git: available
+OK         bash: available
+OK         AGENTS.md: required workspace file
+OK         CLAUDE.md: required workspace file
+OK         docs/STATE.md: required workspace file
+OK         docs/decisions/INDEX.md: required workspace file
+OK         docs/reference/known-quirks.md: required workspace file
+OK         docs/reference/runtime-support.md: required workspace file
+OK         docs/reference/integrations.md: required workspace file
+OK         docs/reference/team-workflow.md: required workspace file
+OK         .cursor/hooks.json: required workspace file
+OK         .claude/settings.json: required workspace file
+OK         .codex/hooks.json: required workspace file
+OK         qa-config: valid declarations; authentication and target roles not verified
+INFO       execution: no automated runner configured; manual/black-box QA remains available
+OK         manifest: schema valid; run refresh.py for repository status
+OK         adapters: Agent adapters are current
+UNVERIFIED Cursor: native discovery, permissions and live hook blocking require the runtime smoke in docs/reference/runtime-support.md
+UNVERIFIED Claude Code: native discovery, permissions and live hook blocking require the runtime smoke in docs/reference/runtime-support.md
+UNVERIFIED Codex: native discovery, permissions and live hook blocking require the runtime smoke in docs/reference/runtime-support.md

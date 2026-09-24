@@ -14,10 +14,15 @@ The user delegated reference selection and presentation decisions; no product or
 brand decision requires a new interview. The design direction below resolves the
 build/design skill's direction step within that authorization.
 
-Audit all five READMEs. Update the root and two runnable-reference guides where
+Audit all six READMEs. Update the root and two runnable-reference guides where
 needed; preserve historical evaluation READMEs and their artifact hashes. Publish
 a reviewed PR, leaving merge to the user. The website deliverable is a standalone
 implementation prompt based on the live page; no website edits or deployment.
+
+Inventory correction, 2026-09-24: the initial search omitted hidden
+`.cursor/README.md`. The tracked-file inventory has six READMEs; that guide is
+current and remains unchanged. P4 always requires all READMEs to be assessed;
+the acceptance criteria are unchanged.
 
 ## Direction contract
 
@@ -72,6 +77,24 @@ its page shell, fonts and CSS; local GitHub-style renders verify this Markdown's
 layout, not GitHub field Core Web Vitals or full site accessibility conformance.
 Mobile hardware/iOS/Appium and runtime activation limits stay as documented.
 
-## Implementation record
+## Implementation record — 2026-09-24
 
-Pending implementation and blind review.
+Branch: `docs/repository-presentation` · Acceptance checkpoint: `34f817a`; implementation/completion commit follows.
+Review-base: `d593f73a14606753ff5cbf937767d33f9a0b8a52`.
+Review-fingerprint: `b896e4ca0adce61ca7fe75967ad9a90712c939d57af80fae4da6a442b5db4724`.
+Full-diff-sha256: `345362be0fc5117a3a2820186c0bbbc5e26f607979967b9ef7ebc1c6bc651171`.
+Verified: `python3 tools/verify.py` → PASS (153 Python tests, 75 guard cases); doctor and adapter drift checks → PASS; documented HTTP/browser setup/replays → six/eight expected outcomes with unchanged tests and completed cleanup; 44 links/anchors and six responsive renders → PASS.
+Review: one independent review, PASS after two supplemental documentation corrections.
+Deferred: 0 items. Two in-scope findings fixed, zero unresolved.
+Not verified: “Hosted GitHub layout, screen-reader behavior, fresh-machine setup and website implementation require separate execution. Local layout checks used the prepared GitHub-style HTML previews.” Full reviewer coverage and historical limits are retained verbatim in the [review record](../reviews/2026-09-24-repository-presentation.md).
+
+The [verification record](../evidence/repository-presentation/verification.md)
+accounts for all six READMEs, commands, rendering, prior evidence preservation
+and the live-page inspection. The final reviewed content precedes these completion
+records; no framework behavior changes. The owned preview server and all replay
+services were stopped. Website implementation is intentionally handed to another
+chat through the [copyable prompt](../prompts/update-repo-landing-page.md).
+
+Publication: open the branch's PR after this record is committed, confirm its
+hosted checks, and leave merge to the user. The final user handoff links the PR
+and its current checks; publication is not part of the blind review's execution.
