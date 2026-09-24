@@ -1,5 +1,5 @@
 ---
-description: "Source review for testable QA risks and the [SEVERITY] output contract. Auto-attaches when product source under source/ is in context."
+description: Source review for testable QA risks and the severity output contract. Apply when product source is accessible for QA analysis.
 globs:
   - "source/**/*"
 alwaysApply: false
@@ -7,38 +7,30 @@ alwaysApply: false
 
 # Source review for QA
 
-Before planning tests for any ticket that changes behaviour, read the
-implementation — not the interface, not the ticket's summary of it. You are
-looking for risks the ticket did not mention. Use `code-explorer` to locate
-code and `code-reviewer` for the depth pass; both keep this contract.
+Locate changed behavior and relevant callers, compare it with requirements, and
+identify testable risks. Source review complements execution. Without source,
+record the gap and continue black-box testing; do not invent file references.
 
-## In every file
+Check relevant boundaries: input partitions/limits; authorization by actor and
+object; state transitions; failures/recovery; races, retries and idempotency;
+persistence/transactions; compatibility and accessibility; sensitive data in
+output; observability. Follow dependencies only to establish concrete failure
+paths. ~10 files without finding the implementation is a search budget, not a
+cap on a located review.
 
-- Input validation: what is validated, what is not, boundary values
-- Error handling: caught vs swallowed vs bubbled
-- Edge cases: null, empty collections, unexpected states, races
-- Business rules: enforced where, and consistently across layers?
-- Auth and permission checks: present, correct, bypassable?
-- Mutations: what is left dirty on failure? Is the destructive path idempotent?
+Read `docs/reference/surfaces.md` only for the affected surface. Pin source commit
+and distinguish a demonstrated defect from an unexecuted risk. A missing test
+ID, specific framework or preferred architecture is not itself a defect.
 
-## Per surface (extend in `docs/reference/testing-strategy.md`)
-
-- **Backend:** missing model validation, unchecked nullables, inconsistent
-  status codes, missing error shapes, transaction boundaries.
-- **Web UI:** interactive elements without stable test ids; state changes
-  without visible confirmation; routes unreachable by URL.
-- **Mobile:** missing accessibility identifiers / test tags; hardcoded strings
-  a test might target; screens unreachable by deep link; content rendered in
-  a separate window (dialog, sheet) that may not inherit test-id semantics.
-
-## Output — one block per risk, nothing else
+Output one block per actionable risk:
 
 ```
 [SEVERITY] — risk, in one sentence
-Location: file:line or file · symbol
-Test: the scenario that would catch it, runnable by test-runner or by hand
+Location: file:line or file · symbol, at <commit>
+Evidence: concrete path and precondition; observed or inferred
+Test: input/state/action → expected outcome that would catch it
 ```
 
-Severity: `BLOCKING` / `HIGH` / `MEDIUM` / `LOW`. Lead with BLOCKING and HIGH.
-End with the acceptance criteria the code does **not** satisfy and behaviour
-the code has that the ticket never mentioned.
+Severity: `BLOCKING`, `HIGH`, `MEDIUM`, `LOW`, grounded in impact and exposure.
+End with criteria not satisfied or not assessable, and relevant behavior absent
+from the requirements. No invented risks to fill a quota.

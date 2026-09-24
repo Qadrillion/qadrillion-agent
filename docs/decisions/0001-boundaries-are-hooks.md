@@ -1,6 +1,9 @@
 # ADR-0001 — Boundaries are hooks, conventions are rules
 Status: accepted (2026-09-06)
 
+Amended by [ADR-0006](0006-portable-evidence-and-runtime-boundaries.md): hooks are
+defense in depth, not a complete boundary. Historical rationale below is retained.
+
 ## Context
 An instruction inside the context window is a suggestion the model weighs
 against everything else. A hook is a program outside the loop that can refuse

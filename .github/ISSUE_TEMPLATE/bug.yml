@@ -19,7 +19,7 @@ body:
     id: harness
     attributes:
       label: Harness
-      placeholder: Cursor, Claude Code, or both
+      placeholder: Cursor, Claude Code, Codex or another runtime; include version and OS
     validations:
       required: true
   - type: textarea

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "QA workspace",
+    "scopes": []
+  },
+  "integrations": [],
+  "environments": [],
+  "runners": [],
+  "context": {
+    "max_result_chars": 12000,
+    "max_search_results": 20
+  },
+  "policy": {
+    "production_execution": false,
+    "external_writes": "task-authorization"
+  }
+}

@@ -1,6 +1,9 @@
 # ADR-0004 — Locators are source-grounded, with two proofs
 Status: accepted (2026-09-06)
 
+Amended by [ADR-0006](0006-portable-evidence-and-runtime-boundaries.md): observed
+semantic locators and black-box testing are valid; source provenance is conditional.
+
 ## Context
 UI automation dies from locators: XPath copied from an inspector, text
 matches that break on translation, identifiers that exist in a branch but

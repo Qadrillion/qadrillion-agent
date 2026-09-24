@@ -1,75 +1,95 @@
 <p align="center">
-  <img src="docs/brand/header.png" alt="Qadrillion mark and wordmark. qadrillion-agent is the open-source QA agent for Cursor and Claude Code." width="1280">
-</p>
-
-<p align="center">
-  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-B8602E?style=flat-square"></a>
-  <a href="https://github.com/Qadrillion/qadrillion-agent/actions/workflows/governance.yml"><img alt="governance workflow status" src="https://img.shields.io/github/actions/workflow/status/Qadrillion/qadrillion-agent/governance.yml?branch=main&style=flat-square&label=governance"></a>
+  <img src="docs/brand/header.png" alt="Qadrillion Agent — an open-source AI-driven QA framework" width="1280">
 </p>
 
 # qadrillion-agent
 
-An open-source QA agent for agentic software testing in Cursor and Claude Code. Clone it, open it, type a ticket ID. The agent reads the ticket, reviews the product source for testable risk, writes tests against identifiers that exist in the build, runs them, and prepares the tracker comment — and stops, deterministically, at the things a QA engineer must decide: anything aimed at production, any write to an external system, any locator the app does not ship.
+A free, open-source **AI-driven testing framework** for QA engineers. It connects
+your coding agent to your existing QA work: understand a ticket, investigate risk,
+plan checks, write and run tests, explore behavior, and hand off evidence.
+Built from hands-on QA lead and senior QA engineering work; published by
+[Qadrillion](https://qadrillion.com/repo) under the [MIT license](LICENSE).
 
-Built for testers, not against them. Every output is an artifact a QA lead reads and signs.
+Use Cursor, Claude Code, Codex, or another agent that can read repository
+instructions and use your tools. Test web, API, backend, mobile, desktop, data or
+connected products. Your tracker, language, cloud, observability and test runner
+are choices, not prerequisites. Source and tracker access improve available
+evidence; supplied requirements and black-box testing also work.
 
-[Qadrillion](https://qadrillion.com/repo) publishes this agent and tests with it. Free, MIT, no account, no telemetry.
+## Start locally
 
-## Five minutes
+Requires Python 3.11+, Git and Bash (macOS/Linux; Windows via a verified WSL/Git
+Bash setup). No application language or automation framework is imposed.
 
 ```bash
 git clone https://github.com/Qadrillion/qadrillion-agent.git qa-workspace
 cd qa-workspace
-chmod +x .cursor/hooks/*.sh .cursor/hooks/tests/run-tests.sh .claude/hooks/*.sh tools/workspace/*.sh
-./.cursor/hooks/tests/run-tests.sh          # expect: passed: 71  failed: 0
+python3 tools/agents/sync.py
+python3 tools/verify.py
+python3 tools/workspace/doctor.py
 ```
 
-Open the folder in Cursor, start an Agent chat, type `PROJ-123` (or `/qa PROJ-123`). That is the interface. Claude Code users: `claude` in the same folder reads `CLAUDE.md` → `AGENTS.md` and runs the same fences.
+Before entering company information, create a **private team workspace** and
+verify its visibility/remote. Keep company tickets and evidence out of public
+upstream. [Adoption and upgrade guide](docs/adopting.md).
 
-Or choose **Use this template** on GitHub and start from your own copy.
+Open the workspace root in your agent. Ask `/qa PROJ-123` when a tracker is
+connected, or supply a task directly:
 
-Then make it yours (ten minutes, all in three files):
+> Test our preview checkout. Quantities must be integers from 1 to 100. The API
+> and web UI are available; product source is not. Plan the highest-risk checks,
+> use our configured runner, and prepare the result locally.
 
-| File | What to change |
+For runtimes without slash commands, ask the agent to read `AGENTS.md` and
+`.cursor/skills/qa/SKILL.md`. Roles can run sequentially without native subagents.
+
+## Make it yours
+
+| File | Configure |
 |---|---|
-| `workspace-manifest.json` | your automation repo and product checkouts, with what the agent may mutate in each |
-| `.cursor/hooks/guard.conf` | your production hosts, your protected paths, the MCP servers you deny |
-| `.cursor/mcp.json` (gitignored) | your tracker, wiki, and design servers. Create this file locally. Never commit it. |
+| `workspace-manifest.json` | Repository roots, expected remotes, branches and permitted mutations |
+| `qa-config.json` | Available integrations/capabilities, runner argv/cwd, artifacts and target identity requirements |
+| `.cursor/hooks/guard.conf` | Known production selectors, protected paths and verified tool patterns |
+| Runtime-native local settings | Authentication and permissions; never commit credentials |
 
-## What is in the box
+[Examples](examples/config/) cover manual black-box QA, a web/CLI setup and a
+mixed mobile/backend/device setup. They declare choices; they do not install or
+authenticate tools. Connect relevant systems progressively, using
+[the CLI/API/MCP guide](docs/reference/integrations.md). It distinguishes
+Atlassian TWG CLI, ACLI and Rovo MCP and explains how to measure actual costs.
 
-| Layer | Path | Job |
-|---|---|---|
-| **Boundaries** | `.cursor/hooks/` | Three fail-closed guards (shell, MCP, file read) + `guard.conf`. Deny destructive git, credential reads, production-targeted runs, protected paths, denied servers; **ask** before every external write. 71 golden payloads; run them after any edit. |
-| **Identity** | `AGENTS.md` | ~500 words: who the agent is, cold-start order, classification, budgets, evidence contract. No rules live here — a rule in prose is a request. |
-| **Style** | `.cursor/rules/core.mdc` | The only always-on rule, under 120 words (CI enforces it). |
-| **Contracts** | `.cursor/rules/*.mdc` | One contract per rule, loaded only when relevant: ticket schema + state machine, source-review `[SEVERITY]` output, test hard rules, tracker comment format. Skills and subagents reference them, never copy them. |
-| **Procedures** | `.cursor/skills/` | `/qa` (the front door), `qa-workflow` (the loop it sequences), `/golden-tasks` (regression for the agent layer itself). |
-| **Workers** | `.cursor/agents/` | `code-explorer`, `code-reviewer` (read-only), `test-runner`, `ticket-writer`, `tracker-reporter`. |
-| **Memory** | `docs/STATE.md` · `docs/decisions/` · `docs/sessions/` · `tickets/` | Live state is one overwritten file; decisions have records; history is appended and never read cold; every ticket has a durable file whose frontmatter is the resume payload. |
-| **Claude Code** | `CLAUDE.md` · `.claude/` | One adapter feeding the same three guards. One fence, two harnesses. |
-| **CI** | `.github/workflows/governance.yml` | Hook payloads, adapter mapping, ticket schema, index freshness, the always-on budget. The setup tests its own setup. |
+## What the workflow does
 
-## The five things this gets right that most setups do not
+- Chooses tests by risk, with independent expected results and suitable test layers.
+- Uses observed interfaces/locators and available source; records what cannot be checked.
+- Preserves failing and diagnostic-rerun evidence, skips and incomplete coverage.
+- Prepares tracker comments and bugs before authorized publication.
+- Persists owner, branch, tested revision and next action for another engineer.
+- Loads detailed guidance only when needed, retaining large outputs as artifacts.
 
-1. **Boundaries are hooks, not sentences.** "Never run against prod" is a regex in `guard.conf`, evaluated outside the model on every command. Cloud agents see the same file.
-2. **No Pass without execution evidence.** From code inspection you get a risk list, not a verdict.
-3. **Locators are source-grounded, with two proofs.** In source (offline audit) and in the installed build (live smoke). A miss is quarantined, never guessed — the fix is a product PR.
-4. **A failure is a finding.** Re-run once, then report both outputs. No auto-rerun plugin, ever.
-5. **State is overwritten; history is appended.** `docs/STATE.md` is ≤60 lines and read once at cold start, not injected into every turn.
+The [QA research register](docs/research/qa-practices.md) documents 12 inspected
+primary works and the resulting practices. [Team handoffs and upgrades](docs/reference/team-workflow.md)
+keep company setup separate from public framework changes.
 
-## Acceptance test, once per machine
+## What is verified
 
-Ask the agent to run a hard `git reset` in a scratch repo. A live fence returns the hook's own message in the Hooks output channel. Do not test with force-push — the model refuses that on its own and the refusal masquerades as a working fence. A hook you have not seen execute is not a hook.
+`python3 tools/verify.py` runs policy payloads, tooling/adapter regressions, ticket
+validation, generated-config drift, setup checks and prompt-size budgets. CI runs
+the same command. Behavioral scenarios live in `docs/golden-tasks/`; they require
+actual agent runs and are distinct from deterministic tests.
 
-## Adapting to your stack
+Hooks are **defense in depth**, not a sandbox or a guarantee that every tool is
+intercepted. Default guards target destructive operations, production tests and
+credential exposure; ordinary edits and authorized QA updates proceed without
+blanket approval prompts. Teams can opt into stricter gates. Native runtime
+trust, permissions and observed blocking must be
+checked on each machine. Read [runtime support and limits](docs/reference/runtime-support.md)
+before unattended use. Production execution remains excluded.
 
-[`docs/adopting.md`](docs/adopting.md) is the checklist: what to fill in, what to measure before and after (Cursor's Context Usage panel), and the patterns a real team workspace built on this skeleton should end up with. [`tickets/PROJ-101.md`](tickets/PROJ-101.md) is a worked example ticket against a fictional product. The reasons for the fences are in [`docs/decisions/INDEX.md`](docs/decisions/INDEX.md).
+There is no measured 99% autonomy or universal token-saving claim. Judge the
+framework by verified outcomes, remaining risk, human interventions and measured
+costs in your own environment. It orchestrates your existing tools; it is not a
+hosted testing platform. No framework telemetry or account is required; connected
+providers and coding agents have their own accounts, costs and policies.
 
-## What this is not
-
-Not a test runner, not a test platform, not a tracker. Tests live and run where yours already do. It never edits product code on its own; a product change is a ticket-scoped PR a human reviews. The engineer signs the artifact.
-
-## License
-
-MIT — see [`LICENSE`](LICENSE). No telemetry, no account, no network calls of its own.
+[Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Fictional worked ticket](tickets/PROJ-101.md)

@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "generator": "qadrillion-agent-runtime",
+  "files": {
+    ".agents/skills/golden-tasks/SKILL.md": "68b3234ef57e2908443aaed083e011786b318df344c3b350ee168499bdad3485",
+    ".agents/skills/qa-workflow/SKILL.md": "a68f0ad109813ce4382bd67eb2fddf2572358ce726289b859df27e55a4e65159",
+    ".agents/skills/qa/SKILL.md": "aad0d2d8e7056a8b650e64780e8d6232f46acd7d3306c5e9f35c53a1d0a5ce6a",
+    ".claude/agents/code-explorer.md": "b1ec9de0e55793490a30f57e584250d2b78d4691b4aefdcf8701e7489e154de7",
+    ".claude/agents/code-reviewer.md": "30055bc5dc56ad0fcf9afef060e49ebb6d878e58425b16bd883f1d11b0083c51",
+    ".claude/agents/test-runner.md": "8004ae392ebe7f454d110c0b25b33f4d191a516ed8f21f0488d8259a073e4893",
+    ".claude/agents/ticket-writer.md": "86b21e13f804da9d43ccef7e49649878ed859264b2ae6df8154525c918014421",
+    ".claude/agents/tracker-reporter.md": "0c09829b1f8ceb5d03c5d00ff8145d5873b9b68cbf60f4cc6b2622c53129ca5a",
+    ".claude/hooks/pretooluse.sh": "292c7870129090a5043ea00d6cf1ebbe3f7702ab725adb500c8bcd6452009d9f",
+    ".claude/skills/golden-tasks/SKILL.md": "68b3234ef57e2908443aaed083e011786b318df344c3b350ee168499bdad3485",
+    ".claude/skills/qa-workflow/SKILL.md": "a68f0ad109813ce4382bd67eb2fddf2572358ce726289b859df27e55a4e65159",
+    ".claude/skills/qa/SKILL.md": "aad0d2d8e7056a8b650e64780e8d6232f46acd7d3306c5e9f35c53a1d0a5ce6a",
+    ".codex/agents/code-explorer.toml": "34521dab7074073a3d9426eb588157a65cd083bd250f7b68a90321fc714f4b84",
+    ".codex/agents/code-reviewer.toml": "b53b44180e68dd64a5d63f3ffa1331897a951dc742bbf0e9cda479be19219bb9",
+    ".codex/agents/test-runner.toml": "a524c25079381df044898c12ce581a8e8e6da550769c77f71844a99e5519f358",
+    ".codex/agents/ticket-writer.toml": "569d7e825ecb60e82a78fa0390472b1723b9742ac18cb1621c90b4659af807d0",
+    ".codex/agents/tracker-reporter.toml": "260851aab2b9a6ee15d69347ec6045f5a119e92c56bc92c02e0dc99617ba1937",
+    ".codex/hooks/adapter.py": "045bad6c9c6b7ec91082e1d8aa15f4db7cbd230ab29427d776b3b6a029d67fe7"
+  },
+  "modes": {
+    ".agents/skills/golden-tasks/SKILL.md": 420,
+    ".agents/skills/qa-workflow/SKILL.md": 420,
+    ".agents/skills/qa/SKILL.md": 420,
+    ".claude/agents/code-explorer.md": 420,
+    ".claude/agents/code-reviewer.md": 420,
+    ".claude/agents/test-runner.md": 420,
+    ".claude/agents/ticket-writer.md": 420,
+    ".claude/agents/tracker-reporter.md": 420,
+    ".claude/hooks/pretooluse.sh": 493,
+    ".claude/skills/golden-tasks/SKILL.md": 420,
+    ".claude/skills/qa-workflow/SKILL.md": 420,
+    ".claude/skills/qa/SKILL.md": 420,
+    ".codex/agents/code-explorer.toml": 420,
+    ".codex/agents/code-reviewer.toml": 420,
+    ".codex/agents/test-runner.toml": 420,
+    ".codex/agents/ticket-writer.toml": 420,
+    ".codex/agents/tracker-reporter.toml": 420,
+    ".codex/hooks/adapter.py": 420
+  },
+  "hooks": {
+    "codex": {
+      "PreToolUse": [
+        {
+          "matcher": "^(Bash|exec_command|Read|Edit|Write|MultiEdit|NotebookEdit|apply_patch|mcp__.*)$",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 -c 'import json\nfrom pathlib import Path\nimport runpy\n\ntry:\n    cwd = Path.cwd().resolve()\n    roots = [path for path in (cwd, *cwd.parents)\n             if (path / \"tools/agents/generated.json\").exists()]\n    if len(roots) != 1:\n        raise RuntimeError(\"Expected exactly one ancestor QA workspace; refusing missing or ambiguous policy root\")\n    root = roots[0]\n    marker = root / \"tools/agents/generated.json\"\n    if marker.resolve() != marker:\n        raise RuntimeError(\"QA workspace marker must not be a symlink\")\n    state = json.loads(marker.read_text(encoding=\"utf-8\"))\n    if not isinstance(state, dict) or state.get(\"generator\") != \"qadrillion-agent-runtime\":\n        raise RuntimeError(\"Unrecognized QA workspace marker\")\n    script = root / \".codex/hooks/adapter.py\"\n    if script.resolve() != script:\n        raise RuntimeError(\"QA workspace adapter must not be a symlink\")\n    runpy.run_path(str(script), run_name=\"__main__\")\nexcept Exception as exc:\n    print(json.dumps({\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\",\n          \"permissionDecision\": \"deny\", \"permissionDecisionReason\": \"Workspace policy launcher failed closed: \" + str(exc)}}))\n'",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "SessionStart": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 -c 'import json\nfrom pathlib import Path\nimport runpy\n\ntry:\n    cwd = Path.cwd().resolve()\n    roots = [path for path in (cwd, *cwd.parents)\n             if (path / \"tools/agents/generated.json\").exists()]\n    if len(roots) != 1:\n        raise RuntimeError(\"Expected exactly one ancestor QA workspace; refusing missing or ambiguous policy root\")\n    root = roots[0]\n    marker = root / \"tools/agents/generated.json\"\n    if marker.resolve() != marker:\n        raise RuntimeError(\"QA workspace marker must not be a symlink\")\n    state = json.loads(marker.read_text(encoding=\"utf-8\"))\n    if not isinstance(state, dict) or state.get(\"generator\") != \"qadrillion-agent-runtime\":\n        raise RuntimeError(\"Unrecognized QA workspace marker\")\n    script = root / \".codex/hooks/adapter.py\"\n    if script.resolve() != script:\n        raise RuntimeError(\"QA workspace adapter must not be a symlink\")\n    runpy.run_path(str(script), run_name=\"__main__\")\nexcept Exception as exc:\n    print(json.dumps({\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\",\n          \"permissionDecision\": \"deny\", \"permissionDecisionReason\": \"Workspace policy launcher failed closed: \" + str(exc)}}))\n'",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 -c 'import json\nfrom pathlib import Path\nimport runpy\n\ntry:\n    cwd = Path.cwd().resolve()\n    roots = [path for path in (cwd, *cwd.parents)\n             if (path / \"tools/agents/generated.json\").exists()]\n    if len(roots) != 1:\n        raise RuntimeError(\"Expected exactly one ancestor QA workspace; refusing missing or ambiguous policy root\")\n    root = roots[0]\n    marker = root / \"tools/agents/generated.json\"\n    if marker.resolve() != marker:\n        raise RuntimeError(\"QA workspace marker must not be a symlink\")\n    state = json.loads(marker.read_text(encoding=\"utf-8\"))\n    if not isinstance(state, dict) or state.get(\"generator\") != \"qadrillion-agent-runtime\":\n        raise RuntimeError(\"Unrecognized QA workspace marker\")\n    script = root / \".codex/hooks/adapter.py\"\n    if script.resolve() != script:\n        raise RuntimeError(\"QA workspace adapter must not be a symlink\")\n    runpy.run_path(str(script), run_name=\"__main__\")\nexcept Exception as exc:\n    print(json.dumps({\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\",\n          \"permissionDecision\": \"deny\", \"permissionDecisionReason\": \"Workspace policy launcher failed closed: \" + str(exc)}}))\n'",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "SessionEnd": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 -c 'import json\nfrom pathlib import Path\nimport runpy\n\ntry:\n    cwd = Path.cwd().resolve()\n    roots = [path for path in (cwd, *cwd.parents)\n             if (path / \"tools/agents/generated.json\").exists()]\n    if len(roots) != 1:\n        raise RuntimeError(\"Expected exactly one ancestor QA workspace; refusing missing or ambiguous policy root\")\n    root = roots[0]\n    marker = root / \"tools/agents/generated.json\"\n    if marker.resolve() != marker:\n        raise RuntimeError(\"QA workspace marker must not be a symlink\")\n    state = json.loads(marker.read_text(encoding=\"utf-8\"))\n    if not isinstance(state, dict) or state.get(\"generator\") != \"qadrillion-agent-runtime\":\n        raise RuntimeError(\"Unrecognized QA workspace marker\")\n    script = root / \".codex/hooks/adapter.py\"\n    if script.resolve() != script:\n        raise RuntimeError(\"QA workspace adapter must not be a symlink\")\n    runpy.run_path(str(script), run_name=\"__main__\")\nexcept Exception as exc:\n    print(json.dumps({\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\",\n          \"permissionDecision\": \"deny\", \"permissionDecisionReason\": \"Workspace policy launcher failed closed: \" + str(exc)}}))\n'",
+              "timeout": 3
+            }
+          ]
+        }
+      ]
+    },
+    "claude": {
+      "PreToolUse": [
+        {
+          "matcher": "^(Bash|exec_command|Read|Edit|Write|MultiEdit|NotebookEdit|apply_patch|mcp__.*)$",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pretooluse.sh\"",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "SessionStart": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pretooluse.sh\"",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pretooluse.sh\"",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "SessionEnd": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pretooluse.sh\"",
+              "timeout": 3
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

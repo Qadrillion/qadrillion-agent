@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "files": {
+    ".codex/hooks/adapter.py": "3789372d831e636327f3ce9348eaf834f9b25e01e949208c8678c4d43fa7013d",
+    ".claude/hooks/pretooluse.sh": "a2a08a88e31a3c7d18df17c23e3fd5415311bcf94517e3b319618c724c4a4ed6",
+    ".codex/agents/code-explorer.toml": "b4e2a87f31ec6e3baf438f748aaddfad5c05ace3a929717443ea1245d7ad80ce",
+    ".codex/agents/code-reviewer.toml": "46467a433a69378ded9ce6568606e799beac0ef0c01c95b06c1b6f8146ec8f33",
+    ".codex/agents/test-runner.toml": "ea17ea252319c795d9ebd087d3b0e3f358d7963dfca13579faae0857833e85fa",
+    ".codex/agents/ticket-writer.toml": "971395c978611aa63749cb4ce5a588d8d18dd2293dcd0a27017a3156c6b4f52f",
+    ".codex/agents/tracker-reporter.toml": "f5c100b031d0bd2760f30d04d0f5d0ef444f65e79ca7c2d2514daf57f913c751"
+  },
+  "hooks": {
+    "codex": {
+      "PreToolUse": [
+        {
+          "matcher": "Bash|apply_patch|mcp__.*",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/adapter.py\" project",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "SessionStart": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/adapter.py\" project",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/adapter.py\" project",
+              "timeout": 30
+            }
+          ]
+        }
+      ],
+      "SessionEnd": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/adapter.py\" project",
+              "timeout": 3
+            }
+          ]
+        }
+      ]
+    },
+    "claude": {
+      "PreToolUse": [
+        {
+          "matcher": "Bash|Read|Edit|Write|MultiEdit|NotebookEdit|mcp__.*",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/pretooluse.sh",
+              "timeout": 10
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "old_ledger_hash": "1b1d782f4df14e0b4dc2b11d78be1b3f3775c5b37abc2a2026d062c9765a0e34"
+}

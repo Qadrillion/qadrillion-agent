@@ -1,58 +1,45 @@
 ---
-description: "Tracker QA comment format and bug filing format. Apply when preparing a QA result comment or drafting a new bug for the issue tracker."
+description: Portable QA result and bug reporting, draft review, authorization and duplicate-safe publication. Applies to tracker comments and bug drafts in any tool.
 alwaysApply: false
 ---
 
 # Tracker reporting
 
-Two write cases: a **QA result comment** on an existing ticket, and a **new
-bug**. Both are prepared by `tracker-reporter`, shown to the user, and posted
-only after explicit approval. The MCP hook enforces the gate; this rule
-defines the content.
+Prepare the exact draft locally first. An explicit instruction to publish this
+task's QA results or file its defects authorizes routine reporting to the named
+destination; proceed without asking again for each draft. Stay within that scope
+and native runtime permissions. A changed destination or materially expanded
+purpose needs consent. A testing request alone does not authorize publication.
+Do not assume a hook will ask. Delegate publication only with that authorization
+and a single designated writer; never let competing workers post the same run.
+Without an integration, retain a paste-ready draft with `tracker: null` if needed.
 
-## QA result comment — one per test run
+## QA result
 
-```
-QA — Pass | Fail | Partial | In progress
+Include verdict, environment, tested build/revision and date; exact scenarios
+and results; linked defects; decisive evidence/artifact references; untested scope
+and next action. Known failing criteria mean Fail, incomplete required coverage
+without a confirmed defect means Partial. No Pass based only on source inspection,
+zero collected tests, or a report's existence.
 
-Tested on: <environment> | <date>
-Build: <version / branch / commit>
+## Bug
 
-Covered:
-- <exact scenario> → pass | fail | partial
+Title: `<surface> | <observable problem>`.
+Body: description; minimal reproduction and preconditions; expected result and
+its oracle; actual result; environment/build; short redacted technical evidence.
+Separate an observed symptom from inferred cause. Include frequency and both
+attempts for intermittent failures. Search for an existing defect before filing.
 
-Issues found:
-- <one line, reproducible> → <BUG-ID or "logged">
+Map fields to the provider's actual schema: type, project/component, severity,
+priority, environment and links only where supported/required. Severity reflects
+impact; priority is the team's scheduling decision. Do not invent Jira fields in
+GitHub/Linear or require unsupported labels. Ask only for a required missing
+material value; otherwise retain a draft with the unresolved mapping noted.
 
-Notes:
-- <context the developer or next tester needs>
-```
+## Publication evidence
 
-Name exact scenarios, never "happy path tested". Always state environment and
-build. No Pass without execution evidence in the ticket file. If the user
-declines to post, leave the comment in `tickets/{ID}.md` for manual paste.
-Never claim it was posted unless the post succeeded.
-
-## New bug — short and reproducible
-
-Title: `<Surface> | <what is broken, one line>` (surfaces: `BE`, `Web`,
-`iOS`, `Android`, or the project's own list).
-
-Body, exactly these sections:
-
-```
-Description       1–3 sentences: what is broken (INTERMITTENT + frequency if so)
-Steps to reproduce  numbered
-Expected
-Actual
-Technical evidence  optional and short: status code, key log line, file:symbol
-```
-
-Fields outside the body: type `Bug`; **Component**, **Priority** and
-**Environment** always set (priority guidance: crash / data loss / blocked
-main flow = High; workaround exists = Medium; cosmetic or edge = Low); labels
-empty unless asked; link the ticket that led to the finding.
-
-Anti-patterns: root-cause essays and suggested fixes in the bug body (they
-belong in `tickets/{ID}.md`); environment only in prose; unset priority;
-filing without approval.
+Record destination, posted content, task authorization, timestamp and returned URL/ID. Before
+posting, check whether this run already has a comment/defect. After a timeout or
+ambiguous response, inspect remote state before retrying; do not duplicate writes.
+Claim posted only after confirmed success. A denied write cannot be retried through
+another CLI/API/MCP. Preserve the draft when publication is unavailable or declined.

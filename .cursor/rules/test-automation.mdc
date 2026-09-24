@@ -1,44 +1,46 @@
 ---
-description: "Hard rules for test code under automation/. Auto-attaches when editing tests, fixtures, locators or collections."
+description: Test design and evidence rules for automation, fixtures, locators and collections in any runner. Apply when writing or reviewing tests.
 globs:
   - "automation/**/*"
 alwaysApply: false
 ---
 
-# Test automation — the hard rules
+# Test automation contract
 
-These are the rules the framework is built around. Breaking one is not a
-style issue; it breaks other people's tests. A PR that violates one is sent
-back (see CONTRIBUTING.md).
-
-1. **Tests are independent.** Declare the state you need with a marker
-   (`@pytest.mark.app_state(...)` or the framework's equivalent). A test never
-   calls a login flow, resets the app, or depends on the test before it.
-2. **Locators are source-grounded.** Every UI locator lives in the registry
-   with a `source_ref` pointing at the real identifier in product source
-   (`testTag`, `accessibilityIdentifier`, `data-testid`). If the identifier
-   does not exist in the app, the fix is a PR against the app — never an
-   XPath or text match that works around it. Two proofs, two claims: the
-   offline audit proves it is in *source*; the live smoke proves it is in the
-   *installed build*. A locator with only the first proof is `Partial`.
-3. **Login is an account problem.** Pool an existing account; do not sign up
-   in every test. Real UI login is what is under test on staging, not a
-   shortcut around it.
-4. **No `sleep` in framework code.** Every wait goes through the wait helper
-   with a `because="..."` reason. The linter enforces it in `src/`; in
-   `tests/` it is a review red flag.
-5. **Staging only.** Every mutation or repro script calls the staging guard
-   before authenticating. The hook denies prod selectors anyway; the guard is
-   the second fence for scripts run outside the agent.
-6. **A failure is a finding.** Re-run once. If it fails again, report it. There
-   is deliberately no auto-rerun plugin.
-7. **A strict xfail is an instrument.** When the product disagrees with the
-   ticket's acceptance criteria, capture it as `xfail(strict=True)` with the
-   ticket in the reason. It flips to XPASS when the product reconciles. Do not
-   "fix" the test.
-8. **Collections in the cloud are canonical; committed JSON is a mirror.**
-   Edit in the tool, then sync. Hand edits are overwritten on the next sync.
-9. **`./scripts/verify.sh` is the same script CI runs.** Red locally predicts
-   red in CI. Run it before every PR.
-10. **Never hide a failed check** with `|| true`, a broad `except`, or a Pass
-    without output.
+1. **Independent state and oracle.** Each test declares setup and cleanup through
+   the runner's fixture conventions. No ordering dependence or shared mutable
+   account. Test login through UI when login is the subject; other tests may use
+   safe API/session setup. Signup tests may create disposable accounts.
+2. **Observed locators.** Prefer semantic role/name or accessible identifiers and
+   explicit test IDs supported by the product. Prove uniqueness and behavior in
+   the tested DOM/accessibility tree/build; record source provenance when source
+   exists. Text is valid when it is the intended observable contract, with locale
+   controlled. Avoid brittle positional selectors. Never invent identifiers or
+   pretend source inspection proves the installed build. A locator registry is
+   optional; missing IDs alone do not block usable semantic UI automation.
+3. **Risk before volume.** Link each test to a criterion or failure risk; assert
+   observable outcomes, not the implementation's own calculation repeated back.
+   Prefer the lowest effective layer, retain real integration/end-to-end paths,
+   and state what stubs/mocks cannot establish.
+4. **Condition-based synchronization.** Wait on observable state with a timeout
+   and actionable diagnostic. Do not add arbitrary sleeps or increase timeouts to
+   hide failures. Timing may be an input when testing timing behavior itself.
+5. **Isolated non-production targets.** Verify target identity before mutation.
+   Use least-privilege test identities, run-specific data and task-owned cleanup.
+   Never derive a safety claim from an environment's label alone.
+6. **Preserve failures.** No rerun-until-green. One diagnostic rerun at most for
+   an explicit hypothesis; retain both outputs. Assertion, product, fixture,
+   locator and infrastructure classifications require evidence.
+7. **Expected failures stay visible.** A quarantine/xfail needs a linked defect,
+   owner, reason and review date. Use strict unexpected-pass behavior if supported;
+   otherwise inspect/report it separately. Do not silently enable runner retries
+   that mask first failures or claim known-broken criteria passed.
+8. **Respect the source of truth.** Git-managed tests/collections are edited in
+   Git. Cloud-managed collections are edited through the authorized service and
+   synced. Determine ownership first; neither model is universal.
+9. **Verify what exists.** Run the repository's actual documented checks. Record
+   command, cwd, target/build and exit status with redacted artifacts. Zero tests,
+   skipped-only runs and collection parsing are not a testing Pass.
+10. **Keep evidence safe and useful.** Do not hide failed checks, weaken assertions,
+    copy credentials/customer data into logs, or upload artifacts outside approved
+    storage. Retain full redacted output outside the prompt; quote decisive lines.

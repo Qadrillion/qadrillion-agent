@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
-"""Generate tickets/INDEX.md from ticket frontmatter.
-
-    python3 tools/tickets/index.py           # rewrite tickets/INDEX.md
-    python3 tools/tickets/index.py --check   # exit 1 if INDEX.md is stale (CI)
-"""
+"""Generate tickets/INDEX.md from validated frontmatter; --check detects drift."""
 from __future__ import annotations
 
+import html
 import sys
 from pathlib import Path
+from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from validate import TICKETS, frontmatter  # noqa: E402
+from validate import TICKETS, load_ticket, ticket_files  # noqa: E402
 
 INDEX = TICKETS / "INDEX.md"
 HEADER = (
@@ -22,35 +20,46 @@ HEADER = (
 )
 
 
-def render() -> str:
+def cell(value) -> str:
+    text = "null" if value is None else str(value)
+    return html.escape(text, quote=False).replace("\\", "\\\\").replace("|", "\\|").replace("\r\n", "\n").replace("\r", "\n").replace("\n", "<br>")
+
+
+def render(directory: Path = TICKETS) -> str:
+    tickets = []
+    for path in ticket_files(directory):
+        try:
+            tickets.append((path, load_ticket(path)))
+        except (OSError, ValueError) as exc:
+            raise ValueError(f"{path}: {exc}") from exc
+    tickets.sort(key=lambda item: item[1]["updated"], reverse=True)
     rows = []
-    for p in sorted(TICKETS.glob("*.md")):
-        if p.name.startswith("_") or p.name == "INDEX.md":
-            continue
-        fm = frontmatter(p.read_text(encoding="utf-8")) or {}
-        rows.append(
-            "| [{id}]({file}) | {title} | {scope} | {status} | {verdict} | {updated} | {next} |".format(
-                id=fm.get("id", p.stem), file=p.name, title=fm.get("title", ""),
-                scope=fm.get("scope", ""), status=fm.get("status", ""),
-                verdict=fm.get("verdict", ""), updated=fm.get("updated", ""),
-                next=fm.get("next_action", "").strip('"'),
-            )
-        )
-    rows.sort(key=lambda r: r.split("|")[6].strip(), reverse=True)
+    for path, data in tickets:
+        label = cell(data["id"]).replace("[", "\\[").replace("]", "\\]")
+        values = [f"[{label}]({quote(path.name)})"]
+        values += [cell(data[key]) for key in ("title", "scope", "status", "verdict", "updated", "next_action")]
+        rows.append("| " + " | ".join(values) + " |")
     return HEADER + "\n".join(rows) + ("\n" if rows else "")
 
 
 def main(argv: list[str]) -> int:
-    content = render()
-    if "--check" in argv:
-        current = INDEX.read_text(encoding="utf-8") if INDEX.exists() else ""
-        if current != content:
-            print("tickets/INDEX.md is stale — run python3 tools/tickets/index.py")
-            return 1
-        print("tickets/INDEX.md is current")
-        return 0
-    INDEX.write_text(content, encoding="utf-8")
-    print(f"wrote {INDEX.relative_to(TICKETS.parent)}")
+    if argv not in ([], ["--check"]):
+        print("usage: index.py [--check]", file=sys.stderr)
+        return 2
+    try:
+        content = render()
+        if "--check" in argv:
+            current = INDEX.read_text(encoding="utf-8") if INDEX.exists() else ""
+            if current != content:
+                print("tickets/INDEX.md is stale — run python3 tools/tickets/index.py")
+                return 1
+            print("tickets/INDEX.md is current")
+            return 0
+        INDEX.write_text(content, encoding="utf-8")
+    except (OSError, ValueError) as exc:
+        print(f"Cannot generate ticket index: {exc}", file=sys.stderr)
+        return 1
+    print(f"wrote {INDEX.name}")
     return 0
 
 

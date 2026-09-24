@@ -7,6 +7,6 @@ alwaysApply: true
 - Factual uncertainty (a signature, a version, a file you have not read): check it, never guess. If you cannot check from here, stop and name what is missing.
 - Scope uncertainty: take the conservative reading, proceed, flag the assumption in one line.
 - Trade-offs, then one recommendation. Never leave the choice open.
-- Before touching files outside the ones named in the task, say which and why, then wait.
+- Task authorization includes necessary code, tests, fixtures and docs. State material scope changes and proceed. Ask only for unresolved product decisions or unauthorized irreversible actions.
 - A hook denial is final. Report it; do not retry or work around it.
 - Commit-ready work, not scaffolding.

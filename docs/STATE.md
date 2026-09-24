@@ -1,35 +1,39 @@
-# State — <workspace name>
+# State — Qadrillion Agent
 
 Updated: 2026-09-24
-Overwrite this file every session. Never append. Handover note, not a diary.
-Full chronology lives in `docs/sessions/` and is never read at startup.
-
-This file is the template a team overwrites after cloning. Keep the headings.
-Skeleton note, 2026-09-24: Codex adapters are on main; new hooks still need native trust and a reload. The public GitHub page is in `docs/sessions/2026-09-23-public-repo.md`. Next work on the skeleton is a review of the skills and subagents, then a release tag.
 
 ## Goal
 
-One sentence: what this workspace is for and what "good" looks like this quarter.
+Pilot the improved public QA framework in Cursor on the work laptop.
 
 ## Done
 
-Only what is committed and verified. Newest first. Keep to five lines; older
-items belong in `docs/sessions/`.
+Portable skills/agents, 12-source research, setup/upgrade guides and bug fixes.
+Targeted default guards; ordinary authorized work has no blanket approval gate.
+75 guard payloads and 115 Python tests pass locally and in a clean Git-free export.
+Eleven distinct synthetic behavior cases passed across two recorded checkpoints.
+Blind review: PASS after all six findings were corrected; zero deferred findings.
 
 ## In progress
 
-Exact tickets, exact files, exact state. What is half-finished and where.
+Owner: framework maintainer session. Branch: feat/portable-qa-framework.
+Implementation checkpoint: fffd465; final documentation records follow it.
+Published [PR #3](https://github.com/Qadrillion/qadrillion-agent/pull/3).
+One writer per checkout; use the feature branch for the pilot before it is merged.
+Review base/fingerprint and limitations are in the portable-framework spec.
+CI results are attached to the PR; native runtime activation has not been tested.
 
 ## Next
 
-The single immediate next action, then at most four after it, in order.
+Follow docs/adopting.md in a private workspace using feat/portable-qa-framework.
+Pilot a non-production Cursor ticket and handoff; preserve existing company setup.
 
 ## Rejected
 
-What was tried and why it failed, written to generalise. This is the part that
-cannot be reconstructed from the repository. Promote anything durable to
-`docs/decisions/`.
+No mandatory vendor/source/mobile setup, invented evidence or unmeasured savings.
+Hooks are defense in depth. Global machine hooks and native trust remain separate.
 
 ## Open questions
 
-Decisions waiting on a human, with who and by when if known.
+No user decision blocks completion. Native-runtime activation, company integrations,
+Windows behavior and measured cost/autonomy await their own live pilots.
