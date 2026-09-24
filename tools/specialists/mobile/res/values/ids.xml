@@ -1,0 +1,7 @@
+<resources>
+    <item type="id" name="quantity" />
+    <item type="id" name="add_parcel" />
+    <item type="id" name="parcel_count" />
+    <item type="id" name="unit_count" />
+    <item type="id" name="validation" />
+</resources>
