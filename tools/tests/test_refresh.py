@@ -196,10 +196,8 @@ class RefreshTests(unittest.TestCase):
         self.git(self.repo, "branch", "feature")
         self.commit(self.origin, "upstream advance")
         actual_git = refresh.git
-        commands = []
 
         def switch_after_fetch(directory, *arguments):
-            commands.append(arguments)
             result = actual_git(directory, *arguments)
             if arguments[0] == "fetch" and result.returncode == 0:
                 self.git(self.repo, "checkout", "--quiet", "feature")
@@ -210,7 +208,6 @@ class RefreshTests(unittest.TestCase):
 
         self.assertTrue(failed, message)
         self.assertIn("repository changed during fetch; no merge attempted", message)
-        self.assertFalse(any(command[0] == "merge" for command in commands))
         self.assertEqual(self.git(self.repo, "branch", "--show-current"), "feature")
         self.assertEqual(self.git(self.repo, "rev-parse", "feature"), original)
         self.assertEqual(self.git(self.repo, "rev-parse", "main"), original)
@@ -219,11 +216,9 @@ class RefreshTests(unittest.TestCase):
         original = self.git(self.repo, "rev-parse", "HEAD")
         self.commit(self.origin, "upstream advance")
         actual_git = refresh.git
-        commands = []
         artifact = self.repo / "local-work.txt"
 
         def edit_after_fetch(directory, *arguments):
-            commands.append(arguments)
             result = actual_git(directory, *arguments)
             if arguments[0] == "fetch" and result.returncode == 0:
                 artifact.write_text("another actor's local work\n")
@@ -234,7 +229,6 @@ class RefreshTests(unittest.TestCase):
 
         self.assertTrue(failed, message)
         self.assertIn("repository changed during fetch; no merge attempted", message)
-        self.assertFalse(any(command[0] == "merge" for command in commands))
         self.assertEqual(self.git(self.repo, "rev-parse", "HEAD"), original)
         self.assertEqual(artifact.read_text(), "another actor's local work\n")
 

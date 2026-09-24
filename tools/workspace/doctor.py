@@ -50,9 +50,9 @@ def inspect(root: Path) -> list[dict[str, str]]:
                 else:
                     executable = None
                 if executable:
-                    # Local runner paths are resolved against their declared working directory.
-                    local = root / row.get("cwd", ".") / executable
                     if "/" in executable or "\\" in executable:
+                        directory = root / row["cwd"] if group == "runners" else root
+                        local = directory / executable
                         present = local.is_file() and os.access(local, os.X_OK)
                     else:
                         present = shutil.which(executable)

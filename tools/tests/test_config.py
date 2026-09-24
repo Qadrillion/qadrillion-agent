@@ -99,6 +99,23 @@ class ConfigurationTests(unittest.TestCase):
                 rows = doctor.inspect(root)
                 self.assertTrue(any(row["check"] == "qa-config" and row["status"] == "ok" for row in rows))
 
+    def test_cli_metadata_is_not_interpreted_as_a_runner_directory(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            executable = root / "fixture-client"
+            executable.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8")
+            executable.chmod(0o755)
+            for metadata in ({}, [], None, "provider-region"):
+                with self.subTest(metadata=metadata):
+                    self.data["integrations"] = [{"id": "issue", "provider": "example",
+                                                  "transport": "cli", "enabled": True,
+                                                  "scope": "test-project", "capabilities": ["tracker.read"],
+                                                  "executable": "./fixture-client", "cwd": metadata}]
+                    self.assertEqual([], config.validate(self.data))
+                    (root / "qa-config.json").write_text(json.dumps(self.data), encoding="utf-8")
+                    rows = doctor.inspect(root)
+                    self.assertEqual(["ok"], [row["status"] for row in rows if row["check"] == "issue"])
+
     def test_runner_path_resolves_in_its_cwd_and_requires_executable_mode(self):
         self.data["runners"] = [{"id": "local-runner", "enabled": True,
                                  "scopes": ["other"], "cwd": "suite",
