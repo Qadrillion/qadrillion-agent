@@ -8,6 +8,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / "tools/workspace/refresh.py"
@@ -189,6 +190,73 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual((self.repo / "fixture.txt").read_text(), "local edit")
         self.assertEqual(self.git(self.repo, "rev-parse", "HEAD"), head)
         self.assertFalse((self.repo / ".git/FETCH_HEAD").exists())
+
+    def test_branch_switch_during_fetch_preserves_feature_tip_without_merging(self):
+        original = self.git(self.repo, "rev-parse", "HEAD")
+        self.git(self.repo, "branch", "feature")
+        self.commit(self.origin, "upstream advance")
+        actual_git = refresh.git
+        commands = []
+
+        def switch_after_fetch(directory, *arguments):
+            commands.append(arguments)
+            result = actual_git(directory, *arguments)
+            if arguments[0] == "fetch" and result.returncode == 0:
+                self.git(self.repo, "checkout", "--quiet", "feature")
+            return result
+
+        with patch.object(refresh, "git", side_effect=switch_after_fetch):
+            message, failed = refresh.inspect(self.entry, self.root, True)
+
+        self.assertTrue(failed, message)
+        self.assertIn("repository changed during fetch; no merge attempted", message)
+        self.assertFalse(any(command[0] == "merge" for command in commands))
+        self.assertEqual(self.git(self.repo, "branch", "--show-current"), "feature")
+        self.assertEqual(self.git(self.repo, "rev-parse", "feature"), original)
+        self.assertEqual(self.git(self.repo, "rev-parse", "main"), original)
+
+    def test_new_local_work_during_fetch_is_preserved_without_merging(self):
+        original = self.git(self.repo, "rev-parse", "HEAD")
+        self.commit(self.origin, "upstream advance")
+        actual_git = refresh.git
+        commands = []
+        artifact = self.repo / "local-work.txt"
+
+        def edit_after_fetch(directory, *arguments):
+            commands.append(arguments)
+            result = actual_git(directory, *arguments)
+            if arguments[0] == "fetch" and result.returncode == 0:
+                artifact.write_text("another actor's local work\n")
+            return result
+
+        with patch.object(refresh, "git", side_effect=edit_after_fetch):
+            message, failed = refresh.inspect(self.entry, self.root, True)
+
+        self.assertTrue(failed, message)
+        self.assertIn("repository changed during fetch; no merge attempted", message)
+        self.assertFalse(any(command[0] == "merge" for command in commands))
+        self.assertEqual(self.git(self.repo, "rev-parse", "HEAD"), original)
+        self.assertEqual(artifact.read_text(), "another actor's local work\n")
+
+    def test_remote_change_during_fetch_refuses_merge(self):
+        original = self.git(self.repo, "rev-parse", "HEAD")
+        self.commit(self.origin, "upstream advance")
+        actual_git = refresh.git
+        changed_remote = str(self.base / "different-origin")
+
+        def change_remote_after_fetch(directory, *arguments):
+            result = actual_git(directory, *arguments)
+            if arguments[0] == "fetch" and result.returncode == 0:
+                self.git(self.repo, "remote", "set-url", "origin", changed_remote)
+            return result
+
+        with patch.object(refresh, "git", side_effect=change_remote_after_fetch):
+            message, failed = refresh.inspect(self.entry, self.root, True)
+
+        self.assertTrue(failed, message)
+        self.assertIn("repository changed during fetch; no merge attempted", message)
+        self.assertEqual(self.git(self.repo, "rev-parse", "HEAD"), original)
+        self.assertEqual(self.git(self.repo, "remote", "get-url", "origin"), changed_remote)
 
     def test_noncanonical_and_detached_branches_are_preserved(self):
         self.git(self.repo, "checkout", "--quiet", "-b", "feature")

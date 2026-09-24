@@ -12,7 +12,7 @@ import json
 import re
 import sys
 from datetime import date
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -145,15 +145,27 @@ def string_list(value) -> bool:
     return isinstance(value, list) and all(is_text(item) for item in value)
 
 
+def relative_artifact(reference: str) -> bool:
+    return (
+        is_text(reference)
+        and "\0" not in reference
+        and not reference.startswith("~")
+        and not PureWindowsPath(reference).anchor
+        and not re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", reference)
+    )
+
+
 def execution_evidence(path: Path, data: dict, body: str) -> bool:
     refs = data.get("evidence", [])
     if string_list(refs):
         for reference in refs:
-            artifact = (path.parent / reference).resolve()
+            if not relative_artifact(reference):
+                continue
             try:
+                artifact = (path.parent / reference).resolve()
                 if artifact.is_file() and artifact.stat().st_size > 0:
                     return True
-            except OSError:
+            except (OSError, ValueError):
                 continue
     section = re.search(r"^##\s+Execution\s*(?:&|and)\s*results\s*\n(.*?)(?=^##\s|\Z)", body, re.I | re.M | re.S)
     if not section:
@@ -182,6 +194,8 @@ def validate_data(path: Path, data: dict, body: str) -> list[str]:
     for key in ("source_refs", "blockers", "evidence"):
         if key in data and not string_list(data[key]):
             errors.append(f"`{key}` must be a list of nonempty strings")
+    if string_list(data.get("evidence")) and any(not relative_artifact(ref) for ref in data["evidence"]):
+        errors.append("`evidence` entries must be local paths relative to the ticket")
     if data["status"] == "done" and data["verdict"] is None:
         errors.append("status done but verdict null")
     if data["verdict"] is not None and data["status"] != "done":

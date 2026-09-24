@@ -117,6 +117,33 @@ class TicketTests(unittest.TestCase):
         (self.directory / "run.log").write_text("Ran 2 tests: OK\n")
         self.assertEqual(self.write(), [])
 
+    def test_evidence_rejects_nonrelative_references_even_with_valid_inline_output(self):
+        artifact = self.directory / "temporary-run.log"
+        artifact.write_text("Ran 2 tests: OK\n")
+        body = "## Execution & results\n```text\n$ run-tests\n2 passed\n```\n"
+        self.data.update(status="done", verdict="pass")
+        for reference in (
+            str(artifact.resolve()), "/absolute/run.log", "C:/reports/run.log",
+            r"C:\reports\run.log", r"C:reports\run.log", r"\\server\share\run.log",
+            "//server/share/run.log", r"\reports\run.log", "~/run.log", "~someone/run.log",
+            "https://example.invalid/run.log", "file:///reports/run.log", "run\0.log",
+        ):
+            with self.subTest(reference=reference):
+                self.data["evidence"] = [reference]
+                errors = self.write(body)
+                self.assertTrue(any("local paths relative to the ticket" in error for error in errors), errors)
+                self.assertFalse(validate.execution_evidence(self.path, self.data, ""))
+
+    def test_parent_relative_local_evidence_artifact_is_supported(self):
+        tickets = self.directory / "tickets"
+        artifacts = self.directory / "artifacts"
+        tickets.mkdir()
+        artifacts.mkdir()
+        self.path = tickets / "LOCAL-1.md"
+        (artifacts / "run log.txt").write_text("Ran 2 tests: OK\n")
+        self.data.update(status="done", verdict="pass", evidence=["../artifacts/run log.txt"])
+        self.assertEqual(self.write(), [])
+
     def test_index_escapes_pipes_newlines_and_html(self):
         self.data["title"] = "A | B\n<script>bad</script>"
         self.data["next_action"] = "Execute scenario | two\nthen report"

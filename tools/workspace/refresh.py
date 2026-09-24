@@ -111,13 +111,37 @@ def inspect(repo: dict, root: Path, update: bool) -> tuple[str, bool]:
                 notes.append("fetch failed; no merge attempted")
                 failed = True
             elif "fast-forward" in modes:
-                merged = git(directory, "merge", "--ff-only", "--quiet", tracking_ref)
-                if merged.returncode:
-                    notes.append("fast-forward failed")
+                # Fetch can outlast another actor's branch switch or local edit.
+                # This snapshot narrows that window; it is not an atomic lock.
+                next_top = git(directory, "rev-parse", "--show-toplevel")
+                next_remote = git(directory, "remote", "get-url", "origin")
+                next_branch = git(directory, "branch", "--show-current")
+                next_status = git(directory, "status", "--porcelain=v1", "--untracked-files=normal")
+                next_head = git(directory, "rev-parse", "--short", "HEAD")
+                changed = (
+                    any(result.returncode for result in (next_top, next_remote, next_branch, next_status, next_head))
+                    or (root / repo["path"]).resolve() != directory
+                    or Path(next_top.stdout.strip()).resolve() != directory
+                    or next_remote.stdout.strip() != repo["expected_remote"]
+                    or next_branch.stdout.strip() != current
+                    or bool(next_status.stdout)
+                    or next_head.stdout.strip() != head.stdout.strip()
+                )
+                if changed:
+                    notes.append("update refused: repository changed during fetch; no merge attempted")
                     failed = True
                 else:
-                    notes.append("fast-forward complete")
-                    head = git(directory, "rev-parse", "--short", "HEAD")
+                    merged = git(directory, "merge", "--ff-only", "--quiet", tracking_ref)
+                    if merged.returncode:
+                        notes.append("fast-forward failed")
+                        failed = True
+                    else:
+                        notes.append("fast-forward complete")
+                        next_head = git(directory, "rev-parse", "--short", "HEAD")
+                if not next_branch.returncode:
+                    current = next_branch.stdout.strip()
+                if not next_head.returncode:
+                    head = next_head
             else:
                 notes.append("fetched; fast-forward not permitted")
     elif update:
