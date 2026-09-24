@@ -1,0 +1,372 @@
+[
+  {
+    "name": "root",
+    "width": 1100,
+    "theme": "light",
+    "file": "root-1100-light.png",
+    "scrollWidth": 1100,
+    "images": [
+      {
+        "alt": "Qadrillion",
+        "loaded": true
+      },
+      {
+        "alt": "Framework checks",
+        "loaded": true
+      },
+      {
+        "alt": "MIT license",
+        "loaded": true
+      }
+    ],
+    "anchors": [
+      {
+        "href": "#qadrillion-agent",
+        "exists": true
+      },
+      {
+        "href": "#quick-start",
+        "exists": true
+      },
+      {
+        "href": "#five-specialties-one-entry-point",
+        "exists": true
+      },
+      {
+        "href": "#see-it-catch-a-defect",
+        "exists": true
+      },
+      {
+        "href": "#start-with-a-real-qa-task",
+        "exists": true
+      },
+      {
+        "href": "#five-specialties-one-entry-point",
+        "exists": true
+      },
+      {
+        "href": "#quick-start",
+        "exists": true
+      },
+      {
+        "href": "#see-it-catch-a-defect",
+        "exists": true
+      },
+      {
+        "href": "#how-the-work-moves-forward",
+        "exists": true
+      },
+      {
+        "href": "#evidence-you-can-inspect",
+        "exists": true
+      },
+      {
+        "href": "#fit-it-to-your-team",
+        "exists": true
+      },
+      {
+        "href": "#help-build-it",
+        "exists": true
+      }
+    ],
+    "tables": 2
+  },
+  {
+    "name": "root",
+    "width": 1100,
+    "theme": "dark",
+    "file": "root-1100-dark.png",
+    "scrollWidth": 1100,
+    "images": [
+      {
+        "alt": "Qadrillion",
+        "loaded": true
+      },
+      {
+        "alt": "Framework checks",
+        "loaded": true
+      },
+      {
+        "alt": "MIT license",
+        "loaded": true
+      }
+    ],
+    "anchors": [
+      {
+        "href": "#qadrillion-agent",
+        "exists": true
+      },
+      {
+        "href": "#quick-start",
+        "exists": true
+      },
+      {
+        "href": "#five-specialties-one-entry-point",
+        "exists": true
+      },
+      {
+        "href": "#see-it-catch-a-defect",
+        "exists": true
+      },
+      {
+        "href": "#start-with-a-real-qa-task",
+        "exists": true
+      },
+      {
+        "href": "#five-specialties-one-entry-point",
+        "exists": true
+      },
+      {
+        "href": "#quick-start",
+        "exists": true
+      },
+      {
+        "href": "#see-it-catch-a-defect",
+        "exists": true
+      },
+      {
+        "href": "#how-the-work-moves-forward",
+        "exists": true
+      },
+      {
+        "href": "#evidence-you-can-inspect",
+        "exists": true
+      },
+      {
+        "href": "#fit-it-to-your-team",
+        "exists": true
+      },
+      {
+        "href": "#help-build-it",
+        "exists": true
+      }
+    ],
+    "tables": 2
+  },
+  {
+    "name": "root",
+    "width": 390,
+    "theme": "light",
+    "file": "root-390-light.png",
+    "scrollWidth": 390,
+    "images": [
+      {
+        "alt": "Qadrillion",
+        "loaded": true
+      },
+      {
+        "alt": "Framework checks",
+        "loaded": true
+      },
+      {
+        "alt": "MIT license",
+        "loaded": true
+      }
+    ],
+    "anchors": [
+      {
+        "href": "#qadrillion-agent",
+        "exists": true
+      },
+      {
+        "href": "#quick-start",
+        "exists": true
+      },
+      {
+        "href": "#five-specialties-one-entry-point",
+        "exists": true
+      },
+      {
+        "href": "#see-it-catch-a-defect",
+        "exists": true
+      },
+      {
+        "href": "#start-with-a-real-qa-task",
+        "exists": true
+      },
+      {
+        "href": "#five-specialties-one-entry-point",
+        "exists": true
+      },
+      {
+        "href": "#quick-start",
+        "exists": true
+      },
+      {
+        "href": "#see-it-catch-a-defect",
+        "exists": true
+      },
+      {
+        "href": "#how-the-work-moves-forward",
+        "exists": true
+      },
+      {
+        "href": "#evidence-you-can-inspect",
+        "exists": true
+      },
+      {
+        "href": "#fit-it-to-your-team",
+        "exists": true
+      },
+      {
+        "href": "#help-build-it",
+        "exists": true
+      }
+    ],
+    "tables": 2
+  },
+  {
+    "name": "root",
+    "width": 320,
+    "theme": "dark",
+    "file": "root-320-dark.png",
+    "scrollWidth": 320,
+    "images": [
+      {
+        "alt": "Qadrillion",
+        "loaded": true
+      },
+      {
+        "alt": "Framework checks",
+        "loaded": true
+      },
+      {
+        "alt": "MIT license",
+        "loaded": true
+      }
+    ],
+    "anchors": [
+      {
+        "href": "#qadrillion-agent",
+        "exists": true
+      },
+      {
+        "href": "#quick-start",
+        "exists": true
+      },
+      {
+        "href": "#five-specialties-one-entry-point",
+        "exists": true
+      },
+      {
+        "href": "#see-it-catch-a-defect",
+        "exists": true
+      },
+      {
+        "href": "#start-with-a-real-qa-task",
+        "exists": true
+      },
+      {
+        "href": "#five-specialties-one-entry-point",
+        "exists": true
+      },
+      {
+        "href": "#quick-start",
+        "exists": true
+      },
+      {
+        "href": "#see-it-catch-a-defect",
+        "exists": true
+      },
+      {
+        "href": "#how-the-work-moves-forward",
+        "exists": true
+      },
+      {
+        "href": "#evidence-you-can-inspect",
+        "exists": true
+      },
+      {
+        "href": "#fit-it-to-your-team",
+        "exists": true
+      },
+      {
+        "href": "#help-build-it",
+        "exists": true
+      }
+    ],
+    "tables": 2
+  },
+  {
+    "name": "reference",
+    "width": 390,
+    "theme": "light",
+    "file": "reference-390-light.png",
+    "scrollWidth": 390,
+    "images": [],
+    "anchors": [
+      {
+        "href": "#run-tests-that-detect-known-defects",
+        "exists": true
+      },
+      {
+        "href": "#run-the-http-suites",
+        "exists": true
+      },
+      {
+        "href": "#include-chromium-and-firefox",
+        "exists": true
+      },
+      {
+        "href": "#read-the-result",
+        "exists": true
+      },
+      {
+        "href": "#what-this-proves",
+        "exists": true
+      },
+      {
+        "href": "#artifacts-and-cleanup",
+        "exists": true
+      }
+    ],
+    "tables": 1
+  },
+  {
+    "name": "mobile",
+    "width": 390,
+    "theme": "light",
+    "file": "mobile-390-light.png",
+    "scrollWidth": 390,
+    "images": [],
+    "anchors": [
+      {
+        "href": "#test-lifecycle-persistence-on-an-owned-emulator",
+        "exists": true
+      },
+      {
+        "href": "#prepare-and-start",
+        "exists": true
+      },
+      {
+        "href": "#replay-the-tests",
+        "exists": true
+      },
+      {
+        "href": "#clean-up",
+        "exists": true
+      },
+      {
+        "href": "#prerequisites",
+        "exists": true
+      },
+      {
+        "href": "#prepare-and-start",
+        "exists": true
+      },
+      {
+        "href": "#author-a-fresh-test-suite",
+        "exists": true
+      },
+      {
+        "href": "#replay-the-tests",
+        "exists": true
+      },
+      {
+        "href": "#clean-up",
+        "exists": true
+      }
+    ],
+    "tables": 0
+  }
+]

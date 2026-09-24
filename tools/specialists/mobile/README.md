@@ -1,4 +1,15 @@
-# Disposable native Android reference
+[Qadrillion Agent](../../../README.md) / Native Android fixture
+
+# Test lifecycle persistence on an owned emulator
+
+Build a small native app, detect its seeded persistence defect, then run the same
+assertions against the corrected APK. This optional reference uses synthetic data
+and a dedicated emulator; it does not need a company account or backend.
+
+[Prepare and start](#prepare-and-start) · [Replay the tests](#replay-the-tests) ·
+[Clean up](#clean-up) · [Recorded results](../../../docs/evidence/qa-specialists/mobile-portability/README.md)
+
+## Prerequisites
 
 The [contract](contract.md) is the test author's oracle. This target is an actual
 native Android Activity, built using installed SDK tools with no Gradle, network
@@ -13,8 +24,11 @@ those versions and Android Studio's bundled JDK. Other hosts pass `--sdk`,
 `--java-home`, `--api`, `--build-tools` and `--image` at prepare time. Choose an
 image matching the host architecture. No package is installed automatically.
 
-Use a previously nonexistent run path. The following commands build both fixture
-variants, start a fresh dedicated AVD, and install one APK:
+## Prepare and start
+
+Run from the repository root with a previously nonexistent run path. These
+commands build both fixture variants, start a fresh dedicated AVD, and install
+one APK:
 
 ```sh
 python3 tools/specialists/mobile/demo.py prepare --run-dir /tmp/qa-mobile-RUN
@@ -30,8 +44,11 @@ evidence. The generated key signs only these synthetic fixtures and expires in
 seven days. APK byte hashes differ between preparations because keys differ.
 Build inputs and retained commands make the steps reproducible.
 
-The supervisor supplies the author the contract, skill, selected APK hash,
-owned serial and run directory; keep the mutation's implementation out of the authoring context.
+## Author a fresh test suite
+
+For a fresh agent evaluation, the supervisor supplies the author the contract,
+skill, selected APK hash, owned serial and run directory; keep the mutation's
+implementation out of the authoring context.
 The author inspects runtime locators and writes the tests. Preserve the first
 failed result, then install `--variant baseline` and run the **unchanged** tests
 with their declared independent setup. `install -r` retains app data; tests must
@@ -42,6 +59,8 @@ Store stdout/stderr, test hashes, exit statuses, JUnit, screenshots, hierarchy a
 scoped logs under `evidence/` or another explicitly supplied artifact path. Device
 execution remains not run until a real runner executes assertions. Use the
 installed Maestro version's options; see the mobile skill's conditional recipe.
+
+## Replay the tests
 
 The completed reference evaluation used independently authored Python tests
 driving ADB/UIAutomator observations. Replay that suite with explicit device and
@@ -68,7 +87,9 @@ nonzero exit and must not be called full coverage. The shipped copy replaces
 the author's machine-specific default ADB path with `adb`; detecting assertions
 are unchanged. Android is optional and is not executed by the standard CI job.
 
-When finished:
+## Clean up
+
+When finished, including after a failed test:
 
 ```sh
 python3 tools/specialists/mobile/demo.py cleanup --run-dir /tmp/qa-mobile-RUN

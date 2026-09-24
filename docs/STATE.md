@@ -1,35 +1,36 @@
 # State — Qadrillion Agent
 
 Updated: 2026-09-24. Owner: framework maintainer session.
-Branch: `feat/qa-specialists`. Base: `91e9bb0` (merged PR #3).
-Reviewed implementation: `6f77b8c`; completion documentation follows.
-PR: https://github.com/Qadrillion/qadrillion-agent/pull/4 (open, merge with user).
+Branch: `docs/repository-presentation`. Base: `d593f73` (merged PR #4).
+Implementation: `7cfa20e`; review-record formatting correction follows.
+PR: https://github.com/Qadrillion/qadrillion-agent/pull/5 (open).
 
-Task: five deep QA specialties, progressive routing and real isolated evaluation
-before the work-laptop pilot. Existing work/branches were preserved.
-[Completion/spec](specs/2026-09-24-qa-specialists.md),
-[support matrix](reference/specialist-support.md),
-[blind review](reviews/2026-09-24-specialist-blind-review.md) and
-[evidence](evidence/qa-specialists/README.md) contain scope and decisive records.
+Task: refresh GitHub presentation and supply a separate website implementation
+prompt before the private laptop pilot. Current main and existing work were
+preserved. PR #4 is merged; this task changes documentation only.
 
-Checks: 153 Python tests and 75 guard payloads pass. Clean-clone verification and
-all four hosted CI jobs pass at `6f77b8c`:
-https://github.com/Qadrillion/qadrillion-agent/actions/runs/35984699651.
-Eight HTTP/browser bad/good replays produce expected outcomes. Nine fresh Codex
-scenarios completed. Real Android defect/correction execution and a second owned
-emulator portability replay retain unchanged detecting assertions. Owned services,
-app data and both emulators are cleaned. Final blind review: PASS; six findings
-fixed; zero deferred or unresolved findings. The first macOS CI failure is
-retained; loopback fixture startup no longer depends on reverse DNS. The added
-regression and final independent review pass without extending readiness limits.
+Updated root README and two runnable-reference guides. All six tracked READMEs
+were inspected; the canonical configuration guide and two historical evidence
+READMEs remain unchanged. The website was inspected read-only; its source and
+live deployment were not changed. The copyable handoff is
+[the website prompt](prompts/update-repo-landing-page.md).
 
-Limits: original Android suite has two literal-input skips (Partial). Cursor
-editor/CLI is installed but native activation requires authentication. Full
-Xcode/iOS Simulator is absent. Hardware, hybrid/BLE and native deny parity are
-unverified; no company-stack certification or token/autonomy savings claim.
+Checks: 153 Python tests, 75 guard payloads, local doctor, six HTTP and eight
+HTTP/browser replay outcomes pass. Forty-four local links/anchors resolve.
+Desktop light/dark and 320px/390px local GitHub-style renders have no page-width
+overflow. Generated adapters are current. See
+[verification](evidence/repository-presentation/verification.md) and
+[acceptance/review record](specs/2026-09-24-repository-presentation.md).
 
-Dirty paths: none after the completion-record commit; no unrelated work.
-Next: maintainer reviews and merges PR #4, then performs the private laptop pilot.
-The PR checks show verification for the latest documentation-only head.
-No company accounts or work-laptop access were used; no tracker posting occurred.
-No material decision or implementation blocker remains.
+Review: PASS after two documentation findings were corrected; zero unresolved or
+deferred. The reviewer independently passed offline, replay and render checks.
+The current content fingerprint matches the reviewed value. The stop reminder's
+required plain-field/round syntax is corrected and recognition was verified.
+All four hosted checks pass at `7cfa20e`; latest documentation checks are on PR #5.
+Dirty paths: none after the presentation/completion commit; no unrelated work.
+Next: maintainer reviews and merges the presentation PR, then uses the website
+prompt in the website checkout and pilots the framework privately. The task's
+final handoff links the published PR and exact hosted-check result.
+No website deployment or popularity/conversion uplift is claimed. Existing
+runtime/mobile execution limits remain in the support matrix. No company data
+or accounts were used.

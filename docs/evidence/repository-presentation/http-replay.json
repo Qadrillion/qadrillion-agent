@@ -1,0 +1,224 @@
+[
+  {
+    "surface": "api",
+    "mode": "api-defect",
+    "identity": {
+      "fixture": "qadrillion-specialist-lab",
+      "role": "test",
+      "run_id": "6748cf4d-926b-40e5-a607-7f11772b5e08",
+      "build": "87bb4dbc371ef3c731310eb2ea2174b0afb3e914adf1af3eadaa4b890d24d7ed",
+      "mode": "api-defect",
+      "url": "http://127.0.0.1:53704"
+    },
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_api_parcel.py",
+      "-v"
+    ],
+    "cwd": "/tmp/qadrillion-readme-demo-20260924/api-api-defect",
+    "exit": 1,
+    "elapsed_s": 0.7838778495788574,
+    "tests_before": {
+      "test_api_parcel.py": "34052b0b04005cc40ded9873916d7b0ee0fb4d2549c473851b81cb6c858d5cb8"
+    },
+    "tests_after": {
+      "test_api_parcel.py": "34052b0b04005cc40ded9873916d7b0ee0fb4d2549c473851b81cb6c858d5cb8"
+    },
+    "unchanged": true,
+    "cleanup": {
+      "port_closed": true,
+      "thread_stopped": true
+    },
+    "verified_expected_outcome": true,
+    "kind": "deterministic replay of agent-authored tests; not a fresh model evaluation"
+  },
+  {
+    "surface": "api",
+    "mode": "good",
+    "identity": {
+      "fixture": "qadrillion-specialist-lab",
+      "role": "test",
+      "run_id": "ad8d05fd-7fb1-4dcd-9c2c-a15a9b5b67e4",
+      "build": "87bb4dbc371ef3c731310eb2ea2174b0afb3e914adf1af3eadaa4b890d24d7ed",
+      "mode": "good",
+      "url": "http://127.0.0.1:53994"
+    },
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_api_parcel.py",
+      "-v"
+    ],
+    "cwd": "/tmp/qadrillion-readme-demo-20260924/api-good",
+    "exit": 0,
+    "elapsed_s": 0.6933932304382324,
+    "tests_before": {
+      "test_api_parcel.py": "34052b0b04005cc40ded9873916d7b0ee0fb4d2549c473851b81cb6c858d5cb8"
+    },
+    "tests_after": {
+      "test_api_parcel.py": "34052b0b04005cc40ded9873916d7b0ee0fb4d2549c473851b81cb6c858d5cb8"
+    },
+    "unchanged": true,
+    "cleanup": {
+      "port_closed": true,
+      "thread_stopped": true
+    },
+    "verified_expected_outcome": true,
+    "kind": "deterministic replay of agent-authored tests; not a fresh model evaluation"
+  },
+  {
+    "surface": "security",
+    "mode": "security-defect",
+    "identity": {
+      "fixture": "qadrillion-specialist-lab",
+      "role": "test",
+      "run_id": "c58a7a67-ebc2-4934-af7e-5ea01666b98f",
+      "build": "87bb4dbc371ef3c731310eb2ea2174b0afb3e914adf1af3eadaa4b890d24d7ed",
+      "mode": "security-defect",
+      "url": "http://127.0.0.1:54280"
+    },
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "tests/test_security_parcel.py",
+      "--identity",
+      "/tmp/qadrillion-readme-demo-20260924/security-security-defect/identity.json",
+      "--out",
+      "artifacts/result"
+    ],
+    "cwd": "/tmp/qadrillion-readme-demo-20260924/security-security-defect",
+    "exit": 1,
+    "elapsed_s": 1.3946821689605713,
+    "tests_before": {
+      "test_security_parcel.py": "311abf0c53e6e9e45b9cba8734d318ad050b73ff5a8148ad69ffbf21222dc6a6"
+    },
+    "tests_after": {
+      "test_security_parcel.py": "311abf0c53e6e9e45b9cba8734d318ad050b73ff5a8148ad69ffbf21222dc6a6"
+    },
+    "unchanged": true,
+    "cleanup": {
+      "port_closed": true,
+      "thread_stopped": true
+    },
+    "verified_expected_outcome": true,
+    "kind": "deterministic replay of agent-authored tests; not a fresh model evaluation"
+  },
+  {
+    "surface": "security",
+    "mode": "good",
+    "identity": {
+      "fixture": "qadrillion-specialist-lab",
+      "role": "test",
+      "run_id": "002b3cff-2e3a-4711-8dda-50d387961140",
+      "build": "87bb4dbc371ef3c731310eb2ea2174b0afb3e914adf1af3eadaa4b890d24d7ed",
+      "mode": "good",
+      "url": "http://127.0.0.1:54352"
+    },
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "tests/test_security_parcel.py",
+      "--identity",
+      "/tmp/qadrillion-readme-demo-20260924/security-good/identity.json",
+      "--out",
+      "artifacts/result"
+    ],
+    "cwd": "/tmp/qadrillion-readme-demo-20260924/security-good",
+    "exit": 0,
+    "elapsed_s": 1.3915557861328125,
+    "tests_before": {
+      "test_security_parcel.py": "311abf0c53e6e9e45b9cba8734d318ad050b73ff5a8148ad69ffbf21222dc6a6"
+    },
+    "tests_after": {
+      "test_security_parcel.py": "311abf0c53e6e9e45b9cba8734d318ad050b73ff5a8148ad69ffbf21222dc6a6"
+    },
+    "unchanged": true,
+    "cleanup": {
+      "port_closed": true,
+      "thread_stopped": true
+    },
+    "verified_expected_outcome": true,
+    "kind": "deterministic replay of agent-authored tests; not a fresh model evaluation"
+  },
+  {
+    "surface": "performance",
+    "mode": "perf-defect",
+    "identity": {
+      "fixture": "qadrillion-specialist-lab",
+      "role": "test",
+      "run_id": "19e53e3d-0e72-4b4c-b418-8d7b8b6cdc6e",
+      "build": "87bb4dbc371ef3c731310eb2ea2174b0afb3e914adf1af3eadaa4b890d24d7ed",
+      "mode": "perf-defect",
+      "url": "http://127.0.0.1:54423"
+    },
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "tests/check_work.py",
+      "--identity",
+      "/tmp/qadrillion-readme-demo-20260924/performance-perf-defect/identity.json",
+      "--out-dir",
+      "artifacts/result"
+    ],
+    "cwd": "/tmp/qadrillion-readme-demo-20260924/performance-perf-defect",
+    "exit": 1,
+    "elapsed_s": 1.8722288608551025,
+    "tests_before": {
+      "check_work.py": "4f155fed51c333291cbadd1a8acde279dc7206498e21adb1ccf4c10bd046f9e9"
+    },
+    "tests_after": {
+      "check_work.py": "4f155fed51c333291cbadd1a8acde279dc7206498e21adb1ccf4c10bd046f9e9"
+    },
+    "unchanged": true,
+    "cleanup": {
+      "port_closed": true,
+      "thread_stopped": true
+    },
+    "verified_expected_outcome": true,
+    "kind": "deterministic replay of agent-authored tests; not a fresh model evaluation"
+  },
+  {
+    "surface": "performance",
+    "mode": "good",
+    "identity": {
+      "fixture": "qadrillion-specialist-lab",
+      "role": "test",
+      "run_id": "d6c32a26-9056-43a8-9d46-39e998758c84",
+      "build": "87bb4dbc371ef3c731310eb2ea2174b0afb3e914adf1af3eadaa4b890d24d7ed",
+      "mode": "good",
+      "url": "http://127.0.0.1:54481"
+    },
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "tests/check_work.py",
+      "--identity",
+      "/tmp/qadrillion-readme-demo-20260924/performance-good/identity.json",
+      "--out-dir",
+      "artifacts/result"
+    ],
+    "cwd": "/tmp/qadrillion-readme-demo-20260924/performance-good",
+    "exit": 0,
+    "elapsed_s": 1.0599901676177979,
+    "tests_before": {
+      "check_work.py": "4f155fed51c333291cbadd1a8acde279dc7206498e21adb1ccf4c10bd046f9e9"
+    },
+    "tests_after": {
+      "check_work.py": "4f155fed51c333291cbadd1a8acde279dc7206498e21adb1ccf4c10bd046f9e9"
+    },
+    "unchanged": true,
+    "cleanup": {
+      "port_closed": true,
+      "thread_stopped": true
+    },
+    "verified_expected_outcome": true,
+    "kind": "deterministic replay of agent-authored tests; not a fresh model evaluation"
+  }
+]

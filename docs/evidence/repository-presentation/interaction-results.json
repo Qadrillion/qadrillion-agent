@@ -1,0 +1,16 @@
+{
+  "anchorClick": {
+    "hash": "#quick-start",
+    "headingVisible": true
+  },
+  "keyboard": {
+    "tag": "A",
+    "href": "#quick-start",
+    "focusVisible": true,
+    "bodyFont": "16px"
+  },
+  "cssZoom200": {
+    "viewport": 1100,
+    "scrollWidth": 1100
+  }
+}
