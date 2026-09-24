@@ -1,11 +1,11 @@
 # State — <workspace name>
 
-Updated: 2026-09-23
+Updated: 2026-09-24
 Overwrite this file every session. Never append. Handover note, not a diary.
 Full chronology lives in `docs/sessions/` and is never read at startup.
 
 This file is the template a team overwrites after cloning. Keep the headings.
-Skeleton note, 2026-09-23: the public GitHub page is in `docs/sessions/2026-09-23-public-repo.md`. Next work on the skeleton is a review of the skills and subagents, then a release tag.
+Skeleton note, 2026-09-24: Codex adapters are on main; new hooks still need native trust and a reload. The public GitHub page is in `docs/sessions/2026-09-23-public-repo.md`. Next work on the skeleton is a review of the skills and subagents, then a release tag.
 
 ## Goal
 

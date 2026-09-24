@@ -1,0 +1,3 @@
+agent-core-backups/
+__pycache__/
+*.pyc

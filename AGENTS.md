@@ -73,3 +73,25 @@ Overwrite `docs/STATE.md` (handover note, not a diary). Append one entry to
 `docs/sessions/YYYY-MM-DD-<slug>.md`. Update `tickets/{ID}.md` frontmatter.
 The stop hook will ask once if STATE.md is untouched after a session that
 changed files.
+
+<!-- BEGIN agent-core bridge -->
+## Shared agent configuration
+
+Cursor, Codex and Claude use this AGENTS.md and the same project files.
+At startup read the always-applicable rules below. Before work in a scoped
+area, read its rule; descriptions also apply when the request names that subject.
+The linked Cursor files remain the maintained source. Do not copy their text.
+
+- `source/**/*`: [code-review](.cursor/rules/code-review.mdc) — Source review for testable QA risks and the [SEVERITY] output contract. Auto-attaches when product source under source/ is in context.
+- `always`: [core](.cursor/rules/core.mdc) — Behaviour when uncertain, and output style. The only always-on rule; keep it under 120 words.
+- `automation/**/*`: [test-automation](.cursor/rules/test-automation.mdc) — Hard rules for test code under automation/. Auto-attaches when editing tests, fixtures, locators or collections.
+- `tickets/**/*.md`: [ticket-state](.cursor/rules/ticket-state.mdc) — Ticket state contract: frontmatter schema and status state machine for tickets/{ID}.md. Apply when creating, reading, resuming or updating a ticket file.
+- `when relevant`: [tracker-reporting](.cursor/rules/tracker-reporting.mdc) — Tracker QA comment format and bug filing format. Apply when preparing a QA result comment or drafting a new bug for the issue tracker.
+
+Project skills are exposed through `.agents/skills` symlinks; project
+Codex agents and hooks are generated under `.codex`. Edit `.cursor` sources
+then run `python3 ~/dev/marko-agent-core/tools/install-codex.py --project .`.
+Use `--check` to detect drift. New hook definitions require Codex's native trust review.
+One active writer per checkout. Before switching tools, update the current task,
+branch/commit, dirty files, checks, blockers and next action in `docs/STATE.md`.
+<!-- END agent-core bridge -->
