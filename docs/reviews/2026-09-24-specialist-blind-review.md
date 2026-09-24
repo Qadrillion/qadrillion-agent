@@ -104,3 +104,32 @@ findings were fixed across the retained review sequence.
 - Final CI, final clean-clone execution and PR completion remain unchecked. iOS, hybrid, physical hardware and native denial enforcement remain outside executed coverage.
 - Historical claims remain unreproduced: “Inspected APIs:”, “Sources inspected 2026-09-24:”, “Inspected 2026-09-24.”, “These are inspected sections/pages”, “their installation was probed”, and “This evaluator independently viewed all three named images and corroborated their content”. Verification requires the corresponding inspection/probe/view records.
 - Retained browser claims “First-failure diagnostics were inspected before continuing the matrix” and “extracted first-attempt trace evidence, inspected directly” remain unsupported. Later reports preserve and correct them.
+
+## Hosted CI repair review — PASS
+
+Reviewed code: `6f77b8cc90ba4f140c1d7ce561287a371a4e4645`.
+Code fingerprint: `ea0f4280f74b052b82a1d32c0ff3fdbc7e0556ad7ef3bb972abb8d656c7d4250`.
+Full binary diff SHA-256: `141a5c8c98c3b23cf59c67573c87d908869e248aee6fc5600fe495cf70aa72c5`.
+Both were captured before dispatch of the complete diff and frozen criteria.
+
+The first hosted macOS check failed fixture readiness. The repair removes the
+stdlib HTTP server's unnecessary reverse-DNS lookup for a literal-loopback lab;
+the readiness deadline and cleanup assertions are unchanged. No unresolved
+findings in the CI repair or reviewed diff. Verdict: PASS.
+
+### Reviewer Not verified (verbatim)
+
+- A1–A10 checklist retained; the new change specifically satisfies the reviewed A4/A9 fixture requirements.
+- Independently passed 153 Python tests, offline verification and all eight HTTP/browser replay outcomes. The DNS regression passes with the repair and fails with the prior implementation. Evidence: `/tmp/reviewer-ci-verify.log`, `/tmp/reviewer-ci-replay/replay.json`.
+- All 381 artifact hashes match. The bind override removes the dependency visible in [CPython 3.11.9 HTTPServer source](https://raw.githubusercontent.com/python/cpython/v3.11.9/Lib/http/server.py).
+- Hosted Linux/macOS offline checks passed. Reference execution and final governance were still pending in run 35984699651. Final clean-clone execution was not independently repeated.
+- “The first server construction took about 35 seconds” is unverified: retained timestamps measure the containing test, not construction separately. DNS attribution remains an inference without resolver telemetry.
+- Native mobile execution was not independently rerun. iOS, hybrid, physical hardware and native denial enforcement remain outside executed coverage.
+- Historical claims remain unreproduced: “Inspected APIs:”, “Sources inspected 2026-09-24:”, “Inspected 2026-09-24.”, “These are inspected sections/pages”, “their installation was probed”, and “This evaluator independently viewed all three named images and corroborated their content”. Corresponding inspection/probe/view records are needed.
+- Retained browser claims “First-failure diagnostics were inspected before continuing the matrix” and “extracted first-attempt trace evidence, inspected directly” remain unsupported; later reports preserve and correct them.
+
+After review, the maintainer corrected the timing description to “the first
+server-based contract test” and observed all four hosted jobs succeeding in
+[run 35984699651](https://github.com/Qadrillion/qadrillion-agent/actions/runs/35984699651).
+These updates resolve the timing wording and pending hosted result; they do not
+turn unobserved historical actions or unexecuted native paths into verification.

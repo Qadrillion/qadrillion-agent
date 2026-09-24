@@ -59,13 +59,13 @@ above were frozen before implementation; limits are not converted into passes.
 
 ## Implementation record — 2026-09-24
 
-Branch: feat/qa-specialists · Commits: 7dcc98a..b060801 (reviewed implementation; completion records follow)
+Branch: feat/qa-specialists · Commits: 7dcc98a..6f77b8c (reviewed implementation; completion records follow)
 Review-base: 91e9bb0d4dcbfe812963fe6f04f4387c1b664497
-Review-fingerprint: 16afb15b4a39970dedeaea8dd0bd79431e0e026aec6a3fb402cb6dc18c7147f7
-Full-diff-sha256: fa8784e003d1401a5407e789a3248949b7307cc742dda3210f95cfea25013f4d
-Verified: `python3 tools/verify.py` → PASS (138 tooling + 14 mobile tests; 75 guard payloads); `python3 tools/agents/sync.py --check` → current; five skill validators → PASS; clean-clone `npm ci` and `python3 tools/specialists/replay.py --web` → eight expected defective/corrected outcomes, unchanged test files and closed services.
-Review: round 1 BLOCKED; round 2 PASS WITH SHOULDS; round 3 BLOCKED; round 4 PASS after supplemental repair review.
-Deferred: 0 items. All six in-scope review findings were corrected.
+Review-fingerprint: ea0f4280f74b052b82a1d32c0ff3fdbc7e0556ad7ef3bb972abb8d656c7d4250
+Full-diff-sha256: 141a5c8c98c3b23cf59c67573c87d908869e248aee6fc5600fe495cf70aa72c5
+Verified: `python3 tools/verify.py` → PASS (139 tooling + 14 mobile tests; 75 guard payloads); `python3 tools/agents/sync.py --check` → current; five skill validators → PASS; clean-clone `npm ci` and `python3 tools/specialists/replay.py --web` → eight expected defective/corrected outcomes, unchanged test files and closed services. Hosted macOS/Linux offline, real reference execution and governance checks → PASS at `6f77b8c`.
+Review: round 1 BLOCKED; round 2 PASS WITH SHOULDS; round 3 BLOCKED; round 4 PASS after supplemental repair review; CI startup correction PASS.
+Deferred: 0 items. All six in-scope review findings were corrected; the subsequent CI startup failure was repaired and independently reviewed.
 
 The fingerprint and full binary-diff hash were captured before dispatching each
 blind reviewer. The code fingerprint excludes documentation; the full-diff hash
@@ -101,16 +101,16 @@ Reviewer limits at review time (verbatim): “Final CI, final clean-clone execut
 [PR #4](https://github.com/Qadrillion/qadrillion-agent/pull/4) targets current main.
 The [first hosted run](https://github.com/Qadrillion/qadrillion-agent/actions/runs/35984192362)
 passed Linux and all eight real HTTP/browser replays, but failed macOS fixture
-readiness. Its failure is retained in the verification evidence. The first server
-construction took about 35 seconds; the CLI fixture then missed its unchanged
+readiness. Its failure is retained in the verification evidence. The first server-based
+contract test took about 35 seconds; the CLI fixture then missed its unchanged
 three-second readiness ceiling.
 
 Source inspection identified an unnecessary reverse-DNS dependency in Python’s
 HTTPServer initialization. The lab binds literal loopback and now assigns its
 server identity directly after TCP bind. A resolver-unavailable regression fails
 on the original source and passes after repair; the cleanup test’s timeouts and
-assertions are unchanged. Attributing the historical delay to DNS is an inference, not
-a claim of captured resolver telemetry. Final hosted results follow below.
+assertions are unchanged. Attributing the historical delay to DNS is an inference,
+not a claim of captured resolver telemetry.
 
 The inspected CI interpreter is CPython 3.11.9. Its
 [HTTPServer bind](https://raw.githubusercontent.com/python/cpython/v3.11.9/Lib/http/server.py),
@@ -118,3 +118,16 @@ The inspected CI interpreter is CPython 3.11.9. Its
 and [socket name resolution](https://raw.githubusercontent.com/python/cpython/v3.11.9/Lib/socket.py)
 establish this dependency. Lab has no CGI handler and its public identity already
 uses literal loopback; the assigned ephemeral port and identity schema stay intact.
+
+The [corrected hosted run](https://github.com/Qadrillion/qadrillion-agent/actions/runs/35984699651)
+at `6f77b8cc90ba4f140c1d7ce561287a371a4e4645` passed all four jobs: Linux
+offline, macOS offline, reference execution and governance. Fresh CI checkouts
+run all 153 Python tests and 75 guard payloads; reference execution installs its
+pinned dependencies and exercises all eight defective/corrected HTTP/browser
+outcomes. The public run result is retained in
+`docs/evidence/qa-specialists/verification/ci-repaired-result.json`.
+The independent CI-repair review also returned PASS. Later completion-record
+commits are documentation only; their current check state is visible on
+[PR #4 checks](https://github.com/Qadrillion/qadrillion-agent/pull/4/checks).
+No unresolved in-scope findings or generic implementation work remain. The
+support matrix's native/runtime and Android input limits remain explicit.

@@ -56,5 +56,28 @@
     "offline_exit": 0,
     "python_tests": 152,
     "guard_payloads": 75
+  },
+  "ci_repair": {
+    "reviewed_implementation_commit": "6f77b8cc90ba4f140c1d7ce561287a371a4e4645",
+    "code_fingerprint": "ea0f4280f74b052b82a1d32c0ff3fdbc7e0556ad7ef3bb972abb8d656c7d4250",
+    "full_binary_diff_sha256": "141a5c8c98c3b23cf59c67573c87d908869e248aee6fc5600fe495cf70aa72c5",
+    "review_verdict": "PASS",
+    "unresolved_findings": 0,
+    "python_tests": 153,
+    "guard_payloads": 75,
+    "initial_run": "https://github.com/Qadrillion/qadrillion-agent/actions/runs/35984192362",
+    "initial_result": "macOS offline failed fixture readiness; Linux and all eight reference outcomes passed",
+    "regression": "Real HTTP starts with socket.getfqdn unavailable; fails before and passes after repair",
+    "historical_cause_limit": "Reverse-DNS attribution is an inference; original timestamps measure the containing test, not resolver time",
+    "corrected_run": "https://github.com/Qadrillion/qadrillion-agent/actions/runs/35984699651",
+    "corrected_result": "success",
+    "successful_jobs": [
+      "offline (ubuntu-latest)",
+      "offline (macos-latest)",
+      "reference-execution",
+      "governance"
+    ],
+    "clean_checkout": "Hosted jobs check out 6f77b8c; reference job installs pinned dependencies and runs all eight defective/corrected outcomes",
+    "public_result_artifact": "verification/ci-repaired-result.json"
   }
 }

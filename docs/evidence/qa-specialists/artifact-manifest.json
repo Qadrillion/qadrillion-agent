@@ -1461,8 +1461,8 @@
     "shared_bytes": 10495
   },
   "verification/verification.json": {
-    "shared_sha256": "509b9f87c402a3626e0be169d1ad299c6904ba3f8a96ad8f71ca379080d8242b",
-    "shared_bytes": 1770
+    "shared_sha256": "2c06200dd418f0581bd40dd23ab81bf19961af6cbefd77894cb8f5b5ca205e0d",
+    "shared_bytes": 3122
   },
   "review-round1/cleanup-probe.py": {
     "shared_sha256": "ed80e49527d63dc662177b24139e7dabe6c147cbb1a400a13f9367d438ff6e35",
@@ -1927,5 +1927,9 @@
   "verification/loopback-dns-after.log": {
     "shared_sha256": "49e6ca904ec8f868dcabb58bcc793233da5c67d855ec9e99ef60bfe049721599",
     "shared_bytes": 1134
+  },
+  "verification/ci-repaired-result.json": {
+    "shared_sha256": "09e78e1a17eb80bc4cc5c7059cb709911a1365569c4918f65f4ab3feacf42cfa",
+    "shared_bytes": 5982
   }
 }

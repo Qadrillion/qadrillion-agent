@@ -46,3 +46,22 @@ on the corrected APK, with identical test bytes. App/device state was cleaned.
 Business-method ASTs are unchanged. Offline coverage is now 152 Python tests plus
 75 guard cases. Final blind review is PASS with zero deferred findings. See the
 spec implementation record for final publication and CI.
+
+Published [PR #4](https://github.com/Qadrillion/qadrillion-agent/pull/4). The first
+hosted macOS check failed the unchanged three-second fixture startup bound; Linux
+and all eight real reference replays passed. Retained the failure, inspected the
+CPython 3.11.9 bind path and removed its unnecessary reverse-DNS dependency for
+the literal-loopback fixture. A real HTTP regression fails before and passes
+after this correction. The historical DNS attribution remains an inference:
+the old timestamps measured the containing test, not resolver time separately.
+
+At `6f77b8c`, 153 Python tests plus 75 guard payloads pass; the independent
+CI-repair review returned PASS with zero findings. All four jobs in
+[run 35984699651](https://github.com/Qadrillion/qadrillion-agent/actions/runs/35984699651)
+passed, including fresh macOS/Linux checkouts and real browser/HTTP reference
+execution. Final changes record this evidence and the unchanged execution limits.
+The reviewed code fingerprint is
+`ea0f4280f74b052b82a1d32c0ff3fdbc7e0556ad7ef3bb972abb8d656c7d4250`.
+No generic functionality is deferred to the work-laptop pilot. Merge remains
+with the user; Cursor authentication, full Xcode/iOS, hardware/hybrid/BLE and
+the two Android literal-input skips remain bounded execution limits.

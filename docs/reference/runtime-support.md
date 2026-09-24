@@ -16,8 +16,8 @@ required authenticated session without connecting a company account.
 | Runtime | Maintained/generated entrypoints | What still needs live validation |
 |---|---|---|
 | Cursor | `AGENTS.md`; maintained `.cursor/rules`, skills, agents and hooks | Rule/skill discovery, hook registration and event coverage, local versus remote execution |
-| Claude Code | `CLAUDE.md` imports AGENTS; generated `.claude/skills`, agents and hook adapter | Import/skill discovery, native tool permissions, project-hook activation |
-| Codex | `AGENTS.md`; generated `.agents/skills`, `.codex/agents` and hooks | Skill/subagent discovery, trusted project layer and exact native hook definitions |
+| Claude Code | `CLAUDE.md` imports AGENTS; generated `.claude/skills`, agents and hook adapter | Implicit skill selection, import precedence, subagent activation, native tool permissions and deny/trust/event coverage beyond observed benign Read/Stop hooks |
+| Codex | `AGENTS.md`; generated `.agents/skills`, `.codex/agents` and hooks | Implicit skill selection, subagent activation, trusted project layer and exact native hook definitions beyond observed metadata discovery/explicit execution |
 | Other agent | Read AGENTS, then the named QA skill and applicable contracts manually | Its own discovery, tool access, permissions and execution support; perform roles sequentially without native subagents |
 
 Edit `.cursor` sources and run `python3 tools/agents/sync.py`. Use `--check` for
