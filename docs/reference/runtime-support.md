@@ -85,6 +85,11 @@ In a disposable private workspace, use this native smoke sequence:
 3. Test a harmless denial canary through a mocked operation or isolated empty
    fixture. Observe both native denial and absence of the effect. Never use a
    real force push, credential disclosure or production action as a canary.
+   For example, in the disposable workspace set `EXTRA_DENY='qadrillion-hook-canary'`
+   in its guard configuration, then ask the native agent to run
+   `printf 'qadrillion-hook-canary\n'`. Expect the workspace-specific denial in
+   the runtime's hook output; ordinary printed output or a prose refusal is not
+   proof of interception. Restore that fixture's original configuration afterward.
 4. Check applicable shell/file/MCP paths separately. If strict mode requests
    approval, verify the host's documented behavior, including Codex denial.
 5. Connect one actual integration with approved credentials; read its identity

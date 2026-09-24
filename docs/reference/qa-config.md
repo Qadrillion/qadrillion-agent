@@ -18,6 +18,9 @@ Use `other` for a product outside the named surface categories. Capability names
 describe the operation (for example tracker.read or observability.read) rather
 than claiming a provider tool exists. Resolve actual commands/tool schemas in the
 installed version before use. A disabled example does not establish access.
+CLI executable paths resolve from the workspace root; bare names are looked up
+on PATH. `cwd` is a runner field, not an integration field. Extra provider
+metadata is retained as data and does not change doctor execution or path rules.
 
 `task-authorization` carries the user's authorization through the requested work.
 An instruction to publish a task's QA result authorizes routine reporting to that

@@ -62,7 +62,8 @@ word/character measurements, not actual model tokens or billing. Detailed resear
 and surface guidance load on demand. Generated skill aliases may still be exposed
 more than once by particular runtime discovery versions; inspect the native list.
 
-Ten fresh-context synthetic decisions met their expected outcomes in one run.
+Ten fresh-context synthetic decisions met their expected outcomes in one run;
+an additional authorization scenario passed after the user's autonomy amendment.
 The [evaluation record](../sessions/2026-09-24-golden-tasks.md) retains observations
 and limits. There is no claim of a broad success rate from this small sample.
 
