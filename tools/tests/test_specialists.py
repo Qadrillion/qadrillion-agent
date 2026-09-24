@@ -307,6 +307,59 @@ class MeasureTests(unittest.TestCase):
             self.assertNotEqual(collision.returncode, 0)
             self.assertEqual(output.read_bytes(), retained)
 
+    def test_cli_reserves_output_before_any_target_http_requests(self):
+        received = []
+
+        class CountingHandler(lab.Handler):
+            def dispatch(self, method):
+                received.append((method, self.path))
+                return super().dispatch(method)
+
+        with tempfile.TemporaryDirectory() as directory, running_lab(handler=CountingHandler) as server:
+            root = Path(directory)
+            identity = root / "identity.json"
+            identity.write_text(json.dumps(server.identity()))
+            existing = root / "existing.json"
+            existing.write_bytes(b"retained original evidence\n")
+            for output in (existing, root / "missing" / "result.json", existing / "result.json"):
+                with self.subTest(output=output):
+                    run = subprocess.run(
+                        [sys.executable, str(ROOT / "tools/specialists/measure.py"),
+                         "--identity", str(identity), "--out", str(output),
+                         "--requests", "1", "--warmup", "0"],
+                        capture_output=True, text=True, timeout=5)
+                    self.assertEqual(received, [], "output reservation failure must not contact the target")
+                    self.assertEqual(run.returncode, 2, run.stderr)
+                    self.assertIn("Measurement blocked:", run.stderr)
+                    self.assertNotIn("Traceback", run.stderr)
+                    self.assertEqual(existing.read_bytes(), b"retained original evidence\n")
+
+    def test_cli_retains_setup_failure_in_reserved_output(self):
+        with tempfile.TemporaryDirectory() as directory, running_lab() as server:
+            root = Path(directory)
+            identity = root / "identity.json"
+            invalid = server.identity()
+            invalid["run_id"] = "different"
+            for name, content, diagnostic in (
+                    ("invalid-json", "{", "JSONDecodeError"),
+                    ("identity-mismatch", json.dumps(invalid), "ValueError")):
+                with self.subTest(name=name):
+                    identity.write_text(content)
+                    output = root / f"{name}.json"
+                    run = subprocess.run(
+                        [sys.executable, str(ROOT / "tools/specialists/measure.py"),
+                         "--identity", str(identity), "--out", str(output)],
+                        capture_output=True, text=True, timeout=5)
+                    self.assertEqual(run.returncode, 2, run.stderr)
+                    self.assertIn("Measurement blocked:", run.stderr)
+                    self.assertNotIn("Traceback", run.stderr)
+                    result = json.loads(output.read_text())
+                    self.assertEqual(result["summary"]["verdict"], "blocked")
+                    self.assertEqual(result["error"]["type"], diagnostic)
+                    self.assertTrue(result["error"]["message"])
+                    self.assertEqual(result["samples"], [])
+                    self.assertEqual(server.work_count, 0)
+
 
 class EvaluationPlumbingTests(unittest.TestCase):
     def setUp(self):

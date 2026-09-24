@@ -133,13 +133,27 @@ def main():
     args = parser.parse_args()
     options = vars(args).copy()
     options.pop("out")
-    options["identity"] = json.loads(args.identity.read_text())
     try:
-        result = measure(**options)
-    except (OSError, ValueError, KeyError) as exc:
+        with args.out.open("x") as handle:
+            try:
+                options["identity"] = json.loads(args.identity.read_text())
+                result = measure(**options)
+            except (OSError, ValueError, KeyError) as exc:
+                json.dump({
+                    "identity": None, "warmup": [], "samples": [],
+                    "limits": {"requests": args.requests, "concurrency": args.concurrency,
+                               "timeout_s": args.timeout, "duration_s": args.duration,
+                               "max_errors": args.max_errors},
+                    "thresholds": {"p95_ms": args.p95_ms, "error_rate": args.error_rate},
+                    "summary": {"count": 0, "errors": 0, "p95_ms": None,
+                                "stop_reason": "setup failure", "verdict": "blocked"},
+                    "error": {"type": type(exc).__name__, "message": str(exc)},
+                    "limits_of_claim": "Setup failed; no measured workload samples. Partial warmup is unavailable."
+                }, handle, indent=2)
+                parser.exit(2, f"Measurement blocked: {exc}\n")
+            json.dump(result, handle, indent=2)
+    except OSError as exc:
         parser.exit(2, f"Measurement blocked: {exc}\n")
-    with args.out.open("x") as handle:
-        json.dump(result, handle, indent=2)
     print(json.dumps(result["summary"]))
     return 0 if result["summary"]["verdict"] == "pass" else 1
 
