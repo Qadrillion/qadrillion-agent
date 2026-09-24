@@ -95,3 +95,26 @@ logs and original failures are under `docs/evidence/qa-specialists/verification`
 Neither synthetic fixtures nor this review certify an arbitrary company setup.
 
 Reviewer limits at review time (verbatim): “Final CI, final clean-clone execution and PR completion remain unchecked. iOS, hybrid, physical hardware and native denial enforcement remain outside executed coverage.” Maintainer clean-clone/PR/CI completion is recorded afterward below. Full historical inspection limitations remain verbatim in the linked review record.
+
+## Publication and hosted verification
+
+[PR #4](https://github.com/Qadrillion/qadrillion-agent/pull/4) targets current main.
+The [first hosted run](https://github.com/Qadrillion/qadrillion-agent/actions/runs/35984192362)
+passed Linux and all eight real HTTP/browser replays, but failed macOS fixture
+readiness. Its failure is retained in the verification evidence. The first server
+construction took about 35 seconds; the CLI fixture then missed its unchanged
+three-second readiness ceiling.
+
+Source inspection identified an unnecessary reverse-DNS dependency in Python’s
+HTTPServer initialization. The lab binds literal loopback and now assigns its
+server identity directly after TCP bind. A resolver-unavailable regression fails
+on the original source and passes after repair; the cleanup test’s timeouts and
+assertions are unchanged. Attributing the historical delay to DNS is an inference, not
+a claim of captured resolver telemetry. Final hosted results follow below.
+
+The inspected CI interpreter is CPython 3.11.9. Its
+[HTTPServer bind](https://raw.githubusercontent.com/python/cpython/v3.11.9/Lib/http/server.py),
+[TCPServer initialization](https://raw.githubusercontent.com/python/cpython/v3.11.9/Lib/socketserver.py)
+and [socket name resolution](https://raw.githubusercontent.com/python/cpython/v3.11.9/Lib/socket.py)
+establish this dependency. Lab has no CGI handler and its public identity already
+uses literal loopback; the assigned ephemeral port and identity schema stay intact.

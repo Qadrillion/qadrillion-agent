@@ -1911,5 +1911,21 @@
   "verification/identity-shape-after.log": {
     "shared_sha256": "d4d59ca36fa032b15c719b2966ff8cf299d8a6900e14014c16cb656aabd67844",
     "shared_bytes": 2045
+  },
+  "verification/ci-repair-verify.log": {
+    "shared_sha256": "ed786eac544ca96124fcaa0271d52054e38e2114dfeeae3227424d4720b78d82",
+    "shared_bytes": 31260
+  },
+  "verification/ci-macos-first-failure.log": {
+    "shared_sha256": "0c63cce7b024a949d8b958155f4df32834f38099123eb4d2afd335dcc6e8e804",
+    "shared_bytes": 10261
+  },
+  "verification/loopback-dns-before.log": {
+    "shared_sha256": "e851f05887b00fdccaf4346fc2c36b696c0b5529878487afb4f3c712833a84d9",
+    "shared_bytes": 2461
+  },
+  "verification/loopback-dns-after.log": {
+    "shared_sha256": "49e6ca904ec8f868dcabb58bcc793233da5c67d855ec9e99ef60bfe049721599",
+    "shared_bytes": 1134
   }
 }

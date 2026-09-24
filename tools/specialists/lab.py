@@ -7,6 +7,7 @@ import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 from pathlib import Path
+from socketserver import TCPServer
 import threading
 import time
 from urllib.parse import urlsplit
@@ -43,6 +44,12 @@ form.addEventListener('submit', async event => {
 
 class Lab(ThreadingHTTPServer):
     daemon_threads = True
+
+    def server_bind(self):
+        # HTTPServer resolves a host name here; this loopback-only fixture has
+        # no DNS identity and must start when the host resolver is unavailable.
+        TCPServer.server_bind(self)
+        self.server_name, self.server_port = self.server_address[:2]
 
     def __init__(self, mode="good", run_id=None):
         super().__init__(("127.0.0.1", 0), Handler)

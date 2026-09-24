@@ -13,6 +13,7 @@ import tempfile
 import threading
 import time
 import unittest
+from unittest.mock import patch
 import warnings
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
@@ -93,6 +94,13 @@ def complete_job(server, order_id):
 
 
 class LabContractTests(unittest.TestCase):
+    def test_literal_loopback_startup_does_not_depend_on_dns(self):
+        with patch("socket.getfqdn", side_effect=RuntimeError("resolver unavailable")):
+            with running_lab() as server:
+                self.assertEqual(measure.get(server.identity()["url"] + "/__identity", 1),
+                                 (200, server.identity()))
+                self.assertEqual(server.server_name, "127.0.0.1")
+
     def test_order_validation_and_idempotency_preserve_persisted_state(self):
         with running_lab() as server:
             for invalid in (0, 101, True, 1.5, "2", None):
