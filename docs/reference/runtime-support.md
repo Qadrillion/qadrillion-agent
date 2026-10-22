@@ -2,7 +2,7 @@
 
 Portable instructions do not guarantee native discovery, subagents or hooks.
 This repository supplies content and adapters; validate them in the actual
-runtime/version used by the team. Cursor is the first planned work-laptop pilot.
+runtime/version used by the team. Sources now live in provider-neutral `.agent`.
 The portability baseline did not certify native activation. The later
 [specialist evaluation](specialist-support.md) observes Codex 0.154.0 metadata
 discovery and explicit skill execution, and Claude 2.1.278 discovery/full-skill
@@ -15,17 +15,28 @@ required authenticated session without connecting a company account.
 
 | Runtime | Maintained/generated entrypoints | What still needs live validation |
 |---|---|---|
-| Cursor | `AGENTS.md`; maintained `.cursor/rules`, skills, agents and hooks | Rule/skill discovery, hook registration and event coverage, local versus remote execution |
-| Claude Code | `CLAUDE.md` imports AGENTS; generated `.claude/skills`, agents and hook adapter | Implicit skill selection, import precedence, subagent activation, native tool permissions and deny/trust/event coverage beyond observed benign Read/Stop hooks |
-| Codex | `AGENTS.md`; generated `.agents/skills`, `.codex/agents` and hooks | Implicit skill selection, subagent activation, trusted project layer and exact native hook definitions beyond observed metadata discovery/explicit execution |
+| Cursor / other editor | `AGENTS.md`; manually read `.agent` sources. Optional `.cursor -> .agent` alias preserves explicit paths | Native discovery/registration after migration is unverified; historical `.mdc` rule discovery is not preserved by the neutral `.md` source format |
+| Claude Code | `CLAUDE.md` imports AGENTS; linked `.claude/skills`, generated agents and hook adapter | Implicit skill selection, import precedence, subagent activation, native tool permissions and deny/trust/event coverage beyond observed benign Read/Stop hooks |
+| Codex | `AGENTS.md`; linked `.agents/skills`, generated `.codex/agents` and hooks | Implicit skill selection, subagent activation, trusted project layer and exact native hook definitions beyond observed metadata discovery/explicit execution |
 | Other agent | Read AGENTS, then the named QA skill and applicable contracts manually | Its own discovery, tool access, permissions and execution support; perform roles sequentially without native subagents |
 
-Edit `.cursor` sources and run `python3 tools/agents/sync.py`. Use `--check` for
-drift. The generator maintains copies rather than requiring filesystem symlinks
-or a personal installer. It preserves unrelated settings and rejects unexpected
-changes to managed output. Cursor can discover several generated skill roots;
-deduplication of identical copies has not been established. Inspect the active
-skill list before assuming a single registration.
+Edit `.agent` sources and run `python3 tools/agents/sync.py`. Use `--check` for
+drift. Skills have one maintained body; runtime skill directories are relative
+symlinks. The migration converts only copies matching their owned ledger hashes
+and modes, rejecting extra or modified files before changing output. Symlink
+support is required; if unavailable, the generator leaves existing output intact.
+All ledger paths are normalized and workspace-contained before classification.
+Changes use staged output and renamed originals in a recovery transaction; the
+ledger is installed last and backups are retired only after commit. Failed writes
+roll back, and an interrupted transaction recovers on the next normal invocation.
+`--check` reports pending recovery without changing files. An unexpected edit
+during recovery is preserved and reported as a collision. Failed backup cleanup
+retains a named `.agent-runtime-complete-*` directory for inspection without
+blocking the committed installation.
+It preserves unrelated settings and rejects unexpected changes to managed output.
+The optional `.cursor` alias is not required by generation, policy dispatch or
+offline checks. No personal installer is required. Inspect the live skill list;
+offline path checks do not certify a runtime's discovery behavior.
 
 Python 3.11+, Git and Bash are the intended local prerequisites. The verification
 workflow targets macOS and Linux. Windows users need a compatible Bash
@@ -35,7 +46,7 @@ required executables and approved credentials in that environment.
 
 ## Guard policy and its limits
 
-`GUARD_PROFILE='targeted'` in `.cursor/hooks/guard.conf` is the default. It permits
+`GUARD_PROFILE='targeted'` in `.agent/hooks/guard.conf` is the default. It permits
 routine documentation/code edits and ordinary authorized
 QA work. It retains targeted protection for destructive operations, production
 execution and secret disclosure, with approval gates for high-impact operations

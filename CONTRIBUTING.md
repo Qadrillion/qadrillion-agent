@@ -4,10 +4,10 @@ Changes to `main` land through a pull request. The `governance` check has to pas
 
 ## Before you open the PR
 
-- [ ] Edit maintained `.cursor` sources, then run `python3 tools/agents/sync.py`; do not hand-edit generated runtime copies
+- [ ] Edit maintained `.agent` sources, then run `python3 tools/agents/sync.py`; do not hand-edit generated runtime formats
 - [ ] `python3 tools/verify.py` passes (the same offline checks as CI)
 - [ ] After behavioral instruction changes, run `/golden-tasks run` in fresh isolated agents and record actual outcomes; do not substitute keyword checks
-- [ ] No secrets: `.env`, `.cursor/mcp.json`, keys, tokens, pools
+- [ ] No secrets: `.env`, `.agent/mcp.json`, runtime credential files, keys, tokens, pools
 - [ ] The pull request template is filled in, including real command output
 
 Add regression evidence for the actual failure. Hooks are defense in depth:

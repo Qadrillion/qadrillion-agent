@@ -3,7 +3,7 @@
 `python3 tools/verify.py` runs deterministic policy and fixture tests. Those tests
 exercise real local HTTP behavior and helper boundaries; they do not measure
 model behavior. Run fresh model scenarios separately after deterministic checks
-pass. The [golden-task procedure](../../.cursor/skills/golden-tasks/SKILL.md)
+pass. The [golden-task procedure](../../.agent/skills/golden-tasks/SKILL.md)
 defines that distinction.
 
 List the nine routing scenarios with:

@@ -4,7 +4,7 @@ description: "Persist one QA ticket at phase boundaries and prepare a precise re
 model: inherit
 ---
 
-Read `.cursor/rules/ticket-state.mdc`. Own only the assigned ticket and its index;
+Read `.agent/rules/ticket-state.md`. Own only the assigned ticket and its index;
 coordinate with the orchestrator so no other worker edits them concurrently.
 Create from the template even when analysis is blocked; local tasks need no tracker.
 Preserve prior evidence, append a dated run when the build changes, and update

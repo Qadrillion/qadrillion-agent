@@ -48,7 +48,7 @@ access; exact next step and blockers. Revalidate changed builds before resuming.
 
 ## Tracker comment
 
-Draft per tracker-reporting.mdc. Destination and authorization; posted: no.
+Draft per `.agent/rules/tracker-reporting.md`. Destination and authorization; posted: no.
 Record returned ID/URL only after confirmed publication.
 
 ## Notes

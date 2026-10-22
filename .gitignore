@@ -6,6 +6,7 @@
 .env
 .env.*
 !.env.example
+.agent/mcp.json
 .cursor/mcp.json
 .claude/settings.local.json
 *.pem
@@ -16,11 +17,15 @@
 *credentials*
 !*credentials*.example*
 
-# Cursor / Claude local state
+# Local runtime state; retain old ignored paths during migration.
+.agent-temp/
+/.agent-runtime-transaction/
+/.agent-runtime-stage-*/
+/.agent-runtime-complete-*/
 .cursor-temp/
 .cursor-cache/
-.cursor/plans/
-.cursor/settings.json
+.agent/plans/
+.agent/settings.json
 tools/claude/.sessions/
 
 # Python

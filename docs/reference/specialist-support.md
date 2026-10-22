@@ -16,12 +16,12 @@ execution; no arbitrary company stack is certified by the fixture.
 
 Use `/qa` with the actual feature and oracle. It selects surfaces and justified
 overlays; questions bypass the workflow. Missing optional tools/source block only
-dependent claims. The [routing table](../../.cursor/skills/qa/references/routing.md)
+dependent claims. The [routing table](../../.agent/skills/qa/references/routing.md)
 is procedural guidance, not a keyword classifier or authorization engine.
 
 ## Runtime evidence categories
 
-Canonical Cursor skills and generated `.agents`/`.claude` copies supply identical
+Canonical `.agent` skills and linked `.agents`/`.claude` entrypoints supply identical
 procedures. Native discovery, body selection, tool execution and hook trust are
 different checks. See [runtime support](runtime-support.md). Word/character
 budgets from `verify.py` are proxies; runtime usage events measure tokens for
@@ -33,7 +33,7 @@ Keep runner declarations in `qa-config.json`, ownership in the manifest, and
 product oracles/fixtures in private product/automation repositories. Adapt the
 recipe for the observed runner/version. Add a focused reference for a recurring
 stack constraint, link it from the skill and evaluate real work before expanding
-discovery metadata. Edit `.cursor`, regenerate adapters and verify the diff.
+discovery metadata. Edit `.agent`, regenerate adapters and verify the diff.
 
 Before adding a specialty, show why existing procedures plus a reference cannot
 execute the work. Provide a discriminating description, author/run/debug/maintain

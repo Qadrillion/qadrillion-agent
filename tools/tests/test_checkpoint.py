@@ -11,7 +11,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[2]
-HOOK = ROOT / ".cursor" / "hooks" / "checkpoint-state.sh"
+HOOK = ROOT / ".agent" / "hooks" / "checkpoint-state.sh"
 
 
 class CheckpointTests(unittest.TestCase):
@@ -19,13 +19,13 @@ class CheckpointTests(unittest.TestCase):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
-        self.hook = self.root / ".cursor" / "hooks" / HOOK.name
+        self.hook = self.root / ".agent" / "hooks" / HOOK.name
         self.hook.parent.mkdir(parents=True)
         shutil.copy(HOOK, self.hook)
         self.state = self.root / "docs" / "STATE.md"
         self.state.parent.mkdir()
         self.state.write_text("Initial handover.\n")
-        (self.root / ".gitignore").write_text(".cursor-temp/\n")
+        (self.root / ".gitignore").write_text(".agent-temp/\n")
         self.product = self.root / "product.txt"
         self.product.write_text("Initial product.\n")
         self.git("init", "-q")
@@ -34,7 +34,7 @@ class CheckpointTests(unittest.TestCase):
                  "commit", "-qm", "Initial fixture")
         self.conversation = "checkpoint-fixture"
         self.key = hashlib.sha256(self.conversation.encode()).hexdigest()[:16]
-        self.record = self.root / ".cursor-temp" / "checkpoint" / self.key
+        self.record = self.root / ".agent-temp" / "checkpoint" / self.key
 
     def git(self, *args):
         return subprocess.run(["git", "-C", str(self.root), *args], check=True,
@@ -123,7 +123,7 @@ class CheckpointTests(unittest.TestCase):
                     '{"conversation_id": "fixture", "loop_count": true}'):
             with self.subTest(raw=raw):
                 self.assertEqual(self.invoke("start", raw=raw), {})
-        store = self.root / ".cursor-temp" / "checkpoint"
+        store = self.root / ".agent-temp" / "checkpoint"
         self.assertFalse(store.exists() and list(store.iterdir()))
 
     def test_untracked_fifo_is_not_opened_for_content(self):

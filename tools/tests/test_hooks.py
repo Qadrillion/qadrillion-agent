@@ -20,9 +20,9 @@ class HookTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(prefix="qa guard fixtures ")
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
-        self.hooks = self.root / ".cursor/hooks"
-        shutil.copytree(ROOT / ".cursor/hooks", self.hooks)
-        shutil.copyfile(ROOT / ".cursor/hooks.json", self.root / ".cursor/hooks.json")
+        self.hooks = self.root / ".agent/hooks"
+        shutil.copytree(ROOT / ".agent/hooks", self.hooks)
+        shutil.copyfile(ROOT / ".agent/hooks.json", self.root / ".agent/hooks.json")
         self.config = (self.hooks / "guard.conf").read_text(encoding="utf-8")
 
     def configure(self, **values):
@@ -139,7 +139,7 @@ class HookTests(unittest.TestCase):
 
     def test_credential_patterns_and_terminal_template_exemptions(self):
         for path in (".env", ".env.local", ".aws/config", ".ssh/config", ".netrc", ".npmrc", ".pypirc",
-                     ".cursor/mcp.json", ".codex/auth.json", "server.pem", "id_rsa.example",
+                     ".agent/mcp.json", ".codex/auth.json", "server.pem", "id_rsa.example",
                      "config.sample.env", "automation/accounts_pool.json", "secrets.env/ordinary.md"):
             with self.subTest(path=path):
                 self.assertEqual(self.read(path), "deny")

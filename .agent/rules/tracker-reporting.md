@@ -1,0 +1,45 @@
+---
+description: Portable QA result and bug reporting, draft review, authorization and duplicate-safe publication. Applies to tracker comments and bug drafts in any tool.
+always: false
+---
+
+# Tracker reporting
+
+Prepare the exact draft locally first. An explicit instruction to publish this
+task's QA results or file its defects authorizes routine reporting to the named
+destination; proceed without asking again for each draft. Stay within that scope
+and native runtime permissions. A changed destination or materially expanded
+purpose needs consent. A testing request alone does not authorize publication.
+Do not assume a hook will ask. Delegate publication only with that authorization
+and a single designated writer; never let competing workers post the same run.
+Without an integration, retain a paste-ready draft with `tracker: null` if needed.
+
+## QA result
+
+Include verdict, environment, tested build/revision and date; exact scenarios
+and results; linked defects; decisive evidence/artifact references; untested scope
+and next action. Known failing criteria mean Fail, incomplete required coverage
+without a confirmed defect means Partial. No Pass based only on source inspection,
+zero collected tests, or a report's existence.
+
+## Bug
+
+Title: `<surface> | <observable problem>`.
+Body: description; minimal reproduction and preconditions; expected result and
+its oracle; actual result; environment/build; short redacted technical evidence.
+Separate an observed symptom from inferred cause. Include frequency and both
+attempts for intermittent failures. Search for an existing defect before filing.
+
+Map fields to the provider's actual schema: type, project/component, severity,
+priority, environment and links only where supported/required. Severity reflects
+impact; priority is the team's scheduling decision. Do not invent Jira fields in
+GitHub/Linear or require unsupported labels. Ask only for a required missing
+material value; otherwise retain a draft with the unresolved mapping noted.
+
+## Publication evidence
+
+Record destination, posted content, task authorization, timestamp and returned URL/ID. Before
+posting, check whether this run already has a comment/defect. After a timeout or
+ambiguous response, inspect remote state before retrying; do not duplicate writes.
+Claim posted only after confirmed success. A denied write cannot be retried through
+another CLI/API/MCP. Preserve the draft when publication is unavailable or declined.

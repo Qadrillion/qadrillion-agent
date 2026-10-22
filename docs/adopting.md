@@ -22,7 +22,7 @@ for shared ownership and upgrades.
    Use native authentication and scoped accounts. Never paste credentials into a
    prompt or commit them. Choose CLI/API/MCP by verified coverage, policy and measured
    cost; see [integrations](reference/integrations.md).
-5. Review `.cursor/hooks/guard.conf`. Add actual production hosts and protected
+5. Review `.agent/hooks/guard.conf`. Add actual production hosts and protected
    folders. The default `targeted` profile leaves ordinary edits and authorized
    tool work to task instructions and native permissions; use `strict` only when
    your organization needs the extra gates. Add payload tests for your changes.
@@ -37,8 +37,8 @@ for shared ownership and upgrades.
    Doctor is offline: it validates configuration and executable availability, not
    authentication, remote access or native hook activation.
 7. Follow [runtime support](reference/runtime-support.md) to inspect discovered
-   skills/agents and observe hook behavior in a disposable workspace. Cursor is
-   the first pilot here. Repeat native checks after hook/runtime upgrades.
+   skills/agents and observe hook behavior in a disposable workspace. Repeat
+   native checks after source migrations and hook/runtime upgrades.
 8. Replace `docs/STATE.md` with your current work and populate known quirks only
    from verified evidence. Keep long-lived conventions in scoped rules and
    on-demand references. Run a small non-production ticket through QA and handoff.
@@ -55,13 +55,13 @@ local customizations. Compare a pinned public revision, then bring in framework
 changes deliberately; do not replace the company repository with a fresh public
 clone or run an installer that overwrites its settings.
 
-Review conflicts in canonical `.cursor` files before running the synchronizer.
+Review conflicts in canonical `.agent` files before running the synchronizer.
 It refuses unexpected edits to managed output: reconcile those edits at their
 source instead of forcing over them. Run verification, review native trust changes,
 and pilot one ticket before making the upgrade the team's default. Coordinate
 one writer per checkout; each engineer uses separate credentials and worktrees.
 
-## The first Cursor pilot
+## The first runtime pilot
 
 The five on-demand specialists are API, web, mobile, security and performance.
 Start with the [measured support matrix](reference/specialist-support.md), then

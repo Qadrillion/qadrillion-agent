@@ -389,7 +389,7 @@ class EvaluationPlumbingTests(unittest.TestCase):
             directory.mkdir(parents=True, exist_ok=True)
             (directory / "fixture.txt").write_text("permitted synthetic dependency")
         for name in evaluate.SKILLS:
-            path = self.source / f".cursor/skills/{name}/SKILL.md"
+            path = self.source / f".agent/skills/{name}/SKILL.md"
             path.parent.mkdir(parents=True)
             path.write_text(f"Synthetic {name} instruction\n")
         contract = self.source / "tools/specialists/CONTRACT.md"
@@ -431,7 +431,7 @@ class EvaluationPlumbingTests(unittest.TestCase):
         self.assertEqual((worker / "AGENTS.md").read_bytes(), original)
 
     def test_missing_inputs_and_duplicate_context_fail_before_destination_creation(self):
-        missing = self.source / ".cursor/skills/qa-web/SKILL.md"
+        missing = self.source / ".agent/skills/qa-web/SKILL.md"
         saved = missing.read_bytes()
         missing.unlink()
         with self.assertRaisesRegex(ValueError, "required file missing"):
@@ -448,7 +448,7 @@ class EvaluationPlumbingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "must be new"):
             evaluate.materialize(self.source, "quick", self.out)
         self.assertEqual((self.out / "evaluation.json").read_bytes(), original)
-        link = self.source / ".cursor/rules/linked.md"
+        link = self.source / ".agent/rules/linked.md"
         link.symlink_to(self.source / "AGENTS.md")
         with self.assertRaisesRegex(ValueError, "symlink"):
             evaluate.materialize(self.source, "quick", self.root / "another-run")
