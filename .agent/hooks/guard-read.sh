@@ -51,7 +51,6 @@ for candidate in candidates:
         r"(^|/)\.codex/auth\.json$",
         r"(^|/)\.claude/settings\.local\.json$",
         r"(^|/)Keychains(/|$)",
-        r"credentials($|[./])",
     )
     if any(re.search(pattern, candidate) for pattern in hard):
         result("deny", path)
@@ -67,6 +66,14 @@ for candidate in candidates:
         except (OSError, subprocess.TimeoutExpired):
             result("deny", "protected-path check unavailable")
     if any(fnmatch.fnmatchcase(candidate, pattern) for pattern in extra.split()):
+        result("deny", path)
+    # A module may describe credentials; store names and resolved targets still
+    # need independent checks before this limited source-file exception.
+    location = candidate if os.path.isabs(candidate) else os.path.join(os.getcwd(), candidate)
+    source = re.search(r"(^|/)(src|app|lib|tests?|tools|scripts|automation|packages)/", location)
+    source = source and re.search(r"\.(py|[cm]?js|jsx|ts|tsx|sh|bash|zsh|rb|rs|go|java|kt|kts|swift|cs|c|cpp|h|hpp|php)$", location)
+    source = source and not re.search(r"credentials($|[./])", os.path.dirname(location))
+    if re.search(r"credentials($|[./])", candidate) and not source:
         result("deny", path)
     if candidate.endswith((".example", ".template", ".sample")):
         continue
