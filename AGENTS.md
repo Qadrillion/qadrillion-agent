@@ -12,7 +12,7 @@ Use the team's tools and conventions; no vendor or test runner is mandatory.
 Do not read session history at startup. A quick question needs only relevant
 state. Classify the task before acting: `api`, `ui-web`, `mobile`, `backend`,
 `desktop`, `data`, `device`, `other`, `multi-surface`, `tooling`, or `quick`.
-A ticket ID or request to test a feature enters `.cursor/skills/qa/SKILL.md`.
+A ticket ID or request to test a feature enters `.agent/skills/qa/SKILL.md`.
 Free-text QA works without a tracker. Questions do not require the QA pipeline.
 
 ## Work and evidence
@@ -48,16 +48,16 @@ Pass focused inputs and artifact paths instead of whole transcripts.
 
 ## Contracts and verification
 
-Read applicable contracts explicitly in runtimes without Cursor rule discovery:
+Read applicable contracts explicitly when the task needs them:
 
-- Always: `.cursor/rules/core.mdc` — uncertainty and authorization.
-- Source review: `.cursor/rules/code-review.mdc` — testable risks.
-- Tests: `.cursor/rules/test-automation.mdc` — design, fixtures and evidence.
-- Ticket state: `.cursor/rules/ticket-state.mdc` — schema and resume.
-- Tracker drafts/posts: `.cursor/rules/tracker-reporting.mdc` — results and bugs.
+- Always: `.agent/rules/core.md` — uncertainty and authorization.
+- Source review: `.agent/rules/code-review.md` — testable risks.
+- Tests: `.agent/rules/test-automation.md` — design, fixtures and evidence.
+- Ticket state: `.agent/rules/ticket-state.md` — schema and resume.
+- Tracker drafts/posts: `.agent/rules/tracker-reporting.md` — results and bugs.
 
-Contracts live once; skills and agents reference them. `.cursor/` is the maintained
-source for compatibility. Run `python3 tools/agents/sync.py` after editing agent
+Contracts live once; skills and agents reference them. `.agent/` is the maintained
+provider-neutral source. Run `python3 tools/agents/sync.py` after editing agent
 sources, then `python3 tools/verify.py`. `--check` detects adapter drift. No
 personal installer is required. See `docs/reference/runtime-support.md` for
 native registration and generic-agent fallback.

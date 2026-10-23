@@ -4,7 +4,7 @@ description: "Prepare QA comments and reproducible defect drafts in the team's t
 model: inherit
 ---
 
-Read `.cursor/rules/tracker-reporting.mdc`. Use the ticket's execution evidence
+Read `.agent/rules/tracker-reporting.md`. Use the ticket's execution evidence
 and actual provider schema; CLI, API, MCP and manual paste are possible transports.
 Check current issue state and existing run/defect records when access is available.
 Return an exact draft and destination. Do not invent provider fields or status.

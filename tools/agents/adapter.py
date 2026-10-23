@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Translate native hook events to committed Cursor policies without running tool input."""
+"""Translate native hook events to neutral policies without running tool input."""
 import argparse
 import json
 import re
@@ -117,8 +117,10 @@ def run_policy(root, entry, payload, deadline, boundary):
         if not argv:
             raise ValueError()
         script = (root / argv[0]).resolve()
-        if not script.is_relative_to((root / ".cursor/hooks").resolve()) or script.suffix != ".sh":
-            raise PolicyError("policy command must reference a committed .cursor/hooks shell script")
+        hook_root = root.resolve() / ".agent/hooks"
+        if (hook_root.resolve() != hook_root or not script.is_relative_to(hook_root)
+                or script.suffix != ".sh"):
+            raise PolicyError("policy command must reference a committed .agent/hooks shell script")
         timeout = deadline - time.monotonic()
         if timeout <= 0:
             raise PolicyError("policy deadline exceeded")
@@ -145,7 +147,7 @@ def project(data, root, runtime):
     event = data.get("hook_event_name", "PreToolUse")
     if event not in {"PreToolUse", *LIFECYCLE}:
         raise PolicyError("unsupported hook event")
-    hooks = json.loads((root / ".cursor/hooks.json").read_text(encoding="utf-8"))["hooks"]
+    hooks = json.loads((root / ".agent/hooks.json").read_text(encoding="utf-8"))["hooks"]
     if not isinstance(hooks, dict):
         raise PolicyError("invalid project hook manifest")
     cwd = Path(require_string(data.get("cwd", str(root)), "working directory"))

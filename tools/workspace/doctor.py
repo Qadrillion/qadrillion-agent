@@ -26,7 +26,7 @@ def inspect(root: Path) -> list[dict[str, str]]:
                "available" if shutil.which(executable) else "missing executable")
     required = ["AGENTS.md", "CLAUDE.md", "docs/STATE.md", "docs/decisions/INDEX.md",
                 "docs/reference/known-quirks.md", "docs/reference/runtime-support.md",
-                "docs/reference/integrations.md", "docs/reference/team-workflow.md", ".cursor/hooks.json",
+                "docs/reference/integrations.md", "docs/reference/team-workflow.md", ".agent/hooks.json",
                 ".claude/settings.json", ".codex/hooks.json"]
     for name in required:
         report("ok" if (root / name).is_file() else "error", name, "required workspace file")

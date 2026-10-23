@@ -28,7 +28,7 @@ destination without approving each generated sentence again. A testing request
 alone does not authorize unrelated messages, deployment or destructive changes.
 Ask only when the required external action lacks authorization or its destination
 or scope materially changes. Native permissions still apply. This declaration
-does not alter runtime permissions or hook policy: `.cursor/hooks/guard.conf`
+does not alter runtime permissions or hook policy: `.agent/hooks/guard.conf`
 defaults to a targeted profile; organizations can opt into its stricter gates.
 
 Runner paths cannot contain parent traversal, absolute or home paths. Doctor also

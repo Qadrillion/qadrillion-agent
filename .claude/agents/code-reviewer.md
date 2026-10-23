@@ -5,7 +5,7 @@ model: inherit
 tools: Read, Grep, Glob
 ---
 
-Read `.cursor/rules/code-review.mdc`; it owns the contract. Use the bounded
+Read `.agent/rules/code-review.md`; it owns the contract. Use the bounded
 navigation map and pinned revision, inspect actual implementation and necessary
 callers, and compare with the criteria. Prioritize realistic failure paths by
 impact/exposure. Distinguish observed behavior from inferred risk, name a runnable

@@ -49,11 +49,11 @@ Each specialty covers **prepare → author → execute → diagnose → maintain
 
 | Specialty | Work it guides |
 |---|---|
-| [API](.cursor/skills/qa-api/SKILL.md) | Contracts and boundaries, actor permissions, persisted state, async completion, idempotency and cleanup |
-| [Web](.cursor/skills/qa-web/SKILL.md) | Semantic locators, isolated fixtures, authentication, business assertions, browser variation and failure traces |
-| [Mobile](.cursor/skills/qa-mobile/SKILL.md) | Android/iOS and native/hybrid procedures, build/device identity, observed locators, permissions, lifecycle and diagnostics |
-| [Security](.cursor/skills/qa-security/SKILL.md) | Authorized checks selected by risk, actor/object controls, reproducible evidence and reasoned severity |
-| [Performance](.cursor/skills/qa-performance/SKILL.md) | Workloads, baselines, thresholds, resource limits, stopping conditions, latency distributions and investigation |
+| [API](.agent/skills/qa-api/SKILL.md) | Contracts and boundaries, actor permissions, persisted state, async completion, idempotency and cleanup |
+| [Web](.agent/skills/qa-web/SKILL.md) | Semantic locators, isolated fixtures, authentication, business assertions, browser variation and failure traces |
+| [Mobile](.agent/skills/qa-mobile/SKILL.md) | Android/iOS and native/hybrid procedures, build/device identity, observed locators, permissions, lifecycle and diagnostics |
+| [Security](.agent/skills/qa-security/SKILL.md) | Authorized checks selected by risk, actor/object controls, reproducible evidence and reasoned severity |
+| [Performance](.agent/skills/qa-performance/SKILL.md) | Workloads, baselines, thresholds, resource limits, stopping conditions, latency distributions and investigation |
 
 Security and performance are selected when the task calls for them. Focused
 references extend the workflow to accessibility, exploratory testing, data
@@ -76,7 +76,7 @@ python3 tools/workspace/doctor.py
 
 Open the workspace root in your coding agent and give `/qa` a task, or use
 `/qa PROJ-123` with a configured tracker. Without slash-command support, ask the
-agent to read `AGENTS.md` and `.cursor/skills/qa/SKILL.md` and follow them.
+agent to read `AGENTS.md` and `.agent/skills/qa/SKILL.md` and follow them.
 
 Before adding company information, establish a **private team workspace** and
 verify its remote and visibility. Configure the capabilities you actually have;
@@ -152,7 +152,7 @@ activation and hook enforcement also need checks in your own environment.
 |---|---|
 | Repository ownership, roots, branches and permitted mutations | [`workspace-manifest.json`](workspace-manifest.json) |
 | Available integrations, runner commands, artifacts and target identity | [`qa-config.json`](qa-config.json) |
-| Production selectors and protected paths | [`.cursor/hooks/guard.conf`](.cursor/hooks/guard.conf) |
+| Production selectors and protected paths | [`.agent/hooks/guard.conf`](.agent/hooks/guard.conf) |
 | Authentication and permissions | Your runtime's local settings; keep credentials out of Git |
 
 Start with a [configuration example](examples/config/), then use the

@@ -1,36 +1,36 @@
 # State — Qadrillion Agent
 
-Updated: 2026-09-24. Owner: framework maintainer session.
-Branch: `docs/repository-presentation`. Base: `d593f73` (merged PR #4).
-Implementation: `7cfa20e`; review-record formatting correction follows.
-PR: https://github.com/Qadrillion/qadrillion-agent/pull/5 (open).
+Updated: 2026-10-23. Branch: `chore/provider-neutral-setup-2026-10-23`.
+Base: `d91545d` (verified remote `main`). Changes uncommitted pending review.
 
-Task: refresh GitHub presentation and supply a separate website implementation
-prompt before the private laptop pilot. Current main and existing work were
-preserved. PR #4 is merged; this task changes documentation only.
+## Current task
 
-Updated root README and two runnable-reference guides. All six tracked READMEs
-were inspected; the canonical configuration guide and two historical evidence
-READMEs remain unchanged. The website was inspected read-only; its source and
-live deployment were not changed. The copyable handoff is
-[the website prompt](prompts/update-repo-landing-page.md).
+- Publish only the provider-neutral source migration from a clean base.
+  Earlier unfinished Cursor-import and checkpoint/handover refinements are
+  excluded; the original checkout and its existing work remain separate.
+- `.agent` owns rules, skills, roles and hook policy. Native skill entrypoints
+  link to that source. Native role/hook formats remain generated. The optional
+  `.cursor -> .agent` alias preserves old skill/role/hook paths; neutral Markdown
+  rules do not claim historical native Cursor `.mdc` discovery.
+- Ledger paths are normalized before adoption. Generated-copy migration stages
+  output, renames originals to recoverable backups and commits its ledger last.
+  Errors roll back; interrupted work recovers on the next normal invocation.
+  Read-only checks report pending recovery without writing.
 
-Checks: 153 Python tests, 75 guard payloads, local doctor, six HTTP and eight
-HTTP/browser replay outcomes pass. Forty-four local links/anchors resolve.
-Desktop light/dark and 320px/390px local GitHub-style renders have no page-width
-overflow. Generated adapters are current. See
-[verification](evidence/repository-presentation/verification.md) and
-[acceptance/review record](specs/2026-09-24-repository-presentation.md).
+## Evidence and next action
 
-Review: PASS after two documentation findings were corrected; zero unresolved or
-deferred. The reviewer independently passed offline, replay and render checks.
-The current content fingerprint matches the reviewed value. The stop reminder's
-required plain-field/round syntax is corrected and recognition was verified.
-All four hosted checks pass at `7cfa20e`; latest documentation checks are on PR #5.
-Dirty paths: none after the presentation/completion commit; no unrelated work.
-Next: maintainer reviews and merges the presentation PR, then uses the website
-prompt in the website checkout and pilots the framework privately. The task's
-final handoff links the published PR and exact hosted-check result.
-No website deployment or popularity/conversion uplift is claimed. Existing
-runtime/mobile execution limits remain in the support matrix. No company data
-or accounts were used.
+- Full offline run before the publication-review correction: 154 framework +
+  14 mobile tests, 75 guard payloads, schema/index, document links, drift and
+  doctor PASS with the optional `.cursor` alias removed, then restored.
+- Publication review found recovery backups were not Git-ignored. Added exact
+  root ignore patterns for transaction, staging and retained-completion folders.
+  Recovery artifacts are preserved. Updated generator/adapter suite: 51 PASS;
+  new fixtures verify ignored pending/staging/retained backups, `git add --all`
+  exclusion, preserved unrelated synthetic config and valid recovery/`--check`.
+  `git diff --check` PASS. Fresh re-review is pending; live checks are separate.
+- No authenticated runtime or connected-service execution is part of this change.
+  Native discovery/trust/readiness and Codex–Claude continuation require separate
+  observation in the exact task checkout with account access available.
+- Main requires a pull request and the `governance` check. Do not commit or push
+  this candidate before its fresh publication review and coordinator instruction.
+- See [publication record](sessions/2026-10-23-provider-neutral-publication.md).

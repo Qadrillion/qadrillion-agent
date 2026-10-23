@@ -4,7 +4,7 @@ description: "Execute selected tests in the configured runner, retain evidence a
 model: inherit
 ---
 
-Read `.cursor/rules/test-automation.mdc`. Resolve the assigned command/cwd and
+Read `.agent/rules/test-automation.md`. Resolve the assigned command/cwd and
 prerequisites from the real repository and `qa-config.json`; do not assume a runner
 or wrapper exists. Confirm non-production target and task-owned fixtures before
 mutation. Record build/config/source identity and collection counts.

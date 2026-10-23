@@ -13,22 +13,22 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def instructions() -> bool:
     errors = []
-    scripts = [*(ROOT / ".cursor/hooks").glob("*.sh"),
-               ROOT / ".cursor/hooks/tests/run-tests.sh",
+    scripts = [*(ROOT / ".agent/hooks").glob("*.sh"),
+               ROOT / ".agent/hooks/tests/run-tests.sh",
                *(ROOT / ".claude/hooks").glob("*.sh"),
                ROOT / "tools/workspace/refresh.sh"]
     for script in scripts:
         if not script.is_file() or not script.stat().st_mode & 0o111:
             errors.append(f"hook/entry script is not executable: {script.relative_to(ROOT)}")
     core_words = 0
-    for path in (ROOT / ".cursor/rules").glob("*.mdc"):
+    for path in (ROOT / ".agent/rules").glob("*.md"):
         text = path.read_text(encoding="utf-8")
         parts = text.split("---", 2)
         if len(parts) != 3:
             errors.append(f"invalid rule frontmatter: {path.name}")
             continue
-        if re.search(r"^alwaysApply: true$", parts[1], re.M):
-            if path.name != "core.mdc":
+        if re.search(r"^always: true$", parts[1], re.M):
+            if path.name != "core.md":
                 errors.append(f"unexpected always-on rule: {path.name}")
             core_words = len(parts[2].split())
             if not 0 < core_words <= 120:
@@ -36,7 +36,7 @@ def instructions() -> bool:
         if "@docs/STATE.md" in text:
             errors.append("STATE must not be imported on every turn")
     if not core_words:
-        errors.append("core.mdc must be the always-on rule")
+        errors.append("core.md must be the always-on rule")
     identity = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
     if "@docs/STATE.md" in identity:
         errors.append("AGENTS must not import STATE on every turn")
@@ -44,7 +44,7 @@ def instructions() -> bool:
     if words > 1000:
         errors.append(f"always-loaded project prose exceeds 1000 words: {words}")
     print(f"Project prompt proxy: {words} words; AGENTS {len(identity)} chars; core {core_words} words. Not token usage.", flush=True)
-    for path in sorted((ROOT / ".cursor/skills").glob("*/SKILL.md")):
+    for path in sorted((ROOT / ".agent/skills").glob("*/SKILL.md")):
         text = path.read_text(encoding="utf-8")
         print(f"On-demand {path.parent.name}: {len(text.split())} words / {len(text)} chars", flush=True)
         parts = text.split("---", 2)
@@ -57,9 +57,9 @@ def instructions() -> bool:
 
 def document_links() -> bool:
     errors = []
-    paths = [ROOT / "README.md", ROOT / "docs/adopting.md", ROOT / ".cursor/README.md",
+    paths = [ROOT / "README.md", ROOT / "docs/adopting.md", ROOT / ".agent/README.md",
              *(ROOT / "docs/reference").glob("*.md"),
-             *(ROOT / ".cursor/skills").rglob("*.md")]
+             *(ROOT / ".agent/skills").rglob("*.md")]
     for path in paths:
         for raw in re.findall(r"\[[^\]]*\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
             target = raw.strip().split("#", 1)[0]
@@ -79,7 +79,7 @@ def main() -> int:
     passed = instructions()
     passed = document_links() and passed
     commands = [
-        ["bash", ".cursor/hooks/tests/run-tests.sh"],
+        ["bash", ".agent/hooks/tests/run-tests.sh"],
         [sys.executable, "-B", "-m", "unittest", "discover", "-s", "tools/tests", "-p", "test_*.py", "-v"],
         [sys.executable, "-B", "-m", "unittest", "discover", "-s", "tools/specialists/mobile", "-p", "test_*.py", "-v"],
         [sys.executable, "tools/tickets/validate.py"],

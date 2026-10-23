@@ -1,0 +1,36 @@
+---
+description: Source review for testable QA risks and the severity output contract. Apply when product source is accessible for QA analysis.
+globs:
+  - "source/**/*"
+always: false
+---
+
+# Source review for QA
+
+Locate changed behavior and relevant callers, compare it with requirements, and
+identify testable risks. Source review complements execution. Without source,
+record the gap and continue black-box testing; do not invent file references.
+
+Check relevant boundaries: input partitions/limits; authorization by actor and
+object; state transitions; failures/recovery; races, retries and idempotency;
+persistence/transactions; compatibility and accessibility; sensitive data in
+output; observability. Follow dependencies only to establish concrete failure
+paths. ~10 files without finding the implementation is a search budget, not a
+cap on a located review.
+
+Read `docs/reference/surfaces.md` only for the affected surface. Pin source commit
+and distinguish a demonstrated defect from an unexecuted risk. A missing test
+ID, specific framework or preferred architecture is not itself a defect.
+
+Output one block per actionable risk:
+
+```
+[SEVERITY] — risk, in one sentence
+Location: file:line or file · symbol, at <commit>
+Evidence: concrete path and precondition; observed or inferred
+Test: input/state/action → expected outcome that would catch it
+```
+
+Severity: `BLOCKING`, `HIGH`, `MEDIUM`, `LOW`, grounded in impact and exposure.
+End with criteria not satisfied or not assessable, and relevant behavior absent
+from the requirements. No invented risks to fill a quota.

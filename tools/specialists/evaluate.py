@@ -17,7 +17,7 @@ FILES = ("AGENTS.md", "qa-config.json", "workspace-manifest.json", "docs/decisio
          "docs/reference/known-quirks.md", "docs/reference/integrations.md",
          "docs/reference/surfaces.md", "docs/reference/testing-strategy.md",
          "docs/reference/focused-checks.md", "tickets/_TEMPLATE.md")
-TREES = (".cursor/rules", ".cursor/agents", "tools/workspace", "tools/tickets")
+TREES = (".agent/rules", ".agent/agents", "tools/workspace", "tools/tickets")
 VERDICTS = ("Pass", "Fail", "Blocked", "Not-run")
 
 
@@ -65,9 +65,9 @@ def regular_file(path):
 
 def input_files(source):
     files = {Path(name) for name in FILES}
-    trees = [*TREES, *(f".cursor/skills/{name}" for name in SKILLS)]
+    trees = [*TREES, *(f".agent/skills/{name}" for name in SKILLS)]
     for name in SKILLS:
-        regular_file(source / f".cursor/skills/{name}/SKILL.md")
+        regular_file(source / f".agent/skills/{name}/SKILL.md")
     for name in trees:
         directory = source / name
         if not directory.is_dir() or directory.is_symlink():
